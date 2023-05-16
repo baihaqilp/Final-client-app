@@ -10,53 +10,53 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import id.co.metrodata.clientapp.model.Employee;
+import id.co.metrodata.clientapp.model.Materi;
 
 @Service
-public class EmployeeService {
+public class MateriService {
 
     @Autowired
     private RestTemplate restTemplate;
 
-    @Value("${server.baseUrl}/employee")
+    @Value("${server.baseUrl}/materi")
     private String url;
 
-    public List<Employee> getAll() {
+    public List<Materi> getAll() {
         return restTemplate.exchange(
                 url,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<List<Employee>>() {
+                null, new ParameterizedTypeReference<List<Materi>>() {
                 }).getBody();
     }
 
-    public Employee getById(long id) {
+    public Materi getById(long id) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<Employee>() {
+                null, new ParameterizedTypeReference<Materi>() {
                 }).getBody();
     }
 
-    public Employee create(Employee employee) {
+    public Materi create(Materi materi) {
         return restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,
-                new HttpEntity(employee),
-                Employee.class).getBody();
+                new HttpEntity(materi),
+                Materi.class).getBody();
     }
 
-    public Employee update(long id, Employee employee) {
+    public Materi update(long id, Materi materi) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,
-                new HttpEntity(employee), Employee.class).getBody();
+                new HttpEntity(materi), Materi.class).getBody();
     }
 
-    public Employee delete(long id) {
+    public Materi delete(long id) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.DELETE,
-                null, Employee.class).getBody();
+                null, Materi.class).getBody();
     }
 
 }

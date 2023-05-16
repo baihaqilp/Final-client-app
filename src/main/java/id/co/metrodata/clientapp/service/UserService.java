@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -40,7 +41,7 @@ public class UserService {
         return restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,
-                null,
+                new HttpEntity(user),
                 User.class).getBody();
     }
 
@@ -48,7 +49,7 @@ public class UserService {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,
-                null, User.class).getBody();
+                new HttpEntity(user), User.class).getBody();
     }
 
     public User delete(long id) {
