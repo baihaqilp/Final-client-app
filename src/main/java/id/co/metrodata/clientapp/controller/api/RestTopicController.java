@@ -2,6 +2,7 @@ package id.co.metrodata.clientapp.controller.api;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,5 +41,10 @@ public class RestTopicController {
     public Topic update(@PathVariable long id, @RequestBody Topic topic) {
         return topicService.update(id, topic);
 
+    }
+
+    @DeleteMapping("/{id}")
+    public Topic delete(@PathVariable long id) {
+        return topicService.getById(id);
     }
 }

@@ -2,6 +2,7 @@ package id.co.metrodata.clientapp.controller.api;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,5 +34,10 @@ public class RestMateriController {
     @PutMapping("/{id}")
     public Materi update(@PathVariable long id, @RequestBody Materi materi) {
         return materiService.update(id, materi);
+    }
+
+    @DeleteMapping("/{id}")
+    public Materi delete(@PathVariable long id) {
+        return materiService.getById(id);
     }
 }
