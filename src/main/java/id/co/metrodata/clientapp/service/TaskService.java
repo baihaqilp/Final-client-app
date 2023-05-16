@@ -10,52 +10,52 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import id.co.metrodata.clientapp.model.Topic;
+import id.co.metrodata.clientapp.model.Task;
 
 @Service
-public class TopicService {
+public class TaskService {
 
     @Autowired
     private RestTemplate restTemplate;
 
-    @Value("${server.baseUrl}/topic")
+    @Value("${server.baseUrl}/task")
     private String url;
 
-    public List<Topic> getAll() {
+    public List<Task> getAll() {
         return restTemplate.exchange(
                 url,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<List<Topic>>() {
+                null, new ParameterizedTypeReference<List<Task>>() {
                 }).getBody();
     }
 
-    public Topic getById(long id) {
+    public Task getById(long id) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<Topic>() {
+                null, new ParameterizedTypeReference<Task>() {
                 }).getBody();
     }
 
-    public Topic create(Topic topic) {
+    public Task create(Task task) {
         return restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,
-                new HttpEntity(topic),
-                Topic.class).getBody();
+                new HttpEntity(task),
+                Task.class).getBody();
     }
 
-    public Topic update(long id, Topic topic) {
+    public Task update(long id, Task task) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,
-                new HttpEntity(topic), Topic.class).getBody();
+                new HttpEntity(task), Task.class).getBody();
     }
 
-    public Topic delete(long id) {
+    public Task delete(long id) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.DELETE,
-                null, Topic.class).getBody();
+                null, Task.class).getBody();
     }
 }
