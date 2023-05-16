@@ -18,4 +18,8 @@ public class authController {
     return "loginregis/login";
   }
 
+  @GetMapping("/dashboard")
+  public String dashboard() {
+    return "trainer/index";
+  }
 }
