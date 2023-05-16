@@ -10,53 +10,52 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import id.co.metrodata.clientapp.model.Employee;
+import id.co.metrodata.clientapp.model.Program;
 
 @Service
-public class EmployeeService {
+public class ProgramService {
 
     @Autowired
     private RestTemplate restTemplate;
 
-    @Value("${server.baseUrl}/employee")
+    @Value("${server.baseUrl}/program")
     private String url;
 
-    public List<Employee> getAll() {
+    public List<Program> getAll() {
         return restTemplate.exchange(
                 url,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<List<Employee>>() {
+                null, new ParameterizedTypeReference<List<Program>>() {
                 }).getBody();
     }
 
-    public Employee getById(long id) {
+    public Program getById(long id) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<Employee>() {
+                null, new ParameterizedTypeReference<Program>() {
                 }).getBody();
     }
 
-    public Employee create(Employee employee) {
+    public Program create(Program program) {
         return restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,
-                new HttpEntity(employee),
-                Employee.class).getBody();
+                new HttpEntity(program),
+                Program.class).getBody();
     }
 
-    public Employee update(long id, Employee employee) {
+    public Program update(long id, Program program) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,
-                new HttpEntity(employee), Employee.class).getBody();
+                new HttpEntity(program), Program.class).getBody();
     }
 
-    public Employee delete(long id) {
+    public Program delete(long id) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.DELETE,
-                null, Employee.class).getBody();
+                null, Program.class).getBody();
     }
-
 }

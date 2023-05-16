@@ -10,53 +10,53 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import id.co.metrodata.clientapp.model.Employee;
+import id.co.metrodata.clientapp.model.Classroom;
 
 @Service
-public class EmployeeService {
+public class ClassroomService {
 
     @Autowired
     private RestTemplate restTemplate;
 
-    @Value("${server.baseUrl}/employee")
+    @Value("${server.baseUrl}/classroom")
     private String url;
 
-    public List<Employee> getAll() {
+    public List<Classroom> getAll() {
         return restTemplate.exchange(
                 url,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<List<Employee>>() {
+                null, new ParameterizedTypeReference<List<Classroom>>() {
                 }).getBody();
     }
 
-    public Employee getById(long id) {
+    public Classroom getById(long id) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<Employee>() {
+                null, new ParameterizedTypeReference<Classroom>() {
                 }).getBody();
     }
 
-    public Employee create(Employee employee) {
+    public Classroom create(Classroom classroom) {
         return restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,
-                new HttpEntity(employee),
-                Employee.class).getBody();
+                new HttpEntity(classroom),
+                Classroom.class).getBody();
     }
 
-    public Employee update(long id, Employee employee) {
+    public Classroom update(long id, Classroom classroom) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,
-                new HttpEntity(employee), Employee.class).getBody();
+                new HttpEntity(classroom), Classroom.class).getBody();
     }
 
-    public Employee delete(long id) {
+    public Classroom delete(long id) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.DELETE,
-                null, Employee.class).getBody();
+                null, Classroom.class).getBody();
     }
 
 }

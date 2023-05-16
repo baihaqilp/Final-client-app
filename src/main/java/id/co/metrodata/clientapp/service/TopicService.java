@@ -7,56 +7,53 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import id.co.metrodata.clientapp.model.Employee;
+import id.co.metrodata.clientapp.model.Topic;
 
-@Service
-public class EmployeeService {
+public class TopicService {
 
     @Autowired
     private RestTemplate restTemplate;
 
-    @Value("${server.baseUrl}/employee")
+    @Value("${server.baseUrl}/topic")
     private String url;
 
-    public List<Employee> getAll() {
+    public List<Topic> getAll() {
         return restTemplate.exchange(
                 url,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<List<Employee>>() {
+                null, new ParameterizedTypeReference<List<Topic>>() {
                 }).getBody();
     }
 
-    public Employee getById(long id) {
+    public Topic getById(long id) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<Employee>() {
+                null, new ParameterizedTypeReference<Topic>() {
                 }).getBody();
     }
 
-    public Employee create(Employee employee) {
+    public Topic create(Topic topic) {
         return restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,
-                new HttpEntity(employee),
-                Employee.class).getBody();
+                new HttpEntity(topic),
+                Topic.class).getBody();
     }
 
-    public Employee update(long id, Employee employee) {
+    public Topic update(long id, Topic topic) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,
-                new HttpEntity(employee), Employee.class).getBody();
+                new HttpEntity(topic), Topic.class).getBody();
     }
 
-    public Employee delete(long id) {
+    public Topic delete(long id) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.DELETE,
-                null, Employee.class).getBody();
+                null, Topic.class).getBody();
     }
-
 }
