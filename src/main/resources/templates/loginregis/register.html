@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" th:href="@{/css/login.css}" />
+
+    <title>Register</title>
+  </head>
+
+  <body>
+    <section class="login-base">
+      <div class="container login-block row">
+        <div class="login-image col-4">
+          <!-- <img th:src="@{/img/img2.png}" alt="login" /> -->
+        </div>
+        <div class="login-content row d-flex align-items-center">
+          <h1 class="fw-bolder mb-3">Register</h1>
+          <p>
+            Welcome to Learning Management System (LMS) registration page.
+            Please fill out the form below to create your account
+          </p>
+          <form class="pb-3" th:action="@{/login}" th:method="POST">
+            <!-- <label for="username" class="form-label"></label> -->
+            <div class="input-content p-2">
+              <input type="text" class="form-control" placeholder="Name" />
+            </div>
+            <!-- <label for="password" class="form-label"></label> -->
+            <div class="input-content p-2">
+              <input type="text" class="form-control" placeholder="Email" />
+            </div>
+            <div class="input-content p-2">
+              <input type="text" class="form-control" placeholder="Phone" />
+            </div>
+            <div class="input-content p-2">
+              <input type="text" class="form-control" placeholder="Address" />
+            </div>
+            <div class="input-content p-2">
+              <input type="text" class="form-control" placeholder="Username" />
+            </div>
+            <div class="input-content p-2">
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Password"
+                id="password1"
+              />
+            </div>
+            <div class="input-content p-2">
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Password"
+                id="password2"
+              />
+            </div>
+            <div>
+              <span id="message"></span>
+            </div>
+            <button type="submit" class="btn mt-4 text-white">Submit</button>
+          </form>
+          <a href="/login" class="text-center">I already have a account</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.js"
+      integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/98d02758b8.js"
+      crossorigin="anonymous"
+    ></script>
+    <script th:src="@{/js/regis.js}"></script>
+  </body>
+</html>
