@@ -22,4 +22,9 @@ public class authController {
   public String dashboard() {
     return "trainer/index";
   }
+
+  @GetMapping("/dashboard-tarinee")
+  public String dashboardTrainee() {
+    return "trainee/index";
+  }
 }
