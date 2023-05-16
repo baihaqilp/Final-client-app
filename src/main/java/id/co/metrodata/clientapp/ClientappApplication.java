@@ -8,6 +8,7 @@ public class ClientappApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ClientappApplication.class, args);
+		System.out.println(" \n ClientApp is running.... \n");
 	}
 
 }
