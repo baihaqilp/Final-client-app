@@ -48,4 +48,14 @@ public class authController {
     return "admin/class/detailClass";
   }
 
+  @GetMapping("/trainer")
+  public String trainerAdmin() {
+    return "admin/trainer/trainer";
+  }
+
+  @GetMapping("/trainer-detail")
+  public String trainerDetail() {
+    return "admin/trainer/detailTrainer";
+  }
+
 }
