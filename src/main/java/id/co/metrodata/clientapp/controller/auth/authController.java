@@ -58,4 +58,13 @@ public class authController {
     return "admin/trainer/detailTrainer";
   }
 
+  @GetMapping("/segment")
+  public String segmentAdmin() {
+    return "admin/segment/segment";
+  }
+
+  @GetMapping("/segment-detail")
+  public String segmentDetail() {
+    return "admin/segment/detailSegment";
+  }
 }
