@@ -25,7 +25,10 @@
                     style="font-size: 48px"
                   ></i>
                 </div>
-                <a href="#" class="btn btn-primary mt-2" style="width: 50%"
+                <a
+                  th:href="@{/class}"
+                  class="btn btn-primary mt-2"
+                  style="width: 50%"
                   >View Classes</a
                 >
               </div>
@@ -182,7 +185,7 @@
       </div>
     </section>
     <div layout:fragment="script">
-      <script th:src="@{/js/trainee/dashboard.js}"></script>
+      <!-- <script th:src="@{/js/admin/dashboard.js}"></script> -->
     </div>
   </body>
 </html>
