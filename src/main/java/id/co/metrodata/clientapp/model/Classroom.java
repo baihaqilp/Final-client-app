@@ -11,5 +11,6 @@ public class Classroom {
 
     private long id;
     private String name;
+    private Program program;
 
 }
