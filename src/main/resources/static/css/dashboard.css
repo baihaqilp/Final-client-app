@@ -1,11 +1,11 @@
-body {
+.wrapper {
   height: 200vh;
   background: linear-gradient(to bottom, #7da0fa, #7978e9, #98bdff);
 }
 
 /* navbar */
 .fixed-top {
-  position: fixed;
+  position: sticky;
   top: 0;
   width: 100%;
 }
@@ -49,4 +49,34 @@ body {
 .content {
   margin-left: 250px;
   padding: 20px;
+}
+
+/* dashboard content */
+.card {
+  margin-bottom: 20px;
+}
+
+.school {
+  color: #7978e9;
+}
+
+.number {
+  color: black;
+  font-size: 36px;
+}
+
+.fa-users-line {
+  color: #f3797e;
+}
+
+.fa-list-check {
+  color: #4b49ac;
+}
+
+.chart-container {
+  max-width: 600px;
+}
+
+.fa-chart-line {
+  color: #98bdff;
 }

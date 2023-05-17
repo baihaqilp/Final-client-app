@@ -27,4 +27,9 @@ public class authController {
   public String dashboardTrainee() {
     return "trainee/index";
   }
+
+  @GetMapping("/dashboard-admin")
+  public String dashboardAdmin() {
+    return "admin/index";
+  }
 }
