@@ -32,4 +32,20 @@ public class authController {
   public String dashboardAdmin() {
     return "admin/index";
   }
+
+  @GetMapping("/class")
+  public String classAdmin() {
+    return "admin/class/class";
+  }
+
+  @GetMapping("/class-add")
+  public String addClass() {
+    return "admin/class/addClass";
+  }
+
+  @GetMapping("/class-detail")
+  public String detailClass() {
+    return "admin/class/detailClass";
+  }
+
 }
