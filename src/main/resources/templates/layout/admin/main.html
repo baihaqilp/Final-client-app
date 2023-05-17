@@ -29,12 +29,21 @@
     <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
   </head>
   <body>
-    <div>
-      <!-- navbar -->
-      <div th:replace="fragments/admin/navbar :: navbar"></div>
-      <div th:replace="fragments/admin/sidebar :: sidebar"></div>
-
-      <section layout:fragment="content"></section>
+    <!-- navbar -->
+    <div th:replace="fragments/trainer/navbar :: navbar"></div>
+    <div class="wrapper">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-2" style="width: 20%">
+            <div class="sidebar">
+              <div th:replace="fragments/trainer/sidebar :: sidebar"></div>
+            </div>
+          </div>
+          <div class="col-lg-9" style="padding-top: 3rem">
+            <section layout:fragment="content"></section>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- Bootstrap -->
     <script
@@ -51,6 +60,8 @@
       src="https://kit.fontawesome.com/98d02758b8.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- <script src="@{/plugins/jquery/jquery.min.js}"></script>
     <script src="@{/dist/js/adminlte.min.js}"></script>
     <script src="@{/jquery/jquery.min.js}"></script> -->
