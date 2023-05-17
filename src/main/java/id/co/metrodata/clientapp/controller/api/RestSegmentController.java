@@ -11,40 +11,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import id.co.metrodata.clientapp.model.Segmen;
+import id.co.metrodata.clientapp.model.Segment;
 import id.co.metrodata.clientapp.service.SegmenService;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/api/segmen")
+@RequestMapping("/api/segment")
 @AllArgsConstructor
-public class RestSegmenController {
+public class RestSegmentController {
 
     private SegmenService segmenService;
 
     @GetMapping
-    public List<Segmen> getAll() {
+    public List<Segment> getAll() {
         return segmenService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Segmen getById(@PathVariable long id) {
+    public Segment getById(@PathVariable long id) {
         return segmenService.getById(id);
     }
 
     @PostMapping
-    public Segmen create(@RequestBody Segmen segmen) {
-        return segmenService.create(segmen);
+    public Segment create(@RequestBody Segment segment) {
+        return segmenService.create(segment);
     }
 
     @PutMapping("/{id}")
-    public Segmen update(@PathVariable long id, @RequestBody Segmen segmen) {
-        return segmenService.update(id, segmen);
+    public Segment update(@PathVariable long id, @RequestBody Segment segment) {
+        return segmenService.update(id, segment);
 
     }
 
     @DeleteMapping("/{id}")
-    public Segmen delete(@PathVariable long id) {
+    public Segment delete(@PathVariable long id) {
         return segmenService.getById(id);
     }
 }

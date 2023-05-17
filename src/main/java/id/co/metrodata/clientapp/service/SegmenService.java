@@ -10,51 +10,51 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import id.co.metrodata.clientapp.model.Segmen;
+import id.co.metrodata.clientapp.model.Segment;
 
 @Service
 public class SegmenService {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Value("${server.baseUrl}/segmen")
+    @Value("${server.baseUrl}/segment")
     private String url;
 
-    public List<Segmen> getAll() {
+    public List<Segment> getAll() {
         return restTemplate.exchange(
                 url,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<List<Segmen>>() {
+                null, new ParameterizedTypeReference<List<Segment>>() {
                 }).getBody();
     }
 
-    public Segmen getById(long id) {
+    public Segment getById(long id) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<Segmen>() {
+                null, new ParameterizedTypeReference<Segment>() {
                 }).getBody();
     }
 
-    public Segmen create(Segmen segmen) {
+    public Segment create(Segment segment) {
         return restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,
-                new HttpEntity(segmen),
-                Segmen.class).getBody();
+                new HttpEntity(segment),
+                Segment.class).getBody();
     }
 
-    public Segmen update(long id, Segmen segmen) {
+    public Segment update(long id, Segment segment) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,
-                new HttpEntity(segmen), Segmen.class).getBody();
+                new HttpEntity(segment), Segment.class).getBody();
     }
 
-    public Segmen delete(long id) {
+    public Segment delete(long id) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.DELETE,
-                null, Segmen.class).getBody();
+                null, Segment.class).getBody();
     }
 }
