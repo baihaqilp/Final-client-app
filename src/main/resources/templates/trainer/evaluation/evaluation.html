@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/trainer/main}"
+>
+  <body>
+    <!-- content -->
+    <section layout:fragment="content">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card shadow-lg" style="border-radius: 20px">
+            <div class="card-body">
+              <div
+                class="card-header d-flex justify-content-between"
+                style="background-color: white"
+              >
+                <div
+                  class="card-header-left d-flex flex-row align-items-center"
+                >
+                  <i
+                    class="fa-solid fa-clipboard-check px-2"
+                    style="font-size: 48px; color: #4b49ac"
+                  ></i>
+                  <h5 class="card-title mt-3">Evaluations</h5>
+                </div>
+                <div class="card-header-right">
+                  <!-- <button
+                    type="button"
+                    class="btn"
+                    style="background-color: #7978e9; color: white"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addEvaluation"
+                  >
+                    Add Evaluation
+                  </button> -->
+                </div>
+              </div>
+              <div class="card-content d-flex flex-column">
+                <table
+                  class="table display table-stripped table-bordered mt-3 text-cente border border-rounded rounded-2"
+                  id="table-role"
+                >
+                  <thead class="table-dark">
+                    <tr>
+                      <th class="col-1 text-center">No.</th>
+                      <th class="col-2 text-center">Student</th>
+                      <th class="col-2 text-center">Task</th>
+                      <th class="col-4 text-center">Submission Date</th>
+                      <th class="col-4 text-center">Action</th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal update Class -->
+      <div
+        class="modal fade"
+        id="addPoint"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="addPointLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="addPointLabel">
+                Add Point
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="point" class="form-label fw-bold">Point</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_evaluation_point"
+                  placeholder="ex. 1"
+                />
+                <!-- <label for="desc" class="form-label fw-bold pt-3"
+                  >Description</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_Evaluation_email"
+                  placeholder="ex. MMiya.bi@gmail.com"
+                />
+                <label for="deadline" class="form-label fw-bold pt-3"
+                  >Deadline</label
+                >
+                <input
+                  type="date"
+                  class="form-control"
+                  id="create_Evaluation_phone"
+                  placeholder="ex. 0897678281"
+                /> -->
+                <label for="submission" class="form-label fw-bold"
+                  >Submission</label
+                >
+                <select
+                  class="form-control form-control-sm select_program p-2"
+                  aria-label="form-select-sm example"
+                >
+                  <option selected value="">Choose Submission</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                style="
+                  border: 1px solid #4b49ac;
+                  background-color: white;
+                  color: #4b49ac;
+                "
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                style="background-color: #4b49ac"
+                onclick="create()"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div layout:fragment="script"></div>
+  </body>
+</html>
