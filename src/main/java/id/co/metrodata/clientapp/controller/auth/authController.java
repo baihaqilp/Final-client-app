@@ -67,4 +67,14 @@ public class authController {
   public String segmentDetail() {
     return "admin/segment/detailSegment";
   }
+
+  @GetMapping("/taskk")
+  public String taskk() {
+    return "trainer/task/task";
+  }
+
+  @GetMapping("/taskk-detail")
+  public String taskkDetail() {
+    return "trainer/task/detailTask";
+  }
 }
