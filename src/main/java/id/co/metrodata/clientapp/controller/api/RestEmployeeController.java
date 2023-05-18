@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import id.co.metrodata.clientapp.model.Employee;
 import id.co.metrodata.clientapp.service.EmployeeService;
+import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/api/employee")
+@AllArgsConstructor
 public class RestEmployeeController {
 
     private EmployeeService employeeService;
@@ -43,5 +45,10 @@ public class RestEmployeeController {
     @DeleteMapping("/{id}")
     public Employee delete(@PathVariable long id) {
         return employeeService.delete(id);
+    }
+
+    @GetMapping("/role/{id}")
+    public List<Employee> getByRole(@PathVariable long id) {
+        return employeeService.getByRole(id);
     }
 }

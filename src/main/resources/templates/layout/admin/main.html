@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+   
+
     <title>Dashboard</title>
 
     <!-- Bootstrap -->
@@ -27,6 +30,7 @@
 
     <!-- css -->
     <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
   </head>
   <body>
     <!-- navbar -->
@@ -62,9 +66,12 @@
     ></script>
     <!-- DataTable -->
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+    <!-- sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script th:src="@{/js/admin/class.js}"></script>
+
+    <script th:src="@{/js/addCSRF.js}"></script>
 
     <!-- <script src="@{/plugins/jquery/jquery.min.js}"></script>
     <script src="@{/dist/js/adminlte.min.js}"></script>
