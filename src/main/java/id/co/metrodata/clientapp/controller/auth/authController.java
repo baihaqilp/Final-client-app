@@ -87,4 +87,9 @@ public class authController {
   public String submissionDetail() {
     return "trainer/submission/detailSubmission";
   }
+
+  @GetMapping("/evaluations")
+  public String evaluation() {
+    return "trainer/evaluation/evaluation";
+  }
 }
