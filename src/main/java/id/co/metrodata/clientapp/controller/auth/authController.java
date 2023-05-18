@@ -77,4 +77,14 @@ public class authController {
   public String taskkDetail() {
     return "trainer/task/detailTask";
   }
+
+  @GetMapping("/submissions")
+  public String submission() {
+    return "trainer/submission/submission";
+  }
+
+  @GetMapping("/submissions-detail")
+  public String submissionDetail() {
+    return "trainer/submission/detailSubmission";
+  }
 }
