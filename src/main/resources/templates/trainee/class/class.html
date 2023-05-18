@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/trainer/main}"
+>
+  <body>
+    <!-- content -->
+    <section layout:fragment="content">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card shadow-lg" style="border-radius: 20px">
+            <div class="card-body">
+              <div
+                class="card-header d-flex justify-content-between"
+                style="background-color: white"
+              >
+                <div
+                  class="card-header-left d-flex flex-row align-items-center"
+                >
+                  <i
+                    class="fa-solid fa-chalkboard-user school px-2"
+                    style="font-size: 48px"
+                  ></i>
+                  <h5 class="card-title mt-2" style="font-size: 48px">Class</h5>
+                </div>
+              </div>
+              <div class="card-content d-flex flex-column pt-2">
+                <!-- Loop through segments from the database -->
+                <div class="card mb-3" style="">
+                  <div class="card-body">
+                    <h5 class="card-title pb-2">Segment 01</h5>
+
+                    <!-- Segment: Trainers -->
+                    <div class="card mb-3">
+                      <div class="card-body">
+                        <h5 class="card-title">Trainers</h5>
+                        <p class="card-text">Nama trainer disini</p>
+                      </div>
+                    </div>
+
+                    <!-- Segment: Study Materials -->
+                    <div class="card mb-3">
+                      <div
+                        class="card-body d-flex justify-content-between align-items-center"
+                      >
+                        <div class="lesson-container">
+                          <h5 class="card-title">Lessons</h5>
+                          <!-- topik dan materi -->
+                          <p class="card-text">Materi disini</p>
+                        </div>
+                        <a href="#" class="btn"
+                          ><i
+                            class="fa-solid fa-up-right-from-square"
+                            style="font-size: 24px"
+                          ></i
+                        ></a>
+                      </div>
+                    </div>
+
+                    <!-- Segment: Tasks -->
+                    <div class="card mb-3">
+                      <div
+                        class="card-body d-flex justify-content-between align-items-center"
+                      >
+                        <div class="task-container">
+                          <h5 class="card-title">Tasks</h5>
+                          <p class="card-text">Task disini</p>
+                        </div>
+                        <a href="#" class="btn"
+                          ><i
+                            class="fa-solid fa-up-right-from-square"
+                            style="font-size: 24px"
+                          ></i
+                        ></a>
+                      </div>
+                    </div>
+                    <!-- <a href="#" class="btn btn-primary">View Segment</a> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div layout:fragment="script"></div>
+  </body>
+</html>
