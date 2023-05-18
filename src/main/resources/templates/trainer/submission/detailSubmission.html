@@ -19,10 +19,10 @@
                   class="card-header-left d-flex flex-row align-items-center"
                 >
                   <i
-                    class="fa-solid fa-clipboard px-2"
-                    style="font-size: 48px; color: #4b49ac"
+                    class="fa-solid fa-list-check px-2"
+                    style="font-size: 48px"
                   ></i>
-                  <h5 class="card-title mt-3">Task</h5>
+                  <h5 class="card-title mt-3">Submission</h5>
                 </div>
               </div>
               <div class="card-content d-flex flex-column pt-5">
@@ -37,19 +37,19 @@
                     />
                   </div>
                 </div>
-                <div class="second pt-3 mb-5">
-                  <p>Description</p>
+                <div class="second pt-3">
+                  <p>Student</p>
                   <div class="input">
                     <input
-                      type="text"
+                      type="student"
                       class="border border-dark border-rounded rounded-2"
                       style="width: 100%; padding: 1rem"
                       readonly
                     />
                   </div>
                 </div>
-                <div class="second pt-3 mb-5">
-                  <p>Deadline</p>
+                <div class="second pt-3">
+                  <p>Date</p>
                   <div class="input">
                     <input
                       type="date"
@@ -59,7 +59,18 @@
                     />
                   </div>
                 </div>
-                <div class="second pt-3 mb-5">
+                <div class="second pt-3">
+                  <p>Class</p>
+                  <div class="input">
+                    <input
+                      type="text"
+                      class="border border-dark border-rounded rounded-2"
+                      style="width: 100%; padding: 1rem"
+                      readonly
+                    />
+                  </div>
+                </div>
+                <div class="second pt-3">
                   <p>Segment</p>
                   <div class="input">
                     <input
@@ -72,22 +83,11 @@
                 </div>
                 <div class="second pt-3 mb-5 d-flex justify-content-between">
                   <a
-                    th:href="@{/taskk}"
+                    th:href="@{/submission}"
                     class="btn"
                     style="background-color: #4b49ac; color: white"
                     >Back</a
                   >
-                  <button
-                    class="btn"
-                    type="button"
-                    style="
-                      border: 1px solid #4b49ac;
-                      background-color: white;
-                      color: #4b49ac;
-                    "
-                  >
-                    View Submission
-                  </button>
                 </div>
               </div>
             </div>
