@@ -59,4 +59,11 @@ public class EmployeeService {
                 null, Employee.class).getBody();
     }
 
+    public List<Employee> getByRole(long id) {
+        return restTemplate.exchange(
+                url + "/role/" + id,
+                HttpMethod.GET,
+                null, new ParameterizedTypeReference<List<Employee>>() {
+                }).getBody();
+    }
 }

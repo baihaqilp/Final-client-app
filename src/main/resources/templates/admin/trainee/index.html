@@ -22,7 +22,7 @@
                     class="fa-solid fa-users-line px-2"
                     style="font-size: 48px"
                   ></i>
-                  <h5 class="card-title mt-3">Trainers</h5>
+                  <h5 class="card-title mt-3">Trainees</h5>
                 </div>
                 <div class="card-header-right">
                   <button
@@ -30,16 +30,16 @@
                     class="btn"
                     style="background-color: #7978e9; color: white"
                     data-bs-toggle="modal"
-                    data-bs-target="#addTrainer"
+                    data-bs-target="#addTrainee"
                   >
-                    Add Trainer
+                    Add Trainee
                   </button>
                 </div>
               </div>
               <div class="card-content d-flex flex-column">
                 <table
                   class="table display table-stripped table-bordered mt-3 text-cente border border-rounded rounded-2"
-                  id="table-trainer"
+                  id="table-trainee"
                 >
                   <thead class="table-dark">
                     <tr>
@@ -61,18 +61,18 @@
       <!-- Modal create Class -->
       <div
         class="modal fade"
-        id="addTrainer"
+        id="addTrainee"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
         tabindex="-1"
-        aria-labelledby="addTrainerLabel"
+        aria-labelledby="addTraineeLabel"
         aria-hidden="true"
       >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5 fw-bold" id="addTrainerLabel">
-                Add Trainer
+              <h1 class="modal-title fs-5 fw-bold" id="addTraineeLabel">
+                Add Trainee
               </h1>
               <button
                 type="button"
@@ -87,14 +87,14 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="create_trainer_name"
+                  id="create_trainee_name"
                   placeholder="ex. Miya"
                 />
                 <label for="email" class="form-label fw-bold pt-3">Email</label>
                 <input
                   type="email"
                   class="form-control"
-                  id="create_trainer_email"
+                  id="create_trainee_email"
                   placeholder="ex. MMiya.bi@gmail.com"
                 />
                 <label for="phone" class="form-label fw-bold pt-3"
@@ -103,7 +103,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="create_trainer_phone"
+                  id="create_trainee_phone"
                   placeholder="ex. 0897678281"
                 />
                 <label for="address" class="form-label fw-bold pt-3"
@@ -112,7 +112,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="create_trainer_address"
+                  id="create_trainee_address"
                   placeholder="ex. Shibuya"
                 />
                 <label for="address" class="form-label fw-bold pt-3"
@@ -121,7 +121,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="create_trainer_username"
+                  id="create_trainee_username"
                   placeholder="ex. kambinghitam"
                 />
                 <label for="address" class="form-label fw-bold pt-3"
@@ -130,14 +130,14 @@
                 <input
                   type="password"
                   class="form-control"
-                  id="create_trainer_password"
+                  id="create_trainee_password"
                   placeholder="ex. ********"
                 />
                 <!-- <label for="class" class="form-label fw-bold">Class</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="create_trainer_class"
+                  id="create_trainee_class"
                   placeholder="ex. MCC-07"
                 /> -->
               </div>
@@ -171,17 +171,17 @@
       <!-- Modal Update -->
       <div
         class="modal fade"
-        id="updateTrainer"
+        id="updateTrainee"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
         tabindex="-1"
-        aria-labelledby="updateTrainerLabel"
+        aria-labelledby="updateTraineeLabel"
         aria-hidden="true"
       >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5 fw-bold" id="addTrainerLabel">
+              <h1 class="modal-title fs-5 fw-bold" id="addTraineeLabel">
                 update Class
               </h1>
               <button
@@ -194,18 +194,18 @@
             <div class="modal-body">
               <div class="mb-3">
                 <label for="name" class="form-label fw-bold">Name</label>
-                <input type="hidden" id="update_trainer_id">
+                <input type="hidden" id="update_trainee_id">
                 <input
                   type="text"
                   class="form-control"
-                  id="update_trainer_name"
+                  id="update_trainee_name"
                   placeholder="ex. Miya"
                 />
                 <label for="email" class="form-label fw-bold pt-3">Email</label>
                 <input
                   type="email"
                   class="form-control"
-                  id="update_trainer_email"
+                  id="update_trainee_email"
                   placeholder="ex. MMiya.bi@gmail.com"
                 />
                 <label for="phone" class="form-label fw-bold pt-3"
@@ -214,7 +214,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="update_trainer_phone"
+                  id="update_trainee_phone"
                   placeholder="ex. 0897678281"
                 />
                 <label for="address" class="form-label fw-bold pt-3"
@@ -223,14 +223,14 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="update_trainer_address"
+                  id="update_trainee_address"
                   placeholder="ex. Shibuya"
                 />
                 <!-- <label for="class" class="form-label fw-bold">Class</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="create_trainer_class"
+                  id="create_trainee_class"
                   placeholder="ex. MCC-07"
                 /> -->
               </div>
@@ -264,17 +264,17 @@
       <!-- Detail Update -->
       <div
         class="modal fade"
-        id="detailTrainer"
+        id="detailTrainee"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
         tabindex="-1"
-        aria-labelledby="detailTrainerLabel"
+        aria-labelledby="detailTraineeLabel"
         aria-hidden="true"
       >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5 fw-bold" id="detailTrainerLabel">
+              <h1 class="modal-title fs-5 fw-bold" id="detailTraineeLabel">
                 Detail Class
               </h1>
               <button
@@ -290,7 +290,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="detail_trainer_name"
+                  id="detail_trainee_name"
                   placeholder="ex. Miya"
                   disabled
                 />
@@ -298,14 +298,14 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="detail_trainer_name"
+                  id="detail_trainee_name"
                   placeholder="ex. Miya" disabled
                 />
                 <label for="email" class="form-label fw-bold pt-3">Email</label>
                 <input
                   type="email"
                   class="form-control"
-                  id="detail_trainer_email"
+                  id="detail_trainee_email"
                   placeholder="ex. MMiya.bi@gmail.com" disabled
                 />
                 <label for="phone" class="form-label fw-bold pt-3"
@@ -314,7 +314,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="detail_trainer_phone" 
+                  id="detail_trainee_phone" 
                   placeholder="ex. 0897678281" disabled
                 />
                 <label for="address" class="form-label fw-bold pt-3"
@@ -323,14 +323,14 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="detail_trainer_address"
+                  id="detail_trainee_address"
                   placeholder="ex. Shibuya" disabled
                 />
                 <!-- <label for="class" class="form-label fw-bold">Class</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="create_trainer_class"
+                  id="create_trainee_class"
                   placeholder="ex. MCC-07"
                 /> -->
               </div>
@@ -362,7 +362,7 @@
       </div>
     </section>
     <div layout:fragment="script">
-      <script th:src="@{/js/admin/trainer.js}"></script>
+      <script th:src="@{/js/admin/trainee.js}"></script>
     </div>
   </body>
 </html>

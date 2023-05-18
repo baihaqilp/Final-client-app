@@ -38,13 +38,13 @@
               <div class="card-content d-flex flex-column">
                 <table
                   class="table display table-stripped table-bordered mt-3 text-center"
-                  id="table-role"
+                  id="table-class"
                 >
                   <thead class="table-dark">
                     <tr>
                       <th class="col-2 text-center">No.</th>
                       <th class="col-4 text-center">Class</th>
-                      <th class="col-3 text-center">Segment</th>
+                      <th class="col-3 text-center">Ptrogram</th>
                       <th class="col-4 text-center">Action</th>
                     </tr>
                   </thead>
@@ -172,6 +172,8 @@
         </div>
       </div>
     </section>
-    <div layout:fragment="script"></div>
+    <div layout:fragment="script">
+      <script th:src="@{/js/admin/class.js}"></script>
+    </div>
   </body>
 </html>
