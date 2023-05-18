@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.co.metrodata.clientapp.model.User;
+import id.co.metrodata.clientapp.model.dto.EmployeeRequest;
 import id.co.metrodata.clientapp.service.UserService;
 import lombok.AllArgsConstructor;
 
@@ -33,7 +34,7 @@ public class RestUserController {
     }
 
     @PostMapping
-    public User create(@RequestBody User user) {
+    public User create(@RequestBody EmployeeRequest user) {
         return userService.create(user);
     }
 

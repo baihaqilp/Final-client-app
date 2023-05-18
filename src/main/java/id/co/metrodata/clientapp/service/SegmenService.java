@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.Segment;
+import id.co.metrodata.clientapp.model.dto.SegmentRequest;
 
 @Service
 public class SegmenService {
@@ -36,7 +37,7 @@ public class SegmenService {
                 }).getBody();
     }
 
-    public Segment create(Segment segment) {
+    public Segment create(SegmentRequest segment) {
         return restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,
@@ -56,5 +57,14 @@ public class SegmenService {
                 url + "/" + id,
                 HttpMethod.DELETE,
                 null, Segment.class).getBody();
+    }
+
+    public List<Segment> getByClass(long id) {
+        return restTemplate.exchange(
+                url + "/class/" + id,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Segment>>() {
+                }).getBody();
     }
 }

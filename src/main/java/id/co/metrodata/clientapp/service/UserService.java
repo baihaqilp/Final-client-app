@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.User;
+import id.co.metrodata.clientapp.model.dto.EmployeeRequest;
 
 @Service
 public class UserService {
@@ -37,7 +38,7 @@ public class UserService {
                 }).getBody();
     }
 
-    public User create(User user) {
+    public User create(EmployeeRequest user) {
         return restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,

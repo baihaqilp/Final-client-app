@@ -25,37 +25,131 @@
                   <h5 class="card-title mt-3">Classes</h5>
                 </div>
               </div>
-              <div class="card-content d-flex flex-column pt-5">
-                <div class="first">
-                  <p>Class Name</p>
-                  <div class="input">
-                    <input
-                      type="text"
-                      class="border border-dark border-rounded rounded-2"
-                      style="width: 100%; padding: 1rem"
-                      placeholder="ex. Java-02"
-                      readonly
-                    />
+              <div class="card-content d-flex flex-column pt-5" >
+                <th:block th:object="${classroom}">
+                  <div class="first">
+                    <p>Class Name</p>
+                    <div class="input">
+                      <input type="hidden"  th:field="*{id}">
+                      <input
+                        type="text"
+                        class="border border-dark border-rounded rounded-2"
+                        style="width: 100%; padding: 1rem"
+                        placeholder="ex. Java-02"
+                        readonly
+                        disabled
+                        th:field="*{name}"
+                      />
+                    </div>
+                  </div>
+                  <div class="second pt-3 mb-5">
+                    <p>Program Name</p>
+                    <div class="input">
+                      <input
+                        type="text"
+                        class="border border-dark border-rounded rounded-2"
+                        style="width: 100%; padding: 1rem"
+                        placeholder="ex. Java-02"
+                        readonly
+                        disabled
+                        th:field="*{program.id}"
+                      />
+                    </div>
+                  </div>
+                  <div class="second pt-3 mb-5">
+                    <p>Segmen</p>
+                    <button class="btn btn-secondary mb-3" data-bs-toggle="modal"
+                    data-bs-target="#addSegment">Add Segmen</button>
+                    <table
+                      class="table display table-stripped table-bordered mt-3 text-center"
+                      id="table-segment"
+                    >
+                      <thead class="table-dark">
+                        <tr>
+                          <th class="col-1 text-center">No.</th>
+                          <th class="col-2 text-center">Name</th>
+                          <th class="col-2 text-center">Trainer</th>
+                          <th class="col-2 text-center">Start Date</th>
+                          <th class="col-2 text-center">End Date</th>
+                          <th class="col-4 text-center">Action</th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                </th:block>
+                <!-- Modal update Class -->
+                <div
+                class="modal fade"
+                id="addSegment"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="addSegmentLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5 fw-bold" id="addSegmentLabel">
+                        Add Segment
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="mb-3">
+                        <label for="start_date" class="form-label fw-bold">Start Date</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="create__start_date"
+                          placeholder="dd-MM-yyy ex: 26-10-2023"
+                        />
+                        <label for="end_date" class="form-label fw-bold">End Date</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="create_end_date"
+                          placeholder="dd-MM-yyy ex: 26-10-2023"
+                        />
+                        <label for="name" class="form-label fw-bold"
+                          >Trainer</label
+                        >
+                        <select
+                          class="form-control form-control-sm select_trainer p-2"
+                          aria-label="form-select-sm example" id="trainer_id"
+                        >
+                          <option selected value="">Choose trainer</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                      <button type="button" class="btn btn-primary" onclick="create()">
+                        Save
+                      </button>
+                    </div>
                   </div>
                 </div>
-                <div class="second pt-3 mb-5">
-                  <p>Program Name</p>
-                  <div class="input">
-                    <input
-                      type="text"
-                      class="border border-dark border-rounded rounded-2"
-                      style="width: 100%; padding: 1rem"
-                      placeholder="ex. Java-02"
-                      readonly
-                    />
-                  </div>
-                </div>
+              </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <div layout:fragment="script"></div>
+    <div layout:fragment="script">
+      <script th:src="@{/js/admin/classDetail.js}"></script>
+    </div>
   </body>
 </html>

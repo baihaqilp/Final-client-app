@@ -1,4 +1,4 @@
-package id.co.metrodata.clientapp.model;
+package id.co.metrodata.clientapp.model.dto;
 
 import java.util.Date;
 
@@ -11,13 +11,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Segment {
+public class SegmentRequest {
 
-    private long id;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date start_date;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date end_date;
-    private Employee trainer;
-    private Classroom classroom;
+    private long trainerId;
+    private long classroomId;
 }
