@@ -25,7 +25,10 @@
                     style="font-size: 48px"
                   ></i>
                 </div>
-                <a href="#" class="btn btn-primary mt-2" style="width: 50%"
+                <a
+                  th:href="@{/Trainer/class}"
+                  class="btn btn-primary mt-2"
+                  style="width: 50%"
                   >View Class</a
                 >
               </div>
@@ -80,11 +83,8 @@
         </div>
       </div>
       <div class="row mt-4">
-        <div class="col-lg-12">
-          <div
-            class="card shadow-lg"
-            style="border-radius: 20px; max-width: 600px"
-          >
+        <div class="col-lg-8">
+          <div class="card shadow-lg" style="border-radius: 20px">
             <div class="card-body">
               <div
                 class="card-header d-flex justify-content-between"

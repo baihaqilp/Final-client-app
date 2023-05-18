@@ -12,4 +12,24 @@ public class TrainerController {
     public String dashboard() {
         return "trainer/index";
     }
+
+    @GetMapping("/class")
+    public String classTrainer() {
+        return "trainer/class/class";
+    }
+
+    @GetMapping("/class-detail")
+    public String classTrainerDetail() {
+        return "trainer/class/detailClass";
+    }
+
+    @GetMapping("/submission")
+    public String submissionTrainer() {
+        return "trainer/submission/submission";
+    }
+
+    @GetMapping("/task")
+    public String taskTrainer() {
+        return "trainer/task/task";
+    }
 }
