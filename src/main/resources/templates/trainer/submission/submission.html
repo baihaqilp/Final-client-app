@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/trainer/main}"
+>
+  <body>
+    <!-- content -->
+    <section layout:fragment="content">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card shadow-lg" style="border-radius: 20px">
+            <div class="card-body">
+              <div
+                class="card-header d-flex justify-content-between"
+                style="background-color: white"
+              >
+                <div
+                  class="card-header-left d-flex flex-row align-items-center"
+                >
+                  <i
+                    class="fa-solid fa-list-check px-2"
+                    style="font-size: 48px"
+                  ></i>
+                  <h5 class="card-title mt-3">Submissions</h5>
+                </div>
+                <!-- <div class="card-header-right">
+                  <button
+                    type="button"
+                    class="btn"
+                    style="background-color: #7978e9; color: white"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addSubmission"
+                  >
+                    Add Submission
+                  </button>
+                </div> -->
+              </div>
+              <div class="card-content d-flex flex-column">
+                <table
+                  class="table display table-stripped table-bordered mt-3 text-cente border border-rounded rounded-2"
+                  id="table-role"
+                >
+                  <thead class="table-dark">
+                    <tr>
+                      <th class="col-1 text-center">No.</th>
+                      <th class="col-2 text-center">Task</th>
+                      <th class="col-3 text-center">Student</th>
+                      <th class="col-2 text-center">Class</th>
+                      <th class="col-2 text-center">Segment</th>
+                      <th class="col-2 text-center">Action</th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Add Submission -->
+      <!-- <div
+        class="modal fade"
+        id="addSubmission"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="addSubmissionLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="addSubmissionLabel">
+                Add Submission
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="name" class="form-label fw-bold">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_submission_name"
+                  placeholder="ex. 1"
+                />
+                <label for="desc" class="form-label fw-bold pt-3"
+                  >Description</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_Submission_email"
+                  placeholder="ex. MMiya.bi@gmail.com"
+                />
+                <label for="submission_file" class="form-label fw-bold"
+                  >File</label
+                >
+                <select
+                  class="form-control form-control-sm select_program p-2"
+                  aria-label="form-select-sm example"
+                >
+                  <option selected value="">Choose Segment</option>
+                </select>
+                <label for="segment" class="form-label fw-bold">Segment</label>
+                <select
+                  class="form-control form-control-sm select_program p-2"
+                  aria-label="form-select-sm example"
+                >
+                  <option selected value="">Choose Segment</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                style="
+                  border: 1px solid #4b49ac;
+                  background-color: white;
+                  color: #4b49ac;
+                "
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                style="background-color: #4b49ac"
+                onclick="create()"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </section>
+    <div layout:fragment="script"></div>
+  </body>
+</html>

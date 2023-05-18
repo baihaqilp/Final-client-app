@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/trainer/main}"
+>
+  <body>
+    <!-- content -->
+    <section layout:fragment="content">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card shadow-lg" style="border-radius: 20px">
+            <div class="card-body">
+              <div
+                class="card-header d-flex justify-content-between"
+                style="background-color: white"
+              >
+                <div
+                  class="card-header-left d-flex flex-row align-items-center"
+                >
+                  <i
+                    class="fa-solid fa-clipboard px-2"
+                    style="font-size: 48px; color: #4b49ac"
+                  ></i>
+                  <h5 class="card-title mt-3">Task</h5>
+                </div>
+              </div>
+              <div class="card-content d-flex flex-column pt-5">
+                <div class="first">
+                  <p>Task</p>
+                  <div class="input">
+                    <input
+                      type="text"
+                      class="border border-dark border-rounded rounded-2"
+                      style="width: 100%; padding: 1rem"
+                      readonly
+                    />
+                  </div>
+                </div>
+                <div class="second pt-3 mb-5">
+                  <p>Description</p>
+                  <div class="input">
+                    <input
+                      type="text"
+                      class="border border-dark border-rounded rounded-2"
+                      style="width: 100%; padding: 1rem"
+                      readonly
+                    />
+                  </div>
+                </div>
+                <div class="second pt-3 mb-5">
+                  <p>Deadline</p>
+                  <div class="input">
+                    <input
+                      type="date"
+                      class="border border-dark border-rounded rounded-2"
+                      style="width: 100%; padding: 1rem"
+                      readonly
+                    />
+                  </div>
+                </div>
+                <div class="second pt-3 mb-5">
+                  <p>Segment</p>
+                  <div class="input">
+                    <input
+                      type="text"
+                      class="border border-dark border-rounded rounded-2"
+                      style="width: 100%; padding: 1rem"
+                      readonly
+                    />
+                  </div>
+                </div>
+                <div class="second pt-3 mb-5 d-flex justify-content-between">
+                  <a
+                    th:href="@{/taskk}"
+                    class="btn"
+                    style="background-color: #4b49ac; color: white"
+                    >Back</a
+                  >
+                  <button
+                    class="btn"
+                    type="button"
+                    style="
+                      border: 1px solid #4b49ac;
+                      background-color: white;
+                      color: #4b49ac;
+                    "
+                  >
+                    View Submission
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div layout:fragment="script"></div>
+  </body>
+</html>
