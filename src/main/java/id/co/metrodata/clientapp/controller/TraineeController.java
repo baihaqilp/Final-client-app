@@ -26,4 +26,14 @@ public class TraineeController {
   private String traineeTask() {
     return "trainee/task/task";
   }
+
+  @GetMapping("/submission")
+  private String traineeSubmission() {
+    return "trainee/submission/submission";
+  }
+
+  @GetMapping("/submission-add")
+  private String traineeAddSubmission() {
+    return "trainee/submission/addSubmission";
+  }
 }
