@@ -47,4 +47,9 @@ public class TrainerController {
     public String materiEdit() {
         return "trainer/materi/editMateri";
     }
+
+    @GetMapping("/grade")
+    public String gradeAdmin() {
+        return "trainer/grade/grade";
+    }
 }
