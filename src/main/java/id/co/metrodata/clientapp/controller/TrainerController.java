@@ -32,4 +32,19 @@ public class TrainerController {
     public String taskTrainer() {
         return "trainer/task/task";
     }
+
+    @GetMapping("/materi")
+    public String materi() {
+        return "trainer/materi/materi";
+    }
+
+    @GetMapping("/materi-add")
+    public String materiAdd() {
+        return "trainer/materi/addMateri";
+    }
+
+    @GetMapping("/materi-edit")
+    public String materiEdit() {
+        return "trainer/materi/editMateri";
+    }
 }
