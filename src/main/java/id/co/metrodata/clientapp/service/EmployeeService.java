@@ -66,4 +66,12 @@ public class EmployeeService {
                 null, new ParameterizedTypeReference<List<Employee>>() {
                 }).getBody();
     }
+
+    public List<Employee> getByClass(long id) {
+        return restTemplate.exchange(
+                url + "/class/" + id,
+                HttpMethod.GET,
+                null, new ParameterizedTypeReference<List<Employee>>() {
+                }).getBody();
+    }
 }

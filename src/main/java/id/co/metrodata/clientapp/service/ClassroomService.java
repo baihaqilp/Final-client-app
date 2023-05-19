@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.Classroom;
-import id.co.metrodata.clientapp.model.dto.ClassroomRequest;
+import id.co.metrodata.clientapp.model.dto.request.ClassroomRequest;
 
 @Service
 public class ClassroomService {
@@ -58,6 +58,14 @@ public class ClassroomService {
                 url + "/" + id,
                 HttpMethod.DELETE,
                 null, Classroom.class).getBody();
+    }
+
+    public List<Classroom> getByProgramId(long id) {
+        return restTemplate.exchange(
+                url + "/program/" + id,
+                HttpMethod.GET,
+                null, new ParameterizedTypeReference<List<Classroom>>() {
+                }).getBody();
     }
 
 }
