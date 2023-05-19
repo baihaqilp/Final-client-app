@@ -1,8 +1,8 @@
 $(document).ready(function () {
   const cardContent = $(".card-content");
-
+  let class_id = $("#class_id");
   $.ajax({
-    url: "/api/segment", // Replace with your API endpoint
+    url: "/api/segment/class/" + class_id, // Replace with your API endpoint
     method: "GET",
     success: function (response) {
       response.forEach(function (segment) {
