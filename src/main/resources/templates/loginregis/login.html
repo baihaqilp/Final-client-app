@@ -30,15 +30,16 @@
             access your account. Login now and embark on your educational
             journey!
           </p>
-          <form class="pb-3" th:action="@{/login}" th:method="POST">
+          <form class="pb-3" th:action="@{/login}" th:method="POST" th:object="${loginRequest}">
             <div class="input-content p-2">
-              <input type="text" class="form-control" placeholder="Username" />
+              <input type="text" class="form-control" placeholder="Username" th:field="*{username}"/>
             </div>
             <div class="input-content p-2">
               <input
                 type="password"
                 class="form-control"
                 placeholder="Password"
+                th:field="*{password}"
               />
             </div>
             <button type="submit" class="btn mt-4 text-white">Submit</button>
