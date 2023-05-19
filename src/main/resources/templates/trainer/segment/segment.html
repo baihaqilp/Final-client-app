@@ -19,22 +19,24 @@
                   class="card-header-left d-flex flex-row align-items-center"
                 >
                   <i
-                    class="fa-solid fa-chalkboard-user school px-2"
-                    style="font-size: 48px"
+                    class="fa-solid fa-diagram-project"
+                    style="font-size: 48px; color: #7da0fa"
                   ></i>
-                  <h5 class="card-title mt-2" style="font-size: 48px">Class</h5>
+                  <h5 class="card-title mt-2" style="font-size: 48px">
+                    Segment
+                  </h5>
                 </div>
               </div>
               <div class="card-content d-flex flex-column pt-2">
                 <!-- Loop through segments from the database -->
                 <div class="card mb-3" style="">
                   <div class="card-body">
-                    <h5 class="card-title pb-2">Class Java</h5>
+                    <h5 class="card-title pb-2">Segement name</h5>
 
                     <!-- Segment -->
                     <div class="card mb-3">
                       <div class="card-body">
-                        <h5 class="card-title">Segment 01</h5>
+                        <h5 class="card-title">Class name</h5>
 
                         <!-- Study Materials -->
                         <div class="container border-bottom mb-3">
@@ -101,6 +103,8 @@
         </div>
       </div>
     </section>
-    <div layout:fragment="script"></div>
+    <div layout:fragment="script">
+      <script th:src="@{/js/trainer/segment.js}"></script>
+    </div>
   </body>
 </html>

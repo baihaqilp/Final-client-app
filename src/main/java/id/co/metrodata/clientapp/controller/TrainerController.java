@@ -62,4 +62,9 @@ public class TrainerController {
     public String traineeDetailTrainer() {
         return "trainer/trainee/detailTrainee";
     }
+
+    @GetMapping("/segment")
+    public String trainerSegment() {
+        return "trainer/segment/segment";
+    }
 }
