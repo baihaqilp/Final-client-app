@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.Segment;
-import id.co.metrodata.clientapp.model.dto.SegmentRequest;
+import id.co.metrodata.clientapp.model.dto.request.SegmentRequest;
 
 @Service
 public class SegmenService {

@@ -51,4 +51,9 @@ public class RestEmployeeController {
     public List<Employee> getByRole(@PathVariable long id) {
         return employeeService.getByRole(id);
     }
+
+    @GetMapping("/class/{id}")
+    public List<Employee> getByClass(@PathVariable long id) {
+        return employeeService.getByRole(id);
+    }
 }

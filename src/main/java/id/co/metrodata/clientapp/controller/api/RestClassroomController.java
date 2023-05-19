@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.co.metrodata.clientapp.model.Classroom;
-import id.co.metrodata.clientapp.model.dto.ClassroomRequest;
+import id.co.metrodata.clientapp.model.dto.request.ClassroomRequest;
 import id.co.metrodata.clientapp.service.ClassroomService;
 import lombok.AllArgsConstructor;
 
@@ -46,5 +46,10 @@ public class RestClassroomController {
     @DeleteMapping("/{id}")
     public Classroom delete(@PathVariable long id) {
         return classroomService.delete(id);
+    }
+
+    @GetMapping("/program/{id}")
+    public List<Classroom> getByProgramId(@PathVariable long id) {
+        return classroomService.getByProgramId(id);
     }
 }

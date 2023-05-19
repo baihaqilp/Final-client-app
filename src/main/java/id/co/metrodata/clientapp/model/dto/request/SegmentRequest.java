@@ -1,4 +1,4 @@
-package id.co.metrodata.clientapp.model.dto;
+package id.co.metrodata.clientapp.model.dto.request;
 
 import java.util.Date;
 

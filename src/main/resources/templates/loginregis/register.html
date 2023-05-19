@@ -29,23 +29,36 @@
             Welcome to Learning Management System (LMS) registration page.
             Please fill out the form below to create your account
           </p>
-          <form class="pb-3" th:action="@{/login}" th:method="POST">
+          <form class="pb-3" th:action="@{/register}" th:method="POST" th:object="${traineeRequest}">
             <!-- <label for="username" class="form-label"></label> -->
             <div class="input-content p-2">
-              <input type="text" class="form-control" placeholder="Name" />
+              <input type="text" class="form-control" placeholder="Name" id="register_name" th:field="*{name}"/>
             </div>
             <!-- <label for="password" class="form-label"></label> -->
             <div class="input-content p-2">
-              <input type="text" class="form-control" placeholder="Email" />
+              <input type="text" class="form-control" placeholder="Email" id="register_email" th:field="*{email}" />
             </div>
             <div class="input-content p-2">
-              <input type="text" class="form-control" placeholder="Phone" />
+              <input type="text" class="form-control" placeholder="Phone" id="register_phone" th:field="*{phone}"/>
             </div>
             <div class="input-content p-2">
-              <input type="text" class="form-control" placeholder="Address" />
+              <input type="text" class="form-control" placeholder="Address" id="register_address" th:field="*{address}"/>
             </div>
             <div class="input-content p-2">
-              <input type="text" class="form-control" placeholder="Username" />
+              <select name="" id="select_program" class="form-control" >
+                <option value="">Choose Program</option>
+              </select>
+            </div>
+            <div class="input-content p-2">
+              
+              <select name="" id="select_classroom" class="form-control"  disabled>
+                <option >Choose Class Room</option>
+                
+              </select>
+              <input type="hidden" th:field="*{classroomId}">
+            </div>
+            <div class="input-content p-2">
+              <input type="text" class="form-control" placeholder="Username" id="register_username" th:field="*{username}"/>
             </div>
             <div class="input-content p-2">
               <input
@@ -53,6 +66,7 @@
                 class="form-control"
                 placeholder="Password"
                 id="password1"
+                th:field="*{password}"
               />
             </div>
             <div class="input-content p-2">
@@ -66,7 +80,7 @@
             <div>
               <span id="message"></span>
             </div>
-            <button type="submit" class="btn mt-4 text-white">Submit</button>
+            <button type="submit" class="btn mt-4 text-white" >Submit</button>
           </form>
           <a href="/login" class="text-center">I already have a account</a>
         </div>
