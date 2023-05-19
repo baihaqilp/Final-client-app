@@ -22,12 +22,14 @@
                     class="fa-solid fa-clipboard px-2"
                     style="font-size: 48px; color: #f3797e"
                   ></i>
-                  <h5 class="card-title mt-2" style="font-size: 48px">Task</h5>
+                  <h5 class="card-title mt-2" style="font-size: 48px">
+                    Submission
+                  </h5>
                 </div>
               </div>
               <div class="card-content d-flex flex-column pt-2">
                 <!-- Loop through segments from the database -->
-                <div class="card mb-3" style="">
+                <div class="card mb-3">
                   <div class="card-body">
                     <h5 class="card-title pb-2">Segment 01</h5>
 
@@ -43,7 +45,7 @@
                             <!-- soal -->
                             <p>Wleowleowleowleo</p>
                           </div>
-                          <h6>deadline</h6>
+                          <h6>Submission Date</h6>
                           <p>16-06-32019</p>
                         </div>
                         <button
@@ -79,7 +81,7 @@
                             <!-- soal -->
                             <p>Wleowleowleowleo</p>
                           </div>
-                          <h6>deadline</h6>
+                          <h6>Submission Date</h6>
                           <p>16-06-32019</p>
                         </div>
                         <button
@@ -179,12 +181,14 @@
               >
                 Close
               </button>
-              <a
-                th:href="@{/trainee/submission-add}"
-                class="btn"
-                style="background-color: #4b49ac; color: white"
-                >Submission</a
+              <button
+                type="button"
+                class="btn btn-primary"
+                style="background-color: #4b49ac"
+                th:onclick="@{/trainee/submission}"
               >
+                Submission
+              </button>
             </div>
           </div>
         </div>
