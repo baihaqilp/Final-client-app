@@ -22,16 +22,19 @@
                     class="fa-solid fa-chalkboard-user school px-2"
                     style="font-size: 48px"
                   ></i>
-                  <h5 class="card-title mt-2" style="font-size: 48px">Class</h5>
+                  <h5 class="card-title mt-2" style="font-size: 48px" th:text="${classroom.name}">
+                    
+                    Segment
+                  </h5>
                 </div>
               </div>
               <div class="card-content d-flex flex-column pt-2">
                 <!-- Loop through segments from the database -->
                 <div class="card mb-3" style="">
                   <div class="card-body">
-                    <h5 class="card-title pb-2">Class Java</h5>
-
-                    <!-- Segment: Trainers -->
+                    <h5 class="card-title pb-2">Segement name</h5>
+                    <input type="hidden" id ="class_id" th:field="*{classroom.id}">
+                    <!-- Segment -->
                     <div class="card mb-3">
                       <div class="card-body">
                         <h5 class="card-title">Segment 01</h5>
