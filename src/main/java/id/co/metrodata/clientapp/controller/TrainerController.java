@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/Trainer")
+@RequestMapping("/trainer")
 public class TrainerController {
 
-    @GetMapping("/dashboard")
+    @GetMapping
     public String dashboard() {
         return "trainer/index";
     }
