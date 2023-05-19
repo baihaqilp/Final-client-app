@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.co.metrodata.clientapp.model.Classroom;
+import id.co.metrodata.clientapp.model.dto.request.ClassroomRequest;
 import id.co.metrodata.clientapp.service.ClassroomService;
 import lombok.AllArgsConstructor;
 
@@ -33,17 +34,22 @@ public class RestClassroomController {
     }
 
     @PostMapping
-    public Classroom create(@RequestBody Classroom classroom) {
+    public Classroom create(@RequestBody ClassroomRequest classroom) {
         return classroomService.create(classroom);
     }
 
     @PutMapping("/{id}")
-    public Classroom getById(@PathVariable long id, Classroom classroom) {
+    public Classroom update(@PathVariable long id, @RequestBody ClassroomRequest classroom) {
         return classroomService.update(id, classroom);
     }
 
     @DeleteMapping("/{id}")
     public Classroom delete(@PathVariable long id) {
-        return classroomService.getById(id);
+        return classroomService.delete(id);
+    }
+
+    @GetMapping("/program/{id}")
+    public List<Classroom> getByProgramId(@PathVariable long id) {
+        return classroomService.getByProgramId(id);
     }
 }

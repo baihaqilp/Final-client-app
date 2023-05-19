@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.co.metrodata.clientapp.model.User;
-import id.co.metrodata.clientapp.model.dto.EmployeeRequest;
+import id.co.metrodata.clientapp.model.dto.request.TraineeRequest;
+import id.co.metrodata.clientapp.model.dto.request.TrainerRequest;
+import id.co.metrodata.clientapp.service.RegisterService;
 import id.co.metrodata.clientapp.service.UserService;
 import lombok.AllArgsConstructor;
 
@@ -22,6 +24,7 @@ import lombok.AllArgsConstructor;
 public class RestUserController {
 
     private UserService userService;
+    private RegisterService registerService;
 
     @GetMapping
     public List<User> getAll() {
@@ -34,7 +37,7 @@ public class RestUserController {
     }
 
     @PostMapping
-    public User create(@RequestBody EmployeeRequest user) {
+    public User create(@RequestBody TrainerRequest user) {
         return userService.create(user);
     }
 
@@ -46,6 +49,11 @@ public class RestUserController {
     @DeleteMapping("/{id}")
     public User delete(@PathVariable long id) {
         return userService.delete(id);
+    }
+
+    @PostMapping("/trainee")
+    public User createTrainee(@RequestBody TraineeRequest traineeRequest) {
+        return registerService.createTrainee(traineeRequest);
     }
 
 }

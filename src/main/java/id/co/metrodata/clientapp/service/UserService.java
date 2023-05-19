@@ -11,7 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.User;
-import id.co.metrodata.clientapp.model.dto.EmployeeRequest;
+import id.co.metrodata.clientapp.model.dto.request.TraineeRequest;
+import id.co.metrodata.clientapp.model.dto.request.TrainerRequest;
 
 @Service
 public class UserService {
@@ -38,7 +39,7 @@ public class UserService {
                 }).getBody();
     }
 
-    public User create(EmployeeRequest user) {
+    public User create(TrainerRequest user) {
         return restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,
@@ -59,4 +60,5 @@ public class UserService {
                 HttpMethod.DELETE,
                 null, User.class).getBody();
     }
+
 }

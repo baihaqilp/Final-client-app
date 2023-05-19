@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <aside
+      th:fragment="sidebar"
+      class="sidebar sidebar-dark-primary elevation-4 sidebar-collapse shadow border-end border-dark"
+    >
+      <div class="sidebar" sec:authorize="hasRole('ROLE_ADMIN')">
+        <ul class="nav flex-column" style="padding: 1rem">
+          <li class="nav-item">
+            <a class="nav-link active" th:href="@{/admin}">
+              <i class="fa-solid fa-chalkboard"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/class}"
+              ><i class="fa-solid fa-school-flag"></i>
+              <span>Class Room</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/trainee}">
+              <i class="fa fa-users"></i>
+              <span>Trainee</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/trainer}">
+              <i class="fa-solid fa-book"></i>
+              <span> Trainer</span></a
+            >
+          </li>
+          <li class="nav-item mt-auto">
+            <a class="nav-link" href="#">
+              <i class="fa fa-arrow-right-from-bracket"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- role trainer -->
+      <div class="sidebar" sec:authorize="hasRole('ROLE_TRAINER')">
+        <ul class="nav flex-column" style="padding: 1rem">
+          <li class="nav-item">
+            <a class="nav-link active" th:href="@{/Trainer/dashboard}">
+              <i class="fa-solid fa-chalkboard"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/trainer/class}"
+              ><i class="fa-solid fa-school-flag"></i>
+              <span>Class Room</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/trainer/trainee}">
+              <i class="fa-solid fa-book"></i>
+              <span> Trainee</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/trainer/materi}">
+              <i class="fa-solid fa-book"></i>
+              <span> Materi</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/trainer/grade}">
+              <i class="fa fa-square-poll-vertical"></i>
+              <span>Grades</span>
+            </a>
+          </li>
+          <li class="nav-item mt-auto">
+            <a class="nav-link" href="#">
+              <i class="fa fa-arrow-right-from-bracket"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- has role trainee -->
+      <div class="sidebar" sec:authorize="hasRole('ROLE_TRAINEE')">
+        <ul class="nav flex-column" style="padding: 1rem">
+          <li class="nav-item">
+            <a class="nav-link active" th:href="@{/trainee}">
+              <i class="fa-solid fa-chalkboard"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/trainee/class}"
+              ><i class="fa-solid fa-school-flag"></i>
+              <span>Class Room</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/trainee/materi}">
+              <i class="fa-solid fa-book"></i>
+              <span> Materi</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/trainee/grade}">
+              <i class="fa fa-square-poll-vertical"></i>
+              <span>Grades</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/trainee/task}">
+              <i class="fa-solid fa-clipboard"></i>
+              <span>Task</span>
+            </a>
+          </li>
+          <li class="nav-item mt-auto">
+            <a class="nav-link" href="#">
+              <i class="fa fa-arrow-right-from-bracket"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+  </body>
+</html>

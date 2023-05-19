@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.co.metrodata.clientapp.model.Segment;
-import id.co.metrodata.clientapp.model.dto.SegmentRequest;
+import id.co.metrodata.clientapp.model.dto.request.SegmentRequest;
 import id.co.metrodata.clientapp.service.SegmenService;
 import lombok.AllArgsConstructor;
 
@@ -46,7 +46,7 @@ public class RestSegmentController {
 
     @DeleteMapping("/{id}")
     public Segment delete(@PathVariable long id) {
-        return segmenService.getById(id);
+        return segmenService.delete(id);
     }
 
     @GetMapping("/class/{id}")
