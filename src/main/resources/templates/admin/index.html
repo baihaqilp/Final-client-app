@@ -26,7 +26,7 @@
                   ></i>
                 </div>
                 <a
-                  th:href="@{/class}"
+                  th:href="@{/admin/class}"
                   class="btn btn-primary mt-2"
                   style="width: 50%"
                   >View Classes</a
@@ -77,7 +77,10 @@
                   <p class="number">04</p>
                   <i class="fa-solid fa-users-line" style="font-size: 48px"></i>
                 </div>
-                <a href="#" class="btn btn-primary mt-2" style="width: 50%"
+                <a
+                  th:href="@{/admin/trainer}"
+                  class="btn btn-primary mt-2"
+                  style="width: 50%"
                   >View Trainer</a
                 >
               </div>
@@ -96,7 +99,7 @@
                 class="card-header d-flex justify-content-between"
                 style="background-color: white"
               >
-                <h5 class="card-title">Students</h5>
+                <h5 class="card-title">Trainee</h5>
               </div>
               <div
                 class="card-content d-flex flex-column justify-content-center"
@@ -111,8 +114,11 @@
                     style="font-size: 48px; color: #98bdff"
                   ></i>
                 </div>
-                <a href="#" class="btn btn-primary mt-2" style="width: 50%"
-                  >View Students</a
+                <a
+                  th:href="@{/admin/trainee}"
+                  class="btn btn-primary mt-2"
+                  style="width: 50%"
+                  >View Trainee</a
                 >
               </div>
             </div>

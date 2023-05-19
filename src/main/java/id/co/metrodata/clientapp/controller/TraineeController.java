@@ -48,4 +48,8 @@ public class TraineeController {
     return "trainee/submission/addSubmission";
   }
 
+  @GetMapping("/grade")
+  private String traineeGrade() {
+    return "trainee/grade/grade";
+  }
 }
