@@ -21,4 +21,9 @@ public class TraineeController {
   private String traineeClass() {
     return "trainee/class/class";
   }
+
+  @GetMapping("/task")
+  private String traineeTask() {
+    return "trainee/task/task";
+  }
 }
