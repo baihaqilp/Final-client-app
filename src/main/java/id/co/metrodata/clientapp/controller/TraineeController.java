@@ -47,4 +47,5 @@ public class TraineeController {
   private String traineeAddSubmission() {
     return "trainee/submission/addSubmission";
   }
+
 }
