@@ -52,4 +52,14 @@ public class TrainerController {
     public String gradeAdmin() {
         return "trainer/grade/grade";
     }
+
+    @GetMapping("/trainee")
+    public String traineeTrainer() {
+        return "trainer/trainee/trainee";
+    }
+
+    @GetMapping("/trainee-detail")
+    public String traineeDetailTrainer() {
+        return "trainer/trainee/detailTrainee";
+    }
 }
