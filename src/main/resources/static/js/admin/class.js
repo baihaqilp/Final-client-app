@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
   $.ajax({
     method: "GET",
     url: "/api/program",
@@ -7,23 +6,25 @@ $(document).ready(function () {
     success: (res) => {
       $.each(res, function (key, val) {
         if ($('.select_program option[value = "' + val.id + '"]').length == 0) {
-          $(".select_program").append(`<option value = ${val.id}>${val.name}</option>`)
+          $(".select_program").append(
+            `<option value = ${val.id}>${val.name}</option>`
+          );
         }
-      })
+      });
     },
   });
 
-  $('#table-class').DataTable({
+  $("#table-class").DataTable({
     ajax: {
       url: "/api/classroom",
-      dataSrc: ""
+      dataSrc: "",
     },
     columns: [
       {
         data: null,
         render: function (data, type, row, meta) {
           return meta.row + 1;
-        }
+        },
       },
       { data: "name" },
       { data: "program.name" },
@@ -52,7 +53,7 @@ $(document).ready(function () {
           `;
         },
       },
-    ]
+    ],
   });
   $(".nav-link").click(function (e) {
     e.preventDefault();
@@ -79,10 +80,8 @@ function getById(id) {
     dataType: "JSON",
     success: (res) => {
       $("#detail_name").val(res.name);
-
-
-    }
-  })
+    },
+  });
 }
 
 function create() {
@@ -95,7 +94,7 @@ function create() {
     // beforeSend: addCsrfToken(),
     data: JSON.stringify({
       name: nameVal,
-      programId: programVal
+      programId: programVal,
     }),
     contentType: "application/json",
     success: (res) => {
@@ -106,11 +105,10 @@ function create() {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: "Region success to creat ....",
+        title: "Class success to creat ....",
         showConfirmButton: false,
         timer: 1500,
       });
-
     },
   });
 }
@@ -125,11 +123,9 @@ function beforeUpdate(id) {
       $("#update_id").val(res.id);
 
       $("#update_program").val(res.program.id);
-
     },
   });
 }
-
 
 function update() {
   let nameVal = $("#update_class_name").val();
@@ -154,7 +150,7 @@ function update() {
         // beforeSend: addCsrfToken(),
         data: JSON.stringify({
           name: nameVal,
-          programId: 1
+          programId: 1,
         }),
         contentType: "application/json",
         success: (res) => {
@@ -214,6 +210,4 @@ function deleteData(id) {
         );
       }
     });
-
-
 }

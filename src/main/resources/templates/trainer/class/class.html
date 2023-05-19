@@ -20,26 +20,21 @@
                 >
                   <i
                     class="fa-solid fa-chalkboard-user school px-2"
-                    style="font-size: 48px"
+                    style="font-size: 36px"
                   ></i>
-                  <h5 class="card-title mt-3" style="font-size: 36px">Class</h5>
-                </div>
-                <div class="card-header-right">
-                  <a th:href="@{/Trainer/class-detail}" class="btn btn-primary"
-                    >detail class contoh</a
-                  >
+                  <h5 class="card-title mt-3" style="font-size: 24px">Class</h5>
                 </div>
               </div>
               <div class="card-content d-flex flex-column">
                 <table
-                  class="table display table-stripped table-bordered mt-3 text-cente border border-rounded rounded-2"
-                  id="table-role"
+                  class="table display table-stripped table-bordered mt-3 text-center"
+                  id="table-class"
                 >
                   <thead class="table-dark">
                     <tr>
                       <th class="col-1 text-center">No.</th>
                       <th class="col-4 text-center">Name</th>
-                      <th class="col-2 text-center">Segment</th>
+                      <th class="col-2 text-center">Program</th>
                       <th class="col-4 text-center">Action</th>
                     </tr>
                   </thead>
@@ -53,18 +48,18 @@
       <!-- Modal update Class -->
       <div
         class="modal fade"
-        id="addTask"
+        id="detailClass"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
         tabindex="-1"
-        aria-labelledby="addTaskLabel"
+        aria-labelledby="detailClassLabel"
         aria-hidden="true"
       >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5 fw-bold" id="addTaskLabel">
-                Add Task
+              <h1 class="modal-title fs-5 fw-bold" id="detailClassLabel">
+                Detail Class
               </h1>
               <button
                 type="button"
@@ -75,43 +70,34 @@
             </div>
             <div class="modal-body">
               <div class="mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="detail_class_id"
+                  placeholder="ex. 1"
+                  hidden
+                />
                 <label for="name" class="form-label fw-bold">Name</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="create_task_name"
-                  placeholder="ex. 1"
+                  id="detail_class_name"
+                  readonly
                 />
                 <label for="desc" class="form-label fw-bold pt-3"
-                  >Description</label
+                  >Program</label
                 >
                 <input
                   type="text"
                   class="form-control"
-                  id="create_Task_email"
-                  placeholder="ex. MMiya.bi@gmail.com"
+                  id="detail_program_name"
+                  readonly
                 />
-                <label for="deadline" class="form-label fw-bold pt-3"
-                  >Deadline</label
-                >
-                <input
-                  type="date"
-                  class="form-control"
-                  id="create_Task_phone"
-                  placeholder="ex. 0897678281"
-                />
-                <label for="segment" class="form-label fw-bold">Segment</label>
-                <select
-                  class="form-control form-control-sm select_program p-2"
-                  aria-label="form-select-sm example"
-                >
-                  <option selected value="">Choose Segment</option>
-                </select>
                 <!-- <label for="class" class="form-label fw-bold">Class</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="create_Task_class"
+                  id="create_Class_class"
                   placeholder="ex. MCC-07"
                 /> -->
               </div>
@@ -129,14 +115,6 @@
               >
                 Close
               </button>
-              <button
-                type="button"
-                class="btn btn-primary"
-                style="background-color: #4b49ac"
-                onclick="create()"
-              >
-                Save
-              </button>
             </div>
           </div>
         </div>
@@ -145,17 +123,17 @@
       <!-- Modal Update -->
       <div
         class="modal fade"
-        id="updateTask"
+        id="updateClass"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
         tabindex="-1"
-        aria-labelledby="updateTaskLabel"
+        aria-labelledby="updateClassLabel"
         aria-hidden="true"
       >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5 fw-bold" id="addTaskLabel">
+              <h1 class="modal-title fs-5 fw-bold" id="detailClassLabel">
                 update Class
               </h1>
               <button
@@ -171,7 +149,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="create_task_name"
+                  id="create_Class_name"
                   placeholder="ex. 1"
                 />
                 <label for="desc" class="form-label fw-bold pt-3"
@@ -180,7 +158,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="create_Task_email"
+                  id="create_Class_email"
                   placeholder="ex. MMiya.bi@gmail.com"
                 />
                 <label for="deadline" class="form-label fw-bold pt-3"
@@ -189,7 +167,7 @@
                 <input
                   type="date"
                   class="form-control"
-                  id="create_Task_phone"
+                  id="create_Class_phone"
                   placeholder="ex. 0897678281"
                 />
                 <label for="segment" class="form-label fw-bold">Segment</label>
@@ -227,6 +205,8 @@
         </div>
       </div>
     </section>
-    <div layout:fragment="script"></div>
+    <div layout:fragment="script">
+      <script th:src="@{/js/trainer/class.js}"></script>
+    </div>
   </body>
 </html>
