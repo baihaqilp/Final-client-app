@@ -1,5 +1,18 @@
 $(document).ready(function () {
 
+  $.ajax({
+    method: "GET",
+    url: "/api/program",
+    dataType: "JSON",
+    success: (res) => {
+      $.each(res, function (key, val) {
+        if ($('.select_program option[value = "' + val.id + '"]').length == 0) {
+          $(".select_program").append(`<option value = ${val.id}>${val.name}</option>`)
+        }
+      })
+    },
+  });
+
   $('#table-class').DataTable({
     ajax: {
       url: "/api/classroom",
@@ -28,7 +41,7 @@ $(document).ready(function () {
             type="button"
             class="btn btn-warning mx-3"
             data-bs-toggle="modal"
-            data-bs-target="#updateRegion"
+            data-bs-target="#updateClass"
             onClick="beforeUpdate(${data.id})"
           >
             Edit
@@ -62,31 +75,33 @@ function getById(id) {
   $.ajax({
     method: "GET",
     url: "/api/classroom/" + id,
-    beforeSend: addCsrfToken(),
+    // beforeSend: addCsrfToken(),
     dataType: "JSON",
     success: (res) => {
       $("#detail_name").val(res.name);
+
 
     }
   })
 }
 
 function create() {
-  let nameVal = $("#create_name").val();
-
+  let nameVal = $("#create_class_name").val();
+  let programVal = $("#select_program option:selected").val();
   $.ajax({
     method: "POST",
-    url: "/api/region",
+    url: "/api/classroom",
     dataType: "JSON",
-    beforeSend: addCsrfToken(),
+    // beforeSend: addCsrfToken(),
     data: JSON.stringify({
       name: nameVal,
+      programId: programVal
     }),
     contentType: "application/json",
     success: (res) => {
-      $("#addRegion").modal("hide");
-      $("#table-region").DataTable().ajax.reload();
-      $("#create_name").val("");
+      $("#addClass").modal("hide");
+      $("#table-class").DataTable().ajax.reload();
+      $("#create_class_name").val("");
 
       Swal.fire({
         position: "center",
@@ -103,11 +118,13 @@ function create() {
 function beforeUpdate(id) {
   $.ajax({
     method: "GET",
-    url: "/api/region/" + id,
+    url: "/api/classroom/" + id,
     dataType: "JSON",
     success: (res) => {
-      $("#update_name").val(res.name);
+      $("#update_class_name").val(res.name);
       $("#update_id").val(res.id);
+
+      $("#update_program").val(res.program.id);
 
     },
   });
@@ -115,8 +132,11 @@ function beforeUpdate(id) {
 
 
 function update() {
-  let nameVal = $("#update_name").val();
+  let nameVal = $("#update_class_name").val();
   let idVal = $("#update_id").val();
+  let programVal = $("#update_program option:selected").val();
+
+  console.log(programVal);
   Swal.fire({
     title: "Are you sure?",
     text: "You won't be able to revert this!",
@@ -129,17 +149,18 @@ function update() {
     if (result.isConfirmed) {
       $.ajax({
         method: "PUT",
-        url: "/api/region/" + idVal,
+        url: "/api/classroom/" + idVal,
         dataType: "JSON",
-        beforeSend: addCsrfToken(),
+        // beforeSend: addCsrfToken(),
         data: JSON.stringify({
           name: nameVal,
+          programId: 1
         }),
         contentType: "application/json",
         success: (res) => {
-          $("#updateRegion").modal("hide");
-          $("#table-region").DataTable().ajax.reload();
-          $("#update_name").val("");
+          $("#updateClass").modal("hide");
+          $("#table-class").DataTable().ajax.reload();
+          $("#create_class_name").val("");
         },
       });
       Swal.fire("Updated!", "Region success to update...", "success");
@@ -147,7 +168,7 @@ function update() {
   });
 }
 
-function deleteRegion(id) {
+function deleteData(id) {
   const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: "btn btn-success",
@@ -170,11 +191,11 @@ function deleteRegion(id) {
       if (result.isConfirmed) {
         $.ajax({
           method: "DELETE",
-          url: "/api/region/" + id,
+          url: "/api/classroom/" + id,
           dataType: "JSON",
-          beforeSend: addCsrfToken(),
+          // beforeSend: addCsrfToken(),
           success: (res) => {
-            $("#table-region").DataTable().ajax.reload();
+            $("#table-class").DataTable().ajax.reload();
           },
         });
         swalWithBootstrapButtons.fire(
