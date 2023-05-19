@@ -51,4 +51,10 @@ public class AdminController {
     public String trainee() {
         return "admin/trainee/index";
     }
+
+    // hapus
+    @GetMapping("/segment")
+    public String segment() {
+        return "admin/segment/segment";
+    }
 }

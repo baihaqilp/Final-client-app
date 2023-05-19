@@ -7,15 +7,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import id.co.metrodata.clientapp.service.ClassroomService;
-import id.co.metrodata.clientapp.service.SegmenService;
-import lombok.AllArgsConstructor;
 
 @Controller
 @RequestMapping("/Trainer")
-@AllArgsConstructor
+
 public class TrainerController {
 
-    private SegmenService segmenService;
     private ClassroomService classroomService;
 
     @GetMapping("/dashboard")
@@ -23,7 +20,7 @@ public class TrainerController {
         return "trainer/index";
     }
 
-    @GetMapping("/class")
+    @GetMapping("/classroom")
     public String classTrainer() {
         return "trainer/class/class";
     }
@@ -33,7 +30,7 @@ public class TrainerController {
         return "trainer/class/detailClass";
     }
 
-    @GetMapping("/submission")
+    @GetMapping("/calssroom/segment/submission")
     public String submissionTrainer() {
         return "trainer/submission/submission";
     }
@@ -43,7 +40,7 @@ public class TrainerController {
         return "trainer/task/task";
     }
 
-    @GetMapping("/materi")
+    @GetMapping("/classroom/segment/materi")
     public String materi() {
         return "trainer/materi/materi";
     }
@@ -74,9 +71,9 @@ public class TrainerController {
     }
 
     @GetMapping("/classroom/{id}")
-    public String trainerSegment(@PathVariable long id, Model model) {
-        model.addAttribute("classroom", classroomService.getById(id));
-        return "trainer/segment/segment";
+    public String trainerSegment(@PathVariable long id) {
+        // model.addAttribute("classroom", classroomService.getById(id));
+        return "trainer/class/detailClass";
     }
 
 }
