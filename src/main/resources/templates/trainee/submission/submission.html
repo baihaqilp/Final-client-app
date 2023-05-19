@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/trainee/main}"
+>
+  <body>
+    <!-- content -->
+    <section layout:fragment="content">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card shadow-lg" style="border-radius: 20px">
+            <div class="card-body">
+              <div
+                class="card-header d-flex justify-content-between border-bottom border-2"
+                style="background-color: white"
+              >
+                <div
+                  class="card-header-left d-flex flex-row align-items-center"
+                >
+                  <i
+                    class="fa-solid fa-clipboard px-2"
+                    style="font-size: 48px; color: #f3797e"
+                  ></i>
+                  <h5 class="card-title mt-2" style="font-size: 48px">
+                    Submission
+                  </h5>
+                </div>
+              </div>
+              <div class="card-content d-flex flex-column pt-2">
+                <!-- Loop through segments from the database -->
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <h5 class="card-title pb-2">Segment 01</h5>
+
+                    <div class="container border-bottom mb-3">
+                      <div
+                        class="card-body d-flex justify-content-between align-items-center"
+                      >
+                        <div class="task-container">
+                          <h5 class="card-title">Materi</h5>
+                          <!-- topik dan materi -->
+                          <div class="task-container">
+                            <h6>Judul Task</h6>
+                            <!-- soal -->
+                            <p>Wleowleowleowleo</p>
+                          </div>
+                          <h6>Submission Date</h6>
+                          <p>16-06-32019</p>
+                        </div>
+                        <button
+                          type="button"
+                          class="btn"
+                          data-bs-toggle="modal"
+                          data-bs-target="#detailTask"
+                        >
+                          <i
+                            class="fa-solid fa-up-right-from-square"
+                            style="font-size: 24px"
+                          ></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- example data task per segment -->
+                <div class="card mb-3" style="">
+                  <div class="card-body">
+                    <h5 class="card-title pb-2">Segment 02</h5>
+
+                    <div class="container border-bottom mb-3">
+                      <div
+                        class="card-body d-flex justify-content-between align-items-center"
+                      >
+                        <div class="task-container">
+                          <h5 class="card-title">Materi</h5>
+                          <!-- topik dan materi -->
+                          <div class="task-container">
+                            <h6>Judul Task</h6>
+                            <!-- soal -->
+                            <p>Wleowleowleowleo</p>
+                          </div>
+                          <h6>Submission Date</h6>
+                          <p>16-06-32019</p>
+                        </div>
+                        <button
+                          type="button"
+                          class="btn"
+                          data-bs-toggle="modal"
+                          data-bs-target="#detailTask"
+                        >
+                          <i
+                            class="fa-solid fa-up-right-from-square"
+                            style="font-size: 24px"
+                          ></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detail Task -->
+      <div
+        class="modal fade"
+        id="detailTask"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="detailTaskLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="detailTaskLabel">
+                Detail Task
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="name" class="form-label fw-bold">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_task_name"
+                  placeholder="ERD"
+                  readonly
+                />
+                <label for="desc" class="form-label fw-bold pt-3"
+                  >Description</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_Task_email"
+                  placeholder="get Miya"
+                  readonly
+                />
+                <label for="deadline" class="form-label fw-bold pt-3"
+                  >Deadline</label
+                >
+                <input
+                  type="date"
+                  class="form-control"
+                  id="create_task_deadline"
+                  placeholder="ex. 0897678281"
+                  readonly
+                />
+                <label for="segment" class="form-label fw-bold">Segment</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_task_segment"
+                  placeholder="ex. 0897678281"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                style="
+                  border: 1px solid #4b49ac;
+                  background-color: white;
+                  color: #4b49ac;
+                "
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                style="background-color: #4b49ac"
+                th:onclick="@{/trainee/submission}"
+              >
+                Submission
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div layout:fragment="script"></div>
+  </body>
+</html>

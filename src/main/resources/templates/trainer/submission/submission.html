@@ -58,21 +58,21 @@
         </div>
       </div>
 
-      <!-- Modal Add Submission -->
-      <!-- <div
+      <!-- Modal Add Evaluation -->
+      <div
         class="modal fade"
-        id="addSubmission"
+        id="addEval"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
         tabindex="-1"
-        aria-labelledby="addSubmissionLabel"
+        aria-labelledby="addEvalLabel"
         aria-hidden="true"
       >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5 fw-bold" id="addSubmissionLabel">
-                Add Submission
+              <h1 class="modal-title fs-5 fw-bold" id="addEvalLabel">
+                Add Evaluation
               </h1>
               <button
                 type="button"
@@ -83,37 +83,19 @@
             </div>
             <div class="modal-body">
               <div class="mb-3">
-                <label for="name" class="form-label fw-bold">Name</label>
+                <label for="nilai" class="form-label fw-bold">Point</label>
                 <input
-                  type="text"
+                  type="number"
                   class="form-control"
-                  id="create_submission_name"
-                  placeholder="ex. 1"
+                  id="create_Evaluation_nilai"
+                  placeholder="ex. 10.3"
                 />
-                <label for="desc" class="form-label fw-bold pt-3"
-                  >Description</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="create_Submission_email"
-                  placeholder="ex. MMiya.bi@gmail.com"
-                />
-                <label for="submission_file" class="form-label fw-bold"
-                  >File</label
-                >
+                <label for="trainer" class="form-label fw-bold">Trainer</label>
                 <select
                   class="form-control form-control-sm select_program p-2"
                   aria-label="form-select-sm example"
                 >
-                  <option selected value="">Choose Segment</option>
-                </select>
-                <label for="segment" class="form-label fw-bold">Segment</label>
-                <select
-                  class="form-control form-control-sm select_program p-2"
-                  aria-label="form-select-sm example"
-                >
-                  <option selected value="">Choose Segment</option>
+                  <option selected value="">Choose Trainer</option>
                 </select>
               </div>
             </div>
@@ -141,7 +123,83 @@
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
+
+      <!-- Modal Detail Submission -->
+      <div
+        class="modal fade"
+        id="detailEval"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="detailEvalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="detailEvalLabel">
+                Submission Detail
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="nilai" class="form-label fw-bold">Task</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_Evaluation_nilai"
+                  placeholder="ex. 10.3"
+                />
+                <label for="submission_date" class="form-label fw-bold"
+                  >Submission Date</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_Evaluation_nilai"
+                  placeholder="ex. 10.3"
+                />
+                <label for="student" class="form-label fw-bold">Student</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_Evaluation_nilai"
+                  placeholder="ex. 10.3"
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <!-- <button
+                type="button"
+                class="btn btn-secondary"
+                style="
+                  border: 1px solid #4b49ac;
+                  background-color: white;
+                  color: #4b49ac;
+                "
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                style="background-color: #4b49ac"
+                onclick="create()"
+              >
+                Save
+              </button> -->
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <div layout:fragment="script"></div>
   </body>

@@ -42,6 +42,7 @@
 }
 
 .sidebar .nav-link.active {
+  border-radius: 10px;
   background-color: #007bff;
   color: #fff;
 }
@@ -73,9 +74,9 @@
   color: #4b49ac;
 }
 
-.chart-container {
+/* .chart-container {
   max-width: 600px;
-}
+} */
 
 .fa-chart-line {
   color: #98bdff;

@@ -1,0 +1,39 @@
+package id.co.metrodata.clientapp.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@Controller
+@RequestMapping("/trainee")
+@AllArgsConstructor
+public class TraineeController {
+
+  @GetMapping
+  private String dashboard() {
+    return "trainee/index";
+  }
+
+  @GetMapping("/class")
+  private String traineeClass() {
+    return "trainee/class/class";
+  }
+
+  @GetMapping("/task")
+  private String traineeTask() {
+    return "trainee/task/task";
+  }
+
+  @GetMapping("/submission")
+  private String traineeSubmission() {
+    return "trainee/submission/submission";
+  }
+
+  @GetMapping("/submission-add")
+  private String traineeAddSubmission() {
+    return "trainee/submission/addSubmission";
+  }
+}

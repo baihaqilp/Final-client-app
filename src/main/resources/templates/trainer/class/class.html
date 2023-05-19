@@ -19,21 +19,15 @@
                   class="card-header-left d-flex flex-row align-items-center"
                 >
                   <i
-                    class="fa-solid fa-clipboard px-2"
-                    style="font-size: 48px; color: #4b49ac"
+                    class="fa-solid fa-chalkboard-user school px-2"
+                    style="font-size: 48px"
                   ></i>
-                  <h5 class="card-title mt-3">Tasks</h5>
+                  <h5 class="card-title mt-3" style="font-size: 36px">Class</h5>
                 </div>
                 <div class="card-header-right">
-                  <button
-                    type="button"
-                    class="btn"
-                    style="background-color: #7978e9; color: white"
-                    data-bs-toggle="modal"
-                    data-bs-target="#addTask"
+                  <a th:href="@{/Trainer/class-detail}" class="btn btn-primary"
+                    >detail class contoh</a
                   >
-                    Add Task
-                  </button>
                 </div>
               </div>
               <div class="card-content d-flex flex-column">
@@ -45,7 +39,6 @@
                     <tr>
                       <th class="col-1 text-center">No.</th>
                       <th class="col-4 text-center">Name</th>
-                      <th class="col-2 text-center">Class</th>
                       <th class="col-2 text-center">Segment</th>
                       <th class="col-4 text-center">Action</th>
                     </tr>
@@ -57,7 +50,7 @@
         </div>
       </div>
 
-      <!-- Modal Add Class -->
+      <!-- Modal update Class -->
       <div
         class="modal fade"
         id="addTask"

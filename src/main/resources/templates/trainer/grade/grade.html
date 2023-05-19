@@ -19,10 +19,10 @@
                   class="card-header-left d-flex flex-row align-items-center"
                 >
                   <i
-                    class="fa-solid fa-clipboard px-2"
-                    style="font-size: 48px; color: #4b49ac"
+                    class="fa-solid fa-chart-line px-2"
+                    style="font-size: 36px; color: #4b49ac"
                   ></i>
-                  <h5 class="card-title mt-3">Tasks</h5>
+                  <h5 class="card-title mt-3">Trainee Grade</h5>
                 </div>
                 <div class="card-header-right">
                   <button
@@ -30,9 +30,9 @@
                     class="btn"
                     style="background-color: #7978e9; color: white"
                     data-bs-toggle="modal"
-                    data-bs-target="#addTask"
+                    data-bs-target="#addGrade"
                   >
-                    Add Task
+                    Add Grade
                   </button>
                 </div>
               </div>
@@ -44,9 +44,10 @@
                   <thead class="table-dark">
                     <tr>
                       <th class="col-1 text-center">No.</th>
-                      <th class="col-4 text-center">Name</th>
-                      <th class="col-2 text-center">Class</th>
+                      <th class="col-2 text-center">Trainee</th>
+                      <th class="col-2 text-center">Nilai</th>
                       <th class="col-2 text-center">Segment</th>
+                      <th class="col-2 text-center">Status</th>
                       <th class="col-4 text-center">Action</th>
                     </tr>
                   </thead>
@@ -57,21 +58,21 @@
         </div>
       </div>
 
-      <!-- Modal Add Class -->
+      <!-- Modal Add Grade -->
       <div
         class="modal fade"
-        id="addTask"
+        id="addGrade"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
         tabindex="-1"
-        aria-labelledby="addTaskLabel"
+        aria-labelledby="addGradeLabel"
         aria-hidden="true"
       >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5 fw-bold" id="addTaskLabel">
-                Add Task
+              <h1 class="modal-title fs-5 fw-bold" id="addGradeLabel">
+                Add Grade
               </h1>
               <button
                 type="button"
@@ -82,45 +83,29 @@
             </div>
             <div class="modal-body">
               <div class="mb-3">
-                <label for="name" class="form-label fw-bold">Name</label>
+                <label for="average" class="form-label fw-bold"
+                  >Average Point</label
+                >
                 <input
                   type="text"
                   class="form-control"
-                  id="create_task_name"
+                  id="create_grade_average"
                   placeholder="ex. 1"
                 />
-                <label for="desc" class="form-label fw-bold pt-3"
-                  >Description</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="create_Task_email"
-                  placeholder="ex. MMiya.bi@gmail.com"
-                />
-                <label for="deadline" class="form-label fw-bold pt-3"
-                  >Deadline</label
-                >
-                <input
-                  type="date"
-                  class="form-control"
-                  id="create_Task_phone"
-                  placeholder="ex. 0897678281"
-                />
-                <label for="segment" class="form-label fw-bold">Segment</label>
+                <label for="status" class="form-label fw-bold">Status</label>
                 <select
                   class="form-control form-control-sm select_program p-2"
                   aria-label="form-select-sm example"
                 >
-                  <option selected value="">Choose Segment</option>
+                  <option selected value="">Choose Status</option>
                 </select>
-                <!-- <label for="class" class="form-label fw-bold">Class</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="create_Task_class"
-                  placeholder="ex. MCC-07"
-                /> -->
+                <label for="trainee" class="form-label fw-bold">Trainee</label>
+                <select
+                  class="form-control form-control-sm select_program p-2"
+                  aria-label="form-select-sm example"
+                >
+                  <option selected value="">Choose Trainee</option>
+                </select>
               </div>
             </div>
             <div class="modal-footer">
@@ -152,18 +137,18 @@
       <!-- Modal Update -->
       <div
         class="modal fade"
-        id="updateTask"
+        id="updateGrade"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
         tabindex="-1"
-        aria-labelledby="updateTaskLabel"
+        aria-labelledby="updateGradeLabel"
         aria-hidden="true"
       >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5 fw-bold" id="addTaskLabel">
-                update Class
+              <h1 class="modal-title fs-5 fw-bold" id="addGradeLabel">
+                update Grade
               </h1>
               <button
                 type="button"
@@ -174,37 +159,28 @@
             </div>
             <div class="modal-body">
               <div class="mb-3">
-                <label for="name" class="form-label fw-bold">Name</label>
+                <label for="average" class="form-label fw-bold"
+                  >Average Point</label
+                >
                 <input
                   type="text"
                   class="form-control"
-                  id="create_task_name"
+                  id="create_grade_average"
                   placeholder="ex. 1"
                 />
-                <label for="desc" class="form-label fw-bold pt-3"
-                  >Description</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="create_Task_email"
-                  placeholder="ex. MMiya.bi@gmail.com"
-                />
-                <label for="deadline" class="form-label fw-bold pt-3"
-                  >Deadline</label
-                >
-                <input
-                  type="date"
-                  class="form-control"
-                  id="create_Task_phone"
-                  placeholder="ex. 0897678281"
-                />
-                <label for="segment" class="form-label fw-bold">Segment</label>
+                <label for="status" class="form-label fw-bold">Status</label>
                 <select
                   class="form-control form-control-sm select_program p-2"
                   aria-label="form-select-sm example"
                 >
-                  <option selected value="">Choose Segment</option>
+                  <option selected value="">Choose Status</option>
+                </select>
+                <label for="trainee" class="form-label fw-bold">Trainee</label>
+                <select
+                  class="form-control form-control-sm select_program p-2"
+                  aria-label="form-select-sm example"
+                >
+                  <option selected value="">Choose Trainee</option>
                 </select>
               </div>
             </div>
@@ -228,6 +204,77 @@
                 onclick="update()"
               >
                 Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detail Grade -->
+      <div
+        class="modal fade"
+        id="detailGrade"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="detailGradeLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="detailGradeLabel">
+                Detail Grade
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="average" class="form-label fw-bold"
+                  >Average Point</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_grade_average"
+                  placeholder="ex. 1"
+                  readonly
+                />
+                <label for="status" class="form-label fw-bold">Status</label>
+                <select
+                  class="form-control form-control-sm select_program p-2"
+                  aria-label="form-select-sm example"
+                  aria-readonly="true"
+                >
+                  <option selected value="">Choose Status</option>
+                </select>
+                <label for="trainee" class="form-label fw-bold">Trainee</label>
+                <select
+                  class="form-control form-control-sm select_program p-2"
+                  aria-label="form-select-sm example"
+                  aria-readonly="true"
+                >
+                  <option selected value="">Choose Trainee</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                style="
+                  border: 1px solid #4b49ac;
+                  background-color: white;
+                  color: #4b49ac;
+                "
+                data-bs-dismiss="modal"
+              >
+                Close
               </button>
             </div>
           </div>
