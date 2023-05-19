@@ -73,11 +73,11 @@ function getById(id) {
         url: "/api/employee/" + id,
         dataType: "JSON",
         success: (res) => {
-            $("#update_trainee_name").val(res.id);
-            $("#update_trainee_name").val(res.name);
-            $("#update_trainee_email").val(res.email);
-            $("#update_trainee_phone").val(res.phone);
-            $("#update_trainee_address").val(res.address);
+            $("#detail_trainee_id").val(res.id);
+            $("#detail_trainee_name").val(res.name);
+            $("#detail_trainee_email").val(res.email);
+            $("#detail_trainee_phone").val(res.phone);
+            $("#detail_trainee_address").val(res.address);
         }
     });
 }
@@ -103,7 +103,7 @@ function create() {
             email: emailVal,
             phone: phoneVal,
             address: addressVal,
-            roleId: 1,
+            roleId: 2,
         }),
         contentType: "application/json",
         success: (res) => {
@@ -119,7 +119,7 @@ function create() {
             Swal.fire({
                 position: "center",
                 icon: "success",
-                title: "Region success to creat ....",
+                title: "Trainee success to create ....",
                 showConfirmButton: false,
                 timer: 1500,
             });
@@ -134,7 +134,7 @@ function beforeUpdate(id) {
         url: "/api/employee/" + id,
         dataType: "JSON",
         success: (res) => {
-            $("#update_trainee_name").val(res.id);
+            $("#update_trainee_id").val(res.id);
             $("#update_trainee_name").val(res.name);
             $("#update_trainee_email").val(res.email);
             $("#update_trainee_phone").val(res.phone);
@@ -145,12 +145,11 @@ function beforeUpdate(id) {
 }
 
 function update() {
-    let nameVal = $("#create_trainee_name").val();
-    let emailVal = $("#create_trainee_email").val();
-    let phoneVal = $("#create_trainee_phone").val();
-    let addressVal = $("#create_trainee_address").val();
-    let idVal = $("#update_id").val();
-    console.log(regionVal);
+    let nameVal = $("#update_trainee_name").val();
+    let emailVal = $("#update_trainee_email").val();
+    let phoneVal = $("#update_trainee_phone").val();
+    let addressVal = $("#update_trainee_address").val();
+    let idVal = $("#update_trainee_id").val();
     Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -166,8 +165,6 @@ function update() {
                 url: "/api/employee/" + idVal,
                 dataType: "JSON",
                 data: JSON.stringify({
-                    username: usernameVal,
-                    password: passwordVal,
                     name: nameVal,
                     email: emailVal,
                     phone: phoneVal,

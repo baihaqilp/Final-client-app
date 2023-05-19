@@ -73,11 +73,11 @@ function getById(id) {
         url: "/api/employee/" + id,
         dataType: "JSON",
         success: (res) => {
-            $("#update_trainer_name").val(res.id);
-            $("#update_trainer_name").val(res.name);
-            $("#update_trainer_email").val(res.email);
-            $("#update_trainer_phone").val(res.phone);
-            $("#update_trainer_address").val(res.address);
+            $("#detail_trainer_id").val(res.id);
+            $("#detail_trainer_name").val(res.name);
+            $("#detail_trainer_email").val(res.email);
+            $("#detail_trainer_phone").val(res.phone);
+            $("#detail_trainer_address").val(res.address);
         }
     });
 }
@@ -134,7 +134,7 @@ function beforeUpdate(id) {
         url: "/api/employee/" + id,
         dataType: "JSON",
         success: (res) => {
-            $("#update_trainer_name").val(res.id);
+            $("#update_trainer_id").val(res.id);
             $("#update_trainer_name").val(res.name);
             $("#update_trainer_email").val(res.email);
             $("#update_trainer_phone").val(res.phone);
@@ -145,12 +145,11 @@ function beforeUpdate(id) {
 }
 
 function update() {
-    let nameVal = $("#create_trainer_name").val();
-    let emailVal = $("#create_trainer_email").val();
-    let phoneVal = $("#create_trainer_phone").val();
-    let addressVal = $("#create_trainer_address").val();
-    let idVal = $("#update_id").val();
-    console.log(regionVal);
+    let nameVal = $("#update_trainer_name").val();
+    let emailVal = $("#update_trainer_email").val();
+    let phoneVal = $("#update_trainer_phone").val();
+    let addressVal = $("#update_trainer_address").val();
+    let idVal = $("#update_trainer_id").val();
     Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -166,8 +165,6 @@ function update() {
                 url: "/api/employee/" + idVal,
                 dataType: "JSON",
                 data: JSON.stringify({
-                    username: usernameVal,
-                    password: passwordVal,
                     name: nameVal,
                     email: emailVal,
                     phone: phoneVal,
@@ -176,14 +173,15 @@ function update() {
                 }),
                 contentType: "application/json",
                 success: (res) => {
-                    $("#addTrainer").modal("hide");
+                    $("#updateTrainer").modal("hide");
                     $("#table-trainer").DataTable().ajax.reload();
-                    $("#create_trainer_name").val("");
-                    $("#create_trainer_email").val("");
-                    $("#create_trainer_phone").val("");
-                    $("#create_trainer_address").val("");
-                    $("#create_trainer_username").val("");
-                    $("#create_trainer_password").val("");
+                    $("#update_trainer_id").val("");
+                    $("#update_trainer_name").val("");
+                    $("#update_trainer_email").val("");
+                    $("#update_trainer_phone").val("");
+                    $("#update_trainer_address").val("");
+                    $("#update_trainer_username").val("");
+                    $("#updatee_trainer_password").val("");
                 },
             });
             Swal.fire("Updated!", "Region success to update...", "success");
