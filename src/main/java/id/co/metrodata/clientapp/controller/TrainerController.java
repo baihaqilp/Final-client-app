@@ -1,12 +1,20 @@
 package id.co.metrodata.clientapp.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import id.co.metrodata.clientapp.service.ClassroomService;
+import id.co.metrodata.clientapp.service.SegmenService;
 
 @Controller
 @RequestMapping("/Trainer")
 public class TrainerController {
+
+    private SegmenService segmenService;
+    private ClassroomService classroomService;
 
     @GetMapping("/dashboard")
     public String dashboard() {
@@ -16,6 +24,12 @@ public class TrainerController {
     @GetMapping("/class")
     public String classTrainer() {
         return "trainer/class/class";
+    }
+
+    @GetMapping("/classroom/{id}")
+    public String classTrainer(@PathVariable Long id, Model model) {
+        model.addAttribute("classroom", classroomService.getById(id));
+        return "trainer/class/detailClass";
     }
 
     @GetMapping("/class-detail")
