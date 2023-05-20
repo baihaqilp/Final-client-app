@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.Program;
+import id.co.metrodata.clientapp.utils.BasicHeader;
 
 @Service
 public class ProgramService {
@@ -33,7 +34,7 @@ public class ProgramService {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<Program>() {
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<Program>() {
                 }).getBody();
     }
 
@@ -41,7 +42,7 @@ public class ProgramService {
         return restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,
-                new HttpEntity(program),
+                new HttpEntity(program, BasicHeader.createHeader()),
                 Program.class).getBody();
     }
 
@@ -49,13 +50,13 @@ public class ProgramService {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,
-                new HttpEntity(program), Program.class).getBody();
+                new HttpEntity(program, BasicHeader.createHeader()), Program.class).getBody();
     }
 
     public Program delete(long id) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.DELETE,
-                null, Program.class).getBody();
+                new HttpEntity(BasicHeader.createHeader()), Program.class).getBody();
     }
 }
