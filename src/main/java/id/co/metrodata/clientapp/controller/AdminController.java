@@ -51,4 +51,9 @@ public class AdminController {
     public String trainee() {
         return "admin/trainee/index";
     }
+
+    @GetMapping("/program")
+    public String program() {
+        return "admin/program/index";
+    }
 }
