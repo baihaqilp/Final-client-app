@@ -17,18 +17,13 @@ $(document).ready(function () {
         data: null,
         render: (data, type, row, meta) => {
           return `
-          <button
+          <a href="/Trainer/classroom/${data.id}"
           type="button"
-          class="btn mx-3"
-          data-bs-toggle="modal"
-          data-bs-target="#detailClass"
-          onClick="getById(${data.id})"
+          class="btn btn-warning mx-3")"
         >
-        <i
-          class="fa-solid fa-up-right-from-square"
-          style="font-size: 24px"
-        ></i>
-        </button>`;
+          Detail
+        </a>
+          `;
         },
       },
     ],

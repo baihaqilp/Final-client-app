@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import id.co.metrodata.clientapp.service.ClassroomService;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 @Controller
 @RequestMapping("/trainee")
@@ -48,4 +47,8 @@ public class TraineeController {
     return "trainee/submission/addSubmission";
   }
 
+  @GetMapping("/grade")
+  private String traineeGrade() {
+    return "trainee/grade/grade";
+  }
 }
