@@ -72,6 +72,7 @@ function getById(id) {
         method: "GET",
         url: "/api/employee/" + id,
         dataType: "JSON",
+        beforeSend: addCsrfToken(),
         success: (res) => {
             $("#detail_trainer_id").val(res.id);
             $("#detail_trainer_name").val(res.name);
@@ -96,6 +97,7 @@ function create() {
         method: "POST",
         url: "/api/user",
         dataType: "JSON",
+        beforeSend: addCsrfToken(),
         data: JSON.stringify({
             username: usernameVal,
             password: passwordVal,
@@ -164,12 +166,12 @@ function update() {
                 method: "PUT",
                 url: "/api/employee/" + idVal,
                 dataType: "JSON",
+                beforeSend: addCsrfToken(),
                 data: JSON.stringify({
                     name: nameVal,
                     email: emailVal,
                     phone: phoneVal,
                     address: addressVal,
-                    roleId: 1,
                 }),
                 contentType: "application/json",
                 success: (res) => {
@@ -184,7 +186,7 @@ function update() {
                     $("#updatee_trainer_password").val("");
                 },
             });
-            Swal.fire("Updated!", "Region success to update...", "success");
+            Swal.fire("Updated!", "Trainer success to update...", "success");
         } else if (
             /* Read more about handling dismissals below */
             result.dismiss === Swal.DismissReason.cancel
@@ -228,6 +230,7 @@ function deletedata(id) {
                     method: "DELETE",
                     url: "/api/employee/" + id,
                     dataType: "JSON",
+                    beforeSend: addCsrfToken(),
                     success: (res) => {
                         $("#table-trainer").DataTable().ajax.reload();
                     },

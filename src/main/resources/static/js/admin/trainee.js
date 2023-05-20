@@ -96,6 +96,7 @@ function create() {
         method: "POST",
         url: "/api/user",
         dataType: "JSON",
+        beforeSend: addCsrfToken(),
         data: JSON.stringify({
             username: usernameVal,
             password: passwordVal,
@@ -164,6 +165,7 @@ function update() {
                 method: "PUT",
                 url: "/api/employee/" + idVal,
                 dataType: "JSON",
+                beforeSend: addCsrfToken(),
                 data: JSON.stringify({
                     name: nameVal,
                     email: emailVal,
@@ -227,6 +229,7 @@ function deletedata(id) {
                     method: "DELETE",
                     url: "/api/employee/" + id,
                     dataType: "JSON",
+                    beforeSend: addCsrfToken(),
                     success: (res) => {
                         $("#table-trainee").DataTable().ajax.reload();
                     },

@@ -3,6 +3,7 @@ $(document).ready(function () {
         method: "GET",
         url: "/api/employee/role/1",
         dataType: "JSON",
+        beforeSend: addCsrfToken(),
         success: (res) => {
             $.each(res, function (key, val) {
                 if ($('.select_trainer option[value = "' + val.id + '"]').length == 0) {
@@ -97,6 +98,7 @@ function create() {
         method: "POST",
         url: "/api/segment",
         dataType: "JSON",
+        beforeSend: addCsrfToken(),
         data: JSON.stringify({
             start_date: start_date,
             end_date: end_date,
@@ -154,7 +156,7 @@ function update() {
                 method: "PUT",
                 url: "/api/segment/" + class_id,
                 dataType: "JSON",
-                // beforeSend: addCsrfToken(),
+                beforeSend: addCsrfToken(),
                 data: JSON.stringify({
                     start_date: start_date,
                     end_date: end_date,
@@ -199,7 +201,7 @@ function deleteData(id) {
                     method: "DELETE",
                     url: "/api/segment/" + id,
                     dataType: "JSON",
-                    // beforeSend: addCsrfToken(),
+                    beforeSend: addCsrfToken(),
                     success: (res) => {
                         $("#table-segment").DataTable().ajax.reload();
                     },
