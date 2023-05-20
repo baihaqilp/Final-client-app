@@ -3,6 +3,7 @@ $(document).ready(function () {
     method: "GET",
     url: "/api/program",
     dataType: "JSON",
+    beforeSend: addCsrfToken(),
     success: (res) => {
       $.each(res, function (key, val) {
         if ($('.select_program option[value = "' + val.id + '"]').length == 0) {
@@ -78,6 +79,7 @@ function getById(id) {
     url: "/api/classroom/" + id,
     // beforeSend: addCsrfToken(),
     dataType: "JSON",
+    beforeSend: addCsrfToken(),
     success: (res) => {
       $("#detail_name").val(res.name);
     },
@@ -91,6 +93,7 @@ function create() {
     method: "POST",
     url: "/api/classroom",
     dataType: "JSON",
+    beforeSend: addCsrfToken(),
     // beforeSend: addCsrfToken(),
     data: JSON.stringify({
       name: nameVal,
@@ -147,7 +150,7 @@ function update() {
         method: "PUT",
         url: "/api/classroom/" + idVal,
         dataType: "JSON",
-        // beforeSend: addCsrfToken(),
+        beforeSend: addCsrfToken(),
         data: JSON.stringify({
           name: nameVal,
           programId: 1,
