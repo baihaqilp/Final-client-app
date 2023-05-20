@@ -41,7 +41,7 @@
   background-color: #e9ecef;
 }
 
-.sidebar .nav-link.active {
+.sidebar .nav-item .nav-link.active {
   border-radius: 10px;
   background-color: #007bff;
   color: #fff;

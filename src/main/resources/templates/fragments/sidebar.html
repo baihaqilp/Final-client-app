@@ -56,25 +56,25 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/trainer/class}"
+            <a class="nav-link" th:href="@{/Trainer/classroom}"
               ><i class="fa-solid fa-school-flag"></i>
               <span>Class Room</span></a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/trainer/trainee}">
-              <i class="fa-solid fa-book"></i>
+            <a class="nav-link" th:href="@{/Trainer/trainee}">
+              <i class="fa-solid fa-users-line"></i>
               <span> Trainee</span></a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/trainer/materi}">
+            <a class="nav-link" th:href="@{/Trainer/materi}">
               <i class="fa-solid fa-book"></i>
               <span> Materi</span></a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/trainer/grade}">
+            <a class="nav-link" th:href="@{/Trainer/grade}">
               <i class="fa fa-square-poll-vertical"></i>
               <span>Grades</span>
             </a>
@@ -92,7 +92,7 @@
       <div class="sidebar" sec:authorize="hasRole('ROLE_TRAINEE')">
         <ul class="nav flex-column" style="padding: 1rem">
           <li class="nav-item">
-            <a class="nav-link active" th:href="@{/trainee}">
+            <a class="nav-link dash active" th:href="@{/trainee}">
               <i class="fa-solid fa-chalkboard"></i>
               <span>Dashboard</span>
             </a>
