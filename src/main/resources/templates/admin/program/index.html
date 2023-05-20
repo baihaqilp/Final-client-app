@@ -38,13 +38,12 @@
               <div class="card-content d-flex flex-column">
                 <table
                   class="table display table-stripped table-bordered mt-3 text-center"
-                  id="table-class"
+                  id="table-program"
                 >
                   <thead class="table-dark">
                     <tr>
                       <th class="col-2 text-center">No.</th>
                       <th class="col-4 text-center">Program</th>
-                      <th class="col-3 text-center">Ptrogram</th>
                       <th class="col-4 text-center">Action</th>
                     </tr>
                   </thead>
@@ -84,18 +83,9 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="create_class_name"
+                  id="create_program_name"
                   placeholder="ex. MCC-07"
                 />
-                <label for="name" class="form-label fw-bold"
-                  >Program Name</label
-                >
-                <select
-                  class="form-control form-control-sm select_program p-2"
-                  aria-label="form-select-sm example" id="select_program"
-                >
-                  <option selected value="">Choose Program</option>
-                </select>
               </div>
             </div>
             <div class="modal-footer">
@@ -139,22 +129,14 @@
             </div>
             <div class="modal-body">
               <div class="mb-3">
-                <input type="hidden" name="update_id" id="update_id">
+                <input type="hidden" name="update_program_id" id="update_id">
                 <label for="name" class="form-label fw-bold">Program Name</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="update_class_name"
+                  id="update_program_name"
                 />
-                <label for="name" class="form-label fw-bold"
-                  >Program Name</label
-                >
-                <select
-                  class="form-control form-control-sm select_program p-2"
-                  aria-label="form-select-sm example" id="update_program"
-                >
-                  <option selected value="">Choose Program</option>
-                </select>
+                
               </div>
             </div>
             <div class="modal-footer">
@@ -172,9 +154,64 @@
           </div>
         </div>
       </div>
+
+      <!-- Modal Detail -->
+      <div
+        class="modal fade"
+        id="detailProgram"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="detailProgramLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="detailProgramLabel">
+                update Program
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="name" class="form-label fw-bold">Program Id</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="detail_program_id"
+                  disabled
+                />
+                <label for="name" class="form-label fw-bold">Program Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="detail_program_name"
+                  disabled
+                />
+                
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <div layout:fragment="script">
-      <script th:src="@{/js/admin/class.js}"></script>
+      <script th:src="@{/js/admin/program.js}"></script>
     </div>
   </body>
 </html>
