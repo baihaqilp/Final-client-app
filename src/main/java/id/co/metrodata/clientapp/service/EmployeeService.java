@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.Employee;
+import id.co.metrodata.clientapp.utils.BasicHeader;
 
 @Service
 public class EmployeeService {
@@ -25,7 +26,7 @@ public class EmployeeService {
         return restTemplate.exchange(
                 url,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<List<Employee>>() {
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Employee>>() {
                 }).getBody();
     }
 
@@ -33,7 +34,7 @@ public class EmployeeService {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<Employee>() {
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<Employee>() {
                 }).getBody();
     }
 
@@ -41,7 +42,7 @@ public class EmployeeService {
         return restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,
-                new HttpEntity(employee),
+                new HttpEntity(employee, BasicHeader.createHeader()),
                 Employee.class).getBody();
     }
 
@@ -49,21 +50,21 @@ public class EmployeeService {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,
-                new HttpEntity(employee), Employee.class).getBody();
+                new HttpEntity(employee, BasicHeader.createHeader()), Employee.class).getBody();
     }
 
     public Employee delete(long id) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.DELETE,
-                null, Employee.class).getBody();
+                new HttpEntity(BasicHeader.createHeader()), Employee.class).getBody();
     }
 
     public List<Employee> getByRole(long id) {
         return restTemplate.exchange(
                 url + "/role/" + id,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<List<Employee>>() {
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Employee>>() {
                 }).getBody();
     }
 
@@ -71,7 +72,7 @@ public class EmployeeService {
         return restTemplate.exchange(
                 url + "/class/" + id,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<List<Employee>>() {
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Employee>>() {
                 }).getBody();
     }
 }

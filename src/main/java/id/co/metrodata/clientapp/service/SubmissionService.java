@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.Submission;
+import id.co.metrodata.clientapp.utils.BasicHeader;
 
 @Service
 public class SubmissionService {
@@ -25,7 +26,7 @@ public class SubmissionService {
         return restTemplate.exchange(
                 url,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<List<Submission>>() {
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Submission>>() {
                 }).getBody();
     }
 
@@ -33,7 +34,7 @@ public class SubmissionService {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<Submission>() {
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<Submission>() {
                 }).getBody();
     }
 
@@ -41,7 +42,7 @@ public class SubmissionService {
         return restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,
-                new HttpEntity(submission),
+                new HttpEntity(submission, BasicHeader.createHeader()),
                 Submission.class).getBody();
     }
 
@@ -49,13 +50,13 @@ public class SubmissionService {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,
-                new HttpEntity(submission), Submission.class).getBody();
+                new HttpEntity(submission, BasicHeader.createHeader()), Submission.class).getBody();
     }
 
     public Submission delete(long id) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.DELETE,
-                null, Submission.class).getBody();
+                new HttpEntity(BasicHeader.createHeader()), Submission.class).getBody();
     }
 }

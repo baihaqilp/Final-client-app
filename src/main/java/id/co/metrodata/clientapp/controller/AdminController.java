@@ -57,4 +57,9 @@ public class AdminController {
     public String segment() {
         return "admin/segment/segment";
     }
+
+    @GetMapping("/program")
+    public String program() {
+        return "admin/program/index";
+    }
 }

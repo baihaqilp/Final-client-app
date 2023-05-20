@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.Materi;
+import id.co.metrodata.clientapp.utils.BasicHeader;
 
 @Service
 public class MateriService {
@@ -25,7 +26,7 @@ public class MateriService {
         return restTemplate.exchange(
                 url,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<List<Materi>>() {
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Materi>>() {
                 }).getBody();
     }
 
@@ -33,7 +34,7 @@ public class MateriService {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<Materi>() {
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<Materi>() {
                 }).getBody();
     }
 
@@ -41,7 +42,7 @@ public class MateriService {
         return restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,
-                new HttpEntity(materi),
+                new HttpEntity(materi, BasicHeader.createHeader()),
                 Materi.class).getBody();
     }
 
@@ -49,14 +50,14 @@ public class MateriService {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,
-                new HttpEntity(materi), Materi.class).getBody();
+                new HttpEntity(materi, BasicHeader.createHeader()), Materi.class).getBody();
     }
 
     public Materi delete(long id) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.DELETE,
-                null, Materi.class).getBody();
+                new HttpEntity(BasicHeader.createHeader()), Materi.class).getBody();
     }
 
 }

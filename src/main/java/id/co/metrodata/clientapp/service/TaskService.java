@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.Task;
+import id.co.metrodata.clientapp.utils.BasicHeader;
 
 @Service
 public class TaskService {
@@ -25,7 +26,7 @@ public class TaskService {
         return restTemplate.exchange(
                 url,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<List<Task>>() {
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Task>>() {
                 }).getBody();
     }
 
@@ -33,7 +34,7 @@ public class TaskService {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<Task>() {
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<Task>() {
                 }).getBody();
     }
 
@@ -41,7 +42,7 @@ public class TaskService {
         return restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,
-                new HttpEntity(task),
+                new HttpEntity(task, BasicHeader.createHeader()),
                 Task.class).getBody();
     }
 
@@ -49,13 +50,13 @@ public class TaskService {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,
-                new HttpEntity(task), Task.class).getBody();
+                new HttpEntity(task, BasicHeader.createHeader()), Task.class).getBody();
     }
 
     public Task delete(long id) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.DELETE,
-                null, Task.class).getBody();
+                new HttpEntity(BasicHeader.createHeader()), Task.class).getBody();
     }
 }
