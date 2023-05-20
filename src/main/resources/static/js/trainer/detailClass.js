@@ -1,11 +1,29 @@
 $(document).ready(function () {
+  var token = $("meta[name='_csrf']").attr("content");
+  var header = $("meta[name='_csrf_header']").attr("content");
+
   let class_id = $("#class_id").val();
+
+  $.ajax({
+    method: "GET",
+    url: "/api/classroom/" + class_id,
+    dataType: "JSON",
+    success: function (res) {
+      const classNameTitle = $("<h5>")
+        .addClass("card-title mt-2")
+        .css("font-size", "48px")
+        .text(res.name);
+      $(".card-title.mt-2").replaceWith(classNameTitle);
+    },
+  });
+  const segmentCardsContainer = $(".segment-cards-container");
   $.ajax({
     url: "/api/segment/class/" + class_id,
     method: "GET",
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader(header, token);
+    },
     success: function (res) {
-      console.log(res.classroom);
-      const segmentCardsContainer = $(".segment-cards-container");
       res.forEach(function (segment, index) {
         //segment card elements
         const segmentCard = $("<div>").addClass("card mb-3");
@@ -13,11 +31,7 @@ $(document).ready(function () {
         const segmentTitle = $("<h5>")
           .addClass("card-title")
           .text("Segment " + (index + 1));
-        const classNameTitle = $("<h5>")
-          .addClass("card-title")
-          .text(
-            res.classroom && res.classroom.name ? res.classroom.name : "N/A"
-          );
+        // const classNameTitle = $("<h5>").addClass("card-title").text();
 
         //Lessons
         const lessonsContainer = $("<div>").addClass(
@@ -83,7 +97,6 @@ $(document).ready(function () {
 
         cardBody.append(
           segmentTitle,
-          classNameTitle,
           lessonsContainer,
           tasksContainer,
           submissionContainer
