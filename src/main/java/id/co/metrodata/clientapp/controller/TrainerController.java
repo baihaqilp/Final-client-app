@@ -76,4 +76,9 @@ public class TrainerController {
         return "trainer/class/detailClass";
     }
 
+    @GetMapping("/classroom/segment/{id}")
+    public String trainerMateri(@PathVariable long id) {
+        // model.addAttribute("classroom", classroomService.getById(id));
+        return "trainer/materi/materi";
+    }
 }
