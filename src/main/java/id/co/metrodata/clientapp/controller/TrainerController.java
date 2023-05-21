@@ -86,4 +86,14 @@ public class TrainerController {
     public String materiEdit(@PathVariable Long id) {
         return "trainer/materi/editMateri";
     }
+
+    @GetMapping("/topic")
+    public String topic() {
+        return "trainer/topic/topic";
+    }
+
+    @GetMapping("/topic/{id}")
+    public String topicDetail(@PathVariable long id) {
+        return "trainer/topic/topic";
+    }
 }

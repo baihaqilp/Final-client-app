@@ -47,7 +47,7 @@ public class TopicService {
                 Topic.class).getBody();
     }
 
-    public Topic update(long id, Topic topic) {
+    public Topic update(long id, TopicRequest topic) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,

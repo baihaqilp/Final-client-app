@@ -39,13 +39,13 @@ public class RestTopicController {
     }
 
     @PutMapping("/{id}")
-    public Topic update(@PathVariable long id, @RequestBody Topic topic) {
+    public Topic update(@PathVariable long id, @RequestBody TopicRequest topic) {
         return topicService.update(id, topic);
 
     }
 
     @DeleteMapping("/{id}")
     public Topic delete(@PathVariable long id) {
-        return topicService.getById(id);
+        return topicService.delete(id);
     }
 }
