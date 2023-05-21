@@ -25,15 +25,18 @@
                   <h5 class="card-title mt-3">Task</h5>
                 </div>
               </div>
-              <div class="card-content d-flex flex-column pt-5">
+              <div class="card-content d-flex flex-column pt-5" th:object="${task}">
                 <div class="first">
                   <p>Task</p>
                   <div class="input">
+                    <input type="hidden" th:field="*{id}">
                     <input
                       type="text"
                       class="border border-dark border-rounded rounded-2"
                       style="width: 100%; padding: 1rem"
                       readonly
+                      id="task_name"
+                      th:field="*{name}"
                     />
                   </div>
                 </div>
@@ -45,6 +48,8 @@
                       class="border border-dark border-rounded rounded-2"
                       style="width: 100%; padding: 1rem"
                       readonly
+                      id="task_desc"
+                      th:field="*{desc}"
                     />
                   </div>
                 </div>
@@ -52,24 +57,16 @@
                   <p>Deadline</p>
                   <div class="input">
                     <input
-                      type="date"
+                      type="datetime-local"
                       class="border border-dark border-rounded rounded-2"
                       style="width: 100%; padding: 1rem"
                       readonly
+                      id="task_deadline"
+                      th:field="*{deadline}"
                     />
                   </div>
                 </div>
-                <div class="second pt-3 mb-5">
-                  <p>Segment</p>
-                  <div class="input">
-                    <input
-                      type="text"
-                      class="border border-dark border-rounded rounded-2"
-                      style="width: 100%; padding: 1rem"
-                      readonly
-                    />
-                  </div>
-                </div>
+                
                 <div class="second pt-3 mb-5 d-flex justify-content-between">
                   <a
                     th:href="@{/taskk}"
@@ -77,17 +74,26 @@
                     style="background-color: #4b49ac; color: white"
                     >Back</a
                   >
-                  <button
-                    class="btn"
-                    type="button"
-                    style="
-                      border: 1px solid #4b49ac;
-                      background-color: white;
-                      color: #4b49ac;
-                    "
-                  >
-                    View Submission
-                  </button>
+                 
+                </div>
+                <div class="second pt-3 mb-5 justify-content-between ">
+                  <p class="fw-bold fs-1 text-center">Submission</p>
+                  <div class="card-content d-flex flex-column ">
+                    <table
+                      class="table display table-stripped table-bordered mt-3 text-center border border-rounded rounded-2 "
+                      id="table-submission"
+                    >
+                      <thead class="table-dark">
+                        <tr>
+                          <th class="col-1 text-center">No.</th>
+                          <th class="col-4 text-center">Nama</th>
+                          <th class="col-2 text-center">File Submission</th>
+                          <th class="col-2 text-center">Submit Date</th>
+                          <th class="col-4 text-center">Action</th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
@@ -95,6 +101,8 @@
         </div>
       </div>
     </section>
-    <div layout:fragment="script"></div>
+    <div layout:fragment="script">
+      <script th:src="@{/js/trainer/detailTask.js}"></script>
+    </div>
   </body>
 </html>

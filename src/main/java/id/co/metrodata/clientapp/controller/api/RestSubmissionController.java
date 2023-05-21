@@ -32,6 +32,11 @@ public class RestSubmissionController {
         return submissionService.getById(id);
     }
 
+    @GetMapping("/task/{id}")
+    public List<Submission> getTaskId(@PathVariable long id) {
+        return submissionService.getTaskId(id);
+    }
+
     @PostMapping
     public Submission create(@RequestBody Submission submission) {
         return submissionService.create(submission);

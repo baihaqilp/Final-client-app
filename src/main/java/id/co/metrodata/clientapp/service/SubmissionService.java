@@ -38,6 +38,14 @@ public class SubmissionService {
                 }).getBody();
     }
 
+    public List<Submission> getTaskId(long id) {
+        return restTemplate.exchange(
+                url + "/task/" + id,
+                HttpMethod.GET,
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Submission>>() {
+                }).getBody();
+    }
+
     public Submission create(Submission submission) {
         return restTemplate.exchange(
                 url + "/",

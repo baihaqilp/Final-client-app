@@ -1,7 +1,4 @@
 $(document).ready(function () {
-  var token = $("meta[name='_csrf']").attr("content");
-  var header = $("meta[name='_csrf_header']").attr("content");
-
   let class_id = $("#class_id").val();
 
   $.ajax({
@@ -64,7 +61,7 @@ $(document).ready(function () {
         const tasksTitle = $("<h5>").addClass("card-title").text("Tasks");
         // const tasksText = $("<p>").addClass("card-text").text("Task disini");
         const tasksAnchor = $("<a>")
-          .attr("href", "/Trainer/classroom/segment/task") //end point task
+          .attr("href", "/Trainer/classroom/segment/task/" + segment.id) //end point task
           .addClass("btn")
           .html(
             '<i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>'
