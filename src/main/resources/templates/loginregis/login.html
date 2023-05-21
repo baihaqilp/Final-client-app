@@ -20,19 +20,27 @@
   <body>
     <section class="login-base">
       <div class="container login-block row">
-        <div class="login-image col-4">
-          <!-- <img th:src="@{/img/img2.png}" alt="login" /> -->
-        </div>
+        <div class="login-image col-4"></div>
         <div class="login-content row d-flex align-items-center">
-          <h1 class="fw-bolder mb-3">Login to yout account</h1>
+          <h1 class="fs-1 mb-3">Login to your account</h1>
           <p>
             Welcome to the LMS Login Page. Please enter your credentials to
             access your account. Login now and embark on your educational
             journey!
           </p>
-          <form class="pb-3" th:action="@{/login}" th:method="POST" th:object="${loginRequest}">
+          <form
+            class="pb-3"
+            th:action="@{/login}"
+            th:method="POST"
+            th:object="${loginRequest}"
+          >
             <div class="input-content p-2">
-              <input type="text" class="form-control" placeholder="Username" th:field="*{username}"/>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Username"
+                th:field="*{username}"
+              />
             </div>
             <div class="input-content p-2">
               <input
@@ -44,7 +52,7 @@
             </div>
             <button type="submit" class="btn mt-4 text-white">Submit</button>
           </form>
-          <a href="/" class="text-center">I don't have a account</a>
+          <a href="/register" class="text-center">I don't have a account</a>
         </div>
       </div>
     </section>
