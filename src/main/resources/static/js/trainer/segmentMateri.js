@@ -20,9 +20,6 @@ $(document).ready(function () {
                     </div>
                   </div>
                   <div class="lesson-container-right">
-                    <a href="/Trainer/materi-add" class="btn">
-                      <i class="fa-solid fa-square-plus" style="font-size: 28px"></i>
-                    </a>
                     <a href="/Trainer/materi-edit" class="btn">
                       <i class="fa-solid fa-pen-to-square" style="font-size: 28px"></i>
                     </a>
