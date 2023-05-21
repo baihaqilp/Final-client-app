@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/main}"
+>
+  <body>
+    <!-- content -->
+    <section layout:fragment="content">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card shadow-lg" style="border-radius: 20px">
+            <div class="card-body">
+              <div
+                class="card-header d-flex flex-row"
+                style="background-color: white"
+              >
+                <i
+                  class="fa-regular fa-circle-user px-3"
+                  style="font-size: 36px; color: black"
+                ></i>
+                <p style="font-size: 24px">User Name Here</p>
+              </div>
+              <div class="card-content pt-4">
+                <form>
+                  <div class="row mb-5">
+                    <div class="col-lg-6">
+                      <label class="form-label" for="">Name</label>
+                      <input
+                        type="text"
+                        class="border border-rounderd rounded-2 p-3"
+                        id=""
+                        style="width: 100%"
+                      />
+                    </div>
+                    <div class="col-lg-6">
+                      <label class="form-label" for="">E-Mail</label>
+                      <input
+                        type="text"
+                        class="border border-rounderd rounded-2 p-3"
+                        id=""
+                        style="width: 100%"
+                      />
+                    </div>
+                  </div>
+                  <div class="row mb-5">
+                    <div class="col-lg-6">
+                      <label class="form-label" for="">Phone</label>
+                      <input
+                        type="text"
+                        class="border border-rounderd rounded-2 p-3"
+                        id=""
+                        style="width: 100%"
+                      />
+                    </div>
+                    <div class="col-lg-6">
+                      <label class="form-label" for="">Address</label>
+                      <input
+                        type="text"
+                        class="border border-rounderd rounded-2 p-3"
+                        id=""
+                        style="width: 100%"
+                      />
+                    </div>
+                  </div>
+                  <div class="row mb-5">
+                    <div class="col-lg-6">
+                      <label class="form-label" for="password">Password</label>
+                      <input
+                        type="password"
+                        class="border border-rounderd rounded-2 p-3"
+                        id=""
+                        style="width: 100%"
+                      />
+                    </div>
+                    <div class="col-lg-6">
+                      <label class="form-label" for="password"
+                        >Re-type Your Password</label
+                      >
+                      <input
+                        type="password"
+                        class="border border-rounderd rounded-2 p-3"
+                        id=""
+                        style="width: 100%"
+                      />
+                    </div>
+                  </div>
+                </form>
+                <div
+                  class="card-footer d-flex justify-content-between bg-white"
+                >
+                  <a
+                    th:href="'javascript:history.back()'"
+                    class="btn"
+                    style="background-color: #4b49ac; color: white"
+                    >Back</a
+                  >
+                  <a
+                    th:href="@{/user/id/edit}"
+                    class="btn"
+                    style="
+                      background-color: white;
+                      color: #4b49ac;
+                      border-color: #4b49ac;
+                    "
+                    >Edit</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div layout:fragment="script"></div>
+  </body>
+</html>
