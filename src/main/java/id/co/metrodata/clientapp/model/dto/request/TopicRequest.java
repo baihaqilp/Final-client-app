@@ -1,4 +1,4 @@
-package id.co.metrodata.clientapp.model;
+package id.co.metrodata.clientapp.model.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Topic {
+public class TopicRequest {
 
-    private long id;
-    private String name;
-    private Program program;
+  private String name;
+  private long programId;
 }

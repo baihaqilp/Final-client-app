@@ -15,9 +15,9 @@ $(document).ready(function () {
     },
   });
 
-  $("#table-class").DataTable({
+  $("#table-topic").DataTable({
     ajax: {
-      url: "/api/classroom",
+      url: "/api/topic",
       dataSrc: "",
     },
     columns: [
@@ -33,23 +33,26 @@ $(document).ready(function () {
         data: null,
         render: (data, type, row, meta) => {
           return `
-          <a href="/admin/class/${data.id}"
-            type="button"
-            class="btn btn-warning mx-3")"
-          >
-            Detail
-          </a>
           <button
             type="button"
-            class="btn btn-warning mx-3"
+            class="btn mx-3"
             data-bs-toggle="modal"
-            data-bs-target="#updateClass"
+            data-bs-target="#detailTopic"
+            onClick="getById(${data.id})"
+          >
+            <i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>
+          </button>
+          <button
+            type="button"
+            class="btn mx-3"
+            data-bs-toggle="modal"
+            data-bs-target="#updateTopic"
             onClick="beforeUpdate(${data.id})"
           >
-            Edit
+          <i class="fa-solid fa-pen-to-square" style="font-size: 24px"></i>
           </button>
-          <button class="btn btn-danger" onClick="deleteData(${data.id})">
-            Delete
+          <button class="btn" onClick="deleteData(${data.id})">
+          <i class="fa-solid fa-trash-can" style="font-size: 24px"></i>
           </button>
           `;
         },
@@ -61,22 +64,23 @@ $(document).ready(function () {
 function getById(id) {
   $.ajax({
     method: "GET",
-    url: "/api/classroom/" + id,
+    url: "/api/topic/" + id,
     // beforeSend: addCsrfToken(),
     dataType: "JSON",
     beforeSend: addCsrfToken(),
     success: (res) => {
-      $("#detail_name").val(res.name);
+      $("#detail_topic_name").val(res.name);
+      $("#detail_program").val(res.program.name);
     },
   });
 }
 
 function create() {
-  let nameVal = $("#create_class_name").val();
+  let nameVal = $("#create_topic_name").val();
   let programVal = $("#select_program option:selected").val();
   $.ajax({
     method: "POST",
-    url: "/api/classroom",
+    url: "/api/topic",
     dataType: "JSON",
     beforeSend: addCsrfToken(),
     // beforeSend: addCsrfToken(),
@@ -86,9 +90,9 @@ function create() {
     }),
     contentType: "application/json",
     success: (res) => {
-      $("#addClass").modal("hide");
-      $("#table-class").DataTable().ajax.reload();
-      $("#create_class_name").val("");
+      $("#addTopic").modal("hide");
+      $("#table-topic").DataTable().ajax.reload();
+      $("#create_topic_name").val("");
 
       Swal.fire({
         position: "center",
@@ -104,10 +108,10 @@ function create() {
 function beforeUpdate(id) {
   $.ajax({
     method: "GET",
-    url: "/api/classroom/" + id,
+    url: "/api/topic/" + id,
     dataType: "JSON",
     success: (res) => {
-      $("#update_class_name").val(res.name);
+      $("#update_topic_name").val(res.name);
       $("#update_id").val(res.id);
 
       $("#update_program").val(res.program.id);
@@ -116,7 +120,7 @@ function beforeUpdate(id) {
 }
 
 function update() {
-  let nameVal = $("#update_class_name").val();
+  let nameVal = $("#update_topic_name").val();
   let idVal = $("#update_id").val();
   let programVal = $("#update_program option:selected").val();
 
@@ -133,26 +137,27 @@ function update() {
     if (result.isConfirmed) {
       $.ajax({
         method: "PUT",
-        url: "/api/classroom/" + idVal,
+        url: "/api/topic/" + idVal,
         dataType: "JSON",
         beforeSend: addCsrfToken(),
         data: JSON.stringify({
           name: nameVal,
-          programId: 1,
+          programId: programVal,
         }),
         contentType: "application/json",
         success: (res) => {
-          $("#updateClass").modal("hide");
-          $("#table-class").DataTable().ajax.reload();
-          $("#create_class_name").val("");
+          $("#updateTopic").modal("hide");
+          $("#table-topic").DataTable().ajax.reload();
+          $("#create_topic_name").val("");
         },
       });
-      Swal.fire("Updated!", "Region success to update...", "success");
+      Swal.fire("Updated!", "Topic success to update...", "success");
     }
   });
 }
 
 function deleteData(id) {
+  console.log(id);
   const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: "btn btn-success",
@@ -175,16 +180,16 @@ function deleteData(id) {
       if (result.isConfirmed) {
         $.ajax({
           method: "DELETE",
-          url: "/api/classroom/" + id,
+          url: "/api/topic/" + id,
           dataType: "JSON",
-          // beforeSend: addCsrfToken(),
+          beforeSend: addCsrfToken(),
           success: (res) => {
-            $("#table-class").DataTable().ajax.reload();
+            $("#table-topic").DataTable().ajax.reload();
           },
         });
         swalWithBootstrapButtons.fire(
           "Deleted!",
-          "Region success to delete!!!",
+          "Topic success to delete!!!",
           "success"
         );
       } else if (
