@@ -6,6 +6,7 @@
 body {
   background: linear-gradient(45deg, #7da0fa, #7978e9, #4b49ac, #98bdff);
 }
+
 .login-base {
   height: 100vh;
   /* background: linear-gradient(to right, #96c93d, #00b09b); */
@@ -40,7 +41,6 @@ body {
   flex-direction: column;
   /* align-items: center; */
   margin: auto;
-  width: 50%;
   padding: 0 1rem;
   text-align: center;
 }

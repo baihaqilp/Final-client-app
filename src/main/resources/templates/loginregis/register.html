@@ -11,8 +11,17 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <!-- font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel="stylesheet" th:href="@{/css/login.css}" />
+    <link rel="stylesheet" th:href="@{/css/regis.css}" />
 
     <title>Register</title>
   </head>
@@ -20,69 +29,126 @@
   <body>
     <section class="login-base">
       <div class="container login-block row">
-        <div class="login-image col-4">
-          <!-- <img th:src="@{/img/img2.png}" alt="login" /> -->
-        </div>
-        <div class="login-content row d-flex align-items-center">
-          <h1 class="fw-bolder mb-3">Register</h1>
+        <div
+          class="card-header bg-white row d-flex text-center"
+          style="margin: 10px auto"
+        >
+          <h1 class="fs-1 mb-3">Register</h1>
           <p>
             Welcome to Learning Management System (LMS) registration page.
             Please fill out the form below to create your account
           </p>
-          <form class="pb-3" th:action="@{/register}" th:method="POST" th:object="${traineeRequest}">
-            <!-- <label for="username" class="form-label"></label> -->
-            <div class="input-content p-2">
-              <input type="text" class="form-control" placeholder="Name" id="register_name" th:field="*{name}"/>
+        </div>
+        <div class="login-content row">
+          <form
+            class="pb-3"
+            th:action="@{/register}"
+            th:method="POST"
+            th:object="${traineeRequest}"
+          >
+            <div class="content-row-1 row">
+              <div class="col-6">
+                <div class="input-content p-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Name"
+                    id="register_name"
+                    th:field="*{name}"
+                  />
+                </div>
+                <!-- <label for="password" class="form-label"></label> -->
+                <div class="input-content p-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Email"
+                    id="register_email"
+                    th:field="*{email}"
+                  />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="input-content p-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Phone"
+                    id="register_phone"
+                    th:field="*{phone}"
+                  />
+                </div>
+                <div class="input-content p-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Address"
+                    id="register_address"
+                    th:field="*{address}"
+                  />
+                </div>
+              </div>
             </div>
-            <!-- <label for="password" class="form-label"></label> -->
-            <div class="input-content p-2">
-              <input type="text" class="form-control" placeholder="Email" id="register_email" th:field="*{email}" />
+            <div class="content-row-2 row mb-4">
+              <div class="col-6">
+                <div class="input-content p-2">
+                  <select name="" id="select_program" class="form-control">
+                    <option value="">Choose Program</option>
+                  </select>
+                </div>
+                <div class="input-content p-2">
+                  <select
+                    name=""
+                    id="select_classroom"
+                    class="form-control"
+                    disabled
+                  >
+                    <option>Choose Class Room</option>
+                  </select>
+                  <input type="hidden" th:field="*{classroomId}" />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="input-content p-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Username"
+                    id="register_username"
+                    th:field="*{username}"
+                  />
+                </div>
+                <div class="input-content p-2">
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Password"
+                    id="password1"
+                    th:field="*{password}"
+                  />
+                </div>
+                <div class="input-content p-2">
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Password"
+                    id="password2"
+                  />
+                </div>
+                <div>
+                  <span id="message"></span>
+                </div>
+              </div>
             </div>
-            <div class="input-content p-2">
-              <input type="text" class="form-control" placeholder="Phone" id="register_phone" th:field="*{phone}"/>
+            <div class="bg-white d-flex flex-column">
+              <div>
+                <button type="submit" class="btn mt-4 text-white">
+                  Submit
+                </button>
+              </div>
+              <a href="/login" class="text-center">I already have an account</a>
             </div>
-            <div class="input-content p-2">
-              <input type="text" class="form-control" placeholder="Address" id="register_address" th:field="*{address}"/>
-            </div>
-            <div class="input-content p-2">
-              <select name="" id="select_program" class="form-control" >
-                <option value="">Choose Program</option>
-              </select>
-            </div>
-            <div class="input-content p-2">
-              
-              <select name="" id="select_classroom" class="form-control"  disabled>
-                <option >Choose Class Room</option>
-                
-              </select>
-              <input type="hidden" th:field="*{classroomId}">
-            </div>
-            <div class="input-content p-2">
-              <input type="text" class="form-control" placeholder="Username" id="register_username" th:field="*{username}"/>
-            </div>
-            <div class="input-content p-2">
-              <input
-                type="password"
-                class="form-control"
-                placeholder="Password"
-                id="password1"
-                th:field="*{password}"
-              />
-            </div>
-            <div class="input-content p-2">
-              <input
-                type="password"
-                class="form-control"
-                placeholder="Password"
-                id="password2"
-              />
-            </div>
-            <div>
-              <span id="message"></span>
-            </div>
-            <button type="submit" class="btn mt-4 text-white" >Submit</button>
           </form>
-          <a href="/login" class="text-center">I already have a account</a>
         </div>
       </div>
     </section>
