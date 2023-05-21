@@ -2,7 +2,7 @@
 <html
   lang="en"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{layout/trainer/main}"
+  layout:decorate="~{layout/main}"
 >
   <body>
     <!-- content -->
@@ -35,6 +35,7 @@
                       type="text"
                       class="border border-dark border-rounded rounded-2"
                       style="width: 100%; padding: 1rem"
+                      id="create_materi_name"
                     />
                   </div>
                 </div>
@@ -45,14 +46,16 @@
                       type="text"
                       class="border border-dark border-rounded rounded-2"
                       style="width: 100%; padding: 1rem"
+                      id="create_materi_description"
                     />
                   </div>
                 </div>
                 <div class="third">
                   <label for="topik" class="form-label fw-bold">Topik</label>
                   <select
-                    class="form-control form-control-sm select_program p-2"
+                    class="form-control form-control-sm select_topik p-2"
                     aria-label="form-select-sm example"
+                    id="select_topik"
                   >
                     <option selected value="">Choose Topik</option>
                   </select>
@@ -68,7 +71,7 @@
                 </div>
                 <div class="second pt-3 mb-5 d-flex justify-content-between">
                   <a
-                    th:href="@{/Trainer/classroom/segment/materi}"
+                    th:href="'javascript:history.back()'"
                     class="btn"
                     style="background-color: #4b49ac; color: white"
                     >Back</a
@@ -81,6 +84,7 @@
                       background-color: white;
                       color: #4b49ac;
                     "
+                    onclick="create()"
                   >
                     Submit
                   </button>
@@ -165,6 +169,8 @@
         </div>
       </div>
     </section>
-    <div layout:fragment="script"></div>
+    <div layout:fragment="script">
+      <script th:src="@{/js/trainer/addMateri.js}"></script>
+    </div>
   </body>
 </html>

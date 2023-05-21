@@ -8,6 +8,7 @@ $(document).ready(function () {
       console.log(response);
       // Loop through the card data and generate cards dynamically
       response.forEach(function (cardData) {
+        console.log(typeof cardData.materi.id);
         var card = `
           <div class="card mb-3">
             <div class="card-body">
@@ -20,7 +21,7 @@ $(document).ready(function () {
                     </div>
                   </div>
                   <div class="lesson-container-right">
-                    <a href="/Trainer/materi-edit" class="btn">
+                    <a href="/Trainer/classroom/segment/materi/${cardData.materi.id}" class="btn">
                       <i class="fa-solid fa-pen-to-square" style="font-size: 28px"></i>
                     </a>
                     <a href="#" class="btn">

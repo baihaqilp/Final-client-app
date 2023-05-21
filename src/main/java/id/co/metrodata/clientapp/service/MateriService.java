@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.Materi;
+import id.co.metrodata.clientapp.model.dto.request.MateriRequest;
 import id.co.metrodata.clientapp.utils.BasicHeader;
 
 @Service
@@ -38,15 +39,15 @@ public class MateriService {
                 }).getBody();
     }
 
-    public Materi create(Materi materi) {
+    public Materi create(MateriRequest materiRequest) {
         return restTemplate.exchange(
-                url + "/",
+                url,
                 HttpMethod.POST,
-                new HttpEntity(materi, BasicHeader.createHeader()),
+                new HttpEntity(materiRequest, BasicHeader.createHeader()),
                 Materi.class).getBody();
     }
 
-    public Materi update(long id, Materi materi) {
+    public Materi update(long id, MateriRequest materi) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,

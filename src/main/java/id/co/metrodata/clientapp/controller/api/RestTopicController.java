@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.co.metrodata.clientapp.model.Topic;
+import id.co.metrodata.clientapp.model.dto.request.TopicRequest;
 import id.co.metrodata.clientapp.service.TopicService;
 import lombok.AllArgsConstructor;
 
@@ -33,7 +34,7 @@ public class RestTopicController {
     }
 
     @PostMapping
-    public Topic create(@RequestBody Topic topic) {
+    public Topic create(@RequestBody TopicRequest topic) {
         return topicService.create(topic);
     }
 
