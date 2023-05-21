@@ -41,7 +41,7 @@ $(document).ready(function () {
         // const lessonsText = $("<p>").addClass("card-text");
 
         const lessonsAnchor = $("<a>")
-          .attr("href", "/Trainer/classroom/segment/materi") //end point materi
+          .attr("href", "/Trainer/classroom/segment/" + segment.id) //end point materi
           .addClass("btn")
           .html(
             '<i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>'

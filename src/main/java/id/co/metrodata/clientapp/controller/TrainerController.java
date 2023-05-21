@@ -86,4 +86,24 @@ public class TrainerController {
         return "trainer/class/detailClass";
     }
 
+    @GetMapping("/classroom/segment/{id}")
+    public String trainerMateri(@PathVariable long id) {
+        // model.addAttribute("classroom", classroomService.getById(id));
+        return "trainer/materi/materi";
+    }
+
+    @GetMapping("/classroom/segment/materi/{id}")
+    public String materiEdit(@PathVariable Long id) {
+        return "trainer/materi/editMateri";
+    }
+
+    @GetMapping("/topic")
+    public String topic() {
+        return "trainer/topic/topic";
+    }
+
+    @GetMapping("/topic/{id}")
+    public String topicDetail(@PathVariable long id) {
+        return "trainer/topic/topic";
+    }
 }

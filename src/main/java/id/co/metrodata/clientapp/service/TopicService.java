@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.Topic;
+import id.co.metrodata.clientapp.model.dto.request.TopicRequest;
 import id.co.metrodata.clientapp.utils.BasicHeader;
 
 @Service
@@ -38,15 +39,15 @@ public class TopicService {
                 }).getBody();
     }
 
-    public Topic create(Topic topic) {
+    public Topic create(TopicRequest topic) {
         return restTemplate.exchange(
-                url + "/",
+                url,
                 HttpMethod.POST,
                 new HttpEntity(topic, BasicHeader.createHeader()),
                 Topic.class).getBody();
     }
 
-    public Topic update(long id, Topic topic) {
+    public Topic update(long id, TopicRequest topic) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,

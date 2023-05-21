@@ -2,7 +2,7 @@
 <html
   lang="en"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{layout/trainer/main}"
+  layout:decorate="~{layout/main}"
 >
   <body>
     <!-- content -->
@@ -28,14 +28,16 @@
                 </div>
               </div>
               <div class="card-content d-flex flex-column pt-5">
+                <input type="text" th:value="*{id}" id="materi_id" hidden />
+                <input type="hidden" id="update_id" name="update_id" />
                 <div class="first">
                   <p>Name</p>
                   <div class="input">
                     <input
                       type="text"
-                      class="border border-dark border-rounded rounded-2"
+                      class="border border-dark border-rounded rounded-2 update_materi_id"
                       style="width: 100%; padding: 1rem"
-                      readonly
+                      id="update_materi_name"
                     />
                   </div>
                 </div>
@@ -44,17 +46,18 @@
                   <div class="input">
                     <input
                       type="text"
-                      class="border border-dark border-rounded rounded-2"
+                      class="border border-dark border-rounded rounded-2 update_materi_desc"
                       style="width: 100%; padding: 1rem"
-                      readonly
+                      id="update_materi_desc"
                     />
                   </div>
                 </div>
                 <div class="third">
                   <label for="topik" class="form-label fw-bold">Topik</label>
                   <select
-                    class="form-control form-control-sm select_program p-2"
+                    class="form-control form-control-sm select_topic p-2"
                     aria-label="form-select-sm example"
+                    id="update_topic"
                   >
                     <option selected value="">Choose Topik</option>
                   </select>
@@ -70,7 +73,7 @@
                 </div>
                 <div class="second pt-3 mb-5 d-flex justify-content-between">
                   <a
-                    th:href="@{/Trainer/materi}"
+                    th:href="'javascript:history.back()'"
                     class="btn"
                     style="background-color: #4b49ac; color: white"
                     >Back</a
@@ -83,6 +86,7 @@
                       background-color: white;
                       color: #4b49ac;
                     "
+                    onclick="update()"
                   >
                     Submit Update
                   </button>
@@ -122,23 +126,17 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="create_task_name"
-                  placeholder="ex. 1"
+                  id="create_topik_name"
+                  placeholder="ex. ERD"
                 />
                 <label for="program" class="form-label fw-bold">Program</label>
                 <select
                   class="form-control form-control-sm select_program p-2"
                   aria-label="form-select-sm example"
+                  id="select_program"
                 >
                   <option selected value="">Choose Program</option>
                 </select>
-                <!-- <label for="class" class="form-label fw-bold">Class</label>
-            <input
-              type="text"
-              class="form-control"
-              id="create_Task_class"
-              placeholder="ex. MCC-07"
-            /> -->
               </div>
             </div>
             <div class="modal-footer">
@@ -167,6 +165,9 @@
         </div>
       </div>
     </section>
-    <div layout:fragment="script"></div>
+    <div layout:fragment="script">
+      <script th:src="@{/js/trainer/editMateri.js}"></script>
+      <script th:src="@{/js/trainer/addNewTopik.js}"></script>
+    </div>
   </body>
 </html>
