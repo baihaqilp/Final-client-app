@@ -19,9 +19,9 @@ $(document).ready(function () {
           return `
           <a href="/Trainer/classroom/${data.id}"
           type="button"
-          class="btn btn-warning mx-3")"
+          class="btn mx-3")"
         >
-          Detail
+        <i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>
         </a>
         <a href="/Trainer/trainee/classroom/${data.id}"
         type="button"

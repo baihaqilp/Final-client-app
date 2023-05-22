@@ -38,6 +38,14 @@ public class TaskService {
                 }).getBody();
     }
 
+    public List<Task> getBySegmentId(long id) {
+        return restTemplate.exchange(
+                url + "/segment/" + id,
+                HttpMethod.GET,
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Task>>() {
+                }).getBody();
+    }
+
     public Task create(Task task) {
         return restTemplate.exchange(
                 url + "/",

@@ -86,7 +86,7 @@ $(document).ready(function () {
         //   .addClass("card-text")
         //   .text("Submission disini");
         const submissionAnchor = $("<a>")
-          .attr("href", "/Trainer/calssroom/segment/submission") //end point submission
+          .attr("href", "/Trainer/calssroom/submission/segment/" + segment.id) //end point submission
           .addClass("btn")
           .html(
             '<i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>'

@@ -30,9 +30,9 @@ public class TrainerController {
         return "trainer/class/detailClass";
     }
 
-    @GetMapping("/calssroom/segment/submission")
-    public String submissionTrainer() {
-        return "trainer/submission/submission";
+    @GetMapping("/calssroom/submission/segment/{id}")
+    public String submissionTrainer(@PathVariable long id) {
+        return "trainer/submission/submissionBySegment";
     }
 
     @GetMapping("/classroom/segment/task")

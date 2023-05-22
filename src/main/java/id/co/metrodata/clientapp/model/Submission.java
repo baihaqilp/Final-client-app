@@ -1,6 +1,10 @@
 package id.co.metrodata.clientapp.model;
 
 import java.time.LocalDate;
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +17,8 @@ public class Submission {
 
     private long id;
     private String submission_file;
-    private LocalDate submission_date;
+    @JsonFormat(pattern = "dd-MM-yyyy", shape = Shape.STRING)
+    private Date submission_date;
     private Float nilai;
     private Task task;
     private Employee employee;

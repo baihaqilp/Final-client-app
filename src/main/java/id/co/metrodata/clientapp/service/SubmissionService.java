@@ -59,4 +59,12 @@ public class SubmissionService {
                 HttpMethod.DELETE,
                 new HttpEntity(BasicHeader.createHeader()), Submission.class).getBody();
     }
+
+    public List<Submission> getByTaskId(long id) {
+        return restTemplate.exchange(
+                url + "/" + id,
+                HttpMethod.GET,
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Submission>>() {
+                }).getBody();
+    }
 }
