@@ -1,11 +1,9 @@
-package id.co.metrodata.clientapp.model;
+package id.co.metrodata.clientapp.model.dto.request;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
-import org.springframework.format.datetime.joda.LocalDateTimeParser;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -16,13 +14,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Task {
+public class TaskRequest {
 
-    private long id;
     private String name;
     private String desc;
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm", iso = ISO.DATE_TIME)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm")
     private LocalDateTime deadline;
-
+    private long segmentId;
 }

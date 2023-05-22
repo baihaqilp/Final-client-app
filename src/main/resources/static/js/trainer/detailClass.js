@@ -1,7 +1,4 @@
 $(document).ready(function () {
-  var token = $("meta[name='_csrf']").attr("content");
-  var header = $("meta[name='_csrf_header']").attr("content");
-
   let class_id = $("#class_id").val();
 
   $.ajax({
@@ -20,9 +17,6 @@ $(document).ready(function () {
   $.ajax({
     url: "/api/segment/class/" + class_id,
     method: "GET",
-    beforeSend: function (xhr) {
-      xhr.setRequestHeader(header, token);
-    },
     success: function (res) {
       res.forEach(function (segment, index) {
         //segment card elements
@@ -64,7 +58,7 @@ $(document).ready(function () {
         const tasksTitle = $("<h5>").addClass("card-title").text("Tasks");
         // const tasksText = $("<p>").addClass("card-text").text("Task disini");
         const tasksAnchor = $("<a>")
-          .attr("href", "/Trainer/classroom/segment/task") //end point task
+          .attr("href", "/Trainer/classroom/segment/task/" + segment.id) //end point task
           .addClass("btn")
           .html(
             '<i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>'
@@ -74,26 +68,7 @@ $(document).ready(function () {
         tasksCardBody.append(tasksTitle, tasksAnchor);
         tasksContainer.append(tasksCardBody);
 
-        //Submission
-        const submissionContainer = $("<div>").addClass("container mb-3");
-        const submissionCardBody = $("<div>").addClass(
-          "card-body d-flex justify-content-between align-items-center"
-        );
-        const submissionTitle = $("<h5>")
-          .addClass("card-title")
-          .text("Submission");
-        // const submissionText = $("<p>")
-        //   .addClass("card-text")
-        //   .text("Submission disini");
-        const submissionAnchor = $("<a>")
-          .attr("href", "/Trainer/calssroom/segment/submission") //end point submission
-          .addClass("btn")
-          .html(
-            '<i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>'
-          );
 
-        submissionCardBody.append(submissionTitle, submissionAnchor);
-        submissionContainer.append(submissionCardBody);
 
         //Trainee
         // const traineeContainer = $("<div>").addClass("container mb-3");
@@ -120,7 +95,6 @@ $(document).ready(function () {
           segmentTitle,
           lessonsContainer,
           tasksContainer,
-          submissionContainer
         );
         segmentCard.append(cardBody);
 

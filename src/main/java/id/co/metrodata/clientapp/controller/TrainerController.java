@@ -6,14 +6,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import id.co.metrodata.clientapp.model.Task;
 import id.co.metrodata.clientapp.service.ClassroomService;
+import id.co.metrodata.clientapp.service.TaskService;
+import lombok.AllArgsConstructor;
 
 @Controller
 @RequestMapping("/Trainer")
-
+@AllArgsConstructor
 public class TrainerController {
 
     private ClassroomService classroomService;
+    private TaskService taskService;
 
     @GetMapping("/dashboard")
     public String dashboard() {
@@ -35,9 +39,15 @@ public class TrainerController {
         return "trainer/submission/submission";
     }
 
-    @GetMapping("/classroom/segment/task")
-    public String taskTrainer() {
+    @GetMapping("/classroom/segment/task/{segment_id}")
+    public String taskTrainer(@PathVariable long segment_id) {
         return "trainer/task/task";
+    }
+
+    @GetMapping("/classroom/segment/task/detail/{id}")
+    public String detailtaskTrainer(@PathVariable long id, Model model) {
+        model.addAttribute("task", taskService.getById(id));
+        return "trainer/task/detailTask";
     }
 
     @GetMapping("/classroom/segment/materi")
