@@ -92,6 +92,27 @@ $(document).ready(function () {
         submissionCardBody.append(submissionTitle, submissionAnchor);
         submissionContainer.append(submissionCardBody);
 
+        //Trainee
+        // const traineeContainer = $("<div>").addClass("container mb-3");
+        // const traineeCardBody = $("<div>").addClass(
+        //   "card-body d-flex justify-content-between align-items-center"
+        // );
+        // const traineeTtitle = $("<h5>")
+        //   .addClass("card-title")
+        //   .text("Submission");
+        // // const submissionText = $("<p>")
+        // //   .addClass("card-text")
+        // //   .text("Submission disini");
+        // const traineeAnchor = $("<a>")
+        //   .attr("href", "/Trainer/calssroom/segment/trainee") //end point submission
+        //   .addClass("btn")
+        //   .html(
+        //     '<i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>'
+        //   );
+
+        // traineeCardBody.append(traineeContainer, traineeAnchor);
+        // traineeContainer.append(traineeCardBody);
+
         cardBody.append(
           segmentTitle,
           lessonsContainer,

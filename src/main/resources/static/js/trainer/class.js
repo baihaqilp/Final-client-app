@@ -23,6 +23,15 @@ $(document).ready(function () {
         >
           Detail
         </a>
+        <a href="/Trainer/trainee/classroom/${data.id}"
+        type="button"
+        class="btn mx-3")"
+      >
+      <i
+        class="fa-solid fa-user-graduate px-2"
+        style="font-size: 36px; color: #7978e9"
+      ></i>
+      </a>
           `;
         },
       },

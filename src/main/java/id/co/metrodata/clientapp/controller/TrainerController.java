@@ -97,6 +97,11 @@ public class TrainerController {
         return "trainer/materi/editMateri";
     }
 
+    @GetMapping("/trainee/classroom/{id}")
+    public String traineeByClassId(@PathVariable Long id) {
+        return "trainer/trainee/trainee";
+    }
+
     @GetMapping("/topic")
     public String topic() {
         return "trainer/topic/topic";

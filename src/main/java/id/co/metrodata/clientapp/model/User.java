@@ -1,5 +1,7 @@
 package id.co.metrodata.clientapp.model;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,4 +17,5 @@ public class User {
     private Boolean isEnabled = true;
     private Boolean isAccountNonLocked = true;
 
+    private List<Role> roles;
 }
