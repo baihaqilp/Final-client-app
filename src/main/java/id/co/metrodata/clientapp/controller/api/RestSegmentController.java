@@ -42,7 +42,7 @@ public class RestSegmentController {
     }
 
     @PutMapping("/{id}")
-    public Segment update(@PathVariable long id, @RequestBody Segment segment) {
+    public Segment update(@PathVariable long id, @RequestBody SegmentRequest segment) {
         return segmenService.update(id, segment);
 
     }

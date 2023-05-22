@@ -135,9 +135,9 @@ function beforeUpdate(id) {
 
 
 function update() {
-    let start_date = $("#create__start_date").val();
-    let end_date = $("#create_end_date").val();
-    let trainer_id = $("#trainer_id option:selected").val();
+    let start_date = $("#update__start_date").val();
+    let end_date = $("#update_end_date").val();
+    let trainer_id = $("#update_trainer_id option:selected").val();
     let class_id = $("#class_id").val();
     let segment_id = $("#segment_id").val();
 
@@ -154,14 +154,14 @@ function update() {
         if (result.isConfirmed) {
             $.ajax({
                 method: "PUT",
-                url: "/api/segment/" + class_id,
+                url: "/api/segment/" + segment_id,
                 dataType: "JSON",
                 beforeSend: addCsrfToken(),
                 data: JSON.stringify({
                     start_date: start_date,
                     end_date: end_date,
-                    trainerId: trainer_id,
-                    classroomId: class_id
+                    classroomId: class_id,
+                    trainerId: trainer_id
                 }),
                 contentType: "application/json",
                 success: (res) => {
