@@ -38,6 +38,14 @@ public class SegmenService {
                 }).getBody();
     }
 
+    public List<Segment> getByTrainerId(long id) {
+        return restTemplate.exchange(
+                url + "/trainer/" + id,
+                HttpMethod.GET,
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Segment>>() {
+                }).getBody();
+    }
+
     public Segment create(SegmentRequest segment) {
         return restTemplate.exchange(
                 url + "/",

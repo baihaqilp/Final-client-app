@@ -2,7 +2,7 @@ $(document).ready(function () {
   let segment_id = $("#segment_id").val();
 
   $.ajax({
-    url: "/api/segmentmateri/segment/" + segment_id, // Replace with your API endpoint to fetch card data
+    url: "/api/segmentmateri/segment/" + 4, // Replace with your API endpoint to fetch card data
     method: "GET",
     success: function (response) {
       console.log(response);

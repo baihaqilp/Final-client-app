@@ -40,7 +40,7 @@ $(document).ready(function () {
         const lessonsCardBody = $("<div>").addClass(
           "card-body d-flex justify-content-between align-items-center"
         );
-        const lessonsTitle = $("<h5>").addClass("card-title").text("Lessons");
+        const lessonsTitle = $("<h5>").addClass("card-title").text("Topic");
         // const lessonsText = $("<p>").addClass("card-text");
 
         const lessonsAnchor = $("<a>")

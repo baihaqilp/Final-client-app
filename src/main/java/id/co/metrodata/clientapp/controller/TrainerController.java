@@ -79,7 +79,7 @@ public class TrainerController {
     @GetMapping("/classroom/segment/{id}")
     public String trainerMateri(@PathVariable long id) {
         // model.addAttribute("classroom", classroomService.getById(id));
-        return "trainer/materi/materi";
+        return "trainer/topic/topic";
     }
 
     @GetMapping("/classroom/segment/materi/{id}")
@@ -94,7 +94,7 @@ public class TrainerController {
 
     @GetMapping("/topic")
     public String topic() {
-        return "trainer/topic/topic";
+        return "trainer/materi/materi";
     }
 
     @GetMapping("/topic/{id}")
