@@ -16,6 +16,7 @@ public class Submission {
 
     private long id;
     private String submission_file;
+    private String submission_url;
     @JsonFormat(pattern = "dd-MM-yyyy", shape = Shape.STRING)
     private LocalDate submission_date;
     private Float nilai;

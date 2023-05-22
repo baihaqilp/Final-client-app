@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.co.metrodata.clientapp.model.Submission;
+import id.co.metrodata.clientapp.model.dto.request.SubmissionRequest;
 import id.co.metrodata.clientapp.service.SubmissionService;
 import lombok.AllArgsConstructor;
 
@@ -38,7 +39,7 @@ public class RestSubmissionController {
     }
 
     @PostMapping
-    public Submission create(@RequestBody Submission submission) {
+    public Submission create(@RequestBody SubmissionRequest submission) {
         return submissionService.create(submission);
     }
 

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.Submission;
+import id.co.metrodata.clientapp.model.dto.request.SubmissionRequest;
 import id.co.metrodata.clientapp.utils.BasicHeader;
 
 @Service
@@ -46,7 +47,7 @@ public class SubmissionService {
                 }).getBody();
     }
 
-    public Submission create(Submission submission) {
+    public Submission create(SubmissionRequest submission) {
         return restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,
