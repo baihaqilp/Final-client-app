@@ -53,4 +53,5 @@ public class RestSubmissionController {
     public Submission delete(@PathVariable long id) {
         return submissionService.getById(id);
     }
+
 }

@@ -15,7 +15,7 @@ $(document).ready(function () {
   });
   const segmentCardsContainer = $(".segment-cards-container");
   $.ajax({
-    url: "segment/class/" + class_id + "/trainer/" + trainer_id,
+    url: "/api/segment/class/" + class_id + "/trainer/" + trainer_id,
     method: "GET",
     success: function (res) {
       res.forEach(function (segment, index) {

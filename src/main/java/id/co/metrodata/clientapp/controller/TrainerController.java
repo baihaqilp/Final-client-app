@@ -83,7 +83,7 @@ public class TrainerController {
         return "trainer/trainee/detailTrainee";
     }
 
-    @GetMapping("/classroom/{class_id}/trinaer/{trainer_id}")
+    @GetMapping("/classroom/{class_id}/trainer/{trainer_id}")
     public String trainerSegment(@PathVariable long class_id, @PathVariable long trainer_id) {
         // model.addAttribute("classroom", classroomService.getById(id));
         return "trainer/class/detailClass";

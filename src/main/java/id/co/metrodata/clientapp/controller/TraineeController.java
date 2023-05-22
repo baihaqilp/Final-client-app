@@ -1,10 +1,18 @@
 package id.co.metrodata.clientapp.controller;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.core.io.Resource;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,11 +21,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import id.co.metrodata.clientapp.model.Submission;
 import id.co.metrodata.clientapp.model.dto.request.SubmissionRequest;
 import id.co.metrodata.clientapp.service.ClassroomService;
 import id.co.metrodata.clientapp.service.FileStorageService;
@@ -34,7 +43,12 @@ public class TraineeController {
   private SubmissionService submissionService;
 
   @GetMapping
-  private String dashboard() {
+  private String dashboard(Model model) {
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    model.addAttribute("trainee", auth.getCredentials());
+    ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+    HttpSession currentSession = attr.getRequest().getSession();
+    System.out.println("session: " + currentSession.getAttribute("SESSION_DETAILS"));
     return "trainee/index";
   }
 
@@ -71,15 +85,19 @@ public class TraineeController {
       RedirectAttributes redirectAttributes) {
     String fileName = file.getOriginalFilename();
     String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-        .path("/downloadFile/")
+        .path("/trainee/downloadFile/")
         .path(fileName)
         .toUriString();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+    LocalDateTime now = LocalDateTime.now();
 
+    String date = now.format(formatter);
     fileStorageService.store(file);
     SubmissionRequest submission = new SubmissionRequest();
     submission.setSubmission_file(file.getOriginalFilename());
     submission.setSubmission_url(fileDownloadUri);
-    submission.setSubmission_date(LocalDate.now());
+
+    submission.setSubmission_date(date);
     submission.setEmployeeId(trainee_id);
     submission.setTaskId(task_id);
     submissionService.create(submission);
@@ -87,7 +105,7 @@ public class TraineeController {
 
         "You successfully uploaded " + file.getOriginalFilename() + "!");
 
-    return "redirect:/trainee/submission-add/" + trainee_id;
+    return "redirect:/trainee/task/{task_id}/submission-add/{trainee_id}";
   }
 
   @GetMapping("/downloadFile/{filename:.+}")
