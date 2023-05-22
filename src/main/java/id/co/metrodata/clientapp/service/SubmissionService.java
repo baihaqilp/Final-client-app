@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.Submission;
+import id.co.metrodata.clientapp.model.dto.request.SubmissionRequest;
 import id.co.metrodata.clientapp.utils.BasicHeader;
 
 @Service
@@ -38,7 +39,15 @@ public class SubmissionService {
                 }).getBody();
     }
 
-    public Submission create(Submission submission) {
+    public List<Submission> getTaskId(long id) {
+        return restTemplate.exchange(
+                url + "/task/" + id,
+                HttpMethod.GET,
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Submission>>() {
+                }).getBody();
+    }
+
+    public Submission create(SubmissionRequest submission) {
         return restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,

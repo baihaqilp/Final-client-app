@@ -39,14 +39,14 @@
               <div class="card-content d-flex flex-column">
                 <table
                   class="table display table-stripped table-bordered mt-3 text-cente border border-rounded rounded-2"
-                  id="table-role"
+                  id="table-task"
                 >
                   <thead class="table-dark">
                     <tr>
                       <th class="col-1 text-center">No.</th>
                       <th class="col-4 text-center">Name</th>
-                      <th class="col-2 text-center">Class</th>
-                      <th class="col-2 text-center">Segment</th>
+                      <th class="col-2 text-center">Description</th>
+                      <th class="col-2 text-center">Deadline</th>
                       <th class="col-4 text-center">Action</th>
                     </tr>
                   </thead>
@@ -56,7 +56,7 @@
           </div>
         </div>
       </div>
-
+      <input type="hidden" id="segment_id" th:value="*{segment_id}">
       <!-- Modal Add Class -->
       <div
         class="modal fade"
@@ -95,25 +95,18 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="create_Task_email"
+                  id="create_task_desc"
                   placeholder="ex. MMiya.bi@gmail.com"
                 />
                 <label for="deadline" class="form-label fw-bold pt-3"
                   >Deadline</label
                 >
                 <input
-                  type="date"
+                  type="datetime-local"
                   class="form-control"
-                  id="create_Task_phone"
+                  id="create_task_deadline"
                   placeholder="ex. 0897678281"
                 />
-                <label for="segment" class="form-label fw-bold">Segment</label>
-                <select
-                  class="form-control form-control-sm select_program p-2"
-                  aria-label="form-select-sm example"
-                >
-                  <option selected value="">Choose Segment</option>
-                </select>
                 <!-- <label for="class" class="form-label fw-bold">Class</label>
                 <input
                   type="text"
@@ -234,6 +227,8 @@
         </div>
       </div>
     </section>
-    <div layout:fragment="script"></div>
+    <div layout:fragment="script">
+      <script th:src="@{/js/trainer/task.js}"></script>
+    </div>
   </body>
 </html>

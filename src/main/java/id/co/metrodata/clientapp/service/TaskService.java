@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.Task;
+import id.co.metrodata.clientapp.model.dto.request.TaskRequest;
 import id.co.metrodata.clientapp.utils.BasicHeader;
 
 @Service
@@ -38,15 +39,7 @@ public class TaskService {
                 }).getBody();
     }
 
-    public List<Task> getBySegmentId(long id) {
-        return restTemplate.exchange(
-                url + "/segment/" + id,
-                HttpMethod.GET,
-                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Task>>() {
-                }).getBody();
-    }
-
-    public Task create(Task task) {
+    public Task create(TaskRequest task) {
         return restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,
@@ -54,7 +47,7 @@ public class TaskService {
                 Task.class).getBody();
     }
 
-    public Task update(long id, Task task) {
+    public Task update(long id, TaskRequest task) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,
@@ -66,5 +59,13 @@ public class TaskService {
                 url + "/" + id,
                 HttpMethod.DELETE,
                 new HttpEntity(BasicHeader.createHeader()), Task.class).getBody();
+    }
+
+    public List<Task> getBySegment(long id) {
+        return restTemplate.exchange(
+                url + "/segment/" + id,
+                HttpMethod.GET,
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Task>>() {
+                }).getBody();
     }
 }
