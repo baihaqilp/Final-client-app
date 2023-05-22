@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import id.co.metrodata.clientapp.model.Submission;
 import id.co.metrodata.clientapp.service.ClassroomService;
 import lombok.AllArgsConstructor;
 
@@ -43,7 +44,7 @@ public class TraineeController {
   }
 
   @GetMapping("/submission-add")
-  private String traineeAddSubmission() {
+  private String traineeAddSubmission(Submission submission) {
     return "trainee/submission/addSubmission";
   }
 

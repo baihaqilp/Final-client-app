@@ -34,7 +34,7 @@ public class ProgramService {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.GET,
-                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<Program>() {
+                null, new ParameterizedTypeReference<Program>() {
                 }).getBody();
     }
 

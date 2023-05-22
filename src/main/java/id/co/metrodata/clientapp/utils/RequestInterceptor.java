@@ -17,7 +17,8 @@ public class RequestInterceptor implements ClientHttpRequestInterceptor {
         // TODO Auto-generated method stub
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        if ((!request.getURI().getPath().equals("api/login")) || (!request.getURI().getPath().equals("api/register"))) {
+        if ((!request.getURI().getPath().equals("api/login")) || (!request.getURI().getPath().equals("api/register"))
+                || (!request.getURI().getPath().equals("api/program"))) {
             request.getHeaders().add("Authorization", "Basic " +
                     BasicHeader.createToken(
                             authentication.getPrincipal().toString(),
