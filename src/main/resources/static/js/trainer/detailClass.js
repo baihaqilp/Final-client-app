@@ -1,6 +1,6 @@
 $(document).ready(function () {
   let class_id = $("#class_id").val();
-
+  let trainer_id = $("#trainer_id").val();
   $.ajax({
     method: "GET",
     url: "/api/classroom/" + class_id,
@@ -15,7 +15,7 @@ $(document).ready(function () {
   });
   const segmentCardsContainer = $(".segment-cards-container");
   $.ajax({
-    url: "/api/segment/class/" + class_id,
+    url: "segment/class/" + class_id + "/trainer/" + trainer_id,
     method: "GET",
     success: function (res) {
       res.forEach(function (segment, index) {

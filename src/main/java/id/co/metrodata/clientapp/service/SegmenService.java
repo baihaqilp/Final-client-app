@@ -46,7 +46,7 @@ public class SegmenService {
                 Segment.class).getBody();
     }
 
-    public Segment update(long id, Segment segment) {
+    public Segment update(long id, SegmentRequest segment) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,
