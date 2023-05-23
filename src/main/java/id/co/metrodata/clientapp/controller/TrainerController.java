@@ -64,8 +64,8 @@ public class TrainerController {
         return "trainer/topic/topicBySegment";
     }
 
-    @GetMapping("/classroom/segment/materi")
-    public String materi() {
+    @GetMapping("/materi/topic/{id}")
+    public String getMtariByTopicId(@PathVariable long id) {
         return "trainer/materi/materi";
     }
 
@@ -74,8 +74,8 @@ public class TrainerController {
         return "trainer/materi/addMateri";
     }
 
-    @GetMapping("/materi-edit")
-    public String materiEdit() {
+    @GetMapping("/materi/edit/{id}")
+    public String materiEdit(@PathVariable long id) {
         return "trainer/materi/editMateri";
     }
 

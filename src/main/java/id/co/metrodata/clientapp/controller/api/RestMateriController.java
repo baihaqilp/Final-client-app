@@ -45,6 +45,11 @@ public class RestMateriController {
 
     @DeleteMapping("/{id}")
     public Materi delete(@PathVariable long id) {
-        return materiService.getById(id);
+        return materiService.delete(id);
+    }
+
+    @GetMapping("/topic/{id}")
+    public List<Materi> getByTopicId(@PathVariable long id) {
+        return materiService.getByTopicId(id);
     }
 }
