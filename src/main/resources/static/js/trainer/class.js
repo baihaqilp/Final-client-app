@@ -26,13 +26,13 @@ $(document).ready(function () {
         data: null,
         render: (data, type, row, meta) => {
           return `
-          <a href="/Trainer/classroom/${data.classroom.id}/trainer/${data.trainer.id}"
+          <a href="/trainer/classroom/${data.classroom.id}/trainer/${data.trainer.id}"
           type="button"
           class="btn mx-3")"
         >
         <i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>
         </a>
-        <a href="/Trainer/trainee/classroom/${data.id}"
+        <a href="/trainer/trainee/classroom/${data.id}"
         type="button"
         class="btn mx-3")"
       >

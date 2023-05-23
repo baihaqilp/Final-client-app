@@ -13,7 +13,7 @@ import id.co.metrodata.clientapp.service.TaskService;
 import lombok.AllArgsConstructor;
 
 @Controller
-@RequestMapping("/Trainer")
+@RequestMapping("/trainer")
 @AllArgsConstructor
 public class TrainerController {
 
@@ -21,7 +21,7 @@ public class TrainerController {
     private SegmenService segmenService;
     private TaskService taskService;
 
-    @GetMapping("/dashboard")
+    @GetMapping
     public String dashboard() {
         return "trainer/index";
     }
@@ -61,10 +61,10 @@ public class TrainerController {
 
     @GetMapping("/topic/segment/{id}")
     public String topicBySegmentId(@PathVariable long id) {
-        return "trainer/topic/topicBySegment";
+        return "trainer/topic/topicDataTable";
     }
 
-    @GetMapping("/materi/topic/{id}")
+    @GetMapping("/materi/{id}")
     public String getMtariByTopicId(@PathVariable long id) {
         return "trainer/materi/materi";
     }
