@@ -13,7 +13,19 @@ $(document).ready(function () {
                 },
             },
             { data: "employee.name" },
-            { data: "submission_file" },
+            {
+                data: null,
+                render: (data, type, row, meta) => {
+                    return `
+            <a href="${data.submission_url}"
+            type="button"
+            class="btn btn-success mx-3")"
+          >
+            ${data.submission_file}
+          </a>
+            `;
+                },
+            },
             { data: "submission_date" },
             {
                 data: null,
@@ -23,7 +35,7 @@ $(document).ready(function () {
             type="button"
             class="btn btn-warning mx-3")"
           >
-            Detail
+            Evaluate
           </a>
             `;
                 },
