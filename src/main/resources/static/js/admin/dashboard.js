@@ -1,31 +1,56 @@
 $(document).ready(function () {
-  const ctx = $("#gradeChart")[0].getContext("2d");
-  new Chart(ctx, {
-    type: "line",
-    data: gradeChartData,
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          max: 100,
-          ticks: {
-            stepSize: 10,
-          },
-        },
-      },
+  // get all class
+  $.ajax({
+    url: "/api/classroom",
+    method: "GET",
+    dataType: "JSON",
+    success: (res) => {
+      let class_sum = res.length;
+      $("#class_sum").text(class_sum);
+    },
+  });
+
+  // get all program
+  $.ajax({
+    url: "/api/program",
+    method: "GET",
+    dataType: "JSON",
+    success: (res) => {
+      let program_sum = res.length;
+      $("#program_sum").text(program_sum);
+    },
+  });
+
+  // get all trainer
+  $.ajax({
+    url: "/api/employee/role/" + 1,
+    method: "GET",
+    dataType: "JSON",
+    success: (res) => {
+      let trainer_sum = res.length;
+      $("#trainer_sum").text(trainer_sum);
+    },
+  });
+
+  // get all trainee
+  $.ajax({
+    url: "/api/employee/role/" + 2,
+    method: "GET",
+    dataType: "JSON",
+    success: (res) => {
+      let trainee_sum = res.length;
+      $("#trainee_sum").text(trainee_sum);
+    },
+  });
+
+  // get all segment
+  $.ajax({
+    url: "/api/segment",
+    method: "GET",
+    dataType: "JSON",
+    success: (res) => {
+      let segment_sum = res.length;
+      $("#segment_sum").text(segment_sum);
     },
   });
 });
-
-const gradeChartData = {
-  labels: ["Assignment 1", "Assignment 2", "Assignment 3", "Assignment 4"],
-  datasets: [
-    {
-      label: "Grades",
-      data: [80, 90, 70, 85],
-      backgroundColor: "rgba(75, 192, 192, 0.2)",
-      borderColor: "rgba(75, 192, 192, 1)",
-      borderWidth: 1,
-    },
-  ],
-};
