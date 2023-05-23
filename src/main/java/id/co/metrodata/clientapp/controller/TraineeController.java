@@ -44,11 +44,6 @@ public class TraineeController {
 
   @GetMapping
   private String dashboard(Model model) {
-    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    model.addAttribute("trainee", auth.getCredentials());
-    ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-    HttpSession currentSession = attr.getRequest().getSession();
-    System.out.println("session: " + currentSession.getAttribute("SESSION_DETAILS"));
     return "trainee/index";
   }
 
