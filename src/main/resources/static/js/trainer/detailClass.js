@@ -1,9 +1,7 @@
 $(document).ready(function () {
-  var token = $("meta[name='_csrf']").attr("content");
-  var header = $("meta[name='_csrf_header']").attr("content");
-
   let class_id = $("#class_id").val();
-
+  let trainer_id = $("#trainer_id").val();
+  console.log(class_id, trainer_id);
   $.ajax({
     method: "GET",
     url: "/api/classroom/" + class_id,
@@ -18,11 +16,8 @@ $(document).ready(function () {
   });
   const segmentCardsContainer = $(".segment-cards-container");
   $.ajax({
-    url: "/api/segment/class/" + class_id,
+    url: "/api/segment/class/" + class_id + "/trainer/" + trainer_id,
     method: "GET",
-    beforeSend: function (xhr) {
-      xhr.setRequestHeader(header, token);
-    },
     success: function (res) {
       res.forEach(function (segment, index) {
         //segment card elements
@@ -40,11 +35,11 @@ $(document).ready(function () {
         const lessonsCardBody = $("<div>").addClass(
           "card-body d-flex justify-content-between align-items-center"
         );
-        const lessonsTitle = $("<h5>").addClass("card-title").text("Lessons");
+        const lessonsTitle = $("<h5>").addClass("card-title").text("Topic");
         // const lessonsText = $("<p>").addClass("card-text");
 
         const lessonsAnchor = $("<a>")
-          .attr("href", "/Trainer/classroom/segment/" + segment.id) //end point materi
+          .attr("href", "/Trainer/topic/segment/" + segment.id) //end point materi
           .addClass("btn")
           .html(
             '<i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>'
@@ -64,7 +59,7 @@ $(document).ready(function () {
         const tasksTitle = $("<h5>").addClass("card-title").text("Tasks");
         // const tasksText = $("<p>").addClass("card-text").text("Task disini");
         const tasksAnchor = $("<a>")
-          .attr("href", "/Trainer/classroom/segment/task") //end point task
+          .attr("href", "/Trainer/task/segment/" + segment.id) //end point task
           .addClass("btn")
           .html(
             '<i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>'
@@ -73,27 +68,6 @@ $(document).ready(function () {
         // tasksCardBody.append(tasksTitle, tasksText, tasksAnchor);
         tasksCardBody.append(tasksTitle, tasksAnchor);
         tasksContainer.append(tasksCardBody);
-
-        //Submission
-        const submissionContainer = $("<div>").addClass("container mb-3");
-        const submissionCardBody = $("<div>").addClass(
-          "card-body d-flex justify-content-between align-items-center"
-        );
-        const submissionTitle = $("<h5>")
-          .addClass("card-title")
-          .text("Submission");
-        // const submissionText = $("<p>")
-        //   .addClass("card-text")
-        //   .text("Submission disini");
-        const submissionAnchor = $("<a>")
-          .attr("href", "/Trainer/calssroom/segment/submission") //end point submission
-          .addClass("btn")
-          .html(
-            '<i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>'
-          );
-
-        submissionCardBody.append(submissionTitle, submissionAnchor);
-        submissionContainer.append(submissionCardBody);
 
         //Trainee
         // const traineeContainer = $("<div>").addClass("container mb-3");
@@ -116,12 +90,7 @@ $(document).ready(function () {
         // traineeCardBody.append(traineeContainer, traineeAnchor);
         // traineeContainer.append(traineeCardBody);
 
-        cardBody.append(
-          segmentTitle,
-          lessonsContainer,
-          tasksContainer,
-          submissionContainer
-        );
+        cardBody.append(segmentTitle, lessonsContainer, tasksContainer);
         segmentCard.append(cardBody);
 
         segmentCardsContainer.append(segmentCard);

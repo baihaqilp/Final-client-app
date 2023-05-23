@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.co.metrodata.clientapp.model.Task;
+import id.co.metrodata.clientapp.model.dto.request.TaskRequest;
 import id.co.metrodata.clientapp.service.TaskService;
 import lombok.AllArgsConstructor;
 
@@ -33,12 +34,12 @@ public class RestTaskController {
     }
 
     @PostMapping
-    public Task create(@RequestBody Task task) {
+    public Task create(@RequestBody TaskRequest task) {
         return taskService.create(task);
     }
 
     @PutMapping("/{id}")
-    public Task update(@PathVariable long id, @RequestBody Task task) {
+    public Task update(@PathVariable long id, @RequestBody TaskRequest task) {
         return taskService.update(id, task);
 
     }
@@ -48,4 +49,8 @@ public class RestTaskController {
         return taskService.getById(id);
     }
 
+    @GetMapping("/segment/{id}")
+    public List<Task> getBySegmentId(@PathVariable long id) {
+        return taskService.getBySegment(id);
+    }
 }

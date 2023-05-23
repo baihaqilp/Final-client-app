@@ -6,22 +6,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import id.co.metrodata.clientapp.model.Task;
 import id.co.metrodata.clientapp.service.ClassroomService;
+import id.co.metrodata.clientapp.service.SegmenService;
+import id.co.metrodata.clientapp.service.TaskService;
+import lombok.AllArgsConstructor;
 
 @Controller
 @RequestMapping("/Trainer")
-
+@AllArgsConstructor
 public class TrainerController {
 
     private ClassroomService classroomService;
+    private SegmenService segmenService;
+    private TaskService taskService;
 
     @GetMapping("/dashboard")
     public String dashboard() {
         return "trainer/index";
     }
 
-    @GetMapping("/classroom")
-    public String classTrainer() {
+    @GetMapping("/classroom/trainer/{trainer_id}")
+    public String classTrainer(@PathVariable long trainer_id, Model model) {
+
         return "trainer/class/class";
     }
 
@@ -30,14 +37,31 @@ public class TrainerController {
         return "trainer/class/detailClass";
     }
 
-    @GetMapping("/calssroom/segment/submission")
-    public String submissionTrainer() {
-        return "trainer/submission/submission";
+    @GetMapping("/calssroom/submission/segment/{id}")
+    public String submissionTrainer(@PathVariable long id) {
+        return "trainer/submission/submissionBySegment";
     }
 
-    @GetMapping("/classroom/segment/task")
-    public String taskTrainer() {
+    @GetMapping("/classroom/segment/task/{segment_id}")
+    public String taskTrainer(@PathVariable long segment_id) {
         return "trainer/task/task";
+    }
+
+    @GetMapping("/classroom/segment/task/detail/{id}")
+    public String detailtaskTrainer(@PathVariable long id, Model model) {
+        model.addAttribute("task", taskService.getById(id));
+        return "trainer/task/detailTask";
+    }
+
+    // get task by segment id
+    @GetMapping("/task/segment/{segment_id}")
+    public String taskBySegmentId(@PathVariable long segment_id) {
+        return "trainer/task/task";
+    }
+
+    @GetMapping("/topic/segment/{id}")
+    public String topicBySegmentId(@PathVariable long id) {
+        return "trainer/topic/topicBySegment";
     }
 
     @GetMapping("/classroom/segment/materi")
@@ -70,8 +94,8 @@ public class TrainerController {
         return "trainer/trainee/detailTrainee";
     }
 
-    @GetMapping("/classroom/{id}")
-    public String trainerSegment(@PathVariable long id) {
+    @GetMapping("/classroom/{class_id}/trainer/{trainer_id}")
+    public String trainerSegment(@PathVariable long class_id, @PathVariable long trainer_id) {
         // model.addAttribute("classroom", classroomService.getById(id));
         return "trainer/class/detailClass";
     }
@@ -79,7 +103,7 @@ public class TrainerController {
     @GetMapping("/classroom/segment/{id}")
     public String trainerMateri(@PathVariable long id) {
         // model.addAttribute("classroom", classroomService.getById(id));
-        return "trainer/materi/materi";
+        return "trainer/topic/topic";
     }
 
     @GetMapping("/classroom/segment/materi/{id}")
@@ -94,7 +118,7 @@ public class TrainerController {
 
     @GetMapping("/topic")
     public String topic() {
-        return "trainer/topic/topic";
+        return "trainer/materi/materi";
     }
 
     @GetMapping("/topic/{id}")
