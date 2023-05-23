@@ -39,6 +39,14 @@ public class MateriService {
                 }).getBody();
     }
 
+    public List<Materi> getByTopicId(long id) {
+        return restTemplate.exchange(
+                url + "/topic/" + id,
+                HttpMethod.GET,
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Materi>>() {
+                }).getBody();
+    }
+
     public Materi create(MateriRequest materiRequest) {
         return restTemplate.exchange(
                 url,

@@ -29,7 +29,7 @@ $(document).ready(function () {
                     <a href="" class="btn">
                       <i class="fa-solid fa-pen-to-square" style="font-size: 28px"></i>
                     </a>
-                    <a href="#" class="btn">
+                    <a href="/Trainer/materi/topic/${cardData.topic.id}" class="btn">
                       <i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>
                     </a>
                   </div>

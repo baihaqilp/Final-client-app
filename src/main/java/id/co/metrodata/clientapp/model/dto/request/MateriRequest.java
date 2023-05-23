@@ -13,5 +13,6 @@ public class MateriRequest {
   private String name;
   private String desc;
   private Long topicId;
+  private Long trainerId;
 
 }
