@@ -21,7 +21,7 @@ $(document).ready(function () {
                     </div>
                   </div>
                   <div class="lesson-container-right">
-                    <a href="/Trainer/classroom/segment/materi/${cardData.materi.id}" class="btn">
+                    <a href="/trainer/classroom/segment/materi/${cardData.materi.id}" class="btn">
                       <i class="fa-solid fa-pen-to-square" style="font-size: 28px"></i>
                     </a>
                     <a href="#" class="btn">

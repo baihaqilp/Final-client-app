@@ -24,7 +24,7 @@ $(document).ready(function () {
           return `
                     <a
                     class="btn btn-primary"
-                    href="/Trainer/classroom/segment/task/detail/${data.id}"
+                    href="/trainer/classroom/segment/task/detail/${data.id}"
                   >
                     Detail
                   </a>

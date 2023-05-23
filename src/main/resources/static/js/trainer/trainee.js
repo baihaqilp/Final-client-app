@@ -31,13 +31,13 @@ $(document).ready(function () {
                       </div>
                     </div>
                     <div class="lesson-container-right">
-                       <a href="/Trainer/trainee-detail" class="btn">
+                       <a href="/trainer/trainee-detail" class="btn">
                           <i
                             class="fa-regular fa-note-sticky"
                             style="font-size: 28px"
                           ></i>
                         </a>
-                        <a href="/Trainer/trainee-detail" class="btn"
+                        <a href="/trainer/trainee-detail" class="btn"
                            ><i
                              class="fa-solid fa-up-right-from-square"
                             style="font-size: 24px"

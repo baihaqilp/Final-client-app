@@ -39,7 +39,7 @@ $(document).ready(function () {
         // const lessonsText = $("<p>").addClass("card-text");
 
         const lessonsAnchor = $("<a>")
-          .attr("href", "/Trainer/topic/segment/" + segment.id) //end point materi
+          .attr("href", "/trainer/topic/segment/" + segment.id) //end point materi
           .addClass("btn")
           .html(
             '<i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>'
@@ -59,7 +59,7 @@ $(document).ready(function () {
         const tasksTitle = $("<h5>").addClass("card-title").text("Tasks");
         // const tasksText = $("<p>").addClass("card-text").text("Task disini");
         const tasksAnchor = $("<a>")
-          .attr("href", "/Trainer/task/segment/" + segment.id) //end point task
+          .attr("href", "/trainer/task/segment/" + segment.id) //end point task
           .addClass("btn")
           .html(
             '<i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>'
