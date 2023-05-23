@@ -14,7 +14,7 @@ public class SubmissionRequest {
     private long id;
     private String submission_file;
     private String submission_url;
-    private LocalDate submission_date;
+    private String submission_date;
     private long taskId;
     private long employeeId;
 }

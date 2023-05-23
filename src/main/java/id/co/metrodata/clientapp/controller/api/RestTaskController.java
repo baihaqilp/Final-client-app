@@ -51,7 +51,6 @@ public class RestTaskController {
 
     @GetMapping("/segment/{id}")
     public List<Task> getBySegmentId(@PathVariable long id) {
-        return taskService.getBySegmentId(id);
+        return taskService.getBySegment(id);
     }
-
 }

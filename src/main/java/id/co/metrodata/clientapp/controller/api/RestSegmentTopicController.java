@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import id.co.metrodata.clientapp.model.SegmentTopic;
 import id.co.metrodata.clientapp.service.SegmentTopicService;
+import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/api/segmenttopic")
+@AllArgsConstructor
 public class RestSegmentTopicController {
 
   private SegmentTopicService segmentTopicService;

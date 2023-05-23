@@ -53,9 +53,4 @@ public class RestSubmissionController {
     public Submission delete(@PathVariable long id) {
         return submissionService.getById(id);
     }
-
-    @GetMapping("/task/{id}")
-    public List<Submission> getByTaskId(@PathVariable long id) {
-        return submissionService.getByTaskId(id);
-    }
 }

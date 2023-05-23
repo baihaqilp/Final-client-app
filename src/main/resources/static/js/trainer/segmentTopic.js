@@ -1,27 +1,32 @@
 $(document).ready(function () {
   let segment_id = $("#segment_id").val();
-
   $.ajax({
-    url: "/api/segmentmateri/segment/" + 4, // Replace with your API endpoint to fetch card data
+    url: "/api/segmenttopic",
     method: "GET",
     success: function (response) {
-      console.log(response);
-      // Loop through the card data and generate cards dynamically
+      $(".segment-cards-container").empty();
       response.forEach(function (cardData) {
-        console.log(typeof cardData.materi.id);
-        var card = `
+        let segmentId = cardData.segment.id;
+        if (segmentId == segment_id) {
+          // console.log(cardData.topic.name);
+          var head = `
+            <h5 class="card-title mt-2" style="font-size: 24px">
+              Topik Segment ${cardData.segment.id}
+            </h5>
+          `;
+          var card = `
           <div class="card mb-3">
             <div class="card-body">
               <div class="container border-bottom mb-3">
                 <div class="card-body d-flex justify-content-between align-items-center">
                   <div class="lesson-container-left">
-                    <h5 class="card-title">${cardData.materi.topic.name}</h5>
+                    <h5 class="card-title">${cardData.topic.name}</h5>
                     <div class="lesson-content">
-                      <p class="card-text">${cardData.materi.name}</p>
+                      <p class="card-text">${cardData.topic.program.name}</p>
                     </div>
                   </div>
                   <div class="lesson-container-right">
-                    <a href="/Trainer/classroom/segment/materi/${cardData.materi.id}" class="btn">
+                    <a href="" class="btn">
                       <i class="fa-solid fa-pen-to-square" style="font-size: 28px"></i>
                     </a>
                     <a href="#" class="btn">
@@ -33,8 +38,11 @@ $(document).ready(function () {
             </div>
           </div>
         `;
-
-        $(".segment-cards-container").append(card);
+          $(".topic-card-title").append(head);
+          $(".segment-cards-container").append(card);
+        } else {
+          console.log("NOt Match");
+        }
       });
     },
   });
