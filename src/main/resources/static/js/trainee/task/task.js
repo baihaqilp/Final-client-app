@@ -4,7 +4,7 @@ $(document).ready(function () {
   console.log(segment_id);
   $.ajax({
     method: "GET",
-    url: "/api/task/segment/" + segment_id,
+    url: "/api/task/trainee",
     dataType: "JSON",
     success: function (res) {
       console.log(res);
@@ -18,6 +18,14 @@ $(document).ready(function () {
             <div class="task-container">
                 <h6>Deadline</h6>
                 <p>${data.deadline}</p>
+            </div>
+            <div class="task-container">
+                <h6>Segment</h6>
+                <p>${data.segment.id}</p>
+            </div>
+            <div class="task-container">
+                <h6>Trainer</h6>
+                <p>${data.segment.trainer.name}</p>
             </div>
             <button
                 type="button"
@@ -56,6 +64,9 @@ function getById(id) {
 
       $("#detail_task_deadline").text(res.deadline);
       $("#detail_task_segment").text(res.segment.id);
+      let link = "/trainee/task/" + res.id + "/submission-add"
+      $("#submit").attr('href', link);
+
     },
   });
 }

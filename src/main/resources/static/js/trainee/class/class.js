@@ -51,7 +51,7 @@ $(document).ready(function () {
                 <div class="task-container">
                   <h5 class="card-title">Tasks</h5>
                 </div>
-                <a href="/trainee/task/${data.id}" class="btn"
+                <a href="/trainee/task/segment/${data.id}" class="btn"
                   ><i
                     class="fa-solid fa-up-right-from-square"
                     style="font-size: 24px"
