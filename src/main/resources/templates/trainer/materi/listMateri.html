@@ -19,10 +19,10 @@
                   class="card-header-left d-flex flex-row align-items-center"
                 >
                   <i
-                    class="fa-solid fa-clipboard px-2"
+                    class="fa-solid fa-book px-2"
                     style="font-size: 48px; color: #4b49ac"
                   ></i>
-                  <h5 class="card-title mt-3">Tasks</h5>
+                  <h5 class="card-title mt-3">Materi</h5>
                 </div>
                 <div class="card-header-right">
                   <button
@@ -30,24 +30,23 @@
                     class="btn"
                     style="background-color: #7978e9; color: white"
                     data-bs-toggle="modal"
-                    data-bs-target="#addTask"
+                    data-bs-target="#addMateri"
                   >
-                    Add Task
+                    Add New Materi
                   </button>
                 </div>
               </div>
               <div class="card-content d-flex flex-column">
                 <table
                   class="table display table-stripped table-bordered mt-3 text-center border border-rounded rounded-2"
-                  id="table-task"
+                  id="table-materi"
                 >
                   <thead class="table-dark">
                     <tr>
                       <th class="col-1 text-center">No.</th>
                       <th class="col-2 text-center">Name</th>
-                      <th class="col-2 text-center">Deadline</th>
-                      <th class="col-2 text-center">Class</th>
-                      <th class="col-2 text-center">Segment</th>
+                      <th class="col-2 text-center">Topic</th>
+                      <th class="col-2 text-center">Created By</th>
                       <th class="col-4 text-center">Action</th>
                     </tr>
                   </thead>
@@ -59,21 +58,21 @@
       </div>
       <input type="number" id="trainer_id" th:value="*{id}" hidden />
 
-      <!-- Modal Add Class -->
+      <!-- Modal Add Materi -->
       <div
         class="modal fade"
-        id="addTask"
+        id="addMateri"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
         tabindex="-1"
-        aria-labelledby="addTaskLabel"
+        aria-labelledby="addMateriLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5 fw-bold" id="addTaskLabel">
-                Add Task
+              <h1 class="modal-title fs-5 fw-bold" id="addMateriLabel">
+                Add New Materi
               </h1>
               <button
                 type="button"
@@ -88,32 +87,51 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="create_task_name"
+                  id="create_materi_name"
                   placeholder="ex. 1"
                 />
                 <label for="desc" class="form-label fw-bold pt-3"
                   >Description</label
                 >
+                <textarea
+                  type="text"
+                  class="form-control"
+                  cols="30"
+                  rows="10"
+                  id="create_materi_desc"
+                ></textarea>
+                <!-- <label for="trainer" class="form-label fw-bold"
+                  >Created By</label
+                >
                 <input
                   type="text"
                   class="form-control"
-                  id="create_task_desc"
-                  placeholder="ex. MMiya.bi@gmail.com"
-                />
-                <label for="deadline" class="form-label fw-bold pt-3"
-                  >Deadline</label
+                  id="create_materi_trainer"
+                /> -->
+                <label for="author" class="form-label fw-bold pt-3"
+                  >Author</label
                 >
-                <input
-                  type="datetime-local"
-                  class="form-control"
-                  id="create_task_deadline"
-                  placeholder="ex. 0897678281"
-                />
+                <select
+                  class="form-control form-control-sm select_trainer p-2"
+                  aria-label="form-select-sm example"
+                  id="select_trainer"
+                >
+                  <option selected value="">Choose Author</option>
+                </select>
+                <label for="desc" class="form-label fw-bold pt-3">Topic</label>
+                <select
+                  class="form-control form-control-sm select_topic p-2"
+                  aria-label="form-select-sm example"
+                  id="select_topic"
+                >
+                  <option selected value="">Choose Topic</option>
+                </select>
+
                 <!-- <label for="class" class="form-label fw-bold">Class</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="create_Task_class"
+                  id="create_Materi_class"
                   placeholder="ex. MCC-07"
                 /> -->
               </div>
@@ -147,17 +165,17 @@
       <!-- Modal Update -->
       <div
         class="modal fade"
-        id="updateTask"
+        id="updateMateri"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
         tabindex="-1"
-        aria-labelledby="updateTaskLabel"
+        aria-labelledby="updateMateriLabel"
         aria-hidden="true"
       >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5 fw-bold" id="addTaskLabel">
+              <h1 class="modal-title fs-5 fw-bold" id="addMateriLabel">
                 update Class
               </h1>
               <button
@@ -173,7 +191,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="create_task_name"
+                  id="create_Materi_name"
                   placeholder="ex. 1"
                 />
                 <label for="desc" class="form-label fw-bold pt-3"
@@ -182,7 +200,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="create_Task_email"
+                  id="create_Materi_email"
                   placeholder="ex. MMiya.bi@gmail.com"
                 />
                 <label for="deadline" class="form-label fw-bold pt-3"
@@ -191,7 +209,7 @@
                 <input
                   type="date"
                   class="form-control"
-                  id="create_Task_phone"
+                  id="create_Materi_phone"
                   placeholder="ex. 0897678281"
                 />
                 <label for="segment" class="form-label fw-bold">Segment</label>
@@ -230,7 +248,7 @@
       </div>
     </section>
     <div layout:fragment="script">
-      <script th:src="@{/js/trainer/allTask.js}"></script>
+      <script th:src="@{/js/trainer/listMateri.js}"></script>
     </div>
   </body>
 </html>

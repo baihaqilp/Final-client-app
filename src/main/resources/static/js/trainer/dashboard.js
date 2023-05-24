@@ -16,10 +16,9 @@ $(document).ready(function () {
     },
   });
 
-  let trainer_id = 1;
   $.ajax({
     method: "GET",
-    url: "/api/segment/trainer/" + trainer_id,
+    url: "/api/segment/trainer",
     dataType: "JSON",
     beforeSend: addCsrfToken(),
     success: (res) => {
