@@ -61,4 +61,12 @@ public class EvaluationService {
         new HttpEntity(BasicHeader.createHeader()), Evaluation.class).getBody();
   }
 
+  public List<Evaluation> getByTask(long id) {
+    return restTemplate.exchange(
+        url + "/task/" + id,
+        HttpMethod.GET,
+        null, new ParameterizedTypeReference<List<Evaluation>>() {
+        }).getBody();
+  }
+
 }

@@ -31,6 +31,11 @@ public class RestEvaluation {
     return evaluationService.getById(id);
   }
 
+  @GetMapping("/task/{id}")
+  public List<Evaluation> getByTask(@PathVariable long id) {
+    return evaluationService.getByTask(id);
+  }
+
   @PostMapping
   public Evaluation create(@RequestBody EvaluationRequest evaluationRequest) {
     return evaluationService.create(evaluationRequest);
