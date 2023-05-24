@@ -2,76 +2,64 @@ $(document).ready(function () {
   let trainer_id = 1;
   $.ajax({
     method: "GET",
-    url: "/api/segment",
+    url: "/api/segment/trainer",
     dataType: "JSON",
     beforeSend: addCsrfToken(),
     success: (res) => {
-      let filteredData = res.filter(function (data) {
-        let trainerId = data.trainer.id;
-        return trainerId == trainer_id;
-      });
-      $.each(filteredData, function (key, val) {
-        console.log(val);
+
+      $.each(res, function (key, val) {
         if ($('.select_segment option[value = "' + val.id + '"]').length == 0) {
           $(".select_segment").append(
-            `<option value = ${val.id}>${val.id}</option>`
+            `<option value = ${val.id}>${val.classroom.name}---${val.id}</option>`
           );
         }
       });
     },
   });
-  $.ajax({
-    url: "/api/task",
-    method: "GET",
-    success: function (response) {
-      let filteredData = response.filter(function (cardData) {
-        let trainerId = cardData.segment.trainer.id;
-        return trainerId == trainer_id;
-      });
-      console.log(filteredData);
-      $("#table-task").DataTable({
-        data: filteredData,
-        columns: [
-          {
-            data: null,
-            render: function (data, type, row, meta) {
-              return meta.row + 1;
-            },
-          },
-          {
-            data: "name",
-          },
-          { data: "deadline" },
-          { data: "segment.classroom.name" },
-          { data: "segment.id" },
-          {
-            data: null,
-            render: (data, type, row, meta) => {
-              return `
-                      <a
-                        class="btn"
-                        href="/trainer/classroom/segment/task/detail/${data.id}"
-                      >
-                      <i class="fa-solid fa-up-right-from-square" style="font-size: 18px"></i>
-                      </a>
-                      <button
-                        type="button"
-                        class="btn mx-3"
-                        data-bs-toggle="modal"
-                        data-bs-target="#updateTask"
-                        onClick="beforeUpdate(${data.id})"
-                      >
-                      <i class="fa-solid fa-pen-to-square" style="font-size: 18px"></i>
-                      </button>
-                      <button class="btn" onClick="deletedata(${data.id})">
-                      <i class="fa-solid fa-trash-can" style="font-size: 18px"></i>
-                      </button>
-                      `;
-            },
-          },
-        ],
-      });
+  $("#table-task").DataTable({
+    ajax: {
+      url: "/api/task/trainer",
+      dataSrc: "",
     },
+    columns: [
+      {
+        data: null,
+        render: function (data, type, row, meta) {
+          return meta.row + 1;
+        },
+      },
+      {
+        data: "name",
+      },
+      { data: "deadline" },
+      { data: "segment.classroom.name" },
+      { data: "segment.id" },
+      {
+        data: null,
+        render: (data, type, row, meta) => {
+          return `
+                  <a
+                    class="btn"
+                    href="/trainer/classroom/segment/task/detail/${data.id}"
+                  >
+                  <i class="fa-solid fa-up-right-from-square" style="font-size: 18px"></i>
+                  </a>
+                  <button
+                    type="button"
+                    class="btn mx-3"
+                    data-bs-toggle="modal"
+                    data-bs-target="#updateTask"
+                    onClick="beforeUpdate(${data.id})"
+                  >
+                  <i class="fa-solid fa-pen-to-square" style="font-size: 18px"></i>
+                  </button>
+                  <button class="btn" onClick="deletedata(${data.id})">
+                  <i class="fa-solid fa-trash-can" style="font-size: 18px"></i>
+                  </button>
+                  `;
+        },
+      },
+    ],
   });
 });
 
@@ -246,8 +234,8 @@ function deletedata(id) {
           dataType: "JSON",
           beforeSend: addCsrfToken(),
           success: (res) => {
-            location.reload();
-            // $("#table-task").DataTable().ajax.reload();
+            // location.reload();
+            $("#table-task").DataTable().ajax.reload();
           },
         });
       } else if (

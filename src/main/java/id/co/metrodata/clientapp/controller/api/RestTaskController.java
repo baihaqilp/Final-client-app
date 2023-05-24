@@ -53,4 +53,14 @@ public class RestTaskController {
     public List<Task> getBySegmentId(@PathVariable long id) {
         return taskService.getBySegment(id);
     }
+
+    @GetMapping("/trainer")
+    public List<Task> getByTrainer() {
+        return taskService.getByTrainerId();
+    }
+
+    @GetMapping("/trainee")
+    public List<Task> getByTrainee() {
+        return taskService.getByTraineeId();
+    }
 }
