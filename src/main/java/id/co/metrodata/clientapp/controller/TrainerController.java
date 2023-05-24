@@ -79,6 +79,7 @@ public class TrainerController {
         return "trainer/materi/addMateri";
     }
 
+    // ok
     @GetMapping("/materi/edit/{id}")
     public String materiEdit(@PathVariable long id) {
         return "trainer/materi/editMateri";

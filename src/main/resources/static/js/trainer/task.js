@@ -22,23 +22,23 @@ $(document).ready(function () {
         data: null,
         render: (data, type, row, meta) => {
           return `
-                    <a
-                    class="btn btn-primary"
+                  <a
+                    class="btn"
                     href="/trainer/classroom/segment/task/detail/${data.id}"
                   >
-                    Detail
+                  <i class="fa-solid fa-up-right-from-square" style="font-size: 18px"></i>
                   </a>
                   <button
                     type="button"
-                    class="btn btn-warning mx-3"
+                    class="btn mx-3"
                     data-bs-toggle="modal"
                     data-bs-target="#updateTask"
                     onClick="beforeUpdate(${data.id})"
                   >
-                    Edit
+                  <i class="fa-solid fa-pen-to-square" style="font-size: 18px"></i>
                   </button>
-                  <button class="btn btn-danger" onClick="deletedata(${data.id})">
-                    Delete
+                  <button class="btn" onClick="deletedata(${data.id})">
+                  <i class="fa-solid fa-trash-can" style="font-size: 18px"></i>
                   </button>
                   `;
         },
