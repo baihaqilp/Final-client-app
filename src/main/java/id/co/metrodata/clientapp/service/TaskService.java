@@ -68,4 +68,12 @@ public class TaskService {
                 new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Task>>() {
                 }).getBody();
     }
+
+    public List<Task> getByTrainerId(long id) {
+        return restTemplate.exchange(
+                url + "/segment/" + id,
+                HttpMethod.GET,
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Task>>() {
+                }).getBody();
+    }
 }
