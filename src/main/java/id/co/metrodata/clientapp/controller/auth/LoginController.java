@@ -1,7 +1,10 @@
 package id.co.metrodata.clientapp.controller.auth;
 
+import java.util.Collection;
+
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +29,24 @@ public class LoginController {
         if (authentication instanceof AnonymousAuthenticationToken) {
             return "loginregis/login";
         }
-        return "redirect:/admin";
+
+        String redirectUrl = "";
+
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        for (GrantedAuthority grantedAuthority : authorities) {
+            if (grantedAuthority.getAuthority().equals("ROLE_TRAINER")) {
+                redirectUrl = "redirect:/trainer";
+                break;
+            } else if (grantedAuthority.getAuthority().equals("ROLE_TRAINEE")) {
+                redirectUrl = "redirect:/trainee";
+                break;
+            } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
+                redirectUrl = "redirect:/admin";
+                break;
+            }
+        }
+
+        return redirectUrl;
     }
 
     @PostMapping
@@ -35,6 +55,24 @@ public class LoginController {
             return "redirect:/login?error=true";
         }
 
-        return "redirect:/admin";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        String redirectUrl = "";
+
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        for (GrantedAuthority grantedAuthority : authorities) {
+            if (grantedAuthority.getAuthority().equals("ROLE_TRAINER")) {
+                redirectUrl = "redirect:/trainer";
+                break;
+            } else if (grantedAuthority.getAuthority().equals("ROLE_TRAINEE")) {
+                redirectUrl = "redirect:/trainee";
+                break;
+            } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
+                redirectUrl = "redirect:/admin";
+                break;
+            }
+        }
+
+        return redirectUrl;
     }
 }
