@@ -30,6 +30,15 @@ public class SegmenService {
                 }).getBody();
     }
 
+    // group by trainer
+    public List<Segment> getSegmentTrainer() {
+        return restTemplate.exchange(
+                url + "/trainer",
+                HttpMethod.GET,
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Segment>>() {
+                }).getBody();
+    }
+
     public Segment getById(long id) {
         return restTemplate.exchange(
                 url + "/" + id,
@@ -46,9 +55,9 @@ public class SegmenService {
                 }).getBody();
     }
 
-    public List<Segment> getByClassIdAndTrainerId(long class_id, long trainer_id) {
+    public List<Segment> getByClassIdAndTrainerId(long class_id) {
         return restTemplate.exchange(
-                url + "/class/" + class_id + "/trainer/" + trainer_id,
+                url + "/class/" + class_id + "/trainer",
                 HttpMethod.GET,
                 new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Segment>>() {
                 }).getBody();

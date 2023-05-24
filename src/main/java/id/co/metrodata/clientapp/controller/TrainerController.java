@@ -75,9 +75,10 @@ public class TrainerController {
         return "trainer/materi/materi";
     }
 
+    // menu materi side bar
     @GetMapping("/materi")
     public String materi() {
-        return "trainer/materi/materi";
+        return "trainer/materi/listMateri";
     }
 
     @GetMapping("/materi-add")
@@ -106,8 +107,8 @@ public class TrainerController {
         return "trainer/trainee/detailTrainee";
     }
 
-    @GetMapping("/classroom/{class_id}/trainer/{trainer_id}")
-    public String trainerSegment(@PathVariable long class_id, @PathVariable long trainer_id) {
+    @GetMapping("/classroom/{class_id}/trainer")
+    public String trainerSegment(@PathVariable long class_id) {
         // model.addAttribute("classroom", classroomService.getById(id));
         return "trainer/class/detailClass";
     }
