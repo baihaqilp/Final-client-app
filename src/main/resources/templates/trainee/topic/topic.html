@@ -19,28 +19,36 @@
                   class="card-header-left d-flex flex-row align-items-center"
                 >
                   <i
-                    class="fa-solid fa-diagram-project px-2"
+                    class="fa-solid fa-book-bookmark px-2"
                     style="font-size: 48px; color: #7da0fa"
                   ></i>
-                  <input type="hidden" th:value="*{class_id}" id="class_id" />
-                  <input
-                    type="hidden"
-                    th:value="*{trainer_id}"
-                    id="trainer_id"
-                  />
-                  <h5 class="card-title mt-2"></h5>
+                  <input type="text" th:value="*{id}" id="segment_id" />
+                  <h5 class="card-title mt-2" style="font-size: 24px">Topic</h5>
                 </div>
               </div>
               <div class="card-content d-flex flex-column pt-2">
-                <div class="segment-cards-container"></div>
+                <div class="segment-cards-container">
+                  <div class="topic-content"></div>
+                </div>
               </div>
+              <a
+                th:href="'javascript:history.back()'"
+                class="btn"
+                style="
+                  background-color: white;
+                  color: #7978e9;
+                  border-color: #7978e9;
+                "
+              >
+                Back
+              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
     <div layout:fragment="script">
-      <script th:src="@{/js/trainer/detailClass.js}"></script>
+      <script th:src="@{/js/trainee/topic/topic.js}"></script>
     </div>
   </body>
 </html>

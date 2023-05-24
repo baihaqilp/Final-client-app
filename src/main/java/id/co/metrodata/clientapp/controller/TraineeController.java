@@ -52,14 +52,24 @@ public class TraineeController {
     return "trainee/class/class";
   }
 
+  @GetMapping("/topic/{id}")
+  private String topicBySegment(@PathVariable Long id) {
+    return "trainee/topic/topic";
+  }
+
+  @GetMapping("/topic/materi/{materi_id}")
+  private String materi(@PathVariable Long materi_id) {
+    return "trainee/materi/materi";
+  }
+
   @GetMapping("/class/{id}")
   private String traineeClassDetail(@PathVariable Long id, Model model) {
     model.addAttribute("classroom", classroomService.getById(id));
     return "trainee/class/detailClass";
   }
 
-  @GetMapping("/task")
-  private String traineeTask() {
+  @GetMapping("/task/{segment_id}")
+  private String traineeTask(@PathVariable Long segment_id) {
     return "trainee/task/task";
   }
 
