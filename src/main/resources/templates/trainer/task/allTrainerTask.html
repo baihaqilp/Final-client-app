@@ -44,9 +44,10 @@
                   <thead class="table-dark">
                     <tr>
                       <th class="col-1 text-center">No.</th>
-                      <th class="col-4 text-center">Name</th>
-                      <th class="col-2 text-center">Description</th>
+                      <th class="col-2 text-center">Name</th>
                       <th class="col-2 text-center">Deadline</th>
+                      <th class="col-2 text-center">Class</th>
+                      <th class="col-2 text-center">Segment</th>
                       <th class="col-4 text-center">Action</th>
                     </tr>
                   </thead>
@@ -56,9 +57,9 @@
           </div>
         </div>
       </div>
-      <input type="hidden" id="segment_id" th:value="*{segment_id}" />
+      <input type="number" id="trainer_id" th:value="*{id}" hidden />
 
-      <!-- Modal Add Class -->
+      <!-- Modal Add Task -->
       <div
         class="modal fade"
         id="addTask"
@@ -68,7 +69,7 @@
         aria-labelledby="addTaskLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5 fw-bold" id="addTaskLabel">
@@ -93,21 +94,39 @@
                 <label for="desc" class="form-label fw-bold pt-3"
                   >Description</label
                 >
-                <input
+                <textarea
                   type="text"
                   class="form-control"
                   id="create_task_desc"
-                  placeholder="ex. MMiya.bi@gmail.com"
-                />
-                <label for="deadline" class="form-label fw-bold pt-3"
-                  >Deadline</label
+                  cols="30"
+                  rows="10"
+                ></textarea>
+                <div
+                  class="container d-flex justify-content-around align-items-center px-3 pt-3"
                 >
-                <input
-                  type="datetime-local"
-                  class="form-control"
-                  id="create_task_deadline"
-                  placeholder="ex. 0897678281"
-                />
+                  <div>
+                    <label for="deadline" class="form-label fw-bold"
+                      >Deadline</label
+                    >
+                    <input
+                      type="datetime-local"
+                      class="form-control"
+                      id="create_task_deadline"
+                    />
+                  </div>
+                  <div>
+                    <label for="segment" class="form-label fw-bold"
+                      >Segment</label
+                    >
+                    <select
+                      class="form-control form-control-sm select_segment p-2"
+                      aria-label="form-select-sm example"
+                      id="select_segment"
+                    >
+                      <option selected value="">Choose Segment</option>
+                    </select>
+                  </div>
+                </div>
                 <!-- <label for="class" class="form-label fw-bold">Class</label>
                 <input
                   type="text"
@@ -153,7 +172,7 @@
         aria-labelledby="updateTaskLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5 fw-bold" id="addTaskLabel">
@@ -168,6 +187,7 @@
             </div>
             <div class="modal-body">
               <div class="mb-3">
+                <input type="hidden" id="update_id" th:value="*{id}" />
                 <label for="name" class="form-label fw-bold">Name</label>
                 <input
                   type="text"
@@ -178,28 +198,39 @@
                 <label for="desc" class="form-label fw-bold pt-3"
                   >Description</label
                 >
-                <input
+                <textarea
                   type="text"
                   class="form-control"
                   id="update_task_desc"
-                  placeholder="ex. MMiya.bi@gmail.com"
-                />
-                <label for="deadline" class="form-label fw-bold pt-3"
-                  >Deadline</label
+                  cols="30"
+                  rows="10"
+                ></textarea>
+                <div
+                  class="container d-flex justify-content-around align-items-center px-3 pt-3"
                 >
-                <input
-                  type="datetime-local"
-                  class="form-control"
-                  id="update_task_deadline"
-                  placeholder="ex. 0897678281"
-                />
-                <label for="segment" class="form-label fw-bold">Segment</label>
-                <select
-                  class="form-control form-control-sm select_program p-2"
-                  aria-label="form-select-sm example"
-                >
-                  <option selected value="">Choose Segment</option>
-                </select>
+                  <div>
+                    <label for="deadline" class="form-label fw-bold pt-3"
+                      >Deadline</label
+                    >
+                    <input
+                      type="datetime-local"
+                      class="form-control"
+                      id="update_task_deadline"
+                    />
+                  </div>
+                  <div>
+                    <label for="segment" class="form-label fw-bold"
+                      >Segment</label
+                    >
+                    <select
+                      class="form-control form-control-sm select_segment p-2"
+                      aria-label="form-select-sm example"
+                      id="update_segment"
+                    >
+                      <option selected value="">Choose Segment</option>
+                    </select>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="modal-footer">
@@ -229,7 +260,7 @@
       </div>
     </section>
     <div layout:fragment="script">
-      <script th:src="@{/js/trainer/task.js}"></script>
+      <script th:src="@{/js/trainer/allTask.js}"></script>
     </div>
   </body>
 </html>

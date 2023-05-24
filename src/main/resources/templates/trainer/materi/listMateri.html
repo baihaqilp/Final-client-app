@@ -44,9 +44,10 @@
                   <thead class="table-dark">
                     <tr>
                       <th class="col-1 text-center">No.</th>
-                      <th class="col-4 text-center">Name</th>
-                      <th class="col-2 text-center">Description</th>
+                      <th class="col-2 text-center">Name</th>
                       <th class="col-2 text-center">Deadline</th>
+                      <th class="col-2 text-center">Class</th>
+                      <th class="col-2 text-center">Segment</th>
                       <th class="col-4 text-center">Action</th>
                     </tr>
                   </thead>
@@ -56,7 +57,7 @@
           </div>
         </div>
       </div>
-      <input type="hidden" id="segment_id" th:value="*{segment_id}" />
+      <input type="number" id="trainer_id" th:value="*{id}" hidden />
 
       <!-- Modal Add Class -->
       <div
@@ -172,7 +173,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="update_task_name"
+                  id="create_task_name"
                   placeholder="ex. 1"
                 />
                 <label for="desc" class="form-label fw-bold pt-3"
@@ -181,16 +182,16 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="update_task_desc"
+                  id="create_Task_email"
                   placeholder="ex. MMiya.bi@gmail.com"
                 />
                 <label for="deadline" class="form-label fw-bold pt-3"
                   >Deadline</label
                 >
                 <input
-                  type="datetime-local"
+                  type="date"
                   class="form-control"
-                  id="update_task_deadline"
+                  id="create_Task_phone"
                   placeholder="ex. 0897678281"
                 />
                 <label for="segment" class="form-label fw-bold">Segment</label>
@@ -229,7 +230,7 @@
       </div>
     </section>
     <div layout:fragment="script">
-      <script th:src="@{/js/trainer/task.js}"></script>
+      <script th:src="@{/js/trainer/allTask.js}"></script>
     </div>
   </body>
 </html>
