@@ -79,7 +79,7 @@ public class TaskService {
 
     public List<Task> getByTraineeId() {
         return restTemplate.exchange(
-                url + "/trainer/",
+                url + "/trainee/",
                 HttpMethod.GET,
                 new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Task>>() {
                 }).getBody();

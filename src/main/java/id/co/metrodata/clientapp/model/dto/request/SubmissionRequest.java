@@ -22,6 +22,5 @@ public class SubmissionRequest {
     private String submission_url;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm")
     private String submission_date;
-    private long employeeId;
     private long taskId;
 }

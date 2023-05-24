@@ -72,8 +72,8 @@ public class TraineeController {
     return "trainee/class/detailClass";
   }
 
-  @GetMapping("/task/{segment_id}")
-  private String traineeTask(@PathVariable Long segment_id) {
+  @GetMapping("/task")
+  private String traineeTask() {
     return "trainee/task/task";
   }
 
@@ -83,8 +83,8 @@ public class TraineeController {
     return "trainee/submission/submission";
   }
 
-  @GetMapping("/task/{task_id}/submission-add/{trainee_id}")
-  private String traineeAddSubmission(@PathVariable long trainee_id, @PathVariable long task_id) {
+  @GetMapping("/task/{task_id}/submission-add")
+  private String traineeAddSubmission(@PathVariable long task_id) {
     Task task = taskService.getById(task_id);
     LocalDateTime now = LocalDateTime.now();
     int res = now.compareTo(task.getDeadline());
@@ -94,8 +94,8 @@ public class TraineeController {
     return "trainee/submission/addSubmission";
   }
 
-  @PostMapping("/task/{task_id}/submission-add/{trainee_id}")
-  public String handleFileUpload(@PathVariable long task_id, @PathVariable long trainee_id,
+  @PostMapping("/task/{task_id}/submission-add")
+  public String handleFileUpload(@PathVariable long task_id,
       @RequestParam("fileInput") MultipartFile file,
       RedirectAttributes redirectAttributes) {
     String fileName = file.getOriginalFilename();
@@ -113,14 +113,13 @@ public class TraineeController {
     submission.setSubmission_url(fileDownloadUri);
 
     submission.setSubmission_date(date);
-    submission.setEmployeeId(trainee_id);
     submission.setTaskId(task_id);
     submissionService.create(submission);
     redirectAttributes.addFlashAttribute("message",
 
         "You successfully uploaded " + file.getOriginalFilename() + "!");
 
-    return "redirect:/trainee/task/{task_id}/submission-add/{trainee_id}";
+    return "redirect:/trainee/task/{task_id}/submission-add";
   }
 
   @GetMapping("/downloadFile/{filename:.+}")
@@ -136,6 +135,12 @@ public class TraineeController {
   @GetMapping("/grade")
   private String traineeGrade() {
     return "trainee/grade/grade";
+  }
+
+  // TASK
+  @GetMapping("/task/segment/{segment_id}")
+  private String taskSegment(@PathVariable long segment_id) {
+    return "trainee/task/taskSegment";
   }
 
 }
