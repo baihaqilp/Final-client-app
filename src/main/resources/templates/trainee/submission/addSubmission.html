@@ -26,55 +26,62 @@
                     Upload Submission
                   </h5>
                   <div th:if="${message}">
-                    <h2 th:text="${message}"/>
+                    <h2 th:text="${message}"></h2>
                   </div>
                 </div>
               </div>
               <div class="card-content d-flex flex-column pt-5">
-                <form th:action="@{/trainee/task/}+${task_id}+@{/submission-add/}+${trainee_id}" enctype="multipart/form-data" th:method="POST">
-                <div class="first pt-5">
-                  <p>File Submission</p>
-                  <div class="input">
+                <form
+                  th:action="@{/trainee/task/}+${task_id}+@{/submission-add/}+${trainee_id}"
+                  enctype="multipart/form-data"
+                  th:method="POST"
+                >
+                  <div class="first pt-5">
+                    <p>File Submission</p>
+                    <div class="input">
+                      <input
+                        type="file"
+                        name="fileInput"
+                        class="border border-dark border-rounded rounded-2"
+                        style="width: 100%; padding: 1rem"
+                        accept=".pdf, .doc, .docx"
+                        id="fileInput"
+                      />
+                    </div>
+                    <small id="fileSizeError" style="color: red; display: none"
+                      >File size exceeds the limit.</small
+                    >
+                  </div>
+                  <div class="third pt-5">
+                    <!-- auto input trainee id -->
                     <input
-                      type="file"
-                      name="fileInput"
-                      class="border border-dark border-rounded rounded-2"
-                      style="width: 100%; padding: 1rem"
-                      accept=".pdf, .doc, .docx"
-                      id="fileInput"
+                      type="hidden"
+                      id="trainee_id"
+                      th:value="${trainee_id}"
                     />
                   </div>
-                  <small id="fileSizeError" style="color: red; display: none"
-                    >File size exceeds the limit.</small
+                  <div
+                    class="second pt-3 px-3 mb-2 d-flex justify-content-between"
                   >
-                </div>
-                <div class="third pt-5">
-                  
-                  <!-- auto input trainee id -->
-                  <input type="hidden" id="trainee_id" th:value="${trainee_id}" />
-                </div>
-                <div
-                  class="second pt-3 px-3 mb-2 d-flex justify-content-between"
-                >
-                  <a
-                    th:href="@{/trainee/task}"
-                    class="btn"
-                    style="background-color: #4b49ac; color: white"
-                    >Back</a
-                  >
-                  <button
-                    class="btn"
-                    type="submit"
-                    style="
-                      border: 1px solid #4b49ac;
-                      background-color: white;
-                      color: #4b49ac;
-                    "
-                  >
-                    Submit
-                  </button>
-                </div>
-              </form>
+                    <a
+                      th:href="@{/trainee/task}"
+                      class="btn"
+                      style="background-color: #4b49ac; color: white"
+                      >Back</a
+                    >
+                    <button
+                      class="btn"
+                      type="submit"
+                      style="
+                        border: 1px solid #4b49ac;
+                        background-color: white;
+                        color: #4b49ac;
+                      "
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
