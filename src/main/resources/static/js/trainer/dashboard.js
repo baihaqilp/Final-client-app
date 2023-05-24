@@ -15,6 +15,35 @@ $(document).ready(function () {
       },
     },
   });
+
+  let trainer_id = 1;
+  $.ajax({
+    method: "GET",
+    url: "/api/segment/trainer/" + trainer_id,
+    dataType: "JSON",
+    beforeSend: addCsrfToken(),
+    success: (res) => {
+      let class_sum = res.length;
+      $("#class_sum").text(class_sum);
+    },
+  });
+
+  $.ajax({
+    method: "GET",
+    url: "/api/task",
+    dataType: "JSON",
+    beforeSend: addCsrfToken(),
+    success: (res) => {
+      console.log(res);
+      const filteredTask = res.filter(function (data) {
+        let trainerId = data.segment.trainer.id;
+        return trainerId == trainer_id;
+      });
+      console.log(filteredTask);
+      let task_sum = filteredTask.length;
+      $("#task_sum").text(task_sum);
+    },
+  });
 });
 
 const gradeChartData = {
