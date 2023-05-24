@@ -98,6 +98,13 @@ function create() {
         timer: 1500,
       });
     },
+    error: function (e) {
+      Swal.fire({
+        icon: "error",
+        title: "ERROR",
+        text: "Something went WRONG !!!",
+      })
+    }
   });
 }
 
@@ -146,6 +153,13 @@ function update() {
           $("#table-class").DataTable().ajax.reload();
           $("#create_class_name").val("");
         },
+        error: function (e) {
+          Swal.fire({
+            icon: "error",
+            title: "ERROR",
+            text: "Something went WRONG !!!",
+          })
+        }
       });
       Swal.fire("Updated!", "Region success to update...", "success");
     }
@@ -181,6 +195,13 @@ function deleteData(id) {
           success: (res) => {
             $("#table-class").DataTable().ajax.reload();
           },
+          error: function (e) {
+            Swal.fire({
+              icon: "error",
+              title: "ERROR",
+              text: "Something went WRONG !!!",
+            })
+          }
         });
         swalWithBootstrapButtons.fire(
           "Deleted!",

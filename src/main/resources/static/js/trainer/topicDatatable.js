@@ -93,9 +93,18 @@ $(document).ready(function () {
 
 function getMateriByTopicId(id) {
   $("#table-materi").DataTable({
+    destroy: true,
     ajax: {
       url: "/api/materi/topic/" + id,
       dataSrc: "",
+      error: function (e) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+          footer: '<a href="">Why do I have this issue?</a>'
+        })
+      }
     },
     columns: [
       {
@@ -133,6 +142,7 @@ function getMateriByTopicId(id) {
         },
       },
     ],
+
   });
 }
 // function getById(id) {
@@ -170,7 +180,7 @@ function create() {
     contentType: "application/json",
     success: (res) => {
       $("#addTopic").modal("hide");
-      $("#table-topic").DataTable().ajax.reload();
+      location.reload();
 
       Swal.fire({
         position: "center",
@@ -180,6 +190,22 @@ function create() {
         timer: 1500,
       });
     },
+    error: function (xhr, textStatus, errorThrown) {
+      let err = JSON.parse(xhr.responseText);
+      let status = "" + err.message[0] + err.message[1] + err.message[2]
+      let msg = ""
+      if (status == 409) {
+        msg = "Topic sudah ada"
+      } else {
+        msg = "Something when Wrong !!!"
+      }
+
+      Swal.fire({
+        icon: "error",
+        title: status,
+        text: msg,
+      })
+    }
   });
 }
 

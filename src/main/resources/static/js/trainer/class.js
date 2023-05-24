@@ -31,7 +31,7 @@ $(document).ready(function () {
         >
         <i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>
         </a>
-        <a href="/trainer/trainee/classroom/${data.id}"
+        <a href="/trainer/trainee/classroom/${data.classroom.id}"
         type="button"
         class="btn mx-3")"
       >
