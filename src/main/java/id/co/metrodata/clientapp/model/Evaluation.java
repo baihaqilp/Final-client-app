@@ -12,5 +12,5 @@ public class Evaluation {
   private Long id;
   private Float nilai;
   private Submission submission;
-  private Employee employee;
+  private Employee trainer;
 }
