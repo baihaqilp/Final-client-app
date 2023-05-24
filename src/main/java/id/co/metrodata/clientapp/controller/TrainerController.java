@@ -69,6 +69,11 @@ public class TrainerController {
         return "trainer/materi/materi";
     }
 
+    @GetMapping("/materi")
+    public String materi() {
+        return "trainer/materi/materi";
+    }
+
     @GetMapping("/materi-add")
     public String materiAdd() {
         return "trainer/materi/addMateri";
