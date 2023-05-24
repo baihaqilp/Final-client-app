@@ -59,6 +59,12 @@ public class TrainerController {
         return "trainer/task/task";
     }
 
+    // get all task by trainer-class-id
+    @GetMapping("/task/{trainer_class_id}")
+    public String task(@PathVariable long trainer_class_id) {
+        return "trainer/task/allTrainerTask";
+    }
+
     @GetMapping("/topic/segment/{id}")
     public String topicBySegmentId(@PathVariable long id) {
         return "trainer/topic/topicDataTable";
