@@ -153,11 +153,11 @@
         aria-labelledby="updateTaskLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5 fw-bold" id="addTaskLabel">
-                update Class
+                Update Task
               </h1>
               <button
                 type="button"
@@ -168,6 +168,7 @@
             </div>
             <div class="modal-body">
               <div class="mb-3">
+                <input type="number" class="form-control" id="update_task_id" />
                 <label for="name" class="form-label fw-bold">Name</label>
                 <input
                   type="text"
@@ -178,12 +179,14 @@
                 <label for="desc" class="form-label fw-bold pt-3"
                   >Description</label
                 >
-                <input
+                <textarea
                   type="text"
                   class="form-control"
                   id="update_task_desc"
-                  placeholder="ex. MMiya.bi@gmail.com"
-                />
+                  cols="30"
+                  rows="10"
+                ></textarea>
+
                 <label for="deadline" class="form-label fw-bold pt-3"
                   >Deadline</label
                 >
@@ -191,15 +194,15 @@
                   type="datetime-local"
                   class="form-control"
                   id="update_task_deadline"
-                  placeholder="ex. 0897678281"
                 />
-                <label for="segment" class="form-label fw-bold">Segment</label>
-                <select
-                  class="form-control form-control-sm select_program p-2"
-                  aria-label="form-select-sm example"
-                >
-                  <option selected value="">Choose Segment</option>
-                </select>
+                <label for="segment" class="form-label fw-bold pt-3"
+                  >Segment
+                </label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="update_segment_id"
+                />
               </div>
             </div>
             <div class="modal-footer">

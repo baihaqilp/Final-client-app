@@ -97,44 +97,45 @@ function create() {
     },
     error: function (xhr, textStatus, errorThrown) {
       let err = JSON.parse(xhr.responseText);
-      let status = "" + err.message[0] + err.message[1] + err.message[2]
-      let msg = ""
+      let status = "" + err.message[0] + err.message[1] + err.message[2];
+      let msg = "";
       if (status == 409) {
-        msg = "Topic sudah ada"
+        msg = "Topic sudah ada";
       } else {
-        msg = "Something when Wrong !!!"
+        msg = "Something when Wrong !!!";
       }
 
       Swal.fire({
         icon: "error",
         title: status,
         text: msg,
-      })
-    }
+      });
+    },
   });
 }
 
 function beforeUpdate(id) {
   $.ajax({
     method: "GET",
-    url: "/api/employee/" + id,
+    url: "/api/task/" + id,
     dataType: "JSON",
     success: (res) => {
       $("#update_task_id").val(res.id);
       $("#update_task_name").val(res.name);
-      $("#update_task_email").val(res.email);
-      $("#update_task_phone").val(res.phone);
-      $("#update_task_address").val(res.address);
+      $("#update_task_desc").val(res.desc);
+      $("#update_task_deadline").val(res.deadline);
+      $("#update_segment_id").val(res.segment.id);
     },
   });
 }
 
 function update() {
   let nameVal = $("#update_task_name").val();
-  let emailVal = $("#update_task_email").val();
-  let phoneVal = $("#update_task_phone").val();
-  let addressVal = $("#update_task_address").val();
+  let descVal = $("#update_task_desc").val();
+  let deadlineVal = $("#update_task_deadline").val();
+  let segment_id = $("#update_segment_id").val();
   let idVal = $("#update_task_id").val();
+  console.log(nameVal, descVal, deadlineVal, segment_id, idVal);
   Swal.fire({
     title: "Are you sure?",
     text: "You won't be able to revert this!",
@@ -147,14 +148,14 @@ function update() {
     if (result.isConfirmed) {
       $.ajax({
         method: "PUT",
-        url: "/api/employee/" + idVal,
+        url: "/api/task/" + idVal,
         dataType: "JSON",
         beforeSend: addCsrfToken(),
         data: JSON.stringify({
           name: nameVal,
-          email: emailVal,
-          phone: phoneVal,
-          address: addressVal,
+          desc: descVal,
+          deadline: deadlineVal,
+          segmentId: segment_id,
         }),
         contentType: "application/json",
         success: (res) => {
@@ -162,11 +163,10 @@ function update() {
           $("#table-task").DataTable().ajax.reload();
           $("#update_task_id").val("");
           $("#update_task_name").val("");
-          $("#update_task_email").val("");
-          $("#update_task_phone").val("");
-          $("#update_task_address").val("");
-          $("#update_task_username").val("");
-          $("#updatee_task_password").val("");
+          $("#update_task_desc").val("");
+          $("#update_task_deadline").val("");
+          $("#Update_segment_id").val("");
+          $("#update_task_id").val("");
         },
       });
       Swal.fire("Updated!", "Task success to update...", "success");
@@ -211,7 +211,7 @@ function deletedata(id) {
         );
         $.ajax({
           method: "DELETE",
-          url: "/api/employee/" + id,
+          url: "/api/task/" + id,
           dataType: "JSON",
           beforeSend: addCsrfToken(),
           success: (res) => {
