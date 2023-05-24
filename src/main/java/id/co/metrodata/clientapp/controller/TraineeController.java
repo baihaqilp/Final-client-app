@@ -7,6 +7,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.jni.Local;
 import org.springframework.core.io.Resource;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
@@ -27,10 +28,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import id.co.metrodata.clientapp.model.Task;
 import id.co.metrodata.clientapp.model.dto.request.SubmissionRequest;
 import id.co.metrodata.clientapp.service.ClassroomService;
 import id.co.metrodata.clientapp.service.FileStorageService;
 import id.co.metrodata.clientapp.service.SubmissionService;
+import id.co.metrodata.clientapp.service.TaskService;
 import lombok.AllArgsConstructor;
 
 @Controller
@@ -41,6 +44,7 @@ public class TraineeController {
   private ClassroomService classroomService;
   private FileStorageService fileStorageService;
   private SubmissionService submissionService;
+  private TaskService taskService;
 
   @GetMapping
   private String dashboard(Model model) {
@@ -81,6 +85,12 @@ public class TraineeController {
 
   @GetMapping("/task/{task_id}/submission-add/{trainee_id}")
   private String traineeAddSubmission(@PathVariable long trainee_id, @PathVariable long task_id) {
+    Task task = taskService.getById(task_id);
+    LocalDateTime now = LocalDateTime.now();
+    int res = now.compareTo(task.getDeadline());
+    if (res > 0) {
+      return "redirect:/trainee/submission";
+    }
     return "trainee/submission/addSubmission";
   }
 

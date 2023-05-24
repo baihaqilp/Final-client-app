@@ -60,8 +60,8 @@ public class TrainerController {
     }
 
     // get all task by trainer-class-id
-    @GetMapping("/task/{trainer_class_id}")
-    public String task(@PathVariable long trainer_class_id) {
+    @GetMapping("/task")
+    public String task() {
         return "trainer/task/allTrainerTask";
     }
 
