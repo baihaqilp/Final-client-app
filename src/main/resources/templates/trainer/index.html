@@ -7,116 +7,82 @@
   <body>
     <!-- content -->
     <section layout:fragment="content">
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="card shadow-lg" style="border-radius: 20px">
-            <div class="card-body">
-              <div class="card-header" style="background-color: white">
-                <h5 class="card-title">Class</h5>
-              </div>
-              <div class="card-content d-flex flex-column">
-                <p class="card-text">Manage your courses and curriculum.</p>
-                <div
-                  class="card-content-detail d-flex justify-content-between align-items-center px-3"
-                >
-                  <p id="class_sum" class="number"></p>
-                  <i
-                    class="fa-solid fa-school-flag school"
-                    style="font-size: 48px"
-                  ></i>
-                </div>
-                <a
-                  th:href="@{/trainer/classroom/trainer/1}"
-                  class="btn btn-primary mt-2"
-                  style="width: 50%"
-                  >View Class</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="card shadow-lg" style="border-radius: 20px">
-            <div class="card-body">
-              <div class="card-header" style="background-color: white">
-                <h5 class="card-title">Materi</h5>
-              </div>
-              <div
-                class="card-content d-flex flex-column justify-content-center"
-              >
-                <p class="card-text">View and manage your Materi.</p>
-                <div
-                  class="card-content-detail d-flex justify-content-between align-items-center px-3"
-                >
-                  <p class="number" id="materi_sum"></p>
-                  <i
-                    class="fa-solid fa-clipboard px-2"
-                    style="font-size: 48px; color: #4b49ac"
-                  ></i>
-                </div>
-                <a
-                  th:href="@{/trainer/trainee}"
-                  class="btn btn-primary mt-2"
-                  style="width: 50%"
-                  >View Materi</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="card shadow-lg" style="border-radius: 20px">
-            <div class="card-body">
-              <div class="card-header" style="background-color: white">
-                <h5 class="card-title">Task and Submission</h5>
-              </div>
-              <div
-                class="card-content d-flex flex-column justify-content-center"
-              >
-                <p class="card-text">Manage tasks and submissions</p>
-                <div
-                  class="card-content-detail d-flex justify-content-between align-items-center px-3"
-                >
-                  <p class="number" id="task_sum"></p>
-                  <i class="fa-solid fa-list-check" style="font-size: 48px"></i>
-                </div>
-                <a
-                  th:href="@{/trainer/task/1}"
-                  class="btn btn-primary mt-2"
-                  style="width: 100%"
-                  >View Task and Submission</a
-                >
-              </div>
-            </div>
-          </div>
+      <div class="header px-4 py-1 my-2 text-center">
+        <div class="bd">
+          <h2>WELCOME</h2>
+          <h2 sec:authentication="name" style="padding-bottom: 20px"></h2>
         </div>
       </div>
-      <div class="row mt-4">
-        <div class="col-lg-8">
-          <div class="card shadow-lg" style="border-radius: 20px">
-            <div class="card-body">
-              <div
-                class="card-header d-flex justify-content-between"
-                style="background-color: white"
-              >
-                <h5 class="card-title">Student Grades</h5>
-                <i class="fa-solid fa-chart-line" style="font-size: 48px"></i>
-              </div>
-              <div
-                class="card-content d-flex flex-column justify-content-center"
-              >
-                <div class="chart-container">
-                  <canvas id="gradeChart"></canvas>
-                </div>
-                <a
-                  th:href="@{/trainer/grade}"
-                  class="btn btn-primary mt-2"
-                  style="width: 50%"
-                  >View Grades</a
+      <div class="row px-5 mt-4">
+        <div class="col-lg-4">
+          <a class="col-content" th:href="@{/trainer/classroom/trainer}">
+            <div class="card" id="dashboard" style="border-radius: 20px">
+              <div class="card-body">
+                <div
+                  class="card-header d-flex justify-content-between"
+                  style="background-color: white"
                 >
+                  <h5 class="card-title">Class</h5>
+                  <i
+                    class="fa-solid fa-school-flag school"
+                    style="font-size: 32px"
+                  ></i>
+                </div>
+                <div class="card-content d-flex flex-column align-items-center">
+                  <p class="card-text">Manage your courses and curriculum.</p>
+
+                  <!-- <p id="class_sum" class="number"></p> -->
+                  <div class="chart">
+                    <canvas id="doughnutChart"></canvas>
+                  </div>
+                </div>
+              </div></div
+          ></a>
+        </div>
+        <div class="col-lg-4">
+          <a class="col-content" th:href="@{/trainer/materi}">
+            <div class="card" id="dashboard" style="border-radius: 20px">
+              <div class="card-body">
+                <div
+                  class="card-header d-flex justify-content-between align-items-center"
+                  style="background-color: white"
+                >
+                  <h5 class="card-title">Materi</h5>
+                  <i
+                    class="fa-solid fa-clipboard px-2"
+                    style="font-size: 32px; color: #f3797e"
+                  ></i>
+                </div>
+                <div class="card-content d-flex flex-column align-items-center">
+                  <p class="card-text">View and manage your Materi.</p>
+                  <div class="chart">
+                    <canvas id="materiChart"></canvas>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          </a>
+        </div>
+        <div class="col-lg-4">
+          <a class="col-content" th:href="@{/trainer/materi}">
+            <div class="card" id="dashboard" style="border-radius: 20px">
+              <div class="card-body">
+                <div
+                  class="card-header d-flex justify-content-between align-items-center"
+                  style="background-color: white"
+                >
+                  <h5 class="card-title">Task and Submission</h5>
+                  <i class="fa-solid fa-list-check" style="font-size: 32px"></i>
+                </div>
+                <div class="card-content d-flex flex-column align-items-center">
+                  <p class="card-text">Manage tasks and submissions</p>
+                  <div class="chart">
+                    <canvas id="taskChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </section>
