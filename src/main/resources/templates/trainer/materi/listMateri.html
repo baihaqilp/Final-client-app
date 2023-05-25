@@ -25,7 +25,13 @@
                   <h5 class="card-title mt-3">Materi</h5>
                 </div>
                 <div class="card-header-right">
-                  <button
+                  <a
+                    th:href="@{/trainer/materi-add}"
+                    class="btn"
+                    style="background-color: #7978e9; color: white"
+                    >Add New Materi</a
+                  >
+                  <!-- <button
                     type="button"
                     class="btn"
                     style="background-color: #7978e9; color: white"
@@ -33,7 +39,7 @@
                     data-bs-target="#addMateri"
                   >
                     Add New Materi
-                  </button>
+                  </button> -->
                 </div>
               </div>
               <div class="card-content d-flex flex-column">

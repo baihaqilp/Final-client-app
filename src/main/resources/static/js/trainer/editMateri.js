@@ -24,7 +24,8 @@ $(document).ready(function () {
     success: (res) => {
       $("#update_id").val(res.id);
       $("#update_materi_name").val(res.name);
-      $("#update_materi_desc").val(res.desc);
+      $("#update_materi_desc").summernote("code", res.desc);
+      // $("#update_materi_desc").val(res.desc);
       $("#update_topic").val(res.topic.id);
       $("#trainer_id").val(res.employee.id);
     },
