@@ -1,5 +1,7 @@
 package id.co.metrodata.clientapp.controller;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +28,8 @@ public class TrainerController {
         return "trainer/index";
     }
 
-    @GetMapping("/classroom/trainer/{trainer_id}")
-    public String classTrainer(@PathVariable long trainer_id, Model model) {
+    @GetMapping("/classroom/trainer")
+    public String classTrainer() {
 
         return "trainer/class/class";
     }
