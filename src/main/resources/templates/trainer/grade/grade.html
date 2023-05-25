@@ -24,29 +24,17 @@
                   ></i>
                   <h5 class="card-title mt-3">Trainee Grade</h5>
                 </div>
-                <div class="card-header-right">
-                  <button
-                    type="button"
-                    class="btn"
-                    style="background-color: #7978e9; color: white"
-                    data-bs-toggle="modal"
-                    data-bs-target="#addGrade"
-                  >
-                    Add Grade
-                  </button>
-                </div>
               </div>
               <div class="card-content d-flex flex-column">
                 <table
                   class="table display table-stripped table-bordered mt-3 text-cente border border-rounded rounded-2"
-                  id="table-role"
+                  id="table-grade"
                 >
                   <thead class="table-dark">
                     <tr>
                       <th class="col-1 text-center">No.</th>
-                      <th class="col-2 text-center">Trainee</th>
-                      <th class="col-2 text-center">Nilai</th>
-                      <th class="col-2 text-center">Segment</th>
+                      <th class="col-2 text-center">Classroom</th>
+                      <th class="col-2 text-center">program</th>
                       <th class="col-2 text-center">Status</th>
                       <th class="col-4 text-center">Action</th>
                     </tr>
@@ -281,6 +269,8 @@
         </div>
       </div>
     </section>
-    <div layout:fragment="script"></div>
+    <div layout:fragment="script">
+      <script th:src="@{/js/trainer/grade.js}"></script>
+    </div>
   </body>
 </html>

@@ -2,7 +2,7 @@
 <html
   lang="en"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{layout/admin/main}"
+  layout:decorate="~{layout/main}"
 >
   <body>
     <!-- content -->
@@ -79,7 +79,9 @@
             </div>
             <div class="modal-body">
               <div class="mb-3">
-                <label for="name" class="form-label fw-bold">Program Name</label>
+                <label for="name" class="form-label fw-bold"
+                  >Program Name</label
+                >
                 <input
                   type="text"
                   class="form-control"
@@ -129,14 +131,15 @@
             </div>
             <div class="modal-body">
               <div class="mb-3">
-                <input type="hidden" name="update_program_id" id="update_id">
-                <label for="name" class="form-label fw-bold">Program Name</label>
+                <input type="hidden" name="update_program_id" id="update_id" />
+                <label for="name" class="form-label fw-bold"
+                  >Program Name</label
+                >
                 <input
                   type="text"
                   class="form-control"
                   id="update_program_name"
                 />
-                
               </div>
             </div>
             <div class="modal-footer">
@@ -187,14 +190,15 @@
                   id="detail_program_id"
                   disabled
                 />
-                <label for="name" class="form-label fw-bold">Program Name</label>
+                <label for="name" class="form-label fw-bold"
+                  >Program Name</label
+                >
                 <input
                   type="text"
                   class="form-control"
                   id="detail_program_name"
                   disabled
                 />
-                
               </div>
             </div>
             <div class="modal-footer">

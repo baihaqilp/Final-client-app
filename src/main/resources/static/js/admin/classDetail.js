@@ -19,6 +19,28 @@ $(document).ready(function () {
             })
         }
     });
+
+    $.ajax({
+        method: "GET",
+        url: "/api/category",
+        dataType: "JSON",
+        beforeSend: addCsrfToken(),
+        success: (res) => {
+            $.each(res, function (key, val) {
+                if ($('.select_category option[value = "' + val.id + '"]').length == 0) {
+                    $(".select_category").append(`<option value = ${val.id}>${val.name}</option>`)
+                }
+            })
+        },
+        error: function (e) {
+            Swal.fire({
+                icon: "error",
+                title: "ERROR",
+                text: "Something went WRONG !!!",
+            })
+        }
+    });
+
     let class_id = $("#id").val();
     $('#table-segment').DataTable({
         ajax: {
@@ -112,6 +134,7 @@ function create() {
     let end_date = $("#create_end_date").val();
     let trainer_id = $("#trainer_id option:selected").val();
     let class_id = $("#id").val();
+    let category_id = $("#select_category option:selected").val();
 
     $.ajax({
         method: "POST",
@@ -122,7 +145,8 @@ function create() {
             start_date: start_date,
             end_date: end_date,
             trainerId: trainer_id,
-            classroomId: class_id
+            classroomId: class_id,
+            categoryId: category_id
         }),
         contentType: "application/json",
         success: (res) => {
@@ -137,7 +161,7 @@ function create() {
             let status = "" + err.message[0] + err.message[1] + err.message[2]
             let msg = ""
             if (status == 409) {
-                msg = "Topic sudah ada"
+                msg = "Segmen  sudah ada"
             } else {
                 msg = "Something when Wrong !!!"
             }
@@ -170,7 +194,7 @@ function beforeUpdate(id) {
             let status = "" + err.message[0] + err.message[1] + err.message[2]
             let msg = ""
             if (status == 409) {
-                msg = "Topic sudah ada"
+                msg = "Segmen sudah ada"
             } else {
                 msg = "Something when Wrong !!!"
             }

@@ -47,4 +47,9 @@ public class RestGradeController {
         return gradeService.getById(id);
     }
 
+    @GetMapping("/classroom/{id}")
+    public List<Grade> getAllClass(@PathVariable long id) {
+        return gradeService.getAllClass(id);
+    }
+
 }

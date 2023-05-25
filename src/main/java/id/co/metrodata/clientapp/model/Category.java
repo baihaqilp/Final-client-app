@@ -9,10 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Classroom {
-
-    private long id;
+public class Category {
+    private Long id;
     private String name;
-    private Program program;
-    private Boolean isStatus;
 }

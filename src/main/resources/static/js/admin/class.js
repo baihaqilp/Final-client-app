@@ -31,6 +31,26 @@ $(document).ready(function () {
       { data: "program.name" },
       {
         data: null,
+        render: function (data, type, row, meta) {
+          if (data.isStatus) {
+            return `<button
+            type="button"
+            class="btn btn-success "
+          >
+            Active
+          </button>`
+          } else {
+            return `<button
+            type="button"
+            class="btn btn-secondary "
+          >
+            Non Active
+          </button>`
+          }
+        },
+      },
+      {
+        data: null,
         render: (data, type, row, meta) => {
           return `
           <a href="/admin/class/${data.id}"
@@ -144,7 +164,8 @@ function update() {
         beforeSend: addCsrfToken(),
         data: JSON.stringify({
           name: nameVal,
-          programId: 1,
+          programId: programVal,
+          isStatus: 1,
         }),
         contentType: "application/json",
         success: (res) => {

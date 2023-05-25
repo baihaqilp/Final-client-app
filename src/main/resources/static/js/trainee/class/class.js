@@ -16,7 +16,7 @@ $(document).ready(function () {
             var cardBody = `
           <div class="card mb-3">
           <div class="card-body">
-            <h5 class="card-title pb-2">Segment ${data.id}</h5>
+            <h5 class="card-title pb-2">${data.category.name}</h5>
 
             <!-- Segment: Trainers -->
             <div class="card mb-3">

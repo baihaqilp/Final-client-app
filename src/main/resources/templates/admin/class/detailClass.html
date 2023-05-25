@@ -2,7 +2,7 @@
 <html
   lang="en"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{layout/admin/main}"
+  layout:decorate="~{layout/main}"
 >
   <body>
     <!-- content -->
@@ -144,6 +144,15 @@
                             aria-label="form-select-sm example" id="trainer_id"
                           >
                             <option selected value="">Choose trainer</option>
+                          </select>
+                          <label for="name" class="form-label fw-bold"
+                            >Segment</label
+                          >
+                          <select
+                            class="form-control form-control-sm select_category p-2"
+                            aria-label="form-select-sm example" id="select_category"
+                          >
+                            <option selected value="">Choose Segment</option>
                           </select>
                         </div>
                       </div>

@@ -23,6 +23,26 @@ $(document).ready(function () {
       { data: "classroom.program.name" },
       {
         data: null,
+        render: function (data, type, row, meta) {
+          if (data.classroom.isStatus) {
+            return `<button
+            type="button"
+            class="btn btn-success "
+          >
+            Active
+          </button>`
+          } else {
+            return `<button
+            type="button"
+            class="btn btn-secondary "
+          >
+            Non Active
+          </button>`
+          }
+        },
+      },
+      {
+        data: null,
         render: (data, type, row, meta) => {
           return `
           <a href="/trainer/classroom/${data.classroom.id}/trainer"
