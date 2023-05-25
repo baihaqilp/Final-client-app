@@ -241,7 +241,7 @@ function update() {
           $("#create_trainee_password").val("");
         },
       });
-      Swal.fire("Updated!", "Region success to update...", "success");
+      Swal.fire("Updated!", "Trainee success to update...", "success");
     } else if (
       /* Read more about handling dismissals below */
       result.dismiss === Swal.DismissReason.cancel
@@ -278,7 +278,7 @@ function deletedata(id) {
       if (result.isConfirmed) {
         swalWithBootstrapButtons.fire(
           "Deleted!",
-          "Region success to delete!!!",
+          "Trainee success to delete!!!",
           "success"
         );
         $.ajax({
