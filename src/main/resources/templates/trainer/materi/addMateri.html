@@ -40,15 +40,24 @@
                 </div>
                 <div class="second pt-3 mb-5">
                   <p>Description</p>
-                  <div class="input">
-                    <input
-                      type="text"
-                      class="border border-dark border-rounded rounded-2"
-                      style="width: 100%; padding: 1rem"
-                    />
-                  </div>
+                  <textarea
+                    type="text"
+                    class="border border-dark border-rounded rounded-2"
+                    style="width: 100%; padding: 1rem"
+                    id="create_materi_description"
+                  ></textarea>
                 </div>
-                <div class="third">
+                <div class="third pt-3 mb-5">
+                  <label for="topik" class="form-label fw-bold">Trainer</label>
+                  <select
+                    class="form-control form-control-sm select_trainer p-2"
+                    aria-label="form-select-sm example"
+                    id="select_trainer"
+                  >
+                    <option selected value="">Choose Trainer</option>
+                  </select>
+                </div>
+                <div class="fourth">
                   <label for="topik" class="form-label fw-bold">Topik</label>
                   <select
                     class="form-control form-control-sm select_program p-2"

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import id.co.metrodata.clientapp.service.ClassroomService;
 import id.co.metrodata.clientapp.service.SegmenService;
+import id.co.metrodata.clientapp.service.TaskService;
 import lombok.AllArgsConstructor;
 
 @Controller
@@ -15,8 +16,10 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class TrainerController {
 
-    private SegmenService segmenService;
+    private SegmenService segmenService2;
     private ClassroomService classroomService;
+    private SegmenService segmenService;
+    private TaskService taskService;
 
     @GetMapping("/dashboard")
     public String dashboard() {
@@ -38,11 +41,41 @@ public class TrainerController {
         return "trainer/submission/submission";
     }
 
-    @GetMapping("/classroom/segment/task")
-    public String taskTrainer() {
+    @GetMapping("/classroom/segment/task/{segment_id}")
+    public String taskTrainer(@PathVariable long segment_id) {
         return "trainer/task/task";
     }
 
+    @GetMapping("/classroom/segment/task/detail/{id}")
+    public String detailtaskTrainer(@PathVariable long id, Model model) {
+        model.addAttribute("task", taskService.getById(id));
+        return "trainer/task/detailTask";
+    }
+
+    // get task by segment id
+    @GetMapping("/task/segment/{segment_id}")
+    public String taskBySegmentId(@PathVariable long segment_id) {
+        return "trainer/task/task";
+    }
+
+    // get all task by trainer-class-id
+    @GetMapping("/task")
+    public String task() {
+        return "trainer/task/allTrainerTask";
+    }
+
+    @GetMapping("/topic/segment/{id}")
+    public String topicBySegmentId(@PathVariable long id) {
+        return "trainer/topic/topicDataTable";
+    }
+
+    // buka materi
+    @GetMapping("/materi/{id}")
+    public String getMateriByMateriId(@PathVariable long id) {
+        return "trainer/materi/materi";
+    }
+
+    // menu materi side bar
     @GetMapping("/materi")
     public String materi() {
         return "trainer/materi/materi";

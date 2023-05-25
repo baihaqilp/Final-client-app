@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/main}"
+>
+  <body>
+    <!-- content -->
+    <section layout:fragment="content">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card shadow-lg" style="border-radius: 20px">
+            <div class="card-body">
+              <div
+                class="card-header d-flex justify-content-between"
+                style="background-color: white"
+              >
+                <div
+                  class="card-header-left d-flex flex-row align-items-center"
+                >
+                  <i
+                    class="fa-solid fa-book px-2"
+                    style="font-size: 48px; color: #4b49ac"
+                  ></i>
+                  <h5 class="card-title mt-3">Materi</h5>
+                </div>
+                <div class="card-header-right">
+                  <a
+                    th:href="@{/trainer/materi-add}"
+                    class="btn"
+                    style="background-color: #7978e9; color: white"
+                    >Add New Materi</a
+                  >
+                  <!-- <button
+                    type="button"
+                    class="btn"
+                    style="background-color: #7978e9; color: white"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addMateri"
+                  >
+                    Add New Materi
+                  </button> -->
+                </div>
+              </div>
+              <div class="card-content d-flex flex-column">
+                <table
+                  class="table display table-stripped table-bordered mt-3 text-center border border-rounded rounded-2"
+                  id="table-materi"
+                >
+                  <thead class="table-dark">
+                    <tr>
+                      <th class="col-1 text-center">No.</th>
+                      <th class="col-2 text-center">Name</th>
+                      <th class="col-2 text-center">Topic</th>
+                      <th class="col-2 text-center">Created By</th>
+                      <th class="col-4 text-center">Action</th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <input type="number" id="trainer_id" th:value="*{id}" hidden />
+
+      <!-- Modal Add Materi -->
+      <div
+        class="modal fade"
+        id="addMateri"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="addMateriLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="addMateriLabel">
+                Add New Materi
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="name" class="form-label fw-bold">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_materi_name"
+                  placeholder="ex. 1"
+                />
+                <label for="desc" class="form-label fw-bold pt-3"
+                  >Description</label
+                >
+                <textarea
+                  type="text"
+                  class="form-control"
+                  cols="30"
+                  rows="10"
+                  id="create_materi_desc"
+                ></textarea>
+                <!-- <label for="trainer" class="form-label fw-bold"
+                  >Created By</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_materi_trainer"
+                /> -->
+                <label for="author" class="form-label fw-bold pt-3"
+                  >Author</label
+                >
+                <select
+                  class="form-control form-control-sm select_trainer p-2"
+                  aria-label="form-select-sm example"
+                  id="select_trainer"
+                >
+                  <option selected value="">Choose Author</option>
+                </select>
+                <label for="desc" class="form-label fw-bold pt-3">Topic</label>
+                <select
+                  class="form-control form-control-sm select_topic p-2"
+                  aria-label="form-select-sm example"
+                  id="select_topic"
+                >
+                  <option selected value="">Choose Topic</option>
+                </select>
+
+                <!-- <label for="class" class="form-label fw-bold">Class</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_Materi_class"
+                  placeholder="ex. MCC-07"
+                /> -->
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                style="
+                  border: 1px solid #4b49ac;
+                  background-color: white;
+                  color: #4b49ac;
+                "
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                style="background-color: #4b49ac"
+                onclick="create()"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Update -->
+      <div
+        class="modal fade"
+        id="updateMateri"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="updateMateriLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="addMateriLabel">
+                update Class
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="name" class="form-label fw-bold">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_Materi_name"
+                  placeholder="ex. 1"
+                />
+                <label for="desc" class="form-label fw-bold pt-3"
+                  >Description</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_Materi_email"
+                  placeholder="ex. MMiya.bi@gmail.com"
+                />
+                <label for="deadline" class="form-label fw-bold pt-3"
+                  >Deadline</label
+                >
+                <input
+                  type="date"
+                  class="form-control"
+                  id="create_Materi_phone"
+                  placeholder="ex. 0897678281"
+                />
+                <label for="segment" class="form-label fw-bold">Segment</label>
+                <select
+                  class="form-control form-control-sm select_program p-2"
+                  aria-label="form-select-sm example"
+                >
+                  <option selected value="">Choose Segment</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                style="
+                  border: 1px solid #4b49ac;
+                  background-color: white;
+                  color: #4b49ac;
+                "
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                style="background-color: #4b49ac"
+                onclick="update()"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div layout:fragment="script">
+      <script th:src="@{/js/trainer/listMateri.js}"></script>
+    </div>
+  </body>
+</html>
