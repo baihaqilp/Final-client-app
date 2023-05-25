@@ -9,6 +9,8 @@ import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.RestTemplate;
 
+import id.co.metrodata.clientapp.utils.RequestInterceptor;
+
 @Configuration
 public class RestTemplateConfig {
 
@@ -23,6 +25,8 @@ public class RestTemplateConfig {
             interceptors = new ArrayList<>();
         }
 
+        interceptors.add(new RequestInterceptor());
+        restTemplate.setInterceptors(interceptors);
         return restTemplate;
     }
 }
