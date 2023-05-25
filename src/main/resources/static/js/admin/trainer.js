@@ -91,7 +91,6 @@ function create() {
     let addressVal = $("#create_trainer_address").val();
     let usernameVal = $("#create_trainer_username").val();
     let passwordVal = $("#create_trainer_password").val();
-    console.log(passwordVal);
 
     $.ajax({
         method: "POST",

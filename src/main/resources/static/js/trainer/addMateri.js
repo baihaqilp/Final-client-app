@@ -21,7 +21,6 @@ function create() {
   let descVal = $("#create_materi_description").val();
   let topikVal = $("#select_topik option:selected").val();
 
-  console.log(nameVal, descVal, topikVal);
   $.ajax({
     url: "/api/materi",
     method: "POST",

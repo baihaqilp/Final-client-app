@@ -29,6 +29,11 @@
                     th:value="*{segment_id}"
                   />
                 </div>
+                <div
+                  class="card-header-left d-flex flex-row align-items-center"
+                >
+                <button class="btn btn-secondary" onclick="history.back()">Back</button>
+                </div>
               </div>
               <div class="card-content d-flex flex-column pt-2">
                 <div class="card mb-3">
@@ -94,11 +99,13 @@
                 <label for="desc" class="form-label fw-bold pt-3"
                   >Description</label
                 >
+                <input type="hidden" id="detail_task_id">
                 <p class="detail_task_desc" id="detail_task_desc"></p>
 
                 <label for="deadline" class="form-label fw-bold pt-3"
                   >Deadline</label
                 >
+                <input type="hidden" name="" id="detail_task_deadline_ipt" >
                 <p id="detail_task_deadline"></p>
 
                 <label for="segment" class="form-label fw-bold">Segment</label>
@@ -118,12 +125,12 @@
               >
                 Close
               </button>
-              <a
-                
+              <button
+                onclick="submission()"
                 class="btn"
-                id="submit"
+                id="submission"
                 style="background-color: #4b49ac; color: white"
-                >Submission</a
+                >Submission</button
               >
             </div>
           </div>

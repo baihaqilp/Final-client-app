@@ -22,7 +22,6 @@ $(document).ready(function () {
     dataType: "JSON",
     beforeSend: addCsrfToken(),
     success: (res) => {
-      console.log(res);
       let class_id = res.id;
       var class_sum = `
       <p>${res.name}-${res.program.name}</p>
@@ -34,7 +33,6 @@ $(document).ready(function () {
         success: (e) => {
           e.forEach((x) => {
             let id = x.id;
-            console.log(id);
             $.ajax({
               url: "/api/task/segment/" + id,
               method: "GET",

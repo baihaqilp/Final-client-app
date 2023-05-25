@@ -1,13 +1,12 @@
 $(document).ready(function () {
   let segment_id = $("#segment_id").val();
 
-  console.log(segment_id);
+
   $.ajax({
     method: "GET",
     url: "/api/task/trainee",
     dataType: "JSON",
     success: function (res) {
-      console.log(res);
       res.forEach(function (data) {
         var body = `
         <div class="container border-bottom mb-3">
@@ -46,6 +45,9 @@ $(document).ready(function () {
       });
     },
   });
+
+
+
 });
 
 function getById(id) {
@@ -63,10 +65,35 @@ function getById(id) {
       });
 
       $("#detail_task_deadline").text(res.deadline);
+      $("#detail_task_deadline_ipt").val(res.deadline);
       $("#detail_task_segment").text(res.segment.id);
-      let link = "/trainee/task/" + res.id + "/submission-add"
-      $("#submit").attr('href', link);
 
     },
   });
 }
+
+
+function submission() {
+  let taskID = $("#detail_task_id").val();
+  let deadline = $("#detail_task_deadline_ipt").val();
+
+  let deadlineArr = deadline.split(" ");
+  let deadlineTgl = deadlineArr[0].split("-");
+  let deadlineTime = deadlineArr[1].split(":");
+  let newDeadline = new Date(deadlineTgl[2], (deadlineTgl[1] - 1), deadlineTgl[0], deadlineTime[0], deadlineTime[1])
+  let today = new Date();
+  if (today > newDeadline) {
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "Tida bisa Submit Karena Sudah Lewat Deadline",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  } else {
+    window.location.href = "/trainee/task/" + taskID + "/submission-add"
+  }
+
+
+}
+

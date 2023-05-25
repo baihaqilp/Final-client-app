@@ -1,13 +1,10 @@
 $(document).ready(function () {
     let segment_id = $("#segment_id").val();
-    console.log(segment_id);
-    console.log(segment_id);
     $.ajax({
         method: "GET",
         url: "/api/task/segment/" + segment_id,
         dataType: "JSON",
         success: function (res) {
-            console.log(res);
             res.forEach(function (data) {
                 var body = `
           <div class="container border-bottom mb-3">

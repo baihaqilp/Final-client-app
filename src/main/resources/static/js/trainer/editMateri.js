@@ -37,7 +37,6 @@ function update() {
   let descVal = $("#update_materi_desc").val();
   let topikVal = $("#update_topic option:selected").val();
   let trainerId = $("#trainer_id").val();
-  console.log(idVal, topikVal, trainerId);
   Swal.fire({
     title: "Are you sure?",
     text: "You won't be able to revert this!",
