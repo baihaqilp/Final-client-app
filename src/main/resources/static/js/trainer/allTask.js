@@ -1,5 +1,6 @@
 $(document).ready(function () {
   let trainer_id = 1;
+  $('#create_task_desc').summernote();
   $.ajax({
     method: "GET",
     url: "/api/segment/trainer",

@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  $('#create_materi_desc').summernote();
   $.ajax({
     method: "GET",
     url: "/api/employee/role/" + 1,
@@ -75,10 +76,10 @@ $(document).ready(function () {
 
 function create() {
   let nameVal = $("#create_materi_name").val();
-  let descVal = $("#create_materi_desc").val();
+  let descVal = $("#create_materi_desc").summernote('code');
   let topikVal = $("#select_topic option:selected").val();
   let trainer_id = $("#select_trainer option:selected").val();
-  console.log(nameVal, descVal, topikVal);
+  console.log(descVal);
   $.ajax({
     url: "/api/materi",
     method: "POST",
