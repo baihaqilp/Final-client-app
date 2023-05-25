@@ -15,6 +15,39 @@ $(document).ready(function () {
       },
     },
   });
+
+  $.ajax({
+    url: "/api/classroom/trainee",
+    method: "GET",
+    dataType: "JSON",
+    beforeSend: addCsrfToken(),
+    success: (res) => {
+      console.log(res);
+      let class_id = res.id;
+      var class_sum = `
+      <p>${res.name}-${res.program.name}</p>
+      `;
+      $(".class-sum").append(class_sum);
+      $.ajax({
+        url: "/api/segment/class/" + class_id,
+        method: "GET",
+        success: (e) => {
+          e.forEach((x) => {
+            let id = x.id;
+            console.log(id);
+            $.ajax({
+              url: "/api/task/segment/" + id,
+              method: "GET",
+              success: (y) => {
+                let task_sum = y.length;
+                $("#task-sum").text(task_sum);
+              },
+            });
+          });
+        },
+      });
+    },
+  });
 });
 
 const gradeChartData = {
