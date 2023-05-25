@@ -92,9 +92,15 @@ public class TrainerController {
         return "trainer/materi/editMateri";
     }
 
+    // grade
     @GetMapping("/grade")
     public String gradeAdmin() {
         return "trainer/grade/grade";
+    }
+
+    @GetMapping("/grade/class/{class_id}")
+    public String gradeClass(@PathVariable long class_id) {
+        return "trainer/grade/listGrade";
     }
 
     @GetMapping("/trainee")
