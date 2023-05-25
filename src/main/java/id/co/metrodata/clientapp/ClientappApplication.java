@@ -21,7 +21,6 @@ public class ClientappApplication {
 	@Bean
 	CommandLineRunner init(FileStorageService storageService) {
 		return (args) -> {
-			storageService.deleteAll();
 			storageService.init();
 		};
 	}
