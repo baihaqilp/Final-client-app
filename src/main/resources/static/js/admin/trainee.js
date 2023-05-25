@@ -129,6 +129,15 @@ function create() {
     let usernameVal = $("#create_trainee_username").val();
     let passwordVal = $("#create_trainee_password").val();
     let classId = $("#select_classroom option:selected").val();
+    Swal.fire({
+        title: 'Now loading',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        timer: 5000,
+        didOpen: () => {
+            swal.showLoading();
+        }
+    });
     $.ajax({
         method: "POST",
         url: "/api/register",

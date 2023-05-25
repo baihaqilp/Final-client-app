@@ -10,6 +10,7 @@ $(document).ready(function () {
             console.log(res.name);
         },
     });
+
     $("#table-grade").DataTable({
         ajax: {
             url: "/api/grade/classroom/" + class_id,

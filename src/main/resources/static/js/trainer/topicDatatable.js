@@ -66,7 +66,7 @@ $(document).ready(function () {
                   class="btn mx-3"
                   data-bs-toggle="modal"
                   data-bs-target="#detailTopic"
-                  onClick="getMateriByTopicId(${data.id})"
+                  onClick="getMateriByTopicId(${data.topic.id})"
                 >
                   <i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>
                 </button>
@@ -75,12 +75,9 @@ $(document).ready(function () {
                   class="btn mx-3"
                   data-bs-toggle="modal"
                   data-bs-target="#updateTopic"
-                  onClick="beforeUpdate(${data.id})"
+                  onClick="beforeUpdate(${data.topic.id})"
                 >
                   <i class="fa-solid fa-pen-to-square" style="font-size: 24px"></i>
-                </button>
-                <button class="btn" onClick="deleteData(${data.id})">
-                  <i class="fa-solid fa-trash-can" style="font-size: 24px"></i>
                 </button>
               `;
             },
@@ -92,6 +89,7 @@ $(document).ready(function () {
 });
 
 function getMateriByTopicId(id) {
+  console.log(id);
   $("#table-materi").DataTable({
     destroy: true,
     ajax: {

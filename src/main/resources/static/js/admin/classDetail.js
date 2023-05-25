@@ -134,7 +134,7 @@ function create() {
     let end_date = $("#create_end_date").val();
     let trainer_id = $("#trainer_id option:selected").val();
     let class_id = $("#id").val();
-    let segment_id = $("#select_segment option:selected").val();
+    let category_id = $("#select_category option:selected").val();
 
     $.ajax({
         method: "POST",
@@ -146,7 +146,7 @@ function create() {
             end_date: end_date,
             trainerId: trainer_id,
             classroomId: class_id,
-            segmentId: segment_id
+            categoryId: category_id
         }),
         contentType: "application/json",
         success: (res) => {
@@ -161,7 +161,7 @@ function create() {
             let status = "" + err.message[0] + err.message[1] + err.message[2]
             let msg = ""
             if (status == 409) {
-                msg = "Topic sudah ada"
+                msg = "Segmen  sudah ada"
             } else {
                 msg = "Something when Wrong !!!"
             }
@@ -194,7 +194,7 @@ function beforeUpdate(id) {
             let status = "" + err.message[0] + err.message[1] + err.message[2]
             let msg = ""
             if (status == 409) {
-                msg = "Topic sudah ada"
+                msg = "Segmen sudah ada"
             } else {
                 msg = "Something when Wrong !!!"
             }
