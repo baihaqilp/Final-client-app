@@ -101,7 +101,7 @@ function create() {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: "Region success to creat ....",
+        title: "Trainer success to creat ....",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -217,7 +217,7 @@ function deletedata(id) {
       if (result.isConfirmed) {
         swalWithBootstrapButtons.fire(
           "Deleted!",
-          "Region success to delete!!!",
+          "Trainer success to delete!!!",
           "success"
         );
         $.ajax({
