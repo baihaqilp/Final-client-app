@@ -39,23 +39,27 @@
           <div class="card shadow-lg" style="border-radius: 20px">
             <div class="card-body">
               <div class="card-header" style="background-color: white">
-                <h5 class="card-title">Students</h5>
+                <h5 class="card-title">Materi</h5>
               </div>
+              <div th:text="${#authentication.principal}"></div>
               <div
                 class="card-content d-flex flex-column justify-content-center"
               >
-                <p class="card-text">View and manage your students.</p>
+                <p class="card-text">View and manage your Materi.</p>
                 <div
                   class="card-content-detail d-flex justify-content-between align-items-center px-3"
                 >
-                  <p class="number" id="materi-sum">04</p>
-                  <i class="fa-solid fa-users-line" style="font-size: 48px"></i>
+                  <p class="number">04</p>
+                  <i
+                    class="fa-solid fa-clipboard px-2"
+                    style="font-size: 48px; color: #4b49ac"
+                  ></i>
                 </div>
                 <a
                   th:href="@{/trainer/trainee}"
                   class="btn btn-primary mt-2"
                   style="width: 50%"
-                  >View Students</a
+                  >View Materi</a
                 >
               </div>
             </div>
@@ -74,10 +78,13 @@
                 <div
                   class="card-content-detail d-flex justify-content-between align-items-center px-3"
                 >
-                  <p class="number" id="task_sum"></p>
+                  <p class="number fw-bold fs-1" id="task_sum"></p>
                   <i class="fa-solid fa-list-check" style="font-size: 48px"></i>
                 </div>
-                <a href="#" class="btn btn-primary mt-2" style="width: 100%"
+                <a
+                  th:href="@{/trainer/task/1}"
+                  class="btn btn-primary mt-2"
+                  style="width: 100%"
                   >View Task and Submission</a
                 >
               </div>

@@ -25,11 +25,14 @@
                   <h5 class="card-title mt-3">Task</h5>
                 </div>
               </div>
-              <div class="card-content d-flex flex-column pt-5" th:object="${task}">
+              <div
+                class="card-content d-flex flex-column pt-5"
+                th:object="${task}"
+              >
                 <div class="first">
                   <p>Task</p>
                   <div class="input">
-                    <input type="hidden" th:field="*{id}">
+                    <input type="hidden" th:field="*{id}" />
                     <input
                       type="text"
                       class="border border-dark border-rounded rounded-2"
@@ -66,29 +69,30 @@
                     />
                   </div>
                 </div>
-                
+
                 <div class="second pt-3 mb-5 d-flex justify-content-between">
                   <a
-                    th:href="@{/taskk}"
+                    th:href="'javascript:history.back()'"
                     class="btn"
                     style="background-color: #4b49ac; color: white"
                     >Back</a
                   >
-                 
                 </div>
-                <div class="second pt-3 mb-5 justify-content-between ">
+                <div class="second pt-3 mb-5 justify-content-between">
                   <p class="fw-bold fs-1 text-center">Submission</p>
-                  <div class="card-content d-flex flex-column ">
+                  <div class="card-content d-flex flex-column">
                     <table
-                      class="table display table-stripped table-bordered mt-3 text-center border border-rounded rounded-2 "
+                      class="table display table-stripped table-bordered mt-3 text-center border border-rounded rounded-2"
                       id="table-submission"
                     >
                       <thead class="table-dark">
                         <tr>
                           <th class="col-1 text-center">No.</th>
-                          <th class="col-4 text-center">Nama</th>
+                          <th class="col-2 text-center">Nama</th>
                           <th class="col-2 text-center">File Submission</th>
                           <th class="col-2 text-center">Submit Date</th>
+                          <th class="col-4 text-center">Nilai</th>
+                          <th class="col-2 text-center">Penilai</th>
                           <th class="col-4 text-center">Action</th>
                         </tr>
                       </thead>
@@ -96,6 +100,85 @@
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Evaluate -->
+      <div
+        class="modal fade"
+        id="evaluate"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="EvaluateLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="EvaluateLabel">
+                Evaluate
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="name" class="form-label fw-bold"
+                  >Trainee Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="eval_trainee_name"
+                  placeholder="ex. 1"
+                />
+                <input
+                  type="number"
+                  class="form-control"
+                  id="eval_trainer_id"
+                  hidden
+                />
+                <label for="desc" class="form-label fw-bold pt-3"
+                  >Submission</label
+                >
+                <input
+                  type="number"
+                  class="form-control"
+                  id="eval_submission"
+                  hidden
+                />
+                <label for="desc" class="form-label fw-bold pt-3">Nilai</label>
+                <input type="text" class="form-control" id="eval_nilai" />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                style="
+                  border: 1px solid #4b49ac;
+                  background-color: white;
+                  color: #4b49ac;
+                "
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                style="background-color: #4b49ac"
+                onclick="eval()"
+              >
+                Save
+              </button>
             </div>
           </div>
         </div>

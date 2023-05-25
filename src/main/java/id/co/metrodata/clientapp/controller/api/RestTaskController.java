@@ -46,11 +46,21 @@ public class RestTaskController {
 
     @DeleteMapping("/{id}")
     public Task delete(@PathVariable long id) {
-        return taskService.getById(id);
+        return taskService.delete(id);
     }
 
     @GetMapping("/segment/{id}")
     public List<Task> getBySegmentId(@PathVariable long id) {
         return taskService.getBySegment(id);
+    }
+
+    @GetMapping("/trainer")
+    public List<Task> getByTrainer() {
+        return taskService.getByTrainerId();
+    }
+
+    @GetMapping("/trainee")
+    public List<Task> getByTrainee() {
+        return taskService.getByTraineeId();
     }
 }

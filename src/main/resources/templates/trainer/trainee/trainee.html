@@ -27,10 +27,25 @@
                   </h5>
                   <input type="hidden" th:value="*{id}" id="class_id" />
                 </div>
+                
               </div>
               <div class="card-content d-flex flex-column pt-2">
                 <!-- Loop through segments from the database -->
-                <div class="trainee-cards-container"></div>
+                <table
+                  class="table display table-stripped table-bordered mt-3 text-center pt-2"
+                  id="table-trainee"
+                >
+                  <input type="hidden" id="class_id" th:value="${id}">
+                  <thead class="table-dark">
+                    <tr>
+                      <th class="col-1 text-center">No.</th>
+                      <th class="col-4 text-center">Name</th>
+                      <th class="col-2 text-center">phone</th>
+                      <th class="col-2 text-center">Program</th>
+                      <th class="col-4 text-center">Status</th>
+                    </tr>
+                  </thead>
+                </table>
               </div>
             </div>
           </div>

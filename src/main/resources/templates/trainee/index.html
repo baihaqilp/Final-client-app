@@ -8,7 +8,7 @@
     <!-- content -->
     <section layout:fragment="content">
       <th:block th:object="${trainee}">
-        <div class="row">
+        <div class="row justify-content-between">
           <div class="col-lg-4">
             <div class="card shadow-lg" style="border-radius: 20px">
               <div class="card-body">
@@ -60,32 +60,6 @@
                     class="btn btn-primary mt-2"
                     style="width: 50%"
                     >View Task</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="card shadow-lg" style="border-radius: 20px">
-              <div class="card-body">
-                <div class="card-header" style="background-color: white">
-                  <h5 class="card-title">SUbmission</h5>
-                </div>
-                <div
-                  class="card-content d-flex flex-column justify-content-center"
-                >
-                  <p class="card-text">Manage submissions</p>
-                  <div
-                    class="card-content-detail d-flex justify-content-between align-items-center px-3"
-                  >
-                    <p class="number">04</p>
-                    <i class="fa-solid fa-list-check" style="font-size: 48px"></i>
-                  </div>
-                  <a
-                    th:href="@{/trainee/submission}"
-                    class="btn btn-primary mt-2"
-                    style="width: 50%"
-                    >View Assigment</a
                   >
                 </div>
               </div>

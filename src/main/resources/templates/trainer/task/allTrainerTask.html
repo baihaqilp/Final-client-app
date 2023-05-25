@@ -19,10 +19,10 @@
                   class="card-header-left d-flex flex-row align-items-center"
                 >
                   <i
-                    class="fa-solid fa-book school px-2"
-                    style="font-size: 24px"
+                    class="fa-solid fa-clipboard px-2"
+                    style="font-size: 48px; color: #4b49ac"
                   ></i>
-                  <h5 class="card-title mt-3">Topic</h5>
+                  <h5 class="card-title mt-3">Tasks</h5>
                 </div>
                 <div class="card-header-right">
                   <button
@@ -30,22 +30,24 @@
                     class="btn"
                     style="background-color: #7978e9; color: white"
                     data-bs-toggle="modal"
-                    data-bs-target="#addTopicSegment"
+                    data-bs-target="#addTask"
                   >
-                    Add Topic
+                    Add Task
                   </button>
                 </div>
               </div>
               <div class="card-content d-flex flex-column">
                 <table
                   class="table display table-stripped table-bordered mt-3 text-center border border-rounded rounded-2"
-                  id="table-topic"
+                  id="table-task"
                 >
                   <thead class="table-dark">
                     <tr>
                       <th class="col-1 text-center">No.</th>
-                      <th class="col-3 text-center">Name</th>
-                      <th class="col-2 text-center">Program</th>
+                      <th class="col-2 text-center">Name</th>
+                      <th class="col-2 text-center">Deadline</th>
+                      <th class="col-2 text-center">Class</th>
+                      <th class="col-2 text-center">Segment</th>
                       <th class="col-4 text-center">Action</th>
                     </tr>
                   </thead>
@@ -55,23 +57,23 @@
           </div>
         </div>
       </div>
-      <input type="hidden" id="segment_id" th:value="*{id}" />
+      <input type="number" id="trainer_id" th:value="*{id}" hidden />
 
-      <!-- Modal Add Segment Topic -->
+      <!-- Modal Add Task -->
       <div
         class="modal fade"
-        id="addTopicSegment"
+        id="addTask"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
         tabindex="-1"
-        aria-labelledby="addTopicSegmentLabel"
+        aria-labelledby="addTaskLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5 fw-bold" id="addTopicSegmentLabel">
-                Add Topic To This Segment
+              <h1 class="modal-title fs-5 fw-bold" id="addTaskLabel">
+                Add Task
               </h1>
               <button
                 type="button"
@@ -82,28 +84,56 @@
             </div>
             <div class="modal-body">
               <div class="mb-3">
-                <label for="start_date" class="form-label fw-bold"
-                  >Start Date</label
-                >
+                <label for="name" class="form-label fw-bold">Name</label>
                 <input
-                  type="date"
+                  type="text"
                   class="form-control"
-                  id="create_ts_start_date"
+                  id="create_task_name"
+                  placeholder="ex. 1"
                 />
-                <label for="name" class="form-label fw-bold">End Date</label>
-                <input
-                  type="date"
-                  class="form-control"
-                  id="create_ts_end_date"
-                />
-                <label for="topic" class="form-label fw-bold">Topic</label>
-                <select
-                  class="form-control form-control-sm select_topic p-2"
-                  aria-label="form-select-sm example"
-                  id="select_topic"
+                <label for="desc" class="form-label fw-bold pt-3"
+                  >Description</label
                 >
-                  <option selected value="">Choose Topic</option>
-                </select>
+                <textarea
+                  type="text"
+                  class="form-control"
+                  id="create_task_desc"
+                  cols="30"
+                  rows="10"
+                ></textarea>
+                <div
+                  class="container d-flex justify-content-around align-items-center px-3 pt-3"
+                >
+                  <div>
+                    <label for="deadline" class="form-label fw-bold"
+                      >Deadline</label
+                    >
+                    <input
+                      type="datetime-local"
+                      class="form-control"
+                      id="create_task_deadline"
+                    />
+                  </div>
+                  <div>
+                    <label for="segment" class="form-label fw-bold"
+                      >Segment</label
+                    >
+                    <select
+                      class="form-control form-control-sm select_segment p-2"
+                      aria-label="form-select-sm example"
+                      id="select_segment"
+                    >
+                      <option selected value="">Choose Segment</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- <label for="class" class="form-label fw-bold">Class</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_Task_class"
+                  placeholder="ex. MCC-07"
+                /> -->
               </div>
             </div>
             <div class="modal-footer">
@@ -132,21 +162,21 @@
         </div>
       </div>
 
-      <!-- Modal Update Topic-->
+      <!-- Modal Update -->
       <div
         class="modal fade"
-        id="updateTopic"
+        id="updateTask"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
         tabindex="-1"
-        aria-labelledby="updateTopicLabel"
+        aria-labelledby="updateTaskLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5 fw-bold" id="addTopicLabel">
-                Update Topic
+              <h1 class="modal-title fs-5 fw-bold" id="addTaskLabel">
+                update Class
               </h1>
               <button
                 type="button"
@@ -157,21 +187,50 @@
             </div>
             <div class="modal-body">
               <div class="mb-3">
-                <input type="hidden" th:value="*{id}" id="update_id" />
+                <input type="hidden" id="update_id" th:value="*{id}" />
                 <label for="name" class="form-label fw-bold">Name</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="update_topic_name"
+                  id="update_task_name"
+                  placeholder="ex. 1"
                 />
-                <label for="program" class="form-label fw-bold">Program</label>
-                <select
-                  class="form-control form-control-sm select_program p-2"
-                  aria-label="form-select-sm example"
-                  id="update_program"
+                <label for="desc" class="form-label fw-bold pt-3"
+                  >Description</label
                 >
-                  <option selected value="">Choose Program</option>
-                </select>
+                <textarea
+                  type="text"
+                  class="form-control"
+                  id="update_task_desc"
+                  cols="30"
+                  rows="10"
+                ></textarea>
+                <div
+                  class="container d-flex justify-content-around align-items-center px-3 pt-3"
+                >
+                  <div>
+                    <label for="deadline" class="form-label fw-bold pt-3"
+                      >Deadline</label
+                    >
+                    <input
+                      type="datetime-local"
+                      class="form-control"
+                      id="update_task_deadline"
+                    />
+                  </div>
+                  <div>
+                    <label for="segment" class="form-label fw-bold"
+                      >Segment</label
+                    >
+                    <select
+                      class="form-control form-control-sm select_segment p-2"
+                      aria-label="form-select-sm example"
+                      id="update_segment"
+                    >
+                      <option selected value="">Choose Segment</option>
+                    </select>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="modal-footer">
@@ -199,62 +258,9 @@
           </div>
         </div>
       </div>
-
-      <!-- Modal Detail Topic -->
-      <div
-        class="modal fade"
-        id="detailTopic"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabindex="-1"
-        aria-labelledby="detailTopicLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5 fw-bold" id="detailTopicLabel">
-                Detail Topic
-              </h1>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <table
-                class="table display table-stripped table-bordered mt-3 text-center border border-rounded rounded-2"
-                id="table-materi"
-                style="width: 100%"
-              >
-                <thead class="table-dark">
-                  <tr>
-                    <th class="col-1 text-center">No.</th>
-                    <th class="col-2 text-center">Name</th>
-                    <th class="col-2 text-center">Topic</th>
-                    <th class="col-2 text-center">Created By</th>
-                    <th class="col-4 text-center">Action</th>
-                  </tr>
-                </thead>
-              </table>
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
     <div layout:fragment="script">
-      <script th:src="@{/js/trainer/topicDatatable.js}"></script>
+      <script th:src="@{/js/trainer/allTask.js}"></script>
     </div>
   </body>
 </html>

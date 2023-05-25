@@ -59,6 +59,12 @@ public class TrainerController {
         return "trainer/task/task";
     }
 
+    // get all task by trainer-class-id
+    @GetMapping("/task")
+    public String task() {
+        return "trainer/task/allTrainerTask";
+    }
+
     @GetMapping("/topic/segment/{id}")
     public String topicBySegmentId(@PathVariable long id) {
         return "trainer/topic/topicDataTable";
@@ -69,9 +75,10 @@ public class TrainerController {
         return "trainer/materi/materi";
     }
 
+    // menu materi side bar
     @GetMapping("/materi")
     public String materi() {
-        return "trainer/materi/materi";
+        return "trainer/materi/listMateri";
     }
 
     @GetMapping("/materi-add")
@@ -79,6 +86,7 @@ public class TrainerController {
         return "trainer/materi/addMateri";
     }
 
+    // ok
     @GetMapping("/materi/edit/{id}")
     public String materiEdit(@PathVariable long id) {
         return "trainer/materi/editMateri";
@@ -99,8 +107,8 @@ public class TrainerController {
         return "trainer/trainee/detailTrainee";
     }
 
-    @GetMapping("/classroom/{class_id}/trainer/{trainer_id}")
-    public String trainerSegment(@PathVariable long class_id, @PathVariable long trainer_id) {
+    @GetMapping("/classroom/{class_id}/trainer")
+    public String trainerSegment(@PathVariable long class_id) {
         // model.addAttribute("classroom", classroomService.getById(id));
         return "trainer/class/detailClass";
     }
