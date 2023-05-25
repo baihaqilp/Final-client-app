@@ -6,7 +6,9 @@ $(document).ready(function () {
 
     if (currentPageUrl.indexOf(itemUrl) > -1) {
       $(".nav-link.dash").removeClass("active");
+      $(".nav-link.dash").addClass("line");
       $(this).addClass("active");
+      $(this).removeClass("line");
     }
   });
 });
