@@ -1,11 +1,9 @@
 $(document).ready(function () {
   let materi_id = $("#materi_id").val();
-  console.log(materi_id);
   $.ajax({
     url: "/api/materi/" + materi_id,
     method: "GET",
     success: function (response) {
-      console.log(response);
       var head = `
            <h5 class="card-title mt-2" style="font-size: 24px">
              ${response.name}

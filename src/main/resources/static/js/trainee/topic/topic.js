@@ -1,7 +1,6 @@
 $(document).ready(function () {
   let segment_id = $("#segment_id").val();
 
-  console.log(segment_id);
   $.ajax({
     method: "GET",
     url: "/api/segmenttopic",
@@ -16,7 +15,6 @@ $(document).ready(function () {
             url: "/api/materi/topic/" + topic_id,
             dataType: "JSON",
             success: (res) => {
-              console.log(res);
               var topicCard = $(`
                 <div class="card mb-3">
                   <div class="card-body">

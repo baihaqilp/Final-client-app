@@ -70,7 +70,6 @@ function beforeEval(rowIdx) {
     let trainerId = rowData.task.segment.trainer.id;
     let trainee = rowData.employee.name;
     let submissionId = rowData.id;
-    console.log(trainerId, trainee, submissionId);
     $("#eval_trainer_id").val(trainerId);
     $("#eval_trainee_name").val(trainee);
     $("#eval_submission").val(submissionId);
@@ -80,7 +79,6 @@ function eval() {
     let trainerId = $("#eval_trainer_id").val();
     let nilaiVal = $("#eval_nilai").val();
     let submissionVal = $("#eval_submission").val();
-    console.log(trainerId, nilaiVal, submissionVal);
     $.ajax({
         method: "POST",
         url: "/api/evaluation",

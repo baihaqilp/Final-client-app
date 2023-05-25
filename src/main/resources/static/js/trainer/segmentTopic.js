@@ -8,7 +8,6 @@ $(document).ready(function () {
       response.forEach(function (cardData) {
         let segmentId = cardData.segment.id;
         if (segmentId == segment_id) {
-          // console.log(cardData.topic.name);
           var head = `
             <h5 class="card-title mt-2" style="font-size: 24px">
               Topik Segment ${cardData.segment.id}
@@ -41,7 +40,6 @@ $(document).ready(function () {
           $(".topic-card-title").append(head);
           $(".segment-cards-container").append(card);
         } else {
-          console.log("NOt Match");
         }
       });
     },

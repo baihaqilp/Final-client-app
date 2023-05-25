@@ -112,8 +112,6 @@ function create() {
     let end_date = $("#create_end_date").val();
     let trainer_id = $("#trainer_id option:selected").val();
     let class_id = $("#id").val();
-    console.log(trainer_id)
-    console.log(class_id);
 
     $.ajax({
         method: "POST",

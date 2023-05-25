@@ -79,7 +79,6 @@ function create() {
   let descVal = $("#create_materi_desc").summernote('code');
   let topikVal = $("#select_topic option:selected").val();
   let trainer_id = $("#select_trainer option:selected").val();
-  console.log(descVal);
   $.ajax({
     url: "/api/materi",
     method: "POST",
