@@ -24,7 +24,7 @@ $(document).ready(function () {
         const cardBody = $("<div>").addClass("card-body");
         const segmentTitle = $("<h5>")
           .addClass("card-title")
-          .text("Segment " + (index + 1));
+          .text(segment.category.name);
         // const classNameTitle = $("<h5>").addClass("card-title").text();
 
         //Lessons

@@ -47,7 +47,7 @@
                       <th class="col-4 text-center">Name</th>
                       <th class="col-4 text-center">Email</th>
                       <th class="col-4 text-center">Phone</th>
-                      <th class="col-4 text-center">Address</th>
+                      <th class="col-4 text-center">Classroom</th>
                       <th class="col-4 text-center">Action</th>
                     </tr>
                   </thead>
@@ -133,6 +133,24 @@
                   id="create_trainee_password"
                   placeholder="ex. ********"
                 />
+                <label for="address" class="form-label fw-bold pt-3"
+                  >Program</label
+                >
+                  <select name="" id="select_program" class="form-control">
+                    <option value="">Choose Program</option>
+                  </select>
+                <label for="address" class="form-label fw-bold pt-3"
+                  >Program</label
+                >
+                  <select
+                    name=""
+                    id="select_classroom"
+                    class="form-control"
+                    disabled
+                  >
+                    <option>Choose Class Room</option>
+                  </select>
+                  <input type="hidden" id="classroomId" />
                 <!-- <label for="class" class="form-label fw-bold">Class</label>
                 <input
                   type="text"

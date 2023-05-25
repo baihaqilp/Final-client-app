@@ -24,4 +24,5 @@ public class Segment {
     private List<Task> task;
     private List<Grade> grades;
     private List<SegmentTopic> segmentMateris;
+    private Category category;
 }

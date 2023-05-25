@@ -17,11 +17,10 @@ public class RequestInterceptor implements ClientHttpRequestInterceptor {
         // TODO Auto-generated method stub
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        if ((!request.getURI().getPath().equals("api/login")) || (!request.getURI().getPath().equals("api/register"))
-                || (!request.getURI().getPath().equals("api/program"))) {
+        if (!request.getURI().getPath().equals("/v1/login")) {
             request.getHeaders().add("Authorization", "Basic " +
                     BasicHeader.createToken(
-                            authentication.getPrincipal().toString(),
+                            authentication.getName(),
                             authentication.getCredentials().toString()));
         }
 

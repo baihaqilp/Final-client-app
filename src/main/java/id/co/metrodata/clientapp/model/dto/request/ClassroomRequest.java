@@ -11,4 +11,5 @@ public class ClassroomRequest {
 
     private String name;
     private long programId;
+    private Boolean isStatus = true;
 }
