@@ -22,13 +22,92 @@
           /></a>
         </div>
         <div class="navbar-middle">
-          <ul class="navbar-nav">
+          <!-- role admin -->
+          <div class="nav-bar-content" sec:authorize="hasRole('ROLE_ADMIN')">
+            <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link line dash active" th:href="@{/admin}">
+                  <span>Dashboard</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link line" th:href="@{/admin/class}">
+                  <span>Class Room</span></a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link line" th:href="@{/admin/trainee}">
+                  <span>Trainee</span></a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link line" th:href="@{/admin/trainer}">
+                  <span> Trainer</span></a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- role trainer -->
+          <div class="navbar-content" sec:authorize="hasRole('ROLE_TRAINER')">
+            <ul class="nav d-flex align-items-center">
+              <li class="nav-item">
+                <a class="nav-link line dash active" th:href="@{/trainer}">
+                  Dashboard
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link line"
+                  th:href="@{/trainer/classroom/trainer/1}"
+                  >Classroom</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link line" th:href="@{/trainer/task}"> Task</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link line" th:href="@{/trainer/materi}">
+                  Materi</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link line" th:href="@{/trainer/grade}"> Grade </a>
+              </li>
+            </ul>
+          </div>
+          <!-- role trainee -->
+          <div class="navbar-content" sec:authorize="hasRole('ROLE_TRAINEE')">
+            <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link line dash active" th:href="@{/trainee}">
+                  <span>Dashboard</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link line" th:href="@{/trainee/class}">
+                  <span>Class Room</span></a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link line" th:href="@{/trainee/grade}">
+                  <span>Grades</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link line" th:href="@{/trainee/task}">
+                  <span>Task</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- <ul class="navbar-nav">
             <li class="nav-item">
               <p style="color: black; font-size: 20px">
                 Welcome, <b sec:authentication="name"></b>
               </p>
             </li>
-          </ul>
+          </ul> -->
         </div>
         <div class="navbar-rigth">
           <ul class="navbar-nav">
@@ -55,7 +134,12 @@
                 </li>
                 <li><a class="dropdown-item" href="#">Another action</a></li>
                 <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <form class="px-3" th:action="@{/logout}" th:method="POST">
+                    <button class="bg-white" type="submit" style="border: 0">
+                      <i class="fa fa-arrow-right-from-bracket"></i>
+                      <span>Logout</span>
+                    </button>
+                  </form>
                 </li>
               </ul>
             </li>
