@@ -38,10 +38,12 @@
             >
           </li>
           <li class="nav-item mt-auto">
-            <a class="nav-link" href="#">
-              <i class="fa fa-arrow-right-from-bracket"></i>
-              <span>Logout</span>
-            </a>
+            <form th:action="@{logout}" th:method="POST">
+              <a class="nav-link" th:href="@{/login}">
+                <i class="fa fa-arrow-right-from-bracket"></i>
+                <span>Logout</span>
+              </a>
+            </form>
           </li>
         </ul>
       </div>
@@ -50,40 +52,42 @@
       <div class="sidebar" sec:authorize="hasRole('ROLE_TRAINER')">
         <ul class="nav flex-column" style="padding: 1rem">
           <li class="nav-item">
-            <a class="nav-link active" th:href="@{/Trainer/dashboard}">
+            <a class="nav-link dash active" th:href="@{/trainer}">
               <i class="fa-solid fa-chalkboard"></i>
               <span>Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/Trainer/classroom}"
+            <a class="nav-link" th:href="@{/trainer/classroom/trainer/1}"
               ><i class="fa-solid fa-school-flag"></i>
               <span>Class Room</span></a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/Trainer/trainee}">
-              <i class="fa-solid fa-users-line"></i>
-              <span> Trainee</span></a
+            <a class="nav-link" th:href="@{/trainer/task}">
+              <i class="fa-solid fa-clipboard"></i>
+              <span>Task</span></a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/Trainer/materi}">
+            <a class="nav-link" th:href="@{/trainer/materi}">
               <i class="fa-solid fa-book"></i>
               <span> Materi</span></a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/Trainer/grade}">
+            <a class="nav-link" th:href="@{/trainer/grade}">
               <i class="fa fa-square-poll-vertical"></i>
               <span>Grades</span>
             </a>
           </li>
           <li class="nav-item mt-auto">
-            <a class="nav-link" href="#">
-              <i class="fa fa-arrow-right-from-bracket"></i>
-              <span>Logout</span>
-            </a>
+            <form th:action="@{logout}" th:method="POST">
+              <a class="nav-link" th:href="@{/login}">
+                <i class="fa fa-arrow-right-from-bracket"></i>
+                <span>Logout</span>
+              </a>
+            </form>
           </li>
         </ul>
       </div>
@@ -104,12 +108,6 @@
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/trainee/materi}">
-              <i class="fa-solid fa-book"></i>
-              <span> Materi</span></a
-            >
-          </li>
-          <li class="nav-item">
             <a class="nav-link" th:href="@{/trainee/grade}">
               <i class="fa fa-square-poll-vertical"></i>
               <span>Grades</span>
@@ -122,10 +120,12 @@
             </a>
           </li>
           <li class="nav-item mt-auto">
-            <a class="nav-link" href="#">
-              <i class="fa fa-arrow-right-from-bracket"></i>
-              <span>Logout</span>
-            </a>
+            <form th:action="@{logout}" th:method="POST">
+              <a class="nav-link" th:href="@{/login}">
+                <i class="fa fa-arrow-right-from-bracket"></i>
+                <span>Logout</span>
+              </a>
+            </form>
           </li>
         </ul>
       </div>

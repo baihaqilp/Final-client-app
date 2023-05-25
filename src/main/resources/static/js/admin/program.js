@@ -104,6 +104,22 @@ function create() {
             });
 
         },
+        error: function (xhr, textStatus, errorThrown) {
+            let err = JSON.parse(xhr.responseText);
+            let status = "" + err.message[0] + err.message[1] + err.message[2]
+            let msg = ""
+            if (status == 409) {
+                msg = "Topic sudah ada"
+            } else {
+                msg = "Something when Wrong !!!"
+            }
+
+            Swal.fire({
+                icon: "error",
+                title: status,
+                text: msg,
+            })
+        }
     });
 }
 

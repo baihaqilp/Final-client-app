@@ -69,4 +69,12 @@ public class ClassroomService {
                 }).getBody();
     }
 
+    public Classroom getByTrainee() {
+        return restTemplate.exchange(
+                url + "/trainee",
+                HttpMethod.GET,
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<Classroom>() {
+                }).getBody();
+    }
+
 }

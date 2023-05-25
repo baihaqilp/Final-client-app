@@ -47,11 +47,11 @@ public class SegmentTopicService {
         }).getBody();
   }
 
-  public SegmentTopic create(SegmentTopicRequest SegmentTopicRequest) {
+  public SegmentTopic create(SegmentTopicRequest segmentTopicRequest) {
     return restTemplate.exchange(
-        url + "/",
+        url,
         HttpMethod.POST,
-        new HttpEntity(SegmentTopicRequest, BasicHeader.createHeader()),
+        new HttpEntity(segmentTopicRequest, BasicHeader.createHeader()),
         SegmentTopic.class).getBody();
   }
 

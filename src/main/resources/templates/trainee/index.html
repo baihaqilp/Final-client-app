@@ -8,7 +8,7 @@
     <!-- content -->
     <section layout:fragment="content">
       <th:block th:object="${trainee}">
-        <div class="row">
+        <div class="row justify-content-between">
           <div class="col-lg-4">
             <div class="card shadow-lg" style="border-radius: 20px">
               <div class="card-body">
@@ -18,9 +18,9 @@
                 <div class="card-content d-flex flex-column">
                   <p class="card-text">Access your course lessons.</p>
                   <div
-                    class="card-content-detail d-flex justify-content-between align-items-center px-3"
+                    class="card-content-detail d-flex justify-content-between align-items-center"
                   >
-                    <p class="number">Java</p>
+                    <div class="class-sum fs-4"></div>
                     <i
                       class="fa-solid fa-chalkboard-user school"
                       style="font-size: 48px"
@@ -45,11 +45,11 @@
                 <div
                   class="card-content d-flex flex-column justify-content-center"
                 >
-                  <p class="card-text">View your task. <b ></b></p>
+                  <p class="card-text">View your task. <b></b></p>
                   <div
                     class="card-content-detail d-flex justify-content-between align-items-center px-3"
                   >
-                    <p class="number">04</p>
+                    <p class="number" id="task-sum"></p>
                     <i
                       class="fa-solid fa-clipboard"
                       style="font-size: 48px; color: #f3797e"
@@ -65,35 +65,9 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-4">
-            <div class="card shadow-lg" style="border-radius: 20px">
-              <div class="card-body">
-                <div class="card-header" style="background-color: white">
-                  <h5 class="card-title">SUbmission</h5>
-                </div>
-                <div
-                  class="card-content d-flex flex-column justify-content-center"
-                >
-                  <p class="card-text">Manage submissions</p>
-                  <div
-                    class="card-content-detail d-flex justify-content-between align-items-center px-3"
-                  >
-                    <p class="number">04</p>
-                    <i class="fa-solid fa-list-check" style="font-size: 48px"></i>
-                  </div>
-                  <a
-                    th:href="@{/trainee/submission}"
-                    class="btn btn-primary mt-2"
-                    style="width: 50%"
-                    >View Assigment</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </th:block>
-      
+
       <div class="row mt-4">
         <div class="col-lg-8">
           <div class="card shadow-lg" style="border-radius: 20px">

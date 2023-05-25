@@ -14,9 +14,9 @@ import lombok.NoArgsConstructor;
 public class SegmentTopic {
 
   private Long id;
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+  @JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING)
   private Date start_date;
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+  @JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING)
   private Date end_date;
   private Segment segment;
   private Topic topic;

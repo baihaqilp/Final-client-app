@@ -31,6 +31,12 @@ public class RestSegmentController {
         return segmenService.getAll();
     }
 
+    // group by trainer
+    @GetMapping("/trainer")
+    public List<Segment> getSegmentTrainer() {
+        return segmenService.getSegmentTrainer();
+    }
+
     @GetMapping("/{id}")
     public Segment getById(@PathVariable long id) {
         return segmenService.getById(id);
@@ -67,8 +73,8 @@ public class RestSegmentController {
         return segmenService.getByTrainerId(id);
     }
 
-    @GetMapping("/class/{class_id}/trainer/{trainer_id}")
-    public List<Segment> getByClassIdAndTrainerId(@PathVariable long class_id, @PathVariable long trainer_id) {
-        return segmenService.getByClassIdAndTrainerId(class_id, trainer_id);
+    @GetMapping("/class/{class_id}/trainer")
+    public List<Segment> getByClassIdAndTrainerId(@PathVariable long class_id) {
+        return segmenService.getByClassIdAndTrainerId(class_id);
     }
 }

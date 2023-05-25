@@ -22,14 +22,11 @@
                     class="fa-solid fa-book school px-2"
                     style="font-size: 24px"
                   ></i>
-
-                  <h5 class="card-title mt-2" style="font-size: 24px">
-                    Segment 01
-                  </h5>
-                  <input type="text" th:value="*{id}" id="segment_id" hidden />
+                  <div class="materi-card-title"></div>
+                  <input type="text" th:value="*{id}" id="materi_id" hidden />
                 </div>
                 <div class="header-right">
-                  <a href="/Trainer/materi-add" class="btn">
+                  <a href="/trainer/materi-add" class="btn">
                     <i
                       class="fa-solid fa-square-plus"
                       style="font-size: 28px; color: #7978e9"
@@ -39,15 +36,117 @@
               </div>
               <div class="card-content d-flex flex-column pt-2">
                 <!-- Loop through segments from the database -->
-                <div class="segment-cards-container"></div>
+                <div class="materi-cards-container">
+                  <div class="card mb-3">
+                    <div class="card-body">
+                      <div class="container border-bottom mb-3">
+                        <div
+                          class="card-body d-flex justify-content-between align-items-center"
+                        >
+                          <div class="materi-card-content"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between my-2">
+              <a
+                th:href="'javascript:history.back()'"
+                class="btn"
+                style="
+                  background-color: white;
+                  color: #7978e9;
+                  border-color: #7978e9;
+                "
+              >
+                Back
+              </a>
+              <a
+                th:href="@{/trainer/materi/edit/{id} (id=${id})}"
+                class="btn"
+                style="background-color: #7978e9; color: white"
+              >
+                Edit
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Detail Materi -->
+      <div
+        class="modal fade"
+        id="detailMateri"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="detailMateriLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="detailMateriLabel">
+                Detail Materi
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="name" class="form-label fw-bold">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="detail_materi_name"
+                  disabled
+                />
+                <label for="desc" class="form-label fw-bold">Description</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="detail_materi_desc"
+                  disabled
+                />
+                <label for="topic" class="form-label fw-bold">Topic</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="detail_materi_topic"
+                  disabled
+                />
+                <label for="tainer" class="form-label fw-bold"
+                  >Created By</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="detail_materi_trainer"
+                  disabled
+                />
+              </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
             </div>
           </div>
         </div>
       </div>
     </section>
     <div layout:fragment="script">
-      <script th:src="@{/js/trainer/segmentMateri.js}"></script>
+      <script th:src="@{/js/trainer/materi.js}"></script>
     </div>
   </body>
 </html>

@@ -26,6 +26,7 @@ $(document).ready(function () {
       $("#update_materi_name").val(res.name);
       $("#update_materi_desc").val(res.desc);
       $("#update_topic").val(res.topic.id);
+      $("#trainer_id").val(res.employee.id);
     },
   });
 });
@@ -35,7 +36,8 @@ function update() {
   let idVal = $("#update_id").val();
   let descVal = $("#update_materi_desc").val();
   let topikVal = $("#update_topic option:selected").val();
-  console.log(idVal, topikVal);
+  let trainerId = $("#trainer_id").val();
+  console.log(idVal, topikVal, trainerId);
   Swal.fire({
     title: "Are you sure?",
     text: "You won't be able to revert this!",
@@ -55,6 +57,7 @@ function update() {
           name: nameVal,
           desc: descVal,
           topicId: topikVal,
+          trainerId: trainerId,
         }),
         contentType: "application/json",
         success: (res) => {
@@ -62,6 +65,7 @@ function update() {
           $("#update_materi_name").val(res.name);
           $("#update_materi_desc").val(res.desc);
           $("#update_topic").val(res.topic.id);
+          $("#trainer_id").val(res.employee.id);
         },
       });
       Swal.fire("Updated!", "Materi success to update...", "success");

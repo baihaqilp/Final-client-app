@@ -11,12 +11,26 @@ $(document).ready(function () {
                 }
             })
         },
+        error: function (e) {
+            Swal.fire({
+                icon: "error",
+                title: "ERROR",
+                text: "Something went WRONG !!!",
+            })
+        }
     });
     let class_id = $("#id").val();
     $('#table-segment').DataTable({
         ajax: {
             url: "/api/segment/class/" + class_id,
-            dataSrc: ""
+            dataSrc: "",
+            error: function (e) {
+                Swal.fire({
+                    icon: "error",
+                    title: "ERROR",
+                    text: "Something went WRONG !!!",
+                })
+            }
         },
         columns: [
             {
@@ -59,7 +73,14 @@ $(document).ready(function () {
     $('#table-trainee').DataTable({
         ajax: {
             url: "/api/employee/class/" + class_id,
-            dataSrc: ""
+            dataSrc: "",
+            error: function (e) {
+                Swal.fire({
+                    icon: "error",
+                    title: "ERROR",
+                    text: "Something went WRONG !!!",
+                })
+            }
         },
         columns: [
             {
@@ -113,6 +134,22 @@ function create() {
             $("#create__end_date").val("");
 
         },
+        error: function (xhr, textStatus, errorThrown) {
+            let err = JSON.parse(xhr.responseText);
+            let status = "" + err.message[0] + err.message[1] + err.message[2]
+            let msg = ""
+            if (status == 409) {
+                msg = "Topic sudah ada"
+            } else {
+                msg = "Something when Wrong !!!"
+            }
+
+            Swal.fire({
+                icon: "error",
+                title: status,
+                text: msg,
+            })
+        }
     });
 
 }
@@ -130,6 +167,22 @@ function beforeUpdate(id) {
             $("#update_trainer_id").val(res.trainer.id);
 
         },
+        error: function (xhr, textStatus, errorThrown) {
+            let err = JSON.parse(xhr.responseText);
+            let status = "" + err.message[0] + err.message[1] + err.message[2]
+            let msg = ""
+            if (status == 409) {
+                msg = "Topic sudah ada"
+            } else {
+                msg = "Something when Wrong !!!"
+            }
+
+            Swal.fire({
+                icon: "error",
+                title: status,
+                text: msg,
+            })
+        }
     });
 }
 
@@ -170,6 +223,22 @@ function update() {
                     $("#update_start_date").val("");
                     $("#update_end_date").val("");
                 },
+                error: function (xhr, textStatus, errorThrown) {
+                    let err = JSON.parse(xhr.responseText);
+                    let status = "" + err.message[0] + err.message[1] + err.message[2]
+                    let msg = ""
+                    if (status == 409) {
+                        msg = "Topic sudah ada"
+                    } else {
+                        msg = "Something when Wrong !!!"
+                    }
+
+                    Swal.fire({
+                        icon: "error",
+                        title: status,
+                        text: msg,
+                    })
+                }
             });
             Swal.fire("Updated!", "Region success to update...", "success");
         }
@@ -205,6 +274,22 @@ function deleteData(id) {
                     success: (res) => {
                         $("#table-segment").DataTable().ajax.reload();
                     },
+                    error: function (xhr, textStatus, errorThrown) {
+                        let err = JSON.parse(xhr.responseText);
+                        let status = "" + err.message[0] + err.message[1] + err.message[2]
+                        let msg = ""
+                        if (status == 409) {
+                            msg = "Topic sudah ada"
+                        } else {
+                            msg = "Something when Wrong !!!"
+                        }
+
+                        Swal.fire({
+                            icon: "error",
+                            title: status,
+                            text: msg,
+                        })
+                    }
                 });
                 swalWithBootstrapButtons.fire(
                     "Deleted!",

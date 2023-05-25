@@ -20,30 +20,27 @@
                 >
                   <i
                     class="fa-solid fa-clipboard px-2"
-                    style="font-size: 48px; color: #f3797e"
+                    style="font-size: 32px; color: #f3797e"
                   ></i>
-                  <h5 class="card-title mt-2" style="font-size: 48px">Task</h5>
+                  <h5 class="card-title mt-2" style="font-size: 32px">Task</h5>
+                  <input
+                    type="hidden"
+                    id="segment_id"
+                    th:value="*{segment_id}"
+                  />
                 </div>
               </div>
               <div class="card-content d-flex flex-column pt-2">
-                <!-- Loop through segments from the database -->
-                <div class="card mb-3" style="">
+                <div class="card mb-3">
                   <div class="card-body">
-                    <h5 class="card-title pb-2">Segment 01</h5>
-
-                    <div class="container border-bottom mb-3">
+                    <div class="task-content"></div>
+                    <!-- <div class="container border-bottom mb-3">
                       <div
                         class="card-body d-flex justify-content-between align-items-center"
                       >
+                        <h5 class="card-title pb-2">Judul Task</h5>
                         <div class="task-container">
-                          <h5 class="card-title">Materi</h5>
-                          <!-- topik dan materi -->
-                          <div class="task-container">
-                            <h6>Judul Task</h6>
-                            <!-- soal -->
-                            <p>Wleowleowleowleo</p>
-                          </div>
-                          <h6>deadline</h6>
+                          <h6>Deadline</h6>
                           <p>16-06-32019</p>
                         </div>
                         <button
@@ -58,43 +55,7 @@
                           ></i>
                         </button>
                       </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- example data task per segment -->
-                <div class="card mb-3" style="">
-                  <div class="card-body">
-                    <h5 class="card-title pb-2">Segment 02</h5>
-
-                    <div class="container border-bottom mb-3">
-                      <div
-                        class="card-body d-flex justify-content-between align-items-center"
-                      >
-                        <div class="task-container">
-                          <h5 class="card-title">Materi</h5>
-                          <!-- topik dan materi -->
-                          <div class="task-container">
-                            <h6>Judul Task</h6>
-                            <!-- soal -->
-                            <p>Wleowleowleowleo</p>
-                          </div>
-                          <h6>deadline</h6>
-                          <p>16-06-32019</p>
-                        </div>
-                        <button
-                          type="button"
-                          class="btn"
-                          data-bs-toggle="modal"
-                          data-bs-target="#detailTask"
-                        >
-                          <i
-                            class="fa-solid fa-up-right-from-square"
-                            style="font-size: 24px"
-                          ></i>
-                        </button>
-                      </div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -113,7 +74,7 @@
         aria-labelledby="detailTaskLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5 fw-bold" id="detailTaskLabel">
@@ -128,42 +89,20 @@
             </div>
             <div class="modal-body">
               <div class="mb-3">
-                <label for="name" class="form-label fw-bold">Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="create_task_name"
-                  placeholder="ERD"
-                  readonly
-                />
+                <label for="name" class="form-label fw-bold">Task Name</label>
+                <p id="detail_task_name"></p>
                 <label for="desc" class="form-label fw-bold pt-3"
                   >Description</label
                 >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="create_Task_email"
-                  placeholder="get Miya"
-                  readonly
-                />
+                <p class="detail_task_desc" id="detail_task_desc"></p>
+
                 <label for="deadline" class="form-label fw-bold pt-3"
                   >Deadline</label
                 >
-                <input
-                  type="date"
-                  class="form-control"
-                  id="create_task_deadline"
-                  placeholder="ex. 0897678281"
-                  readonly
-                />
+                <p id="detail_task_deadline"></p>
+
                 <label for="segment" class="form-label fw-bold">Segment</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="create_task_segment"
-                  placeholder="ex. 0897678281"
-                  readonly
-                />
+                <p id="detail_task_segment"></p>
               </div>
             </div>
             <div class="modal-footer d-flex justify-content-between">
@@ -180,8 +119,9 @@
                 Close
               </button>
               <a
-                th:href="@{/trainee/task/1/submission-add/12}"
+                
                 class="btn"
+                id="submit"
                 style="background-color: #4b49ac; color: white"
                 >Submission</a
               >
@@ -190,6 +130,8 @@
         </div>
       </div>
     </section>
-    <div layout:fragment="script"></div>
+    <div layout:fragment="script">
+      <script th:src="@{/js/trainee/task/task.js}"></script>
+    </div>
   </body>
 </html>

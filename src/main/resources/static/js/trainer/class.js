@@ -7,10 +7,9 @@ $(document).ready(function () {
   //     $.each(res);
   //   },
   // });
-  let trainer_id = 1;
   $("#table-class").DataTable({
     ajax: {
-      url: "/api/segment/trainer/" + trainer_id,
+      url: "/api/segment/trainer",
       dataSrc: "",
     },
     columns: [
@@ -26,13 +25,13 @@ $(document).ready(function () {
         data: null,
         render: (data, type, row, meta) => {
           return `
-          <a href="/Trainer/classroom/${data.classroom.id}/trainer/${data.trainer.id}"
+          <a href="/trainer/classroom/${data.classroom.id}/trainer"
           type="button"
           class="btn mx-3")"
         >
         <i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>
         </a>
-        <a href="/Trainer/trainee/classroom/${data.id}"
+        <a href="/trainer/trainee/classroom/${data.classroom.id}"
         type="button"
         class="btn mx-3")"
       >

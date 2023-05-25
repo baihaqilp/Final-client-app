@@ -19,5 +19,5 @@ public class TaskRequest {
     private String name;
     private String desc;
     private LocalDateTime deadline;
-    private long segmentId;
+    private Long segmentId;
 }
