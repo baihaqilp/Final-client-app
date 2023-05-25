@@ -14,12 +14,21 @@ $(document).ready(function () {
     },
   });
 
-<<<<<<< Updated upstream
-    $("#table-trainee").DataTable({
-        ajax: {
-            url: "/api/employee/role/2",
-            dataSrc: "",
-=======
+  $.ajax({
+    method: "GET",
+    url: "/api/program",
+    dataType: "JSON",
+    success: (res) => {
+      $.each(res, function (key, val) {
+        if ($('#select_program option[value = "' + val.id + '"]').length == 0) {
+          $("#select_program").append(
+            `<option value = ${val.id}>${val.name}</option>`
+          );
+        }
+      });
+    },
+  });
+
   $("#select_program").on("change", function () {
     let programId = $("#select_program option:selected").val();
     $("#select_classroom").removeAttr("disabled");
@@ -52,7 +61,6 @@ $(document).ready(function () {
         data: null,
         render: function (data, type, row, meta) {
           return meta.row + 1;
->>>>>>> Stashed changes
         },
       },
       {
@@ -109,39 +117,6 @@ function getById(id) {
 }
 
 function create() {
-<<<<<<< Updated upstream
-    let nameVal = $("#create_trainee_name").val();
-    let emailVal = $("#create_trainee_email").val();
-    let phoneVal = $("#create_trainee_phone").val();
-    let addressVal = $("#create_trainee_address").val();
-    let usernameVal = $("#create_trainee_username").val();
-    let passwordVal = $("#create_trainee_password").val();
-
-    $.ajax({
-        method: "POST",
-        url: "/api/user",
-        dataType: "JSON",
-        beforeSend: addCsrfToken(),
-        data: JSON.stringify({
-            username: usernameVal,
-            password: passwordVal,
-            name: nameVal,
-            email: emailVal,
-            phone: phoneVal,
-            address: addressVal,
-            roleId: 2,
-        }),
-        contentType: "application/json",
-        success: (res) => {
-            $("#addTrainee").modal("hide");
-            $("#table-trainee").DataTable().ajax.reload();
-            $("#create_trainee_name").val("");
-            $("#create_trainee_email").val("");
-            $("#create_trainee_phone").val("");
-            $("#create_trainee_address").val("");
-            $("#create_trainee_username").val("");
-            $("#create_trainee_password").val("");
-=======
   let nameVal = $("#create_trainee_name").val();
   let emailVal = $("#create_trainee_email").val();
   let phoneVal = $("#create_trainee_phone").val();
@@ -149,6 +124,15 @@ function create() {
   let usernameVal = $("#create_trainee_username").val();
   let passwordVal = $("#create_trainee_password").val();
   let classId = $("#select_classroom option:selected").val();
+  Swal.fire({
+    title: "Now loading",
+    allowEscapeKey: false,
+    allowOutsideClick: false,
+    timer: 5000,
+    didOpen: () => {
+      swal.showLoading();
+    },
+  });
   $.ajax({
     method: "POST",
     url: "/api/register",
@@ -174,7 +158,6 @@ function create() {
       $("#create_trainee_address").val("");
       $("#create_trainee_username").val("");
       $("#create_trainee_password").val("");
->>>>>>> Stashed changes
 
       Swal.fire({
         position: "center",
