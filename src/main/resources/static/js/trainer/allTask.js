@@ -1,5 +1,6 @@
 $(document).ready(function () {
   let trainer_id = 1;
+  $('#create_task_desc').summernote();
   $.ajax({
     method: "GET",
     url: "/api/segment/trainer",
@@ -143,7 +144,6 @@ function beforeUpdate(id) {
       $("#update_task_desc").val(res.desc);
       $("#update_task_deadline").val(res.deadline);
       $("#update_segment").val(res.segment.id);
-      console.log(res.deadline);
     },
   });
 }
@@ -154,7 +154,6 @@ function update() {
   let deadlineVal = $("#update_task_deadline").val();
   let segmentVal = $("#update_segment").val();
   let idVal = $("#update_id").val();
-  console.log(nameVal, descVal, deadlineVal, segmentVal, idVal);
   Swal.fire({
     title: "Are you sure?",
     text: "You won't be able to revert this!",
@@ -210,7 +209,6 @@ function deletedata(id) {
     },
     buttonsStyling: false,
   });
-  console.log(id);
   swalWithBootstrapButtons
     .fire({
       title: "Are you sure?",

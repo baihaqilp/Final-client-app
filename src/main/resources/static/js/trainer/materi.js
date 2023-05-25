@@ -40,7 +40,6 @@ function getById(id) {
 }
 
 function deleteData(id) {
-  console.log(id);
   const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: "btn btn-success",

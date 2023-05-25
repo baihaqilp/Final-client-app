@@ -90,7 +90,6 @@ function create() {
     let addressVal = $("#create_trainee_address").val();
     let usernameVal = $("#create_trainee_username").val();
     let passwordVal = $("#create_trainee_password").val();
-    console.log(passwordVal);
 
     $.ajax({
         method: "POST",

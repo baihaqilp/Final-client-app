@@ -127,7 +127,6 @@ function update() {
   let idVal = $("#update_id").val();
   let programVal = $("#update_program option:selected").val();
 
-  console.log(programVal);
   Swal.fire({
     title: "Are you sure?",
     text: "You won't be able to revert this!",

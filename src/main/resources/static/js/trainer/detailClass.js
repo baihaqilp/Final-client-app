@@ -1,7 +1,6 @@
 $(document).ready(function () {
   let class_id = $("#class_id").val();
   let trainer_id = $("#trainer_id").val();
-  console.log(class_id, trainer_id);
   $.ajax({
     method: "GET",
     url: "/api/classroom/" + class_id,

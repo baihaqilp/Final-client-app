@@ -4,7 +4,6 @@ $(document).ready(function () {
     method: "GET",
     success: function (response) {
       let class_id = response.id;
-      console.log(class_id);
       var cardHead = `
         <h5 class="card-title mt-2" style="font-size: 48px">${response.name} - ${response.program.name}</h5>
         `;

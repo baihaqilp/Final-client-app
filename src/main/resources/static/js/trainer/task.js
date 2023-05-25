@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  $('#update_task_desc').summernote();
   let segmentId = $("#segment_id").val();
 
   $("#table-task").DataTable({

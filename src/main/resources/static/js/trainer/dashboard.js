@@ -44,12 +44,10 @@ $(document).ready(function () {
     dataType: "JSON",
     beforeSend: addCsrfToken(),
     success: (res) => {
-      console.log(res);
       const filteredTask = res.filter(function (data) {
         let trainerId = data.segment.trainer.id;
         return trainerId == trainer_id;
       });
-      console.log(filteredTask);
       let task_sum = filteredTask.length;
       $("#task_sum").text(task_sum);
     },
