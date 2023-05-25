@@ -23,27 +23,26 @@
         </div>
         <div class="navbar-middle">
           <!-- role admin -->
-          <div class="nav-bar-content" sec:authorize="hasRole('ROLE_ADMIN')">
-            <ul class="nav">
+          <div class="navbar-content" sec:authorize="hasRole('ROLE_ADMIN')">
+            <ul class="nav d-flex align-items-center">
               <li class="nav-item">
                 <a class="nav-link line dash active" th:href="@{/admin}">
-                  <span>Dashboard</span>
+                  Dashboard
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link line" th:href="@{/admin/class}">
-                  <span>Class Room</span></a
+                <a class="nav-link line" th:href="@{/admin/class}">Classroom</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link line" th:href="@{/admin/trainer}">
+                  Trainer</a
                 >
               </li>
               <li class="nav-item">
                 <a class="nav-link line" th:href="@{/admin/trainee}">
-                  <span>Trainee</span></a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link line" th:href="@{/admin/trainer}">
-                  <span> Trainer</span></a
-                >
+                  Trainee
+                </a>
               </li>
             </ul>
           </div>
@@ -56,9 +55,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link line"
-                  th:href="@{/trainer/classroom/trainer/1}"
+                <a class="nav-link line" th:href="@{/trainer/classroom/trainer}"
                   >Classroom</a
                 >
               </li>
@@ -77,7 +74,7 @@
           </div>
           <!-- role trainee -->
           <div class="navbar-content" sec:authorize="hasRole('ROLE_TRAINEE')">
-            <ul class="nav">
+            <ul class="nav d-flex align-items-center">
               <li class="nav-item">
                 <a class="nav-link line dash active" th:href="@{/trainee}">
                   <span>Dashboard</span>
