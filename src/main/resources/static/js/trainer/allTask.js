@@ -11,7 +11,7 @@ $(document).ready(function () {
       $.each(res, function (key, val) {
         if ($('.select_segment option[value = "' + val.id + '"]').length == 0) {
           $(".select_segment").append(
-            `<option value = ${val.id}>${val.classroom.name}---${val.id}</option>`
+            `<option value = ${val.id}>${val.classroom.name}---${val.category.name}</option>`
           );
         }
       });

@@ -27,7 +27,7 @@ public class ClassroomService {
         return restTemplate.exchange(
                 url,
                 HttpMethod.GET,
-                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Classroom>>() {
+                null, new ParameterizedTypeReference<List<Classroom>>() {
                 }).getBody();
     }
 

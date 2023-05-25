@@ -15,6 +15,44 @@ $(document).ready(function () {
         // You can implement this part based on your specific requirements
     });
 
+    $.ajax({
+        method: "GET",
+        url: "/api/program",
+        dataType: "JSON",
+        success: (res) => {
+            $.each(res, function (key, val) {
+                if ($('#select_program option[value = "' + val.id + '"]').length == 0) {
+                    $("#select_program").append(
+                        `<option value = ${val.id}>${val.name}</option>`
+                    );
+                }
+            });
+        },
+    });
+
+    $("#select_program").on("change", function () {
+        let programId = $("#select_program option:selected").val();
+        $("#select_classroom").removeAttr("disabled");
+        $.ajax({
+            method: "GET",
+            url: "/api/classroom/program/" + programId,
+            dataType: "JSON",
+            success: (res) => {
+                $.each(res, function (key, val) {
+                    if (
+                        $('#select_classroom option[value = "' + val.id + '"]').length == 0
+                    ) {
+                        $("#select_classroom").append(
+                            `<option value = ${val.id}>${val.name}</option>`
+                        );
+                    }
+                });
+            },
+        });
+    });
+
+
+    $
     $("#table-trainee").DataTable({
         ajax: {
             url: "/api/employee/role/2",
@@ -90,10 +128,10 @@ function create() {
     let addressVal = $("#create_trainee_address").val();
     let usernameVal = $("#create_trainee_username").val();
     let passwordVal = $("#create_trainee_password").val();
-
+    let classId = $("#select_classroom option:selected").val();
     $.ajax({
         method: "POST",
-        url: "/api/user",
+        url: "/api/register",
         dataType: "JSON",
         beforeSend: addCsrfToken(),
         data: JSON.stringify({
@@ -104,6 +142,7 @@ function create() {
             phone: phoneVal,
             address: addressVal,
             roleId: 2,
+            classroomId: classId,
         }),
         contentType: "application/json",
         success: (res) => {
