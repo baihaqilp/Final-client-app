@@ -30,6 +30,18 @@ $(document).ready(function () {
 
   $.ajax({
     method: "GET",
+    url: "/api/materi",
+    dataType: "JSON",
+    beforeSend: addCsrfToken(),
+    success: (res) => {
+      console.log(res);
+      let materi_sum = res.length;
+      $("#materi_sum").text(materi_sum);
+    },
+  });
+
+  $.ajax({
+    method: "GET",
     url: "/api/task",
     dataType: "JSON",
     beforeSend: addCsrfToken(),
