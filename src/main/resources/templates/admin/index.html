@@ -54,8 +54,8 @@
                     style="font-size: 48px"
                   ></i>
                 </div>
-                <a href="#" class="btn btn-primary mt-2" style="width: 50%"
-                  >View Courses</a
+                <a th:href="@{admin/program}" class="btn btn-primary mt-2" style="width: 50%"
+                  >View Program</a
                 >
               </div>
             </div>
@@ -120,61 +120,6 @@
                   style="width: 50%"
                   >View Trainee</a
                 >
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div
-            class="card shadow-lg"
-            style="border-radius: 20px; max-width: 600px"
-          >
-            <div class="card-body">
-              <div
-                class="card-header d-flex justify-content-between"
-                style="background-color: white"
-              >
-                <h5 class="card-title">Segment</h5>
-              </div>
-              <div
-                class="card-content d-flex flex-column justify-content-center"
-              >
-                <p class="card-text">Manage and view Segments</p>
-                <div
-                  class="card-content-detail d-flex justify-content-between align-items-center px-3"
-                >
-                  <p class="number" id="segment_sum"></p>
-                  <i
-                    class="fa-solid fa-diagram-project"
-                    style="font-size: 48px; color: #7da0fa"
-                  ></i>
-                </div>
-                <a
-                  th:href="@{/admin/segment}"
-                  class="btn btn-primary mt-2"
-                  style="width: 50%"
-                  >View Segments</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div
-            class="card shadow-lg"
-            style="border-radius: 20px; max-width: 600px"
-          >
-            <div class="card-body">
-              <div
-                class="card-header d-flex justify-content-between"
-                style="background-color: white"
-              >
-                <h5 class="card-title">IDK</h5>
-              </div>
-              <div
-                class="card-content d-flex flex-column justify-content-center"
-              >
-                <div id="example" data-bs-toogle="calendar"></div>
               </div>
             </div>
           </div>
