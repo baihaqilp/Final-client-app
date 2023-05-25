@@ -1,0 +1,71 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Open+Sans:wght@300&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
+} */
+
+body {
+  background: linear-gradient(45deg, #7da0fa, #7978e9, #4b49ac, #98bdff);
+}
+
+.login-base {
+  height: 100vh;
+  /* background: linear-gradient(to right, #96c93d, #00b09b); */
+  /* background-image: url("../img/mainbg2.jpg");
+  background-size: cover; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-block {
+  background: white;
+  padding-left: 0;
+  padding-right: 0;
+  width: 70%;
+  height: 90%;
+  border-radius: 1rem;
+  box-shadow: 0 0 1.3rem 0.1rem rgba(14, 14, 14, 0.282);
+}
+
+.login-image {
+  width: 50%;
+  height: 100%;
+  background-image: url("../img/bg4.png");
+  background-size: contain;
+  border-radius: 1rem 0 0 1rem;
+}
+
+.login-content {
+  /* display: flex; */
+  flex-direction: column;
+  /* align-items: center; */
+  margin: auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+h1 {
+  font-family: "Montserrat", sans-serif;
+}
+p {
+  font-family: "Montserrat", sans-serif;
+}
+form {
+  font-family: "Open Sans", sans-serif;
+  font-weight: light;
+}
+input[type="text"] {
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+input[type="password"] {
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.btn {
+  background-color: #7da0fa;
+}

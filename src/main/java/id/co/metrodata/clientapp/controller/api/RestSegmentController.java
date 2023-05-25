@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.co.metrodata.clientapp.model.Segment;
+import id.co.metrodata.clientapp.model.Task;
 import id.co.metrodata.clientapp.model.dto.request.SegmentRequest;
 import id.co.metrodata.clientapp.service.SegmenService;
+import id.co.metrodata.clientapp.service.TaskService;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -22,10 +24,17 @@ import lombok.AllArgsConstructor;
 public class RestSegmentController {
 
     private SegmenService segmenService;
+    private TaskService taskService;
 
     @GetMapping
     public List<Segment> getAll() {
         return segmenService.getAll();
+    }
+
+    // group by trainer
+    @GetMapping("/trainer")
+    public List<Segment> getSegmentTrainer() {
+        return segmenService.getSegmentTrainer();
     }
 
     @GetMapping("/{id}")
@@ -39,7 +48,7 @@ public class RestSegmentController {
     }
 
     @PutMapping("/{id}")
-    public Segment update(@PathVariable long id, @RequestBody Segment segment) {
+    public Segment update(@PathVariable long id, @RequestBody SegmentRequest segment) {
         return segmenService.update(id, segment);
 
     }
@@ -52,5 +61,20 @@ public class RestSegmentController {
     @GetMapping("/class/{id}")
     public List<Segment> getByClass(@PathVariable long id) {
         return segmenService.getByClass(id);
+    }
+
+    @GetMapping("/task/{id}")
+    public List<Task> getBySegments(@PathVariable long id) {
+        return taskService.getBySegment(id);
+    }
+
+    @GetMapping("/trainer/{id}")
+    public List<Segment> getByTrainer(@PathVariable long id) {
+        return segmenService.getByTrainerId(id);
+    }
+
+    @GetMapping("/class/{class_id}/trainer")
+    public List<Segment> getByClassIdAndTrainerId(@PathVariable long class_id) {
+        return segmenService.getByClassIdAndTrainerId(class_id);
     }
 }

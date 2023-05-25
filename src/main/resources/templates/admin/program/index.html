@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/main}"
+>
+  <body>
+    <!-- content -->
+    <section layout:fragment="content">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card shadow-lg" style="border-radius: 20px">
+            <div class="card-body">
+              <div
+                class="card-header d-flex justify-content-between"
+                style="background-color: white"
+              >
+                <div
+                  class="card-header-left d-flex flex-row align-items-center"
+                >
+                  <i
+                    class="fa-solid fa-school-flag school px-2"
+                    style="font-size: 48px"
+                  ></i>
+                  <h5 class="card-title mt-3">Programes</h5>
+                </div>
+                <div class="card-header-right">
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addProgram"
+                  >
+                    Add Program
+                  </button>
+                </div>
+              </div>
+              <div class="card-content d-flex flex-column">
+                <table
+                  class="table display table-stripped table-bordered mt-3 text-center"
+                  id="table-program"
+                >
+                  <thead class="table-dark">
+                    <tr>
+                      <th class="col-2 text-center">No.</th>
+                      <th class="col-4 text-center">Program</th>
+                      <th class="col-4 text-center">Action</th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal update Program -->
+      <div
+        class="modal fade"
+        id="addProgram"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="addProgramLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="addProgramLabel">
+                Add Program
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="name" class="form-label fw-bold"
+                  >Program Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_program_name"
+                  placeholder="ex. MCC-07"
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary" onclick="create()">
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Update -->
+      <div
+        class="modal fade"
+        id="updateProgram"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="updateProgramLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="updateProgramLabel">
+                update Program
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <input type="hidden" name="update_program_id" id="update_id" />
+                <label for="name" class="form-label fw-bold"
+                  >Program Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="update_program_name"
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary" onclick="update()">
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Detail -->
+      <div
+        class="modal fade"
+        id="detailProgram"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="detailProgramLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="detailProgramLabel">
+                update Program
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="name" class="form-label fw-bold">Program Id</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="detail_program_id"
+                  disabled
+                />
+                <label for="name" class="form-label fw-bold"
+                  >Program Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="detail_program_name"
+                  disabled
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div layout:fragment="script">
+      <script th:src="@{/js/admin/program.js}"></script>
+    </div>
+  </body>
+</html>

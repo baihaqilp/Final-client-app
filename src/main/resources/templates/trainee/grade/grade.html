@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/main}"
+>
+  <body>
+    <!-- content -->
+    <section layout:fragment="content">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card shadow-lg" style="border-radius: 20px">
+            <div class="card-body">
+              <div
+                class="card-header d-flex justify-content-between"
+                style="background-color: white"
+              >
+                <div
+                  class="card-header-left d-flex flex-row align-items-center"
+                >
+                  <i
+                    class="fa-solid fa-user-graduate px-2"
+                    style="font-size: 36px; color: #7978e9"
+                  ></i>
+                  <h5 class="card-title mt-3">Trainee</h5>
+                </div>
+              </div>
+              <div class="card-content d-flex flex-column pt-5">
+                <div class="card-content d-flex flex-column pt-2">
+                  <!-- Loop through segments from the database -->
+                  <div class="card mb-3" style="">
+                    <div class="card-body">
+                      <div class="container border-bottom mb-3">
+                        <div
+                          class="card-body d-flex justify-content-center text-center"
+                        >
+                          <div class="lesson-container-left">
+                            <h5 class="card-title">Abdul Ghopur</h5>
+                            <h6>Japa</h6>
+                            <!-- topik dan materi -->
+                            <div class="lesson-content pb-2">
+                              <p class="card-text">Segment-01</p>
+                            </div>
+                            <div
+                              class="trainee-status bg-success border-rounded rounded-2"
+                              style="color: white"
+                            >
+                              <p>Lulus</p>
+                            </div>
+                          </div>
+                          <div class="lesson-container-right"></div>
+                        </div>
+                      </div>
+                      <div class="container mb-3">
+                        <div
+                          class="card-body d-flex justify-content-between align-items-center"
+                        >
+                          <canvas id="traineeChart"></canvas>
+                        </div>
+                      </div>
+
+                      <!-- <a href="#" class="btn btn-primary">View Segment</a> -->
+                    </div>
+                  </div>
+                </div>
+
+                <div class="second pt-3 mb-5 d-flex justify-content-between">
+                  <a
+                    th:href="@{/trainee}"
+                    class="btn"
+                    style="background-color: #4b49ac; color: white"
+                    >Back</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div layout:fragment="script">
+      <script th:src="@{/js/trainee/grade.js}"></script>
+    </div>
+  </body>
+</html>

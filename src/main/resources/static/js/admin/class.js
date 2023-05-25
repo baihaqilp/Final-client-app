@@ -3,6 +3,7 @@ $(document).ready(function () {
     method: "GET",
     url: "/api/program",
     dataType: "JSON",
+    beforeSend: addCsrfToken(),
     success: (res) => {
       $.each(res, function (key, val) {
         if ($('.select_program option[value = "' + val.id + '"]').length == 0) {
@@ -30,6 +31,26 @@ $(document).ready(function () {
       { data: "program.name" },
       {
         data: null,
+        render: function (data, type, row, meta) {
+          if (data.isStatus) {
+            return `<button
+            type="button"
+            class="btn btn-success "
+          >
+            Active
+          </button>`
+          } else {
+            return `<button
+            type="button"
+            class="btn btn-secondary "
+          >
+            Non Active
+          </button>`
+          }
+        },
+      },
+      {
+        data: null,
         render: (data, type, row, meta) => {
           return `
           <a href="/admin/class/${data.id}"
@@ -55,21 +76,6 @@ $(document).ready(function () {
       },
     ],
   });
-  $(".nav-link").click(function (e) {
-    e.preventDefault();
-
-    // Remove the 'active' class from all sidebar options
-    $(".nav-link").removeClass("active");
-
-    // Add the 'active' class to the clicked sidebar option
-    $(this).addClass("active");
-
-    // Get the selected page from the 'data-page' attribute
-    // var selectedPage = $(this).data("page");
-
-    // TODO: Change the page content based on the selected page
-    // You can implement this part based on your specific requirements
-  });
 });
 
 function getById(id) {
@@ -78,6 +84,7 @@ function getById(id) {
     url: "/api/classroom/" + id,
     // beforeSend: addCsrfToken(),
     dataType: "JSON",
+    beforeSend: addCsrfToken(),
     success: (res) => {
       $("#detail_name").val(res.name);
     },
@@ -91,6 +98,7 @@ function create() {
     method: "POST",
     url: "/api/classroom",
     dataType: "JSON",
+    beforeSend: addCsrfToken(),
     // beforeSend: addCsrfToken(),
     data: JSON.stringify({
       name: nameVal,
@@ -110,6 +118,13 @@ function create() {
         timer: 1500,
       });
     },
+    error: function (e) {
+      Swal.fire({
+        icon: "error",
+        title: "ERROR",
+        text: "Something went WRONG !!!",
+      })
+    }
   });
 }
 
@@ -132,7 +147,6 @@ function update() {
   let idVal = $("#update_id").val();
   let programVal = $("#update_program option:selected").val();
 
-  console.log(programVal);
   Swal.fire({
     title: "Are you sure?",
     text: "You won't be able to revert this!",
@@ -147,10 +161,11 @@ function update() {
         method: "PUT",
         url: "/api/classroom/" + idVal,
         dataType: "JSON",
-        // beforeSend: addCsrfToken(),
+        beforeSend: addCsrfToken(),
         data: JSON.stringify({
           name: nameVal,
-          programId: 1,
+          programId: programVal,
+          isStatus: 1,
         }),
         contentType: "application/json",
         success: (res) => {
@@ -158,6 +173,13 @@ function update() {
           $("#table-class").DataTable().ajax.reload();
           $("#create_class_name").val("");
         },
+        error: function (e) {
+          Swal.fire({
+            icon: "error",
+            title: "ERROR",
+            text: "Something went WRONG !!!",
+          })
+        }
       });
       Swal.fire("Updated!", "Region success to update...", "success");
     }
@@ -193,6 +215,13 @@ function deleteData(id) {
           success: (res) => {
             $("#table-class").DataTable().ajax.reload();
           },
+          error: function (e) {
+            Swal.fire({
+              icon: "error",
+              title: "ERROR",
+              text: "Something went WRONG !!!",
+            })
+          }
         });
         swalWithBootstrapButtons.fire(
           "Deleted!",

@@ -16,4 +16,5 @@ public class Employee {
     private String address;
 
     private User user;
+    private Classroom classroom;
 }

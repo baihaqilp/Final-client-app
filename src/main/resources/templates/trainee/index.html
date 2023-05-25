@@ -7,113 +7,86 @@
   <body>
     <!-- content -->
     <section layout:fragment="content">
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="card shadow-lg" style="border-radius: 20px">
-            <div class="card-body">
-              <div class="card-header" style="background-color: white">
-                <h5 class="card-title">Class</h5>
-              </div>
-              <div class="card-content d-flex flex-column">
-                <p class="card-text">Access your course lessons.</p>
-                <div
-                  class="card-content-detail d-flex justify-content-between align-items-center px-3"
-                >
-                  <p class="number">Java</p>
-                  <i
-                    class="fa-solid fa-chalkboard-user school"
-                    style="font-size: 48px"
-                  ></i>
-                </div>
-                <a
-                  th:href="@{/trainee/class}"
-                  class="btn btn-primary mt-2"
-                  style="width: 50%"
-                  >View Course</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="card shadow-lg" style="border-radius: 20px">
-            <div class="card-body">
-              <div class="card-header" style="background-color: white">
-                <h5 class="card-title">Task</h5>
-              </div>
-              <div
-                class="card-content d-flex flex-column justify-content-center"
-              >
-                <p class="card-text">View your task.</p>
-                <div
-                  class="card-content-detail d-flex justify-content-between align-items-center px-3"
-                >
-                  <p class="number">04</p>
-                  <i
-                    class="fa-solid fa-clipboard"
-                    style="font-size: 48px; color: #f3797e"
-                  ></i>
-                </div>
-                <a
-                  th:href="@{/trainee/task}"
-                  class="btn btn-primary mt-2"
-                  style="width: 50%"
-                  >View Task</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="card shadow-lg" style="border-radius: 20px">
-            <div class="card-body">
-              <div class="card-header" style="background-color: white">
-                <h5 class="card-title">SUbmission</h5>
-              </div>
-              <div
-                class="card-content d-flex flex-column justify-content-center"
-              >
-                <p class="card-text">Manage submissions</p>
-                <div
-                  class="card-content-detail d-flex justify-content-between align-items-center px-3"
-                >
-                  <p class="number">04</p>
-                  <i class="fa-solid fa-list-check" style="font-size: 48px"></i>
-                </div>
-                <a
-                  th:href="@{/trainee/submission}"
-                  class="btn btn-primary mt-2"
-                  style="width: 50%"
-                  >View Assigment</a
-                >
-              </div>
-            </div>
-          </div>
+      <div class="header px-4 py-1 my-2 text-center">
+        <div class="bd">
+          <h2>WELCOME</h2>
+          <h2 sec:authentication="name" style="padding-bottom: 20px"></h2>
         </div>
       </div>
-      <div class="row mt-4">
-        <div class="col-lg-8">
-          <div class="card shadow-lg" style="border-radius: 20px">
-            <div class="card-body">
-              <div
-                class="card-header d-flex justify-content-between"
-                style="background-color: white"
-              >
-                <h5 class="card-title">My Grade</h5>
-                <i class="fa-solid fa-chart-line" style="font-size: 48px"></i>
-              </div>
-              <div
-                class="card-content d-flex flex-column justify-content-center"
-              >
-                <div class="chart-container">
-                  <canvas id="gradeChart"></canvas>
-                </div>
-                <a href="#" class="btn btn-primary mt-2" style="width: 50%"
-                  >View Grades</a
+      <div class="row px-5 mt-4">
+        <div class="col-lg-4">
+          <a class="col-content" th:href="@{/trainee/class}">
+            <div class="card" id="dashboard" style="border-radius: 20px">
+              <div class="card-body">
+                <div
+                  class="card-header d-flex justify-content-between"
+                  style="background-color: white"
                 >
+                  <h5 class="card-title">Class</h5>
+                  <i
+                    class="fa-solid fa-school-flag school"
+                    style="font-size: 32px"
+                  ></i>
+                </div>
+                <div class="card-content d-flex flex-column align-items-center">
+                  <p class="card-text">Access your course lessons</p>
+
+                  <!-- <p id="class_sum" class="number"></p> -->
+                  <!-- <div class="chart">
+                    <canvas id="doughnutChart"></canvas>
+                  </div> -->
+                  <h4>Program</h4>
+                  <div class="program-name"></div>
+                  <h4>Class</h4>
+                  <div class="class-name"></div>
+                </div>
+              </div></div
+          ></a>
+        </div>
+        <div class="col-lg-4">
+          <a class="col-content" th:href="@{/trainee/task}">
+            <div class="card-task" id="dashboard" style="border-radius: 20px">
+              <div class="card-body">
+                <div
+                  class="card-header d-flex justify-content-between align-items-center"
+                  style="background-color: white"
+                >
+                  <h5 class="card-title">Task</h5>
+                  <i class="fa-solid fa-list-check" style="font-size: 32px"></i>
+                </div>
+                <div class="card-content d-flex flex-column align-items-center">
+                  <p class="card-text">View your tasks</p>
+                  <div class="chart">
+                    <canvas id="taskChart"></canvas>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          </a>
+        </div>
+        <div class="col-lg-4">
+          <a class="col-content" th:href="@{/trainee/grade}">
+            <div class="card" id="dashboard" style="border-radius: 20px">
+              <div class="card-body">
+                <div
+                  class="card-header d-flex justify-content-between align-items-center"
+                  style="background-color: white"
+                >
+                  <h5 class="card-title">Grade</h5>
+                  <i
+                    class="fa-solid fa-chart-line px-2"
+                    style="font-size: 32px; color: #4b49ac"
+                  ></i>
+                </div>
+                <div class="card-content d-flex flex-column align-items-center">
+                  <p class="card-text">View your grades</p>
+                  <div class="chart">
+                    <canvas id="taskChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </section>

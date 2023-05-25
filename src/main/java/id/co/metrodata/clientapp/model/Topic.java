@@ -11,4 +11,5 @@ public class Topic {
 
     private long id;
     private String name;
+    private Program program;
 }

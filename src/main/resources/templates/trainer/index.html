@@ -7,22 +7,25 @@
   <body>
     <!-- content -->
     <section layout:fragment="content">
-      <div class="row">
+      <div class="header px-4 py-1 my-2 text-center">
+        <div class="bd">
+          <h2>WELCOME</h2>
+          <h2 sec:authentication="name" style="padding-bottom: 20px"></h2>
+        </div>
+      </div>
+      <div class="row px-5 mt-4">
         <div class="col-lg-4">
-          <div class="card shadow-lg" style="border-radius: 20px">
-            <div class="card-body">
-              <div class="card-header" style="background-color: white">
-                <h5 class="card-title">Class</h5>
-              </div>
-              <div class="card-content d-flex flex-column">
-                <p class="card-text">Manage your courses and curriculum.</p>
+          <a class="col-content" th:href="@{/trainer/classroom/trainer}">
+            <div class="card" id="dashboard" style="border-radius: 20px">
+              <div class="card-body">
                 <div
-                  class="card-content-detail d-flex justify-content-between align-items-center px-3"
+                  class="card-header d-flex justify-content-between"
+                  style="background-color: white"
                 >
-                  <p class="number">04</p>
+                  <h5 class="card-title">Class</h5>
                   <i
                     class="fa-solid fa-school-flag school"
-                    style="font-size: 48px"
+                    style="font-size: 32px"
                   ></i>
                 </div>
                 <div class="card-content d-flex flex-column align-items-center">
@@ -58,52 +61,28 @@
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
         <div class="col-lg-4">
           <a class="col-content" th:href="@{/trainer/task}">
             <div class="card" id="dashboard" style="border-radius: 20px">
               <div class="card-body">
                 <div
-                  class="card-content-detail d-flex justify-content-between align-items-center px-3"
+                  class="card-header d-flex justify-content-between align-items-center"
+                  style="background-color: white"
                 >
-                  <p class="number">04</p>
-                  <i class="fa-solid fa-list-check" style="font-size: 48px"></i>
+                  <h5 class="card-title">Task and Submission</h5>
+                  <i class="fa-solid fa-list-check" style="font-size: 32px"></i>
                 </div>
-                <a href="#" class="btn btn-primary mt-2" style="width: 50%"
-                  >View Assigment</a
-                >
+                <div class="card-content d-flex flex-column align-items-center">
+                  <p class="card-text">Manage tasks and submissions</p>
+                  <div class="chart">
+                    <canvas id="taskChart"></canvas>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="row mt-4">
-        <div class="col-lg-8">
-          <div class="card shadow-lg" style="border-radius: 20px">
-            <div class="card-body">
-              <div
-                class="card-header d-flex justify-content-between"
-                style="background-color: white"
-              >
-                <h5 class="card-title">Student Grades</h5>
-                <i class="fa-solid fa-chart-line" style="font-size: 48px"></i>
-              </div>
-              <div
-                class="card-content d-flex flex-column justify-content-center"
-              >
-                <div class="chart-container">
-                  <canvas id="gradeChart"></canvas>
-                </div>
-                <a
-                  th:href="@{/Trainer/grade}"
-                  class="btn btn-primary mt-2"
-                  style="width: 50%"
-                  >View Grades</a
-                >
-              </div>
-            </div>
-          </div>
+          </a>
         </div>
       </div>
     </section>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/main}"
+>
+  <body>
+    <!-- content -->
+    <section layout:fragment="content">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card shadow-lg" style="border-radius: 20px">
+            <div class="card-body">
+              <div
+                class="card-header d-flex justify-content-between"
+                style="background-color: white"
+              >
+                <div
+                  class="card-header-left d-flex flex-row align-items-center"
+                >
+                  <i
+                    class="fa-solid fa-book school px-2"
+                    style="font-size: 24px"
+                  ></i>
+                  <h5 class="card-title mt-3">Topic</h5>
+                </div>
+                <div class="card-header-right">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    style="background-color: #7978e9; color: white"
+                    onclick="history.back()"
+                  >
+                    Back
+                  </button>
+                  <button
+                    type="button"
+                    class="btn"
+                    style="background-color: #7978e9; color: white"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addTopicSegment"
+                  >
+                    Add Topic
+                  </button>
+                </div>
+              </div>
+              <div class="card-content d-flex flex-column">
+                <table
+                  class="table display table-stripped table-bordered mt-3 text-center border border-rounded rounded-2"
+                  id="table-topic"
+                >
+                  <thead class="table-dark">
+                    <tr>
+                      <th class="col-1 text-center">No.</th>
+                      <th class="col-3 text-center">Name</th>
+                      <th class="col-2 text-center">Program</th>
+                      <th class="col-4 text-center">Action</th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <input type="hidden" id="segment_id" th:value="*{id}" />
+
+      <!-- Modal Add Segment Topic -->
+      <div
+        class="modal fade"
+        id="addTopicSegment"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="addTopicSegmentLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="addTopicSegmentLabel">
+                Add Topic To This Segment
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="start_date" class="form-label fw-bold"
+                  >Start Date</label
+                >
+                <input
+                  type="date"
+                  class="form-control"
+                  id="create_ts_start_date"
+                />
+                <label for="name" class="form-label fw-bold">End Date</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="create_ts_end_date"
+                />
+                <label for="topic" class="form-label fw-bold">Topic</label>
+                <select
+                  class="form-control form-control-sm select_topic p-2"
+                  aria-label="form-select-sm example"
+                  id="select_topic"
+                >
+                  <option selected value="">Choose Topic</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                style="
+                  border: 1px solid #4b49ac;
+                  background-color: white;
+                  color: #4b49ac;
+                "
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                style="background-color: #4b49ac"
+                onclick="create()"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Update Topic-->
+      <div
+        class="modal fade"
+        id="updateTopic"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="updateTopicLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="addTopicLabel">
+                Update Topic
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <input type="hidden" th:value="*{id}" id="update_id" />
+                <label for="name" class="form-label fw-bold">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="update_topic_name"
+                />
+                <label for="program" class="form-label fw-bold">Program</label>
+                <select
+                  class="form-control form-control-sm select_program p-2"
+                  aria-label="form-select-sm example"
+                  id="update_program"
+                >
+                  <option selected value="">Choose Program</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                style="
+                  border: 1px solid #4b49ac;
+                  background-color: white;
+                  color: #4b49ac;
+                "
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                style="background-color: #4b49ac"
+                onclick="update()"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Detail Topic -->
+      <div
+        class="modal fade"
+        id="detailTopic"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="detailTopicLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="detailTopicLabel">
+                Detail Topic
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <table
+                class="table display table-stripped table-bordered mt-3 text-center border border-rounded rounded-2"
+                id="table-materi"
+                style="width: 100%"
+              >
+                <thead class="table-dark">
+                  <tr>
+                    <th class="col-1 text-center">No.</th>
+                    <th class="col-2 text-center">Name</th>
+                    <th class="col-2 text-center">Topic</th>
+                    <th class="col-2 text-center">Created By</th>
+                    <th class="col-4 text-center">Action</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div layout:fragment="script">
+      <script th:src="@{/js/trainer/topicDatatable.js}"></script>
+    </div>
+  </body>
+</html>

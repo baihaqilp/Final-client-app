@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/main}"
+>
+  <body>
+    <!-- content -->
+    <section layout:fragment="content">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card shadow-lg" style="border-radius: 20px">
+            <div class="card-body">
+              <div
+                class="card-header d-flex justify-content-between"
+                style="background-color: white"
+              >
+                <div
+                  class="card-header-left d-flex flex-row align-items-center"
+                >
+                  <i
+                    class="fa-solid fa-book school px-2"
+                    style="font-size: 24px"
+                  ></i>
+
+                  <h5 class="card-title mt-2" style="font-size: 24px">
+                    Segment 01
+                  </h5>
+                  <input type="text" th:value="*{id}" id="segment_id" hidden />
+                </div>
+                <div class="header-right">
+                  <a href="/trainer/materi-add" class="btn">
+                    <i
+                      class="fa-solid fa-square-plus"
+                      style="font-size: 28px; color: #7978e9"
+                    ></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-content d-flex flex-column pt-2">
+                <!-- Loop through segments from the database -->
+                <div class="segment-cards-container">
+                  <div class="card mb-3">
+                    <div class="card-body">
+                      <div class="container border-bottom mb-3">
+                        <div
+                          class="card-body d-flex justify-content-between align-items-center"
+                        >
+                          <div class="lesson-container-left">
+                            <h5 class="card-title">
+                              Trainer name ${cardData.materi.topic.name}
+                            </h5>
+                            <div class="lesson-content">
+                              <p class="card-text">${cardData.materi.name}</p>
+                            </div>
+                          </div>
+                          <div class="lesson-container-right">
+                            <a
+                              href="/trainer/classroom/segment/materi/${cardData.materi.id}"
+                              class="btn"
+                            >
+                              <i
+                                class="fa-solid fa-pen-to-square"
+                                style="font-size: 28px"
+                              ></i>
+                            </a>
+                            <a href="#" class="btn">
+                              <i
+                                class="fa-solid fa-up-right-from-square"
+                                style="font-size: 24px"
+                              ></i>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div layout:fragment="script">
+      <script th:src="@{/js/trainer/submissionBySegment.js}"></script>
+    </div>
+  </body>
+</html>

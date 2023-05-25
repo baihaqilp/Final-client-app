@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.Classroom;
 import id.co.metrodata.clientapp.model.dto.request.ClassroomRequest;
+import id.co.metrodata.clientapp.utils.BasicHeader;
 
 @Service
 public class ClassroomService {
@@ -34,7 +35,7 @@ public class ClassroomService {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<Classroom>() {
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<Classroom>() {
                 }).getBody();
     }
 
@@ -42,7 +43,7 @@ public class ClassroomService {
         return restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,
-                new HttpEntity(classroom),
+                new HttpEntity(classroom, BasicHeader.createHeader()),
                 Classroom.class).getBody();
     }
 
@@ -50,14 +51,14 @@ public class ClassroomService {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,
-                new HttpEntity(classroom), Classroom.class).getBody();
+                new HttpEntity(classroom, BasicHeader.createHeader()), Classroom.class).getBody();
     }
 
     public Classroom delete(long id) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.DELETE,
-                null, Classroom.class).getBody();
+                new HttpEntity(BasicHeader.createHeader()), Classroom.class).getBody();
     }
 
     public List<Classroom> getByProgramId(long id) {
@@ -65,6 +66,14 @@ public class ClassroomService {
                 url + "/program/" + id,
                 HttpMethod.GET,
                 null, new ParameterizedTypeReference<List<Classroom>>() {
+                }).getBody();
+    }
+
+    public Classroom getByTrainee() {
+        return restTemplate.exchange(
+                url + "/trainee",
+                HttpMethod.GET,
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<Classroom>() {
                 }).getBody();
     }
 

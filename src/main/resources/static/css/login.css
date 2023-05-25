@@ -1,13 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Open+Sans:wght@300&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Open+Sans:wght@300&display=swap");
 * {
   font-family: "Poppins", sans-serif;
-}
+} */
 
+body {
+  background: linear-gradient(45deg, #7da0fa, #7978e9, #4b49ac, #98bdff);
+}
 .login-base {
   height: 100vh;
   /* background: linear-gradient(to right, #96c93d, #00b09b); */
-  background-image: url("../img/mainbg2.jpg");
-  background-size: cover;
+  /* background-image: url("../img/mainbg2.jpg");
+  background-size: cover; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,13 +45,13 @@
   text-align: center;
 }
 h1 {
-  font-family: "Lato", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 p {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 form {
-  font-family: "Lato", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: light;
 }
 input[type="text"] {

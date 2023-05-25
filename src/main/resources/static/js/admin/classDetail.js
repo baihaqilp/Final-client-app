@@ -3,6 +3,7 @@ $(document).ready(function () {
         method: "GET",
         url: "/api/employee/role/1",
         dataType: "JSON",
+        beforeSend: addCsrfToken(),
         success: (res) => {
             $.each(res, function (key, val) {
                 if ($('.select_trainer option[value = "' + val.id + '"]').length == 0) {
@@ -10,12 +11,48 @@ $(document).ready(function () {
                 }
             })
         },
+        error: function (e) {
+            Swal.fire({
+                icon: "error",
+                title: "ERROR",
+                text: "Something went WRONG !!!",
+            })
+        }
     });
+
+    $.ajax({
+        method: "GET",
+        url: "/api/category",
+        dataType: "JSON",
+        beforeSend: addCsrfToken(),
+        success: (res) => {
+            $.each(res, function (key, val) {
+                if ($('.select_category option[value = "' + val.id + '"]').length == 0) {
+                    $(".select_category").append(`<option value = ${val.id}>${val.name}</option>`)
+                }
+            })
+        },
+        error: function (e) {
+            Swal.fire({
+                icon: "error",
+                title: "ERROR",
+                text: "Something went WRONG !!!",
+            })
+        }
+    });
+
     let class_id = $("#id").val();
     $('#table-segment').DataTable({
         ajax: {
             url: "/api/segment/class/" + class_id,
-            dataSrc: ""
+            dataSrc: "",
+            error: function (e) {
+                Swal.fire({
+                    icon: "error",
+                    title: "ERROR",
+                    text: "Something went WRONG !!!",
+                })
+            }
         },
         columns: [
             {
@@ -58,7 +95,14 @@ $(document).ready(function () {
     $('#table-trainee').DataTable({
         ajax: {
             url: "/api/employee/class/" + class_id,
-            dataSrc: ""
+            dataSrc: "",
+            error: function (e) {
+                Swal.fire({
+                    icon: "error",
+                    title: "ERROR",
+                    text: "Something went WRONG !!!",
+                })
+            }
         },
         columns: [
             {
@@ -90,18 +134,19 @@ function create() {
     let end_date = $("#create_end_date").val();
     let trainer_id = $("#trainer_id option:selected").val();
     let class_id = $("#id").val();
-    console.log(trainer_id)
-    console.log(class_id);
+    let category_id = $("#select_category option:selected").val();
 
     $.ajax({
         method: "POST",
         url: "/api/segment",
         dataType: "JSON",
+        beforeSend: addCsrfToken(),
         data: JSON.stringify({
             start_date: start_date,
             end_date: end_date,
             trainerId: trainer_id,
-            classroomId: class_id
+            classroomId: class_id,
+            categoryId: category_id
         }),
         contentType: "application/json",
         success: (res) => {
@@ -111,6 +156,22 @@ function create() {
             $("#create__end_date").val("");
 
         },
+        error: function (xhr, textStatus, errorThrown) {
+            let err = JSON.parse(xhr.responseText);
+            let status = "" + err.message[0] + err.message[1] + err.message[2]
+            let msg = ""
+            if (status == 409) {
+                msg = "Segmen  sudah ada"
+            } else {
+                msg = "Something when Wrong !!!"
+            }
+
+            Swal.fire({
+                icon: "error",
+                title: status,
+                text: msg,
+            })
+        }
     });
 
 }
@@ -128,14 +189,30 @@ function beforeUpdate(id) {
             $("#update_trainer_id").val(res.trainer.id);
 
         },
+        error: function (xhr, textStatus, errorThrown) {
+            let err = JSON.parse(xhr.responseText);
+            let status = "" + err.message[0] + err.message[1] + err.message[2]
+            let msg = ""
+            if (status == 409) {
+                msg = "Segmen sudah ada"
+            } else {
+                msg = "Something when Wrong !!!"
+            }
+
+            Swal.fire({
+                icon: "error",
+                title: status,
+                text: msg,
+            })
+        }
     });
 }
 
 
 function update() {
-    let start_date = $("#create__start_date").val();
-    let end_date = $("#create_end_date").val();
-    let trainer_id = $("#trainer_id option:selected").val();
+    let start_date = $("#update__start_date").val();
+    let end_date = $("#update_end_date").val();
+    let trainer_id = $("#update_trainer_id option:selected").val();
     let class_id = $("#class_id").val();
     let segment_id = $("#segment_id").val();
 
@@ -152,14 +229,14 @@ function update() {
         if (result.isConfirmed) {
             $.ajax({
                 method: "PUT",
-                url: "/api/segment/" + class_id,
+                url: "/api/segment/" + segment_id,
                 dataType: "JSON",
-                // beforeSend: addCsrfToken(),
+                beforeSend: addCsrfToken(),
                 data: JSON.stringify({
                     start_date: start_date,
                     end_date: end_date,
-                    trainerId: trainer_id,
-                    classroomId: class_id
+                    classroomId: class_id,
+                    trainerId: trainer_id
                 }),
                 contentType: "application/json",
                 success: (res) => {
@@ -168,6 +245,22 @@ function update() {
                     $("#update_start_date").val("");
                     $("#update_end_date").val("");
                 },
+                error: function (xhr, textStatus, errorThrown) {
+                    let err = JSON.parse(xhr.responseText);
+                    let status = "" + err.message[0] + err.message[1] + err.message[2]
+                    let msg = ""
+                    if (status == 409) {
+                        msg = "Topic sudah ada"
+                    } else {
+                        msg = "Something when Wrong !!!"
+                    }
+
+                    Swal.fire({
+                        icon: "error",
+                        title: status,
+                        text: msg,
+                    })
+                }
             });
             Swal.fire("Updated!", "Region success to update...", "success");
         }
@@ -199,10 +292,26 @@ function deleteData(id) {
                     method: "DELETE",
                     url: "/api/segment/" + id,
                     dataType: "JSON",
-                    // beforeSend: addCsrfToken(),
+                    beforeSend: addCsrfToken(),
                     success: (res) => {
                         $("#table-segment").DataTable().ajax.reload();
                     },
+                    error: function (xhr, textStatus, errorThrown) {
+                        let err = JSON.parse(xhr.responseText);
+                        let status = "" + err.message[0] + err.message[1] + err.message[2]
+                        let msg = ""
+                        if (status == 409) {
+                            msg = "Topic sudah ada"
+                        } else {
+                            msg = "Something when Wrong !!!"
+                        }
+
+                        Swal.fire({
+                            icon: "error",
+                            title: status,
+                            text: msg,
+                        })
+                    }
                 });
                 swalWithBootstrapButtons.fire(
                     "Deleted!",

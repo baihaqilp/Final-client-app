@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.Grade;
+import id.co.metrodata.clientapp.utils.BasicHeader;
 
 @Service
 public class GradeService {
@@ -37,11 +38,19 @@ public class GradeService {
                 }).getBody();
     }
 
+    public List<Grade> getAllClass(long id) {
+        return restTemplate.exchange(
+                url + "/classroom/" + id,
+                HttpMethod.GET,
+                null, new ParameterizedTypeReference<List<Grade>>() {
+                }).getBody();
+    }
+
     public Grade create(Grade grade) {
         return restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,
-                new HttpEntity(grade),
+                new HttpEntity(grade, BasicHeader.createHeader()),
                 Grade.class).getBody();
     }
 
@@ -49,14 +58,14 @@ public class GradeService {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,
-                new HttpEntity(grade), Grade.class).getBody();
+                new HttpEntity(grade, BasicHeader.createHeader()), Grade.class).getBody();
     }
 
     public Grade delete(long id) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.DELETE,
-                null, Grade.class).getBody();
+                new HttpEntity(BasicHeader.createHeader()), Grade.class).getBody();
     }
 
 }

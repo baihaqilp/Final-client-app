@@ -1,7 +1,15 @@
 $(document).ready(function () {
+  // $.ajax({
+  //   url: "/api/segment/trainer/" + 2,
+  //   method: "GET",
+  //   dataType: "JSON",
+  //   success: (res) => {
+  //     $.each(res);
+  //   },
+  // });
   $("#table-class").DataTable({
     ajax: {
-      url: "/api/classroom",
+      url: "/api/segment/trainer",
       dataSrc: "",
     },
     columns: [
@@ -11,24 +19,48 @@ $(document).ready(function () {
           return meta.row + 1;
         },
       },
-      { data: "name" },
-      { data: "program.name" },
+      { data: "classroom.name" },
+      { data: "classroom.program.name" },
+      {
+        data: null,
+        render: function (data, type, row, meta) {
+          if (data.classroom.isStatus) {
+            return `<button
+            type="button"
+            class="btn btn-success "
+          >
+            Active
+          </button>`
+          } else {
+            return `<button
+            type="button"
+            class="btn btn-secondary "
+          >
+            Non Active
+          </button>`
+          }
+        },
+      },
       {
         data: null,
         render: (data, type, row, meta) => {
           return `
-          <button
+          <a href="/trainer/classroom/${data.classroom.id}/trainer"
           type="button"
-          class="btn mx-3"
-          data-bs-toggle="modal"
-          data-bs-target="#detailClass"
-          onClick="getById(${data.id})"
+          class="btn mx-3")"
         >
-        <i
-          class="fa-solid fa-up-right-from-square"
-          style="font-size: 24px"
-        ></i>
-        </button>`;
+        <i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>
+        </a>
+        <a href="/trainer/trainee/classroom/${data.classroom.id}"
+        type="button"
+        class="btn mx-3")"
+      >
+      <i
+        class="fa-solid fa-user-graduate px-2"
+        style="font-size: 36px; color: #7978e9"
+      ></i>
+      </a>
+          `;
         },
       },
     ],

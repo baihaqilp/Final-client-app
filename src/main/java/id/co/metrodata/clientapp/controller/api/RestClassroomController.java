@@ -52,4 +52,9 @@ public class RestClassroomController {
     public List<Classroom> getByProgramId(@PathVariable long id) {
         return classroomService.getByProgramId(id);
     }
+
+    @GetMapping("/trainee")
+    public Classroom getByTrainee() {
+        return classroomService.getByTrainee();
+    }
 }

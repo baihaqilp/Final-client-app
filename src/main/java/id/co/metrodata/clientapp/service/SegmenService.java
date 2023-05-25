@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.Segment;
 import id.co.metrodata.clientapp.model.dto.request.SegmentRequest;
+import id.co.metrodata.clientapp.utils.BasicHeader;
 
 @Service
 public class SegmenService {
@@ -25,7 +26,16 @@ public class SegmenService {
         return restTemplate.exchange(
                 url,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<List<Segment>>() {
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Segment>>() {
+                }).getBody();
+    }
+
+    // group by trainer
+    public List<Segment> getSegmentTrainer() {
+        return restTemplate.exchange(
+                url + "/trainer",
+                HttpMethod.GET,
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Segment>>() {
                 }).getBody();
     }
 
@@ -33,7 +43,23 @@ public class SegmenService {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<Segment>() {
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<Segment>() {
+                }).getBody();
+    }
+
+    public List<Segment> getByTrainerId(long id) {
+        return restTemplate.exchange(
+                url + "/trainer/" + id,
+                HttpMethod.GET,
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Segment>>() {
+                }).getBody();
+    }
+
+    public List<Segment> getByClassIdAndTrainerId(long class_id) {
+        return restTemplate.exchange(
+                url + "/class/" + class_id + "/trainer",
+                HttpMethod.GET,
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Segment>>() {
                 }).getBody();
     }
 
@@ -41,29 +67,29 @@ public class SegmenService {
         return restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,
-                new HttpEntity(segment),
+                new HttpEntity(segment, BasicHeader.createHeader()),
                 Segment.class).getBody();
     }
 
-    public Segment update(long id, Segment segment) {
+    public Segment update(long id, SegmentRequest segment) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,
-                new HttpEntity(segment), Segment.class).getBody();
+                new HttpEntity(segment, BasicHeader.createHeader()), Segment.class).getBody();
     }
 
     public Segment delete(long id) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.DELETE,
-                null, Segment.class).getBody();
+                new HttpEntity(BasicHeader.createHeader()), Segment.class).getBody();
     }
 
     public List<Segment> getByClass(long id) {
         return restTemplate.exchange(
                 url + "/class/" + id,
                 HttpMethod.GET,
-                null,
+                new HttpEntity(BasicHeader.createHeader()),
                 new ParameterizedTypeReference<List<Segment>>() {
                 }).getBody();
     }

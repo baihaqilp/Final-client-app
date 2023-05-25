@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/main}"
+>
+  <body>
+    <!-- content -->
+    <section layout:fragment="content">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card shadow-lg" style="border-radius: 20px">
+            <div class="card-body">
+              <div
+                class="card-header d-flex justify-content-between"
+                style="background-color: white"
+              >
+                <div
+                  class="card-header-left d-flex flex-row align-items-center"
+                >
+                  <i
+                    class="fa-solid fa-diagram-project px-2"
+                    style="font-size: 48px; color: #7da0fa"
+                  ></i>
+                  <input type="hidden" th:value="*{class_id}" id="class_id" />
+                  <input
+                    type="hidden"
+                    th:value="*{trainer_id}"
+                    id="trainer_id"
+                  />
+                  <h5 class="card-title mt-2"></h5>
+                </div>
+              </div>
+              <div class="card-content d-flex flex-column pt-2">
+                <div class="segment-cards-container"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div layout:fragment="script">
+      <script th:src="@{/js/trainer/detailClass.js}"></script>
+    </div>
+  </body>
+</html>

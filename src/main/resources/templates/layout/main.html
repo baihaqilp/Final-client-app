@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
     <title>Dashboard</title>
 
     <!-- Bootstrap -->
@@ -25,6 +31,11 @@
       rel="stylesheet"
       th:href="@{/plugins/fontawesome-free/css/all.min.css}"
     />
+    <!-- calendar -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css"
+      rel="stylesheet"
+    />
 
     <!-- css -->
     <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
@@ -32,19 +43,20 @@
       rel="stylesheet"
       href="http://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"
     />
+
+    <!-- include summernote css/js-->
+    <link
+      href=" https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.css "
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!-- navbar -->
     <div th:replace="fragments/navbar :: navbar"></div>
     <div class="wrapper">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-2" style="width: 20%">
-            <div class="sidebar">
-              <div th:replace="fragments/sidebar :: sidebar"></div>
-            </div>
-          </div>
-          <div class="col-lg-9" style="padding-top: 3rem">
+        <div>
+          <div style="padding-top: 3rem">
             <section layout:fragment="content"></section>
           </div>
         </div>
@@ -69,9 +81,17 @@
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
     <!-- sweetalert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- summernote -->
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.js "></script>
+    <!-- calendar -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script src="/dist/jquery.bs.calendar.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
+
+    <script th:src="@{/js/sidebar.js}"></script>
     <script th:src="@{/js/addCSRF.js}"></script>
 
     <!-- <script src="@{/plugins/jquery/jquery.min.js}"></script>

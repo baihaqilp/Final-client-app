@@ -8,10 +8,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import id.co.metrodata.clientapp.model.Materi;
+import id.co.metrodata.clientapp.model.dto.request.MateriRequest;
 import id.co.metrodata.clientapp.service.MateriService;
+import lombok.AllArgsConstructor;
 
+@RestController
+@RequestMapping("/api/materi")
+@AllArgsConstructor
 public class RestMateriController {
 
     private MateriService materiService;
@@ -27,17 +34,22 @@ public class RestMateriController {
     }
 
     @PostMapping
-    public Materi create(@RequestBody Materi materi) {
+    public Materi create(@RequestBody MateriRequest materi) {
         return materiService.create(materi);
     }
 
     @PutMapping("/{id}")
-    public Materi update(@PathVariable long id, @RequestBody Materi materi) {
+    public Materi update(@PathVariable long id, @RequestBody MateriRequest materi) {
         return materiService.update(id, materi);
     }
 
     @DeleteMapping("/{id}")
     public Materi delete(@PathVariable long id) {
-        return materiService.getById(id);
+        return materiService.delete(id);
+    }
+
+    @GetMapping("/topic/{id}")
+    public List<Materi> getByTopicId(@PathVariable long id) {
+        return materiService.getByTopicId(id);
     }
 }

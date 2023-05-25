@@ -7,12 +7,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.User;
 import id.co.metrodata.clientapp.model.dto.request.TraineeRequest;
 import id.co.metrodata.clientapp.model.dto.request.TrainerRequest;
+import id.co.metrodata.clientapp.utils.BasicHeader;
 
 @Service
 public class UserService {
@@ -27,7 +31,7 @@ public class UserService {
         return restTemplate.exchange(
                 url,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<List<User>>() {
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<User>>() {
                 }).getBody();
     }
 
@@ -35,7 +39,7 @@ public class UserService {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.GET,
-                null, new ParameterizedTypeReference<User>() {
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<User>() {
                 }).getBody();
     }
 
@@ -43,7 +47,7 @@ public class UserService {
         return restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,
-                new HttpEntity(user),
+                new HttpEntity(user, BasicHeader.createHeader()),
                 User.class).getBody();
     }
 
@@ -51,14 +55,14 @@ public class UserService {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,
-                new HttpEntity(user), User.class).getBody();
+                new HttpEntity(user, BasicHeader.createHeader()), User.class).getBody();
     }
 
     public User delete(long id) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.DELETE,
-                null, User.class).getBody();
+                new HttpEntity(BasicHeader.createHeader()), User.class).getBody();
     }
 
 }

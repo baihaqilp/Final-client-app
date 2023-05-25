@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 import id.co.metrodata.clientapp.model.User;
 import id.co.metrodata.clientapp.model.dto.request.TraineeRequest;
 import id.co.metrodata.clientapp.service.RegisterService;
+import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/api/register")
+@AllArgsConstructor
 public class RestRegisterController {
 
     private RegisterService registerService;

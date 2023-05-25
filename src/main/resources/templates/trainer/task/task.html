@@ -2,7 +2,7 @@
 <html
   lang="en"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{layout/trainer/main}"
+  layout:decorate="~{layout/main}"
 >
   <body>
     <!-- content -->
@@ -38,15 +38,15 @@
               </div>
               <div class="card-content d-flex flex-column">
                 <table
-                  class="table display table-stripped table-bordered mt-3 text-cente border border-rounded rounded-2"
-                  id="table-role"
+                  class="table display table-stripped table-bordered mt-3 text-center border border-rounded rounded-2"
+                  id="table-task"
                 >
                   <thead class="table-dark">
                     <tr>
                       <th class="col-1 text-center">No.</th>
                       <th class="col-4 text-center">Name</th>
-                      <th class="col-2 text-center">Class</th>
-                      <th class="col-2 text-center">Segment</th>
+                      <th class="col-2 text-center">Description</th>
+                      <th class="col-2 text-center">Deadline</th>
                       <th class="col-4 text-center">Action</th>
                     </tr>
                   </thead>
@@ -56,6 +56,7 @@
           </div>
         </div>
       </div>
+      <input type="hidden" id="segment_id" th:value="*{segment_id}" />
 
       <!-- Modal Add Class -->
       <div
@@ -95,25 +96,18 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="create_Task_email"
+                  id="create_task_desc"
                   placeholder="ex. MMiya.bi@gmail.com"
                 />
                 <label for="deadline" class="form-label fw-bold pt-3"
                   >Deadline</label
                 >
                 <input
-                  type="date"
+                  type="datetime-local"
                   class="form-control"
-                  id="create_Task_phone"
+                  id="create_task_deadline"
                   placeholder="ex. 0897678281"
                 />
-                <label for="segment" class="form-label fw-bold">Segment</label>
-                <select
-                  class="form-control form-control-sm select_program p-2"
-                  aria-label="form-select-sm example"
-                >
-                  <option selected value="">Choose Segment</option>
-                </select>
                 <!-- <label for="class" class="form-label fw-bold">Class</label>
                 <input
                   type="text"
@@ -159,11 +153,11 @@
         aria-labelledby="updateTaskLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5 fw-bold" id="addTaskLabel">
-                update Class
+                Update Task
               </h1>
               <button
                 type="button"
@@ -174,38 +168,41 @@
             </div>
             <div class="modal-body">
               <div class="mb-3">
+                <input type="number" class="form-control" id="update_task_id" />
                 <label for="name" class="form-label fw-bold">Name</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="create_task_name"
+                  id="update_task_name"
                   placeholder="ex. 1"
                 />
                 <label for="desc" class="form-label fw-bold pt-3"
                   >Description</label
                 >
-                <input
+                <textarea
                   type="text"
                   class="form-control"
-                  id="create_Task_email"
-                  placeholder="ex. MMiya.bi@gmail.com"
-                />
+                  id="update_task_desc"
+                  cols="30"
+                  rows="10"
+                ></textarea>
+
                 <label for="deadline" class="form-label fw-bold pt-3"
                   >Deadline</label
                 >
                 <input
-                  type="date"
+                  type="datetime-local"
                   class="form-control"
-                  id="create_Task_phone"
-                  placeholder="ex. 0897678281"
+                  id="update_task_deadline"
                 />
-                <label for="segment" class="form-label fw-bold">Segment</label>
-                <select
-                  class="form-control form-control-sm select_program p-2"
-                  aria-label="form-select-sm example"
-                >
-                  <option selected value="">Choose Segment</option>
-                </select>
+                <label for="segment" class="form-label fw-bold pt-3"
+                  >Segment
+                </label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="update_segment_id"
+                />
               </div>
             </div>
             <div class="modal-footer">
@@ -234,6 +231,8 @@
         </div>
       </div>
     </section>
-    <div layout:fragment="script"></div>
+    <div layout:fragment="script">
+      <script th:src="@{/js/trainer/task.js}"></script>
+    </div>
   </body>
 </html>
