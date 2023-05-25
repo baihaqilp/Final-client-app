@@ -2,7 +2,7 @@
 <html
   lang="en"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{layout/admin/main}"
+  layout:decorate="~{layout/main}"
 >
   <body>
     <!-- content -->
@@ -194,7 +194,7 @@
             <div class="modal-body">
               <div class="mb-3">
                 <label for="name" class="form-label fw-bold">Name</label>
-                <input type="hidden" id="update_trainer_id">
+                <input type="hidden" id="update_trainer_id" />
                 <input
                   type="text"
                   class="form-control"
@@ -299,14 +299,16 @@
                   type="text"
                   class="form-control"
                   id="detail_trainer_name"
-                  placeholder="ex. Miya" disabled
+                  placeholder="ex. Miya"
+                  disabled
                 />
                 <label for="email" class="form-label fw-bold pt-3">Email</label>
                 <input
                   type="email"
                   class="form-control"
                   id="detail_trainer_email"
-                  placeholder="ex. MMiya.bi@gmail.com" disabled
+                  placeholder="ex. MMiya.bi@gmail.com"
+                  disabled
                 />
                 <label for="phone" class="form-label fw-bold pt-3"
                   >Phone Number</label
@@ -314,8 +316,9 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="detail_trainer_phone" 
-                  placeholder="ex. 0897678281" disabled
+                  id="detail_trainer_phone"
+                  placeholder="ex. 0897678281"
+                  disabled
                 />
                 <label for="address" class="form-label fw-bold pt-3"
                   >Address</label
@@ -324,7 +327,8 @@
                   type="text"
                   class="form-control"
                   id="detail_trainer_address"
-                  placeholder="ex. Shibuya" disabled
+                  placeholder="ex. Shibuya"
+                  disabled
                 />
                 <!-- <label for="class" class="form-label fw-bold">Class</label>
                 <input
