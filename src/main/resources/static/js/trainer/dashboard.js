@@ -33,7 +33,6 @@ $(document).ready(function () {
     dataType: "JSON",
     beforeSend: addCsrfToken(),
     success: (res) => {
-      console.log(res);
       let materi_sum = res.length;
       $("#materi_sum").text(materi_sum);
     },
