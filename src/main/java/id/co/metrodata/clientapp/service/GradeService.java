@@ -26,7 +26,7 @@ public class GradeService {
         return restTemplate.exchange(
                 url,
                 HttpMethod.GET,
-                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Grade>>() {
+                null, new ParameterizedTypeReference<List<Grade>>() {
                 }).getBody();
     }
 
@@ -34,7 +34,15 @@ public class GradeService {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.GET,
-                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<Grade>() {
+                null, new ParameterizedTypeReference<Grade>() {
+                }).getBody();
+    }
+
+    public List<Grade> getAllClass(long id) {
+        return restTemplate.exchange(
+                url + "/classroom/" + id,
+                HttpMethod.GET,
+                null, new ParameterizedTypeReference<List<Grade>>() {
                 }).getBody();
     }
 

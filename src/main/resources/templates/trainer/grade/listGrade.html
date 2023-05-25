@@ -22,21 +22,24 @@
                     class="fa-solid fa-chart-line px-2"
                     style="font-size: 36px; color: #4b49ac"
                   ></i>
-                  <h5 class="card-title mt-3">Trainee Grade</h5>
+                  <h5 class="card-title mt-3">Trainee Grade -- <b id="class_name"></b></h5>
                 </div>
               </div>
               <div class="card-content d-flex flex-column">
+                <input type="hidden" id="class_id" th:value="${class_id}">
                 <table
-                  class="table display table-stripped table-bordered mt-3 text-cente border border-rounded rounded-2"
+                  class="table display table-stripped table-bordered mt-3 text-center border border-rounded rounded-2"
                   id="table-grade"
                 >
-                  <thead class="table-dark">
+                  <thead class="table-dark tex">
                     <tr>
                       <th class="col-1 text-center">No.</th>
-                      <th class="col-2 text-center">Classroom</th>
-                      <th class="col-2 text-center">program</th>
+                      <th class="col-1 text-center">Segment</th>
+                      <th class="col-2 text-center">Name</th>
+                      <th class="col-2 text-center">Trainer</th>
+                      <th class="col-1 text-center">Average</th>
+                      <th class="col-1 text-center">Grade</th>
                       <th class="col-2 text-center">Status</th>
-                      <th class="col-4 text-center">Action</th>
                     </tr>
                   </thead>
                 </table>
@@ -270,7 +273,7 @@
       </div>
     </section>
     <div layout:fragment="script">
-      <script th:src="@{/js/trainer/grade.js}"></script>
+      <script th:src="@{/js/trainer/listGrade.js}"></script>
     </div>
   </body>
 </html>

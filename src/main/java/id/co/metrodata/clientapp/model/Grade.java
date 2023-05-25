@@ -13,5 +13,7 @@ public class Grade {
     private String name;
     private Float average;
     private String status;
+    private Employee trainee;
+    private Segment segment;
 
 }
