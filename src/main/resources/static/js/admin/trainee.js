@@ -82,15 +82,6 @@ $(document).ready(function () {
                   >
                     Detail
                   </button>
-                  <button
-                    type="button"
-                    class="btn btn-warning mx-3"
-                    data-bs-toggle="modal"
-                    data-bs-target="#updateTrainee"
-                    onClick="beforeUpdate(${data.id})"
-                  >
-                    Edit
-                  </button>
                   <button class="btn btn-danger" onClick="deletedata(${data.id})">
                     Delete
                   </button>

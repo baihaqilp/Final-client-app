@@ -15,5 +15,5 @@ public class TrainerRequest {
     private String email;
     private String phone;
     private String address;
-    private long roleId;
+    private long roleId = 1;
 }
