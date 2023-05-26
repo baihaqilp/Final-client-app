@@ -104,6 +104,7 @@
                 <label for="deadline" class="form-label fw-bold pt-3"
                   >Deadline</label
                 >
+                <input type="hidden" name="" id="detail_task_deadline_ipt" hidden>
                 <p id="detail_task_deadline"></p>
 
                 <label for="segment" class="form-label fw-bold">Segment</label>
@@ -123,12 +124,12 @@
               >
                 Close
               </button>
-              <a
-                
+              <button
+                onclick="submission()"
                 class="btn"
                 id="submit"
                 style="background-color: #4b49ac; color: white"
-                >Submission</a
+                >Submission</button
               >
             </div>
           </div>

@@ -90,6 +90,8 @@ function submission() {
       showConfirmButton: false,
       timer: 1500,
     });
+
+    $("#detailTask").modal("hide")
   } else {
     window.location.href = "/trainee/task/" + taskID + "/submission-add"
   }
