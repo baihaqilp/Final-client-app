@@ -2,7 +2,7 @@ $(document).ready(function () {
   let id = $("#id").val();
   $("#table-submission").DataTable({
     ajax: {
-      url: "/api/evaluation/task/" + id,
+      url: "/api/submission/task/" + id,
       dataSrc: "",
     },
     columns: [
@@ -12,23 +12,45 @@ $(document).ready(function () {
           return meta.row + 1;
         },
       },
-      { data: "submission.employee.name" },
+      { data: "employee.name" },
       {
         data: null,
         render: (data, type, row, meta) => {
           return `
-            <a href="${data.submission.submission_url}"
+            <a href="${data.submission_url}"
             type="button"
             class="btn btn-success mx-3")"
           >
-            ${data.submission.submission_file}
+            ${data.submission_file}
           </a>
             `;
         },
       },
-      { data: "submission.submission_date" },
-      { data: "nilai" },
-      { data: "trainer.name" },
+      { data: "submission_date" },
+      {
+        data: null,
+        render: (data, type, row, meta) => {
+          let submission = data.id;
+          let nilai = "";
+
+          $.ajax({
+            url: "/api/evaluation/task/" + id,
+            method: "GET",
+            dataType: "JSON",
+            async: false,
+            success: (e) => {
+              e.forEach((val) => {
+                if (submission == val.submission.id) {
+                  nilai = val.nilai;
+                }
+              });
+            },
+          });
+
+          return nilai;
+        },
+      },
+      { data: "task.segment.trainer.name" },
       {
         data: null,
         render: (data, type, row, meta) => {
