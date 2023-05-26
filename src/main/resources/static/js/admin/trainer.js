@@ -30,15 +30,6 @@ $(document).ready(function () {
                   >
                     Detail
                   </button>
-                  <button
-                    type="button"
-                    class="btn btn-warning mx-3"
-                    data-bs-toggle="modal"
-                    data-bs-target="#updateTrainer"
-                    onClick="beforeUpdate(${data.id})"
-                  >
-                    Edit
-                  </button>
                   <button class="btn btn-danger" onClick="deletedata(${data.id})">
                     Delete
                   </button>
@@ -125,7 +116,7 @@ function create() {
   });
 }
 
-function beforeUpdate(id) {
+function beforeUpdateRole(id) {
   $.ajax({
     method: "GET",
     url: "/api/employee/" + id,
@@ -136,6 +127,8 @@ function beforeUpdate(id) {
       $("#update_trainer_email").val(res.email);
       $("#update_trainer_phone").val(res.phone);
       $("#update_trainer_address").val(res.address);
+      $("#update_trainer_username").val(res.user.username);
+      $("#update_trainer_password").val(res.user.password);
     },
   });
 }
@@ -145,7 +138,10 @@ function update() {
   let emailVal = $("#update_trainer_email").val();
   let phoneVal = $("#update_trainer_phone").val();
   let addressVal = $("#update_trainer_address").val();
+  let usernameVal = $("#update_trainer_username").val();
+  let passwordVal = $("#update_trainer_password").val();
   let idVal = $("#update_trainer_id").val();
+  console.log(usernameVal);
   Swal.fire({
     title: "Are you sure?",
     text: "You won't be able to revert this!",
@@ -162,10 +158,13 @@ function update() {
         dataType: "JSON",
         beforeSend: addCsrfToken(),
         data: JSON.stringify({
+          username: usernameVal,
+          password: passwordVal,
           name: nameVal,
           email: emailVal,
           phone: phoneVal,
           address: addressVal,
+          roleId: 1
         }),
         contentType: "application/json",
         success: (res) => {
@@ -177,10 +176,16 @@ function update() {
           $("#update_trainer_phone").val("");
           $("#update_trainer_address").val("");
           $("#update_trainer_username").val("");
-          $("#updatee_trainer_password").val("");
+          $("#update_trainer_password").val("");
+          Swal.fire("Updated!", "Trainer success to update...", "success");
         },
+        error: (e) => {
+
+          Swal.fire("Not Updated!", "Trainer Failed to update...", "error");
+        },
+
       });
-      Swal.fire("Updated!", "Trainer success to update...", "success");
+
     } else if (
       /* Read more about handling dismissals below */
       result.dismiss === Swal.DismissReason.cancel

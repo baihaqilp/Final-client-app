@@ -37,6 +37,11 @@ public class RestSegmentController {
         return segmenService.getSegmentTrainer();
     }
 
+    @GetMapping("/all")
+    public List<Segment> getSegmentTrainerAll() {
+        return segmenService.getAllByTrainerId();
+    }
+
     @GetMapping("/{id}")
     public Segment getById(@PathVariable long id) {
         return segmenService.getById(id);

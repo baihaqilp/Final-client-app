@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.Employee;
+import id.co.metrodata.clientapp.model.dto.request.TrainerRequest;
 import id.co.metrodata.clientapp.utils.BasicHeader;
 
 @Service
@@ -46,11 +47,11 @@ public class EmployeeService {
                 Employee.class).getBody();
     }
 
-    public Employee update(long id, Employee employee) {
+    public Employee update(long id, TrainerRequest employee) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,
-                new HttpEntity(employee, BasicHeader.createHeader()), Employee.class).getBody();
+                new HttpEntity(employee), Employee.class).getBody();
     }
 
     public Employee delete(long id) {

@@ -47,6 +47,7 @@ $(document).ready(function () {
           return `
           <a href="/trainer/classroom/${data.classroom.id}/trainer"
           type="button"
+          title="Detail ${data.classroom.name}"
           class="btn mx-3")"
         >
         <i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>

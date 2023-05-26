@@ -123,7 +123,7 @@ function beforeUpdate(id) {
     success: (res) => {
       $("#update_task_id").val(res.id);
       $("#update_task_name").val(res.name);
-      $("#update_task_desc").val(res.desc);
+      $("#update_task_desc").summernote('code', res.desc);
       $("#update_task_deadline").val(res.deadline);
       $("#update_segment_id").val(res.segment.id);
     },

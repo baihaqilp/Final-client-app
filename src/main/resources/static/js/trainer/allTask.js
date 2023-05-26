@@ -3,7 +3,7 @@ $(document).ready(function () {
   $('#create_task_desc').summernote();
   $.ajax({
     method: "GET",
-    url: "/api/segment/trainer",
+    url: "/api/segment/all",
     dataType: "JSON",
     beforeSend: addCsrfToken(),
     success: (res) => {
@@ -141,7 +141,7 @@ function beforeUpdate(id) {
     success: (res) => {
       $("#update_id").val(res.id);
       $("#update_task_name").val(res.name);
-      $("#update_task_desc").val(res.desc);
+      $("#update_task_desc").summernote('code', res.desc);
       $("#update_task_deadline").val(res.deadline);
       $("#update_segment").val(res.segment.id);
     },

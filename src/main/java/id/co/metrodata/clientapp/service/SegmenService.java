@@ -93,4 +93,12 @@ public class SegmenService {
                 new ParameterizedTypeReference<List<Segment>>() {
                 }).getBody();
     }
+
+    public List<Segment> getAllByTrainerId() {
+        return restTemplate.exchange(
+                url + "/all/",
+                HttpMethod.GET,
+                null, new ParameterizedTypeReference<List<Segment>>() {
+                }).getBody();
+    }
 }

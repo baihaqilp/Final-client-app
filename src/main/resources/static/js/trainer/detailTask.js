@@ -1,5 +1,7 @@
 $(document).ready(function () {
   let id = $("#id").val();
+  let task_desc = $("#task_desc").val();
+  $("#summer").html(task_desc);
   $("#table-submission").DataTable({
     ajax: {
       url: "/api/submission/task/" + id,
@@ -29,43 +31,38 @@ $(document).ready(function () {
       { data: "submission_date" },
       {
         data: null,
-        render: (data, type, row, meta) => {
-          let submission = data.id;
-          let nilai = "";
-
-          $.ajax({
-            url: "/api/evaluation/task/" + id,
-            method: "GET",
-            dataType: "JSON",
-            async: false,
-            success: (e) => {
-              e.forEach((val) => {
-                if (submission == val.submission.id) {
-                  nilai = val.nilai;
-                }
-              });
-            },
-          });
-
-          return nilai;
+        render: function (data, type, row, meta) {
+          if (data.evaluation != null) {
+            return data.evaluation.nilai;
+          }
+          return data.evaluation;
         },
       },
-      { data: "task.segment.trainer.name" },
+      {
+        data: null,
+        render: function (data, type, row, meta) {
+          if (data.evaluation != null) {
+            return data.evaluation.trainer.name;
+          }
+          return data.evaluation;
+        },
+      },
       {
         data: null,
         render: (data, type, row, meta) => {
           return `
-          <button
-            type="button"
-            class="btn mx-3"
-            data-bs-toggle="modal"
-            data-bs-target="#evaluate"
-            onclick="beforeEval(${meta.row})"
-            style="background-color: white; border-color: #4b49ac; color: #4b49ac"
-          >
-            Eval
-          </a>
-            `;
+                        <button
+                            id="eval"
+                            type="button"
+                            class="btn mx-3"
+                            data-bs-toggle="modal"
+                            data-bs-target="#evaluate"
+                            onclick="beforeEval(${data.id})"
+                            style="background-color: white; border-color: #4b49ac; color: #4b49ac"
+                        >
+                            Eval
+                        </button>
+                            `;
         },
       },
     ],
@@ -85,20 +82,15 @@ function getById(id) {
   });
 }
 
-function beforeEval(rowIdx) {
-  let table = $("#table-submission").DataTable();
-  let rowData = table.row(rowIdx).data();
+function beforeEval(id) {
+  $("#eval_submission").val(id);
+}
 
-  let trainerId = rowData.task.segment.trainer.id;
-  let trainee = rowData.employee.name;
-  let submissionId = rowData.id;
-  $("#eval_trainer_id").val(trainerId);
-  $("#eval_trainee_name").val(trainee);
-  $("#eval_submission").val(submissionId);
+function beforeEvalDetail(id) {
+  $("#eval_submission").val(id);
 }
 
 function eval() {
-  let trainerId = $("#eval_trainer_id").val();
   let nilaiVal = $("#eval_nilai").val();
   let submissionVal = $("#eval_submission").val();
   $.ajax({
@@ -109,7 +101,6 @@ function eval() {
     data: JSON.stringify({
       nilai: nilaiVal,
       submission_id: submissionVal,
-      trainer_id: trainerId,
     }),
     contentType: "application/json",
     success: (res) => {
@@ -118,7 +109,7 @@ function eval() {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: "Region success to creat ....",
+        title: "Evaluation success to creat ....",
         showConfirmButton: false,
         timer: 1500,
       });
