@@ -13,6 +13,7 @@ $(document).ready(function () {
         method: "GET",
         success: function (res) {
           res.forEach((data) => {
+            console.log(data);
             var cardBody = `
           <div class="card mb-3">
           <div class="card-body">
