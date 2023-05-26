@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.co.metrodata.clientapp.model.Employee;
+import id.co.metrodata.clientapp.model.dto.request.TrainerRequest;
 import id.co.metrodata.clientapp.service.EmployeeService;
 import lombok.AllArgsConstructor;
 
@@ -38,7 +39,7 @@ public class RestEmployeeController {
     }
 
     @PutMapping("/{id}")
-    public Employee update(@PathVariable long id, @RequestBody Employee employee) {
+    public Employee update(@PathVariable long id, @RequestBody TrainerRequest employee) {
         return employeeService.update(id, employee);
     }
 
