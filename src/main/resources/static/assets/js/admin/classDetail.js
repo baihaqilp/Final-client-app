@@ -41,7 +41,7 @@ $(document).ready(function () {
         }
     });
 
-    let class_id = $("#id").val();
+    let class_id = $("#class_id").val();
     $('#table-segment').DataTable({
         ajax: {
             url: "/api/segment/class/" + class_id,
@@ -76,15 +76,12 @@ $(document).ready(function () {
                     return `
             <button
               type="button"
-              class="btn btn-warning mx-3"
+              class="btn btn-outline-warning mx-3"
               data-bs-toggle="modal"
               data-bs-target="#updateSegment"
               onClick="beforeUpdate(${data.id})"
             >
               Edit
-            </button>
-            <button class="btn btn-danger" onClick="deleteData(${data.id})">
-              Delete
             </button>
             `;
                 },
@@ -92,40 +89,6 @@ $(document).ready(function () {
         ]
     });
 
-    $('#table-trainee').DataTable({
-        ajax: {
-            url: "/api/employee/class/" + class_id,
-            dataSrc: "",
-            error: function (e) {
-                Swal.fire({
-                    icon: "error",
-                    title: "ERROR",
-                    text: "Something went WRONG !!!",
-                })
-            }
-        },
-        columns: [
-            {
-                data: null,
-                render: function (data, type, row, meta) {
-                    return meta.row + 1;
-                }
-            },
-            { data: "name" },
-            { data: "email" },
-            { data: "phone" },
-            {
-                data: null,
-                render: function (data, type, row, meta) {
-                    if (data.user.isEnabled) {
-                        return "Active"
-                    } else {
-                        return "Non-Active"
-                    }
-                }
-            }
-        ]
-    });
 
 });
 
@@ -182,8 +145,12 @@ function beforeUpdate(id) {
         url: "/api/segment/" + id,
         dataType: "JSON",
         success: (res) => {
-            $("#update__start_date").val(res.start_date);
-            $("#update_end_date").val(res.end_date);
+            let stDate = res.start_date;
+            let arrDate = stDate.split("-");
+            $("#update_start_date").val(arrDate[2] + "-" + (arrDate[1]) + "-" + (arrDate[0]));
+            edDate = res.end_date;
+            arredDate = edDate.split("-");
+            $("#update_end_date").val(arredDate[2] + "-" + (arredDate[1]) + "-" + (arredDate[0]));
             $("#class_id").val(res.classroom.id);
             $("#segment_id").val(res.id);
             $("#update_trainer_id").val(res.trainer.id);
@@ -207,7 +174,6 @@ function beforeUpdate(id) {
         }
     });
 }
-
 
 function update() {
     let start_date = $("#update__start_date").val();

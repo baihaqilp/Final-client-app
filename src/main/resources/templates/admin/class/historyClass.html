@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/main}"
+>
+  <body>
+    <!-- content -->
+    <section layout:fragment="content">
+      <div class="page-heading">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-12 col-md-6 order-md-1 order-last">
+                    <h3>Class Room</h3>
+                    <p class="text-subtitle text-muted">List of Classroom we have</p>
+                </div>
+                <div class="col-12 col-md-6 order-md-2 order-first">
+                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a th:href="@{/}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a th:href="@{/admin/classroom}">Classroom</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Classroon Non Active</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Basic Tables start -->
+        <section class="section">
+            <div class="card d-flex">
+              <div class="card-header d-flex justify-content-between">
+                <b>List Of Classroom</b>
+                <button class="btn btn-primary mb-3" onclick="history.back()">Back</button>
+              </div>
+                <div class="card-body ">
+                    <table class="table" id="table-class">
+                        <thead class=" text-center">
+                            <tr>
+                                <th class="col-1">No</th>
+                                <th class="col-3">Name</th>
+                                <th class="col-2">Program</th>
+                                <th class="col-2">Status</th>
+                                <th class="col-2">Action</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+        <!-- Basic Tables end -->
+      </div>
+
+      <!-- Modal Add Class -->
+      <div
+        class="modal fade"
+        id="addClass"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="addClassLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="addClassLabel">
+                Add Class
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="name" class="form-label fw-bold">Class Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_class_name"
+                  placeholder="ex. MCC-07"
+                />
+                <label for="name" class="form-label fw-bold"
+                  >Program Name</label
+                >
+                <select
+                  class="form-control form-control-sm select_program p-2"
+                  aria-label="form-select-sm example"
+                  id="select_program"
+                >
+                  <option selected value="">Choose Program</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Update -->
+      <div
+        class="modal fade"
+        id="updateClass"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="updateClassLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="updateClassLabel">
+                Update Class
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <input type="hidden" name="update_id" id="update_id" />
+                <label for="name" class="form-label fw-bold">Class Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="update_class_name"
+                />
+                <label for="name" class="form-label fw-bold"
+                  >Program Name</label
+                >
+                <select
+                  class="form-control form-control-sm select_program p-2"
+                  aria-label="form-select-sm example"
+                  id="update_program"
+                >
+                  <option selected value="">Choose Program</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary" onclick="update()">
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div layout:fragment="script">
+      <script th:src="@{/assets/js/admin/classNonActive.js}"></script>
+    </div>
+  </body>
+</html>

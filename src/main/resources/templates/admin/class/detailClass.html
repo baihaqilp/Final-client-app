@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/main}"
+>
+  <body>
+    <!-- content -->
+    <section layout:fragment="content">
+      <th:block th:object="${classroom}">
+        <div class="page-heading">
+          <div class="page-title">
+              <div class="row">
+                  <div class="col-12 col-md-6 order-md-1 order-last">
+                      <h3 th:text="*{name}">Class Room</h3>
+                      <p class="text-subtitle text-muted" th:text="*{program.name}">List of Classroom we have</p>
+                  </div>
+                  <div class="col-12 col-md-6 order-md-2 order-first">
+                      <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                          <ol class="breadcrumb">
+                              <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                              <li class="breadcrumb-item"><a th:href="@{/admin/class}">Classroom</a></li>
+                              <li class="breadcrumb-item active" aria-current="page">Segment</li>
+                          </ol>
+                          <button class="btn btn-secondary float-end" onclick="history.back()">Back</button>
+                      </nav>
+                      
+                  </div>
+              </div>
+          </div>
+  
+          <!-- Basic Tables start -->
+          <section class="section">
+              <div class="card">
+                  <div class="card-header d-flex justify-content-between">
+                    <b>Segment</b>
+                    <input type="hidden" id="class_id" th:value="*{id}">
+                    <button th:if="*{isStatus == true}" class="btn btn-primary mb-3" data-bs-toggle="modal"
+                    data-bs-target="#addSegment">Add Segmen</button>
+                  </div>
+                  <div class="card-body ">
+                      <table class="table" id="table-segment">
+                          <thead class=" text-center">
+                              <tr>
+                                  <th class="col-1">No</th>
+                                  <th class="col-3">Name</th>
+                                  <th class="col-2">Trainer</th>
+                                  <th class="col-2">Start Date</th>
+                                  <th class="col-2">End Date</th>
+                                  <th class="col-4">Action</th>
+                              </tr>
+                          </thead>
+                      </table>
+                  </div>
+              </div>
+  
+          </section>
+          <!-- Basic Tables end -->
+        </div>
+      </th:block>
+
+      <!-- Modal Add Segment -->
+      <div
+      class="modal fade"
+      id="addSegment"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="addSegmentLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 fw-bold" id="addSegmentLabel">
+              Add Segment
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="start_date" class="form-label fw-bold">Start Date</label>
+              <input
+                type="date"
+                class="form-control"
+                id="create__start_date"
+                placeholder="dd-MM-yyy ex: 26-10-2023"
+              />
+              <label for="end_date" class="form-label fw-bold">End Date</label>
+              <input
+                type="date"
+                class="form-control"
+                id="create_end_date"
+                placeholder="dd-MM-yyy ex: 26-10-2023"
+              />
+              <label for="name" class="form-label fw-bold"
+                >Trainer</label
+              >
+              <select
+                class="form-control form-control-sm select_trainer p-2"
+                aria-label="form-select-sm example" id="trainer_id"
+              >
+                <option selected value="">Choose trainer</option>
+              </select>
+              <label for="name" class="form-label fw-bold"
+                >Segment</label
+              >
+              <select
+                class="form-control form-control-sm select_category p-2"
+                aria-label="form-select-sm example" id="select_category"
+              >
+                <option selected value="">Choose Segment</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" onclick="create()">
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Update Segment -->
+    <div
+      class="modal fade"
+      id="updateSegment"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="updateSegmentLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 fw-bold" id="updateSegmentLabel">
+              Add Segment
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <input type="hidden" id="class_id">
+              <input type="hidden" id="segment_id">
+              <label for="start_date" class="form-label fw-bold">Start Date</label>
+              <input
+                type="date"
+                class="form-control"
+                id="update_start_date"
+                placeholder="dd-MM-yyy ex: 26-10-2023"
+              />
+              <label for="end_date" class="form-label fw-bold">End Date</label>
+              <input
+                type="date"
+                class="form-control"
+                id="update_end_date"
+                placeholder="dd-MM-yyy ex: 26-10-2023"
+              />
+              <label for="name" class="form-label fw-bold"
+                >Trainer</label
+              >
+              <select
+                class="form-control form-control-sm select_trainer p-2"
+                aria-label="form-select-sm example" id="update_trainer_id"
+              >
+                <option selected value="">Choose trainer</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" onclick="update()">
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div layout:fragment="script">
+      <script th:src="@{/assets/js/admin/classDetail.js}"></script>
+    </div>
+  </body>
+</html>

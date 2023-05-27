@@ -33,19 +33,17 @@ $(document).ready(function () {
         data: null,
         render: function (data, type, row, meta) {
           if (data.isStatus) {
-            return `<button
-            type="button"
-            class="btn btn-success "
+            return `<div
+            class="badge bg-success "
           >
             Active
-          </button>`
+          </div>`
           } else {
-            return `<button
-            type="button"
-            class="btn btn-secondary "
+            return `<div
+            class="badge bg-secondary "
           >
             Non Active
-          </button>`
+          </div>`
           }
         },
       },
@@ -53,24 +51,43 @@ $(document).ready(function () {
         data: null,
         render: (data, type, row, meta) => {
           return `
-          <a href="/admin/class/${data.id}"
-            type="button"
-            class="btn btn-warning mx-3")"
-          >
-            Detail
-          </a>
-          <button
-            type="button"
-            class="btn btn-warning mx-3"
-            data-bs-toggle="modal"
-            data-bs-target="#updateClass"
-            onClick="beforeUpdate(${data.id})"
-          >
-            Edit
-          </button>
-          <button class="btn btn-danger" onClick="deleteData(${data.id})">
-            Delete
-          </button>
+          <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle me-1" type="button"
+                  id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
+                  Action
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="dropwdown-item">
+                <a href="/admin/class/${data.id}"
+                  type="button"
+                  class="p-3")"
+                >
+                  Detail
+                </a>
+              </div>
+              <div class="dropwdown-item mt-2">
+                <a
+                  type="button"
+                  class="p-3"
+                  data-bs-toggle="modal"
+                  data-bs-target="#updateClass"
+                  onClick="beforeUpdate(${data.id})"
+                >
+                  Edit
+                </a>
+              </div>
+              <div class="dropwdown-item mt-2">
+                <a href="/admin/class/${data.id}/trainee"
+                  type="button"
+                  class="p-3"
+                >
+                  Trainee List
+                </a>
+              </div>
+              </div>
+          </div>
+          
           `;
         },
       },
