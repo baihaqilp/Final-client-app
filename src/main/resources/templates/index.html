@@ -24,8 +24,11 @@
                         </div>
                       </div>
                       <div class="col-md-8">
-                        <h6 class="text-muted font-semibold">Profile Views</h6>
-                        <h6 class="font-extrabold mb-0">112.000</h6>
+                        <h6
+                          class="text-muted font-semibold"
+                          id="prog-1-name"
+                        ></h6>
+                        <h6 class="font-extrabold mb-0" id="prog-1-count"></h6>
                       </div>
                     </div>
                   </div>
@@ -41,8 +44,11 @@
                         </div>
                       </div>
                       <div class="col-md-8">
-                        <h6 class="text-muted font-semibold">Followers</h6>
-                        <h6 class="font-extrabold mb-0">183.000</h6>
+                        <h6
+                          class="text-muted font-semibold"
+                          id="prog-2-name"
+                        ></h6>
+                        <h6 class="font-extrabold mb-0" id="prog-2-count"></h6>
                       </div>
                     </div>
                   </div>
@@ -58,8 +64,8 @@
                         </div>
                       </div>
                       <div class="col-md-8">
-                        <h6 class="text-muted font-semibold">Following</h6>
-                        <h6 class="font-extrabold mb-0">80.000</h6>
+                        <h6 class="text-muted font-semibold">Segment</h6>
+                        <h6 class="font-extrabold mb-0" id="segment-count"></h6>
                       </div>
                     </div>
                   </div>
@@ -71,12 +77,15 @@
                     <div class="row">
                       <div class="col-md-4">
                         <div class="stats-icon red">
-                          <i class="iconly-boldBookmark"></i>
+                          <i class="iconly-boldCheck"></i>
                         </div>
                       </div>
                       <div class="col-md-8">
-                        <h6 class="text-muted font-semibold">Saved Post</h6>
-                        <h6 class="font-extrabold mb-0">112</h6>
+                        <h6 class="text-muted font-semibold">Segment End</h6>
+                        <h6
+                          class="font-extrabold mb-0"
+                          id="complete-count"
+                        ></h6>
                       </div>
                     </div>
                   </div>
@@ -240,7 +249,7 @@
                   </div>
                   <div class="ms-3 name">
                     <h5 class="font-bold">John Duck</h5>
-                    <h6 class="text-muted mb-0">@johnducky</h6>
+                    <h6 class="text-muted mb-0" sec:authentication="name"></h6>
                   </div>
                 </div>
               </div>
@@ -299,7 +308,7 @@
       </div>
     </section>
     <div layout:fragment="script">
-      <script th:src="@{/js/admin/dashboard.js}"></script>
+      <script th:src="@{/assets/js/myJs/myDashboard.js}"></script>
     </div>
   </body>
 </html>

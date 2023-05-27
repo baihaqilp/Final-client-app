@@ -1,51 +1,85 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard - Mazer Admin Dashboard</title>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.css}" />
 
-    <link rel="stylesheet" href="assets/vendors/iconly/bold.css">
+    <link rel="stylesheet" th:href="@{/assets/vendors/iconly/bold.css}" />
 
-    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
-</head>
+    <link
+      rel="stylesheet"
+      th:href="@{/assets/vendors/perfect-scrollbar/perfect-scrollbar.css}"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/assets/vendors/bootstrap-icons/bootstrap-icons.css}"
+    />
+    <link rel="stylesheet" th:href="@{/assets/css/app.css}" />
+    <link
+      rel="shortcut icon"
+      th:href="@{/assets/images/favicon.svg}"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" th:href="@{/assets/css/classTrainer.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/classDetail.css}" />
 
-<body>
+    <!-- slider -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"
+    />
+  </head>
+
+  <body>
     <div id="app">
-        <div th:replace="fragment/sidebar :: sidebar"></div>
-        <div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
-
-            <section layout:fragment="content">
-
-            </section> 
-        </div>
+      <div th:replace="fragment/sidebar :: sidebar"></div>
+      <div id="main">
+        <header class="mb-3">
+          <a href="#" class="burger-btn d-block d-xl-none">
+            <i class="bi bi-justify fs-3"></i>
+          </a>
+        </header>
+        <section layout:fragment="content"></section>
+      </div>
     </div>
-    <script th:src="@{/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
+    <script th:src="@{/assets/vendors/jquery/jquery.min.js}"></script>
+    <script
+      th:src="@{/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"
+    ></script>
     <script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
 
     <script th:src="@{/assets/vendors/apexcharts/apexcharts.js}"></script>
     <script th:src="@{/assets/js/pages/dashboard.js}"></script>
 
     <script th:src="@{/assets/js/main.js}"></script>
+    <script
+      src="https://kit.fontawesome.com/98d02758b8.js"
+      crossorigin="anonymous"
+    ></script>
 
-    <section layout:fragment="script">
-
-    </section>
-</body>
-
+    <section layout:fragment="script"></section>
+  </body>
 </html>

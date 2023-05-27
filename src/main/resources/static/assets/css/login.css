@@ -1,6 +1,7 @@
 body {
   background: linear-gradient(45deg, #7da0fa, #7978e9, #4b49ac, #98bdff);
 }
+
 .login-base {
   height: 100vh;
   /* background: linear-gradient(to right, #96c93d, #00b09b); */
@@ -39,16 +40,20 @@ body {
   padding: 0 1rem;
   text-align: center;
 }
+
 h1 {
   font-family: "Montserrat", sans-serif;
 }
+
 p {
   font-family: "Montserrat", sans-serif;
 }
+
 form {
   font-family: "Open Sans", sans-serif;
   font-weight: light;
 }
+
 input[type="text"] {
   width: 100%;
   border: 1px solid black;
