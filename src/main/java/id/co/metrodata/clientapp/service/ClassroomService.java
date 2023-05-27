@@ -77,6 +77,14 @@ public class ClassroomService {
                 }).getBody();
     }
 
+    public List<Classroom> getByStatus(long status) {
+        return restTemplate.exchange(
+                url + "/status/" + status,
+                HttpMethod.GET,
+                null, new ParameterizedTypeReference<List<Classroom>>() {
+                }).getBody();
+    }
+
     public Classroom getByTrainee() {
         return restTemplate.exchange(
                 url + "/trainee",

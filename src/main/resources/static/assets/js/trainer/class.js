@@ -1,12 +1,49 @@
 $(document).ready(function () {
-  // $.ajax({
-  //   url: "/api/segment/trainer/" + 2,
-  //   method: "GET",
-  //   dataType: "JSON",
-  //   success: (res) => {
-  //     $.each(res);
-  //   },
-  // });
+  $("#class-card").slick({
+    rows: 2,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    vertical: true,
+    verticalSwiping: true,
+    arrows: true,
+    dots: true,
+  });
+  $.ajax({
+    url: "/api/segment/all",
+    method: "GET",
+    dataType: "JSON",
+    success: (data) => {
+      console.log(data);
+      const classCardContainer = $("#class-card"); // Get the container element for class cards
+      const cardsPerRow = 4; // Number of class cards per row
+      let currentRow; // Track the current row
+
+      data.forEach((e, index) => {
+        if (index % cardsPerRow === 0) {
+          currentRow = $("<div class='row'></div>");
+          classCardContainer.append(currentRow);
+        }
+
+        var card = `
+          <div class="col-3">
+            <a href="/trainer/classroom/${e.classroom.id}/trainer">
+            <div class="card border border-1 class-card">
+              <div class="card-header">
+                <h5>${e.classroom.name}</h5>
+                <h6>${e.classroom.program.name}</h6>
+              </div>
+              <div class="card-body text-muted"><p>Click for detail</p></div>
+            </div>
+            </a>
+          </div>
+        `;
+        currentRow.append(card); // Append the card HTML to the current row
+      });
+    },
+  });
+
   $("#table-class").DataTable({
     ajax: {
       url: "/api/segment/trainer",
@@ -30,14 +67,14 @@ $(document).ready(function () {
             class="btn btn-success "
           >
             Active
-          </button>`
+          </button>`;
           } else {
             return `<button
             type="button"
             class="btn btn-secondary "
           >
             Non Active
-          </button>`
+          </button>`;
           }
         },
       },

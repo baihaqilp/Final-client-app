@@ -62,4 +62,9 @@ public class RestClassroomController {
     public Classroom getByTrainee() {
         return classroomService.getByTrainee();
     }
+
+    @GetMapping("/status")
+    public Classroom getByStatus() {
+        return classroomService.getByTrainee();
+    }
 }

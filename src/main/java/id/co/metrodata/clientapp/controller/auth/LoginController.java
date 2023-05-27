@@ -27,7 +27,7 @@ public class LoginController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication instanceof AnonymousAuthenticationToken) {
-            return "loginregis/login";
+            return "login";
         }
 
         String redirectUrl = "";
@@ -35,13 +35,13 @@ public class LoginController {
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for (GrantedAuthority grantedAuthority : authorities) {
             if (grantedAuthority.getAuthority().equals("ROLE_TRAINER")) {
-                redirectUrl = "redirect:/trainer";
+                redirectUrl = "redirect:/index";
                 break;
             } else if (grantedAuthority.getAuthority().equals("ROLE_TRAINEE")) {
-                redirectUrl = "redirect:/trainee";
+                redirectUrl = "redirect:/indexx";
                 break;
             } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
-                redirectUrl = "redirect:/admin";
+                redirectUrl = "redirect:/index";
                 break;
             }
         }
