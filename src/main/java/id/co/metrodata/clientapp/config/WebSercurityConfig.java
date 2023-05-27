@@ -14,7 +14,7 @@ public class WebSercurityConfig extends WebSecurityConfigurerAdapter {
         // TODO Auto-generated method stub
         http
                 .authorizeRequests()
-                .antMatchers("/css/**", "/js/**", "/img/**", "/plugins/**").permitAll()
+                .antMatchers("/assets/**", "/css/**", "/js/**", "/img/**", "/plugins/**").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/register").permitAll()
                 .anyRequest().authenticated()

@@ -25,7 +25,7 @@ public class TrainerController {
 
     @GetMapping
     public String dashboard() {
-        return "trainer/index";
+        return "index";
     }
 
     @GetMapping("/classroom/trainer")
