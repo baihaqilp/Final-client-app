@@ -20,7 +20,7 @@ $(document).ready(function () {
           return `
                     <button
                     type="button"
-                    class="btn btn-primary"
+                    class="btn btn-outline-primary"
                     data-bs-toggle="modal"
                     data-bs-target="#detailProgram"
                     onClick="getById(${data.id})"
@@ -29,15 +29,12 @@ $(document).ready(function () {
                   </button>
                   <button
                     type="button"
-                    class="btn btn-warning mx-3"
+                    class="btn btn-outline-warning mx-3"
                     data-bs-toggle="modal"
                     data-bs-target="#updateProgram"
                     onClick="beforeUpdate(${data.id})"
                   >
                     Edit
-                  </button>
-                  <button class="btn btn-danger" onClick="deletedata(${data.id})">
-                    Delete
                   </button>
                   `;
         },

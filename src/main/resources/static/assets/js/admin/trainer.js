@@ -16,21 +16,20 @@ $(document).ready(function () {
       },
       { data: "email" },
       { data: "phone" },
-      { data: "address" },
       {
         data: null,
         render: (data, type, row, meta) => {
           return `
                     <button
                     type="button"
-                    class="btn btn-primary"
+                    class="btn btn-outline-primary"
                     data-bs-toggle="modal"
                     data-bs-target="#detailTrainer"
                     onClick="getById(${data.id})"
                   >
                     Detail
                   </button>
-                  <button class="btn btn-danger" onClick="deletedata(${data.id})">
+                  <button class="btn btn-outline-danger" onClick="deletedata(${data.id})">
                     Delete
                   </button>
                   `;
