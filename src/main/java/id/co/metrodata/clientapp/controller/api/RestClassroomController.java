@@ -28,6 +28,11 @@ public class RestClassroomController {
         return classroomService.getAll();
     }
 
+    @GetMapping("/noactive")
+    public List<Classroom> getAllnonAktif() {
+        return classroomService.getAllnonAktif();
+    }
+
     @GetMapping("/{id}")
     public Classroom getById(@PathVariable long id) {
         return classroomService.getById(id);

@@ -31,6 +31,14 @@ public class ClassroomService {
                 }).getBody();
     }
 
+    public List<Classroom> getAllnonAktif() {
+        return restTemplate.exchange(
+                url + "/noactive",
+                HttpMethod.GET,
+                null, new ParameterizedTypeReference<List<Classroom>>() {
+                }).getBody();
+    }
+
     public Classroom getById(long id) {
         return restTemplate.exchange(
                 url + "/" + id,

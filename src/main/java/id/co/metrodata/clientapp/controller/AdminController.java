@@ -26,6 +26,11 @@ public class AdminController {
         return "admin/class/class";
     }
 
+    @GetMapping("/classHistory")
+    public String historyclassAdmin() {
+        return "admin/class/historyClass";
+    }
+
     @GetMapping("/class-add")
     public String addClass() {
         return "admin/class/addClass";
@@ -35,6 +40,11 @@ public class AdminController {
     public String detailClass(@PathVariable long id, Model model) {
         model.addAttribute("classroom", classroomService.getById(id));
         return "admin/class/detailClass";
+    }
+
+    @GetMapping("/class/{id}/trainee")
+    public String listStudent(@PathVariable long id) {
+        return "admin/class/classTrainee";
     }
 
     @GetMapping("/trainer")

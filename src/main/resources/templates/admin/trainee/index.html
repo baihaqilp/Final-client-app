@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/main}"
+>
+  <body>
+    <!-- content -->
+    <section layout:fragment="content">
+      <div class="page-heading">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-12 col-md-6 order-md-1 order-last">
+                    <h3>Trainee Table</h3>
+                    <p class="text-subtitle text-muted">List of Trainee we have</p>
+                </div>
+                <div class="col-12 col-md-6 order-md-2 order-first">
+                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a th:href="@{/}">Dashboard</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Trainee</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Basic Tables start -->
+        <section class="section">
+            <div class="card d-flex">
+              <div class="card-header d-flex justify-content-between">
+                <b>List Of Trainee</b>
+                <input type="hidden" id="class_id" th:value="*{id}">
+                <button class="btn btn-primary mb-3" data-bs-toggle="modal"
+                data-bs-target="#addTrainee">Add Trainee</button>
+              </div>
+                <div class="card-body ">
+                    <table class="table" id="table-trainee">
+                        <thead class=" text-center">
+                            <tr>
+                                <th class="col-1">No</th>
+                                <th class="col-3">Name</th>
+                                <th class="col-2">Email</th>
+                                <th class="col-2">Phone</th>
+                                <th class="col-4">Action</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+        <!-- Basic Tables end -->
+      </div>
+      <!-- Modal create Class -->
+      <div
+        class="modal fade"
+        id="addTrainee"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="addTraineeLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="addTraineeLabel">
+                Add Trainee
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="name" class="form-label fw-bold">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_trainee_name"
+                  placeholder="ex. Miya"
+                />
+                <label for="email" class="form-label fw-bold pt-3">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="create_trainee_email"
+                  placeholder="ex. MMiya.bi@gmail.com"
+                />
+                <label for="phone" class="form-label fw-bold pt-3"
+                  >Phone Number</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_trainee_phone"
+                  placeholder="ex. 0897678281"
+                />
+                <label for="address" class="form-label fw-bold pt-3"
+                  >Address</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_trainee_address"
+                  placeholder="ex. Shibuya"
+                />
+                <label for="address" class="form-label fw-bold pt-3"
+                  >Username</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_trainee_username"
+                  placeholder="ex. kambinghitam"
+                />
+                <label for="address" class="form-label fw-bold pt-3"
+                  >Password</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="create_trainee_password"
+                  placeholder="ex. ********"
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                style="
+                  border: 1px solid #4b49ac;
+                  background-color: white;
+                  color: #4b49ac;
+                "
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                style="background-color: #4b49ac"
+                onclick="create()"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Detail Update -->
+      <div
+        class="modal fade"
+        id="detailTrainee"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="detailTraineeLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="detailTraineeLabel">
+                Detail Trainee
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="name" class="form-label fw-bold">Id</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="detail_trainee_id"
+                  placeholder="ex. Miya"
+                  disabled
+                />
+                <label for="name" class="form-label fw-bold">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="detail_trainee_name"
+                  placeholder="ex. Miya"
+                  disabled
+                />
+                <label for="email" class="form-label fw-bold pt-3">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="detail_trainee_email"
+                  placeholder="ex. MMiya.bi@gmail.com"
+                  disabled
+                />
+                <label for="phone" class="form-label fw-bold pt-3"
+                  >Phone Number</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="detail_trainee_phone"
+                  placeholder="ex. 0897678281"
+                  disabled
+                />
+                <label for="address" class="form-label fw-bold pt-3"
+                  >Address</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="detail_trainee_address"
+                  placeholder="ex. Shibuya"
+                  disabled
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                style="
+                  border: 1px solid #4b49ac;
+                  background-color: white;
+                  color: #4b49ac;
+                "
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                style="background-color: #4b49ac"
+                onclick="update()"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div layout:fragment="script">
+      <script th:src="@{/assets/js/admin/trainee.js}"></script>
+    </div>
+  </body>
+</html>
