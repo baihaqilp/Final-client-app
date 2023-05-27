@@ -24,20 +24,24 @@ $(document).ready(function () {
     success: (res) => {
       $("#update_id").val(res.id);
       $("#update_materi_name").val(res.name);
-      $("#update_materi_desc").summernote("code", res.desc);
-      // $("#update_materi_desc").val(res.desc);
+      // $("#update_materi_desc").summernote("code", res.desc, { height: 1000 });
+      $("#update_materi_desc").val(res.desc);
       $("#update_topic").val(res.topic.id);
       $("#trainer_id").val(res.employee.id);
+      $("#update_materi_desc").summernote({
+        height: 200, // Specify the desired height
+      });
     },
   });
 });
 
 function update() {
   let nameVal = $("#update_materi_name").val();
-  let idVal = $("#update_id").val();
+  let idVal = $("#materi_id").val();
   let descVal = $("#update_materi_desc").val();
   let topikVal = $("#update_topic option:selected").val();
   let trainerId = $("#trainer_id").val();
+  console.log(nameVal, idVal, descVal, topikVal, trainerId);
   Swal.fire({
     title: "Are you sure?",
     text: "You won't be able to revert this!",
@@ -58,17 +62,20 @@ function update() {
           desc: descVal,
           topicId: topikVal,
           trainerId: trainerId,
+          id: idVal,
         }),
         contentType: "application/json",
         success: (res) => {
-          $("#update_id").val(res.id);
-          $("#update_materi_name").val(res.name);
-          $("#update_materi_desc").val(res.desc);
-          $("#update_topic").val(res.topic.id);
-          $("#trainer_id").val(res.employee.id);
+          Swal.fire(
+            "Updated!",
+            "Materi successfully updated...",
+            "success"
+          ).then(() => {
+            window.history.back();
+          });
         },
       });
-      Swal.fire("Updated!", "Materi success to update...", "success");
+      // Swal.fire("Updated!", "Materi success to update...", "success");
     }
   });
 }

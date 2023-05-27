@@ -31,78 +31,70 @@ $(document).ready(function () {
     },
   });
   $.ajax({
-    url: "/api/segmenttopic",
+    url: "/api/materi/trainer",
     method: "GET",
     success: function (response) {
-      $(".segment-cards-container").empty();
-
-      // Filter the response to get only the topics with matching segment_id
-      const filteredTopics = response.filter(function (cardData) {
-        let segmentId = cardData.segment.id;
-        return segmentId == segment_id;
-      });
-      console.log(filteredTopics);
-      $("#table-topic").DataTable({
-        data: filteredTopics,
-        columns: [
-          {
-            data: null,
-            render: function (data, type, row, meta) {
-              return meta.row + 1;
-            },
+      response.forEach((e) => {
+        let trainer_id = e.employee.id;
+        console.log(e.employee.id);
+        $.ajax({
+          url: "/api/materi",
+          method: "GET",
+          dataType: "JSON",
+          success: (e) => {
+            $("#table-materi").DataTable({
+              data: e,
+              columns: [
+                {
+                  data: null,
+                  render: function (data, type, row, meta) {
+                    return meta.row + 1;
+                  },
+                },
+                {
+                  data: "name",
+                },
+                {
+                  data: "employee.name",
+                },
+                {
+                  data: null,
+                  render: function (data, type, row, meta) {
+                    if (trainer_id != data.employee.id) {
+                      return `
+                      <a href="/trainer/materi/${data.id}"class="btn btn-info mx-3" style="color: white;">Detail</a>
+                       
+                        `;
+                    } else {
+                      return `
+                      <div class="d-flex justify-content-center">
+                      <a href="/trainer/materi/edit/${data.id}"class="btn btn-warning mx-3" style="color: white;">Edit</a>
+                      <a href="/trainer/materi/${data.id}"class="btn btn-info mx-3" style="color: white;">Detail</a>
+                        <button
+                          type="button"
+                          class="btn btn-danger mx-3"
+                          onClick="deleteMateri(${data.id})"
+                        >
+                          Delete
+                        </button>
+                        </div>
+                        `;
+                    }
+                  },
+                },
+              ],
+            });
           },
-          {
-            data: "topic.name", // Access the name property of the topic object
-          },
-          {
-            data: "topic.program.name", // Access the program property of the topic object
-          },
-          {
-            data: null,
-            render: function (data, type, row, meta) {
-              return `
-                <button
-                  type="button"
-                  class="btn mx-3"
-                  data-bs-toggle="modal"
-                  data-bs-target="#detailTopic"
-                  onClick="getMateriByTopicId(${data.topic.id})"
-                >
-                  <i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>
-                </button>
-                <button
-                  type="button"
-                  class="btn mx-3"
-                  data-bs-toggle="modal"
-                  data-bs-target="#updateTopic"
-                  onClick="beforeUpdate(${data.topic.id})"
-                >
-                  <i class="fa-solid fa-pen-to-square" style="font-size: 24px"></i>
-                </button>
-              `;
-            },
-          },
-        ],
+        });
       });
     },
   });
-});
 
-function getMateriByTopicId(id) {
-  console.log(id);
-  $("#table-materi").DataTable({
-    destroy: true,
+  $("#table-topic").DataTable({
     ajax: {
-      url: "/api/materi/topic/" + id,
+      url: "/api/topic",
+      method: "GET",
       dataSrc: "",
-      error: function (e) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
-          footer: '<a href="">Why do I have this issue?</a>'
-        })
-      }
     },
     columns: [
       {
@@ -111,74 +103,74 @@ function getMateriByTopicId(id) {
           return meta.row + 1;
         },
       },
-      { data: "name" },
-      { data: "topic.name" },
-      { data: "employee.name" },
+      {
+        data: "name",
+      },
+      {
+        data: "program.name",
+      },
       {
         data: null,
-        render: (data, type, row, meta) => {
+        render: function (data, type, row, meta) {
           return `
-          <a href="/trainer/materi/${data.id}"
-            type="button"
-            class="btn mx-3")"
-          >
-          <i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>
-          </a>
-          <button
-            type="button"
+            <div class="d-flex justify-content-center">
+            <button
+                  type="button"
+                 class="btn btn-info mx-3"
+                 data-bs-toggle="modal"
+                      data-bs-target="#detailTopic"
+                   onClick="getById(${data.id})"
+              >
+                Detail
+            </button>
+            <button
+                type="button"
             class="btn btn-warning mx-3"
             data-bs-toggle="modal"
-            data-bs-target="#updateClass"
-            onClick="beforeUpdate(${data.id})"
-          >
-            Edit
-          </button>
-          <button class="btn" onClick="deleteData(${data.id})">
-            <i class="fa-solid fa-trash-can" style="font-size: 24px"></i>
-          </button>
-          `;
+                      data-bs-target="#updateTopic"
+               onClick="beforeUpdate(${data.id})"
+             >
+                  Edit
+            </button>
+              `;
         },
       },
     ],
+  });
+});
 
+function getById(id) {
+  $.ajax({
+    method: "GET",
+    url: "/api/topic/" + id,
+    // beforeSend: addCsrfToken(),
+    dataType: "JSON",
+    beforeSend: addCsrfToken(),
+    success: (res) => {
+      $("#detail_topic_name").val(res.name);
+      $("#detail_program").val(res.program.name);
+    },
   });
 }
-// function getById(id) {
-//   $.ajax({
-//     method: "GET",
-//     url: "/api/topic/" + id,
-//     // beforeSend: addCsrfToken(),
-//     dataType: "JSON",
-//     beforeSend: addCsrfToken(),
-//     success: (res) => {
-//       $("#detail_topic_name").val(res.name);
-//       $("#detail_program").val(res.program.name);
-//     },
-//   });
-// }
 
 function create() {
-  let segment_id = $("#segment_id").val();
-  let start_dateVal = $("#create_ts_start_date").val();
-  let end_dateVal = $("#create_ts_end_date").val();
-  let topicVal = $("#select_topic option:selected").val();
-  console.log(segment_id, start_dateVal, end_dateVal, topicVal);
+  let nameVal = $("#create_topic_name").val();
+  let programVal = $("#select_program option:selected").val();
   $.ajax({
     method: "POST",
-    url: "/api/segmenttopic",
+    url: "/api/topic",
     dataType: "JSON",
     beforeSend: addCsrfToken(),
     // beforeSend: addCsrfToken(),
     data: JSON.stringify({
-      segmentId: segment_id,
-      topicId: topicVal,
-      start_date: start_dateVal,
-      end_date: end_dateVal,
+      name: nameVal,
+      programId: programVal,
     }),
     contentType: "application/json",
     success: (res) => {
       $("#addTopic").modal("hide");
-      location.reload();
+      $("#table-topic").DataTable().ajax.reload();
+      $("#create_topic_name").val("");
 
       Swal.fire({
         position: "center",
@@ -190,20 +182,20 @@ function create() {
     },
     error: function (xhr, textStatus, errorThrown) {
       let err = JSON.parse(xhr.responseText);
-      let status = "" + err.message[0] + err.message[1] + err.message[2]
-      let msg = ""
+      let status = "" + err.message[0] + err.message[1] + err.message[2];
+      let msg = "";
       if (status == 409) {
-        msg = "Topic sudah ada"
+        msg = "Topic sudah ada";
       } else {
-        msg = "Something when Wrong !!!"
+        msg = "Something when Wrong !!!";
       }
 
       Swal.fire({
         icon: "error",
         title: status,
         text: msg,
-      })
-    }
+      });
+    },
   });
 }
 
@@ -257,51 +249,107 @@ function update() {
   });
 }
 
-// function deleteData(id) {
-//   console.log(id);
-//   const swalWithBootstrapButtons = Swal.mixin({
-//     customClass: {
-//       confirmButton: "btn btn-success",
-//       cancelButton: "btn btn-danger",
-//     },
-//     buttonsStyling: false,
-//   });
+function deleteMateri(id) {
+  console.log(id);
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-danger",
+    },
+    buttonsStyling: false,
+  });
 
-//   swalWithBootstrapButtons
-//     .fire({
-//       title: "Are you sure?",
-//       text: "You won't be able to revert this!",
-//       icon: "warning",
-//       showCancelButton: true,
-//       confirmButtonText: "Yes, delete it!",
-//       cancelButtonText: "No, cancel!",
-//       reverseButtons: true,
-//     })
-//     .then((result) => {
-//       if (result.isConfirmed) {
-//         $.ajax({
-//           method: "DELETE",
-//           url: "/api/topic/" + id,
-//           dataType: "JSON",
-//           beforeSend: addCsrfToken(),
-//           success: (res) => {
-//             $("#table-topic").DataTable().ajax.reload();
-//           },
-//         });
-//         swalWithBootstrapButtons.fire(
-//           "Deleted!",
-//           "Topic success to delete!!!",
-//           "success"
-//         );
-//       } else if (
-//         /* Read more about handling dismissals below */
-//         result.dismiss === Swal.DismissReason.cancel
-//       ) {
-//         swalWithBootstrapButtons.fire(
-//           "Cancelled",
-//           "Your imaginary file is safe :)",
-//           "error"
-//         );
-//       }
+  swalWithBootstrapButtons
+    .fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true,
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          method: "DELETE",
+          url: "/api/materi/" + id,
+          dataType: "JSON",
+          beforeSend: addCsrfToken(),
+          success: (res) => {
+            $("#table-materi").DataTable().ajax.reload();
+          },
+        });
+        swalWithBootstrapButtons.fire(
+          "Deleted!",
+          "Materi success to delete!!!",
+          "success"
+        );
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          "Cancelled",
+          "Your imaginary file is safe :)",
+          "error"
+        );
+      }
+    });
+}
+
+// $.ajax({
+//   url: "/api/segmenttopic",
+//   method: "GET",
+//   success: function (response) {
+//     $(".segment-cards-container").empty();
+
+//     const filteredTopics = response.filter(function (cardData) {
+//       let segmentId = cardData.segment.id;
+//       return segmentId == segment_id;
 //     });
-// }
+//     console.log(filteredTopics);
+//     $("#table-topic").DataTable({
+//       data: filteredTopics,
+//       columns: [
+//         {
+//           data: null,
+//           render: function (data, type, row, meta) {
+//             return meta.row + 1;
+//           },
+//         },
+//         {
+//           data: "topic.name", // Access the name property of the topic object
+//         },
+//         {
+//           data: "topic.program.name", // Access the program property of the topic object
+//         },
+//         {
+//           data: null,
+//           render: function (data, type, row, meta) {
+//             return `
+//               <button
+//                 type="button"
+//                 class="btn mx-3"
+//                 data-bs-toggle="modal"
+//                 data-bs-target="#detailTopic"
+//                 onClick="getMateriByTopicId(${data.topic.id})"
+//               >
+//                 <i class="fa-solid fa-up-right-from-square" style="font-size: 24px"></i>
+//               </button>
+//               <button
+//                 type="button"
+//                 class="btn mx-3"
+//                 data-bs-toggle="modal"
+//                 data-bs-target="#updateTopic"
+//                 onClick="beforeUpdate(${data.topic.id})"
+//               >
+//                 <i class="fa-solid fa-pen-to-square" style="font-size: 24px"></i>
+//               </button>
+//             `;
+//           },
+//         },
+//       ],
+//     });
+//   },
+// });
