@@ -22,7 +22,9 @@
                               <li class="breadcrumb-item"><a th:href="@{/admin/class}">Classroom</a></li>
                               <li class="breadcrumb-item active" aria-current="page">Segment</li>
                           </ol>
+                          <button class="btn btn-secondary float-end" onclick="history.back()">Back</button>
                       </nav>
+                      
                   </div>
               </div>
           </div>
@@ -33,7 +35,7 @@
                   <div class="card-header d-flex justify-content-between">
                     <b>Segment</b>
                     <input type="hidden" id="class_id" th:value="*{id}">
-                    <button class="btn btn-primary mb-3" data-bs-toggle="modal"
+                    <button th:if="*{isStatus == true}" class="btn btn-primary mb-3" data-bs-toggle="modal"
                     data-bs-target="#addSegment">Add Segmen</button>
                   </div>
                   <div class="card-body ">
