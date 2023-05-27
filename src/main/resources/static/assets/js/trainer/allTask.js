@@ -1,13 +1,11 @@
 $(document).ready(function () {
-  let trainer_id = 1;
-  $('#create_task_desc').summernote();
+  $("#create_task_desc").summernote({ height: 200 });
   $.ajax({
     method: "GET",
     url: "/api/segment/all",
     dataType: "JSON",
     beforeSend: addCsrfToken(),
     success: (res) => {
-
       $.each(res, function (key, val) {
         if ($('.select_segment option[value = "' + val.id + '"]').length == 0) {
           $(".select_segment").append(
@@ -34,29 +32,36 @@ $(document).ready(function () {
       },
       { data: "deadline" },
       { data: "segment.classroom.name" },
-      { data: "segment.id" },
+      { data: "segment.category.name" },
       {
         data: null,
         render: (data, type, row, meta) => {
           return `
-                  <a
-                    class="btn"
-                    href="/trainer/classroom/segment/task/detail/${data.id}"
-                  >
-                  <i class="fa-solid fa-up-right-from-square" style="font-size: 18px"></i>
-                  </a>
+          <div class="d-flex align-items-center">
                   <button
                     type="button"
-                    class="btn mx-3"
+                    class="btn btn-info mx-3"
+                    data-bs-toggle="modal"
+                     data-bs-target="#detailTask"
+                    onClick="getById(${data.id})"
+                    style="color: white;"
+                  >
+                    Detail        
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-warning mx-3"
                     data-bs-toggle="modal"
                     data-bs-target="#updateTask"
                     onClick="beforeUpdate(${data.id})"
+                    style="color: white;"
                   >
-                  <i class="fa-solid fa-pen-to-square" style="font-size: 18px"></i>
+                    Edit                  
                   </button>
-                  <button class="btn" onClick="deletedata(${data.id})">
-                  <i class="fa-solid fa-trash-can" style="font-size: 18px"></i>
+                  <button class="btn btn-danger" onClick="deletedata(${data.id})">
+                    Delete                  
                   </button>
+                </div>
                   `;
         },
       },
@@ -64,21 +69,22 @@ $(document).ready(function () {
   });
 });
 
-// function getById(id) {
-//   $.ajax({
-//     method: "GET",
-//     url: "/api/task/" + id,
-//     dataType: "JSON",
-//     beforeSend: addCsrfToken(),
-//     success: (res) => {
-//       $("#detail_task_id").val(res.id);
-//       $("#detail_task_name").val(res.name);
-//       $("#detail_task_email").val(res.email);
-//       $("#detail_task_phone").val(res.phone);
-//       $("#detail_task_address").val(res.address);
-//     },
-//   });
-// }
+function getById(id) {
+  $.ajax({
+    method: "GET",
+    url: "/api/task/" + id,
+    dataType: "JSON",
+    beforeSend: addCsrfToken(),
+    success: (res) => {
+      console.log(res);
+      $("#detail_task_id").text(res.id);
+      $("#detail_task_name").text(res.name);
+      $("#detail_task_desc").text(res.desc);
+      $("#detail_task_deadline").text(res.deadline);
+      $("#detail_segment_id").text(res.segment.category.name);
+    },
+  });
+}
 
 function create() {
   let nameVal = $("#create_task_name").val();
@@ -116,20 +122,20 @@ function create() {
     },
     error: function (xhr, textStatus, errorThrown) {
       let err = JSON.parse(xhr.responseText);
-      let status = "" + err.message[0] + err.message[1] + err.message[2]
-      let msg = ""
+      let status = "" + err.message[0] + err.message[1] + err.message[2];
+      let msg = "";
       if (status == 409) {
-        msg = "Topic sudah ada"
+        msg = "Task sudah ada";
       } else {
-        msg = "Something when Wrong !!!"
+        msg = "Something when Wrong !!!";
       }
 
       Swal.fire({
         icon: "error",
         title: status,
         text: msg,
-      })
-    }
+      });
+    },
   });
 }
 
@@ -141,9 +147,10 @@ function beforeUpdate(id) {
     success: (res) => {
       $("#update_id").val(res.id);
       $("#update_task_name").val(res.name);
-      $("#update_task_desc").summernote('code', res.desc);
+      $("#update_task_desc").val(res.desc);
       $("#update_task_deadline").val(res.deadline);
       $("#update_segment").val(res.segment.id);
+      $("#update_task_desc").summernote({ height: 300 });
     },
   });
 }

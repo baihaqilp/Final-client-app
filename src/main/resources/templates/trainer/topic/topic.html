@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/main}"
+>
+  <body>
+    <!-- content -->
+    <section layout:fragment="content">
+      <div id="main-content">
+        <div class="page-heading">
+          <div class="page-title mb-3">
+            <div class="row">
+              <div
+                class="col-12 col-md-6 order-md-1 order-last d-flex align-items-center"
+              >
+                <a class="btn" href="javascript:history.back()"
+                  ><i class="fa-solid fa-chevron-left fs-4"></i
+                ></a>
+                <a class="btn" href="#topic">Topic</a>
+                <a class="btn" href="#materi">Materi</a>
+              </div>
+              <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav
+                  aria-label="breadcrumb"
+                  class="breadcrumb-header float-start float-lg-end"
+                >
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a href="index.html">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      Class
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+          <section class="section">
+            <div class="row">
+              <div class="col-12">
+                <div class="card" id="topic">
+                  <div class="card-header d-flex justify-content-between">
+                    <h4>Topic(s)</h4>
+                    <div class="right">
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#addTopic"
+                      >
+                        Add Topic
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <table
+                      class="table display table-stripped table-bordered mt-3 text-center border border-rounded rounded-2"
+                      id="table-topic"
+                    >
+                      <thead class="table">
+                        <tr>
+                          <th class="col-1 text-center">No.</th>
+                          <th class="col-1 text-center">Name</th>
+                          <th class="col-1 text-center">Program</th>
+                          <th class="col-1 text-center">Action</th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="card" id="materi">
+                  <div class="card-header d-flex justify-content-between">
+                    <h4>Materi</h4>
+                    <div class="right">
+                      <a
+                        th:href="@{/trainer/materi/add}"
+                        class="btn btn-primary"
+                        >Add Materi</a
+                      >
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <table
+                      class="table display table-stripped table-bordered mt-3 text-center border border-rounded rounded-2"
+                      id="table-materi"
+                    >
+                      <thead class="table">
+                        <tr>
+                          <th class="col-1 text-center">No.</th>
+                          <th class="col-1 text-center">Name</th>
+                          <th class="col-1 text-center">Created By</th>
+                          <th class="col-1 text-center">Action</th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <footer>
+          <div class="footer clearfix mb-0 text-muted">
+            <div class="float-start">
+              <p>2023 © Mazer</p>
+            </div>
+            <div class="float-end">
+              <p>
+                Crafted with
+                <span class="text-danger"
+                  ><i class="bi bi-heart-fill icon-mid"></i
+                ></span>
+                by <a href="https://saugi.me">Saugi</a>
+              </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+
+      <!-- Add topic  -->
+      <div
+        class="modal fade"
+        id="addTopic"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="addTopicLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="addTopicLabel">
+                Add Topic
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="name" class="form-label fw-bold">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_topic_name"
+                  placeholder="ex. MCC-07"
+                />
+                <label for="name" class="form-label fw-bold"
+                  >Program Name</label
+                >
+                <select
+                  class="form-control form-control-sm select_program p-2"
+                  aria-label="form-select-sm example"
+                  id="select_program"
+                >
+                  <option selected value="">Choose Program</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary" onclick="create()">
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Update Topic -->
+      <div
+        class="modal fade"
+        id="updateTopic"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="updateTopicLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="updateTopicLabel">
+                Update Topic
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <input type="hidden" id="update_id" />
+                <label for="name" class="form-label fw-bold">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="update_topic_name"
+                  placeholder="ex. MCC-07"
+                />
+                <label for="name" class="form-label fw-bold"
+                  >Program Name</label
+                >
+                <select
+                  class="form-control form-control-sm select_program p-2"
+                  aria-label="form-select-sm example"
+                  id="update_program"
+                >
+                  <option selected value="">Choose Program</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary" onclick="update()">
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detail Topik -->
+      <div
+        class="modal fade"
+        id="detailTopic"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="detailTopicLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="detailTopicLabel">
+                Detail Topic
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="name" class="form-label fw-bold">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="detail_topic_name"
+                  disabled
+                />
+                <label for="program" class="form-label fw-bold"
+                  >Program Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="detail_program"
+                  disabled
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div layout:fragment="script">
+      <script th:src="@{/assets/js/trainer/topicDatatable.js}"></script>
+    </div>
+  </body>
+</html>

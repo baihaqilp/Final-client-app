@@ -53,7 +53,7 @@ function create() {
     contentType: "application/json",
     success: (res) => {
       $("#create_materi_name").val("");
-      $("#create_materi_description").summernote();
+      $("#create_materi_description").summernote("option", "height", 300);
       $("#select_topik ").val("");
       $("#select_trainer ").val("");
       Swal.fire({

@@ -4,13 +4,12 @@
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout/main}"
 >
-  25px
   <body>
     <!-- content -->
     <section layout:fragment="content">
       <div id="main-content">
         <div class="page-heading">
-          <div class="page-title">
+          <div class="page-title mb-3">
             <div class="row">
               <div
                 class="col-12 col-md-6 order-md-1 order-last d-flex align-items-center"
@@ -41,136 +40,86 @@
           <section class="section">
             <div class="row">
               <div class="col-12 col-md-6">
-                <div class="card">
-                  <div class="card-header">
-                    <h4>Default</h4>
-                  </div>
-                  <div class="card-body">
-                    <p>
-                      Click the accordions below to expand/collapse the
-                      accordion content.
-                    </p>
-                    <div class="accordion" id="accordionExample">
-                      <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingOne">
-                          <button
-                            class="accordion-button"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#collapseOne"
-                            aria-expanded="true"
-                            aria-controls="collapseOne"
-                          >
-                            Accordion Item #1
-                          </button>
-                        </h2>
-                        <div
-                          id="collapseOne"
-                          class="accordion-collapse collapse show"
-                          aria-labelledby="headingOne"
-                          data-bs-parent="#accordionExample"
-                        >
-                          <div class="accordion-body">
-                            <strong
-                              >This is the first item's accordion body.</strong
-                            >
-                            It is shown by default, until the collapse plugin
-                            adds the appropriate classes that we use to style
-                            each element. These classes control the overall
-                            appearance, as well as the showing and hiding via
-                            CSS transitions. You can modify any of this with
-                            custom CSS or overriding our default variables. It's
-                            also worth noting that just about any HTML can go
-                            within the <code>.accordion-body</code>, though the
-                            transition does limit overflow.
-                          </div>
-                        </div>
-                      </div>
-                      <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingTwo">
-                          <button
-                            class="accordion-button collapsed"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#collapseTwo"
-                            aria-expanded="false"
-                            aria-controls="collapseTwo"
-                          >
-                            Accordion Item #2
-                          </button>
-                        </h2>
-                        <div
-                          id="collapseTwo"
-                          class="accordion-collapse collapse"
-                          aria-labelledby="headingTwo"
-                          data-bs-parent="#accordionExample"
-                        >
-                          <div class="accordion-body">
-                            <strong
-                              >This is the second item's accordion body.</strong
-                            >
-                            It is hidden by default, until the collapse plugin
-                            adds the appropriate classes that we use to style
-                            each element. These classes control the overall
-                            appearance, as well as the showing and hiding via
-                            CSS transitions. You can modify any of this with
-                            custom CSS or overriding our default variables. It's
-                            also worth noting that just about any HTML can go
-                            within the <code>.accordion-body</code>, though the
-                            transition does limit overflow.
-                          </div>
-                        </div>
-                      </div>
-                      <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingThree">
-                          <button
-                            class="accordion-button collapsed"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#collapseThree"
-                            aria-expanded="false"
-                            aria-controls="collapseThree"
-                          >
-                            Accordion Item #3
-                          </button>
-                        </h2>
-                        <div
-                          id="collapseThree"
-                          class="accordion-collapse collapse"
-                          aria-labelledby="headingThree"
-                          data-bs-parent="#accordionExample"
-                        >
-                          <div class="accordion-body">
-                            <strong
-                              >This is the third item's accordion body.</strong
-                            >
-                            It is hidden by default, until the collapse plugin
-                            adds the appropriate classes that we use to style
-                            each element. These classes control the overall
-                            appearance, as well as the showing and hiding via
-                            CSS transitions. You can modify any of this with
-                            custom CSS or overriding our default variables. It's
-                            also worth noting that just about any HTML can go
-                            within the <code>.accordion-body</code>, though the
-                            transition does limit overflow.
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <div class="container"></div>
               </div>
               <div class="col-12 col-md-6">
                 <div class="card">
                   <div class="card-header">
-                    <h4>Trainee</h4>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <a
+                          class="nav-link active"
+                          id="home-tab"
+                          data-bs-toggle="tab"
+                          href="#trainee"
+                          role="tab"
+                          aria-controls="home"
+                          aria-selected="true"
+                          >Trainee</a
+                        >
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <a
+                          class="nav-link"
+                          id="profile-tab"
+                          data-bs-toggle="tab"
+                          href="#task"
+                          role="tab"
+                          aria-controls="profile"
+                          aria-selected="false"
+                          tabindex="-1"
+                          >Task</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="card-body">
+                    <div class="tab-content" id="myTab">
+                      <div
+                        class="tab-pane fade active show"
+                        id="trainee"
+                        role="tabpanel"
+                        aria-labelledby="trainee-tab"
+                      >
+                        <table
+                          class="table display table-stripped table-bordered mt-3 text-center border border-rounded rounded-2"
+                          id="table-trainee"
+                        >
+                          <thead class="table">
+                            <tr>
+                              <th class="col-1 text-center">No.</th>
+                              <th class="col-1 text-center">Name</th>
+                            </tr>
+                          </thead>
+                        </table>
+                      </div>
+                      <div
+                        class="tab-pane fade"
+                        id="task"
+                        role="tabpanel"
+                        aria-labelledby="task-tab"
+                      >
+                        <table
+                          class="table display table-stripped table-bordered mt-3 text-center border border-rounded rounded-2"
+                          id="table-task"
+                        >
+                          <thead class="table">
+                            <tr>
+                              <th class="col-1 text-center">No.</th>
+                              <th class="col-1 text-center">Name</th>
+                              <th class="col-2 text-center">Deadline</th>
+                              <th class="col-2 text-center">Segment</th>
+                            </tr>
+                          </thead>
+                        </table>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </section>
         </div>
-
         <footer>
           <div class="footer clearfix mb-0 text-muted">
             <div class="float-start">
@@ -187,6 +136,72 @@
             </div>
           </div>
         </footer>
+      </div>
+
+      <!-- Add topic to segment -->
+      <div
+        class="modal fade"
+        id="addTopicSegment"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="addTopicSegmentLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="addTopicSegmentLabel">
+                Add Topic To This Segment
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <input type="number" id="segment_id" hidden />
+                <label for="start_date" class="form-label fw-bold"
+                  >Start Date</label
+                >
+                <input
+                  type="date"
+                  class="form-control"
+                  id="create_ts_start_date"
+                />
+                <label for="name" class="form-label fw-bold">End Date</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="create_ts_end_date"
+                />
+                <label for="topic" class="form-label fw-bold">Topic</label>
+                <select
+                  class="form-control form-control-sm select_topic p-2"
+                  aria-label="form-select-sm example"
+                  id="select_topic"
+                >
+                  <option selected value="">Choose Topic</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary" onclick="create()">
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <div layout:fragment="script">
