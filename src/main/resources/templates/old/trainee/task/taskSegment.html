@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/main}"
+>
+  <body>
+    <!-- content -->
+    <section layout:fragment="content">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card shadow-lg" style="border-radius: 20px">
+            <div class="card-body">
+              <div
+                class="card-header d-flex justify-content-between border-bottom border-2"
+                style="background-color: white"
+              >
+                <div
+                  class="card-header-left d-flex flex-row align-items-center"
+                >
+                  <i
+                    class="fa-solid fa-clipboard px-2"
+                    style="font-size: 32px; color: #f3797e"
+                  ></i>
+                  <h5 class="card-title mt-2" style="font-size: 32px">Task</h5>
+                  <input
+                    type="hidden"
+                    id="segment_id"
+                    th:value="*{segment_id}"
+                  />
+                </div>
+                <div
+                  class="card-header-left d-flex flex-row align-items-center"
+                >
+                  <button class="btn btn-secondary" onclick="history.back()">back</button>
+                </div>
+              </div>
+              <div class="card-content d-flex flex-column pt-2">
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="task-content"></div>
+                    <!-- <div class="container border-bottom mb-3">
+                      <div
+                        class="card-body d-flex justify-content-between align-items-center"
+                      >
+                        <h5 class="card-title pb-2">Judul Task</h5>
+                        <div class="task-container">
+                          <h6>Deadline</h6>
+                          <p>16-06-32019</p>
+                        </div>
+                        <button
+                          type="button"
+                          class="btn"
+                          data-bs-toggle="modal"
+                          data-bs-target="#detailTask"
+                        >
+                          <i
+                            class="fa-solid fa-up-right-from-square"
+                            style="font-size: 24px"
+                          ></i>
+                        </button>
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detail Task -->
+      <div
+        class="modal fade"
+        id="detailTask"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="detailTaskLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="detailTaskLabel">
+                Detail Task
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="name" class="form-label fw-bold">Task Name</label>
+                <p id="detail_task_name"></p>
+                <label for="desc" class="form-label fw-bold pt-3"
+                  >Description</label
+                >
+                <p class="detail_task_desc" id="detail_task_desc"></p>
+
+                <label for="deadline" class="form-label fw-bold pt-3"
+                  >Deadline</label
+                >
+                <input type="hidden" name="" id="detail_task_deadline_ipt" hidden>
+                <p id="detail_task_deadline"></p>
+
+                <label for="segment" class="form-label fw-bold">Segment</label>
+                <p id="detail_task_segment"></p>
+              </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                style="
+                  border: 1px solid #4b49ac;
+                  background-color: white;
+                  color: #4b49ac;
+                "
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                onclick="submission()"
+                class="btn"
+                id="submit"
+                style="background-color: #4b49ac; color: white"
+                >Submission</button
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div layout:fragment="script">
+      <script th:src="@{/js/trainee/task/taskSegment.js}"></script>
+    </div>
+  </body>
+</html>
