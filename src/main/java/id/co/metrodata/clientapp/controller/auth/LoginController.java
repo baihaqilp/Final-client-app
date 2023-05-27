@@ -54,25 +54,28 @@ public class LoginController {
         if (!loginService.login(loginRequest)) {
             return "redirect:/login?error=true";
         }
+        return "redirect:/";
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // Authentication authentication =
+        // SecurityContextHolder.getContext().getAuthentication();
 
-        String redirectUrl = "";
+        // String redirectUrl = "";
 
-        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-        for (GrantedAuthority grantedAuthority : authorities) {
-            if (grantedAuthority.getAuthority().equals("ROLE_TRAINER")) {
-                redirectUrl = "redirect:/trainer";
-                break;
-            } else if (grantedAuthority.getAuthority().equals("ROLE_TRAINEE")) {
-                redirectUrl = "redirect:/trainee";
-                break;
-            } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
-                redirectUrl = "redirect:/admin";
-                break;
-            }
-        }
+        // Collection<? extends GrantedAuthority> authorities =
+        // authentication.getAuthorities();
+        // for (GrantedAuthority grantedAuthority : authorities) {
+        // if (grantedAuthority.getAuthority().equals("ROLE_TRAINER")) {
+        // redirectUrl = "redirect:/trainer";
+        // break;
+        // } else if (grantedAuthority.getAuthority().equals("ROLE_TRAINEE")) {
+        // redirectUrl = "redirect:/trainee";
+        // break;
+        // } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
+        // redirectUrl = "redirect:/admin";
+        // break;
+        // }
+        // }
 
-        return redirectUrl;
+        // return redirectUrl;
     }
 }
