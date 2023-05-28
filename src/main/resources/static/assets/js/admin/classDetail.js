@@ -6,8 +6,10 @@ $(document).ready(function () {
         beforeSend: addCsrfToken(),
         success: (res) => {
             $.each(res, function (key, val) {
-                if ($('.select_trainer option[value = "' + val.id + '"]').length == 0) {
-                    $(".select_trainer").append(`<option value = ${val.id}>${val.name}</option>`)
+                if (val.user.isEnabled) {
+                    if ($('.select_trainer option[value = "' + val.id + '"]').length == 0) {
+                        $(".select_trainer").append(`<option value = ${val.id}>${val.name}</option>`)
+                    }
                 }
             })
         },

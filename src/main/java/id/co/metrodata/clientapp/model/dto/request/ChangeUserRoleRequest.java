@@ -8,10 +8,8 @@ import lombok.NoArgsConstructor;
  * ChangeUserRoleRequest
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class ChangeUserRoleRequest {
 
-    private long id;
-    private long roleId;
+    private Long id;
+    private Long roleId;
 }

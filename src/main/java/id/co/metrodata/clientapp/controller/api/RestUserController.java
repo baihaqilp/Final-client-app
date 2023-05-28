@@ -64,12 +64,12 @@ public class RestUserController {
         return userService.changePassword(passwordRequest);
     }
 
-    @PostMapping("/change-role")
+    @PostMapping("/changeRole")
     public User changeRole(@RequestBody ChangeUserRoleRequest userRoleRequest) {
         return userService.updateRole(userRoleRequest);
     }
 
-    @PostMapping("/change-status")
+    @PostMapping("/changeStatus")
     public User changeStatus(@RequestBody ChangeStatusRequst userStatRequest) {
         return userService.updateStatus(userStatRequest);
     }

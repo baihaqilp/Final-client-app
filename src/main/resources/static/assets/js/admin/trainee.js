@@ -8,7 +8,7 @@ $(document).ready(function () {
       $.each(res, function (key, val) {
         radio += `
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="${val.id}">
+          <input class="form-check-input" type="radio" name="role_trainee_role" value="${val.id}">
           <label class="form-check-label" for="inlineRadio1" >${val.name}</label>
         </div>
 
@@ -51,6 +51,7 @@ $(document).ready(function () {
   $("#select_program").on("change", function () {
     let programId = $("#select_program option:selected").val();
     $("#select_classroom").removeAttr("disabled");
+    $("#select_classroom").empty();
     $.ajax({
       method: "GET",
       url: "/api/classroom/program/" + programId,
@@ -89,6 +90,15 @@ $(document).ready(function () {
       { data: "phone" },
       {
         data: null,
+        render: function (data, type, row, meta) {
+          if (data.user.isEnabled) {
+            return '<div class="badge bg-success">ACTIVE</div>'
+          }
+          return '<div class="badge bg-secondary">NON-ACTIVE</div>'
+        },
+      },
+      {
+        data: null,
         render: (data, type, row, meta) => {
           return `
           <div class="dropdown">
@@ -115,7 +125,7 @@ $(document).ready(function () {
                   class="btn btn-outline-warning col-12 "
                   data-bs-toggle="modal"
                   data-bs-target="#changeStatus"
-                  onClick="getById(${data.id})"
+                  onClick="beforeStatusChange(${data.id})"
                 >
                   Change Status
                 </button>
@@ -126,7 +136,7 @@ $(document).ready(function () {
                   class="btn btn-outline-warning col-12 "
                   data-bs-toggle="modal"
                   data-bs-target="#changeRole"
-                  onClick="getById(${data.id})"
+                  onClick="beforeRoleChange(${data.id})"
                 >
                   Change Role
                 </button>
@@ -234,12 +244,135 @@ function create() {
 }
 
 function beforeStatusChange(id) {
-  $("#status_trainee_id").val(id);
+  $.ajax({
+    method: "GET",
+    url: "/api/employee/" + id,
+    dataType: "JSON",
+    success: (res) => {
+      console.log(res.name);
+      $("#status_trainee_id").val(res.id);
+      $("#status_trainee_name").val(res.name);
+      $("input[value='" + res.user.isEnabled + "']").prop('checked', true);
+      console.log(res.user.isEnabled);
+    },
+  });
 }
 
 function beforeRoleChange(id) {
-  $("#status_trainee_id").val(id);
+  $.ajax({
+    method: "GET",
+    url: "/api/employee/" + id,
+    dataType: "JSON",
+    success: (res) => {
+      console.log(res.name);
+      $("#role_trainee_id").val(res.id);
+      $("#role_trainee_name").val(res.name);
+      $("input[value='" + res.user.roles[0].id + "']").prop('checked', true);
+    },
+  });
+
 }
+
+function updateRole() {
+  let idVal = $("#role_trainee_id").val();
+  let role = $("input[name='role_trainee_role']:checked").val();
+  console.log(idVal, role);
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, update it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        method: "POST",
+        url: "/api/user/changeRole",
+        dataType: "JSON",
+        beforeSend: addCsrfToken(),
+        data: JSON.stringify({
+          id: idVal,
+          roleId: role,
+        }),
+        contentType: "application/json",
+        success: (res) => {
+          $("#changeRole").modal("hide");
+          $("#table-trainee").DataTable().ajax.reload();
+          $("#role_trainee_name").val("");
+          $("#role_trainee_id").val("");
+          Swal.fire("Updated!", "Trainee success to update...", "success");
+        },
+
+      });
+
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWith.fire(
+        "Cancelled",
+        "Your imaginary file is safe :)",
+        "error"
+      );
+    }
+  });
+}
+
+function updateStatus() {
+  let idVal = $("#status_trainee_id").val();
+  let status = $("input[name='status']:checked").val();
+  let ids = parseInt(idVal)
+  let stat = null
+  if (status == "true") {
+    stat = true
+  } else {
+    stat = false
+  }
+
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, update it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        method: "POST",
+        url: "/api/user/changeStatus",
+        dataType: "JSON",
+        beforeSend: addCsrfToken(),
+        data: JSON.stringify({
+          id: idVal,
+          status: stat,
+        }),
+        contentType: "application/json",
+        success: (res) => {
+          $("#changeStatus").modal("hide");
+          $("#table-trainee").DataTable().ajax.reload();
+          $("#status_trainee_name").val("");
+          $("#status_trainee_id").val("");
+          $("#status_id").val("");
+        },
+      });
+      Swal.fire("Updated!", "Trainee success to update...", "success");
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swal.fire(
+        "Cancelled",
+        "Your imaginary file is safe :)",
+        "error"
+      );
+    }
+  });
+}
+
 
 function update() {
   let nameVal = $("#update_trainee_name").val();
@@ -271,7 +404,7 @@ function update() {
         }),
         contentType: "application/json",
         success: (res) => {
-          $("#addTrainee").modal("hide");
+          $("#changeRole").modal("hide");
           $("#table-trainee").DataTable().ajax.reload();
           $("#create_trainee_name").val("");
           $("#create_trainee_email").val("");

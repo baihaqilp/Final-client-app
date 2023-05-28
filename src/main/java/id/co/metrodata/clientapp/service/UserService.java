@@ -76,17 +76,17 @@ public class UserService {
                 User.class).getBody();
     }
 
-    public User updateRole(ChangeUserRoleRequest user) {
+    public User updateRole(ChangeUserRoleRequest changeUserRoleRequest) {
         return restTemplate.exchange(
-                url + "/change-role",
-                HttpMethod.PUT,
-                new HttpEntity(user), User.class).getBody();
+                url + "/change-role/",
+                HttpMethod.POST,
+                new HttpEntity(changeUserRoleRequest), User.class).getBody();
     }
 
     public User updateStatus(ChangeStatusRequst user) {
         return restTemplate.exchange(
-                url + "/change-role",
-                HttpMethod.PUT,
+                url + "/change-status/",
+                HttpMethod.POST,
                 new HttpEntity(user), User.class).getBody();
     }
 
