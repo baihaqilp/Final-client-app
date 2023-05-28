@@ -61,6 +61,7 @@ function updateProfile() {
   let addressVal = $("#address-id-icon").val();
   let usernameVal = $("#username-id-icon").val();
   let passVal = $("#password-id-icon").val();
+  console.log(idVal, classId, roleId, nameVal, emailVal, mobile, addressVal, usernameVal, passVal);
   Swal.fire({
     title: "Are you sure to update your profile?",
     text: "You won't be able to revert this!",
