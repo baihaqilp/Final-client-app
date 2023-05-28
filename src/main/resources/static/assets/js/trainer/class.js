@@ -16,9 +16,9 @@ $(document).ready(function () {
     dataType: "JSON",
     success: (data) => {
       console.log(data);
-      const classCardContainer = $("#class-card"); // Get the container element for class cards
-      const cardsPerRow = 4; // Number of class cards per row
-      let currentRow; // Track the current row
+      const classCardContainer = $("#class-card");
+      const cardsPerRow = 4;
+      let currentRow;
 
       data.forEach((e, index) => {
         if (index % cardsPerRow === 0) {
@@ -39,7 +39,7 @@ $(document).ready(function () {
             </a>
           </div>
         `;
-        currentRow.append(card); // Append the card HTML to the current row
+        currentRow.append(card);
       });
     },
   });
