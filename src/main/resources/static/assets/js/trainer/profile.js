@@ -6,7 +6,6 @@ $(document).ready(function () {
     success: function (data) {
       console.log(data);
       $("#update-id").val(data.id);
-      $("#class-id").val(data.classroom.id);
       $(".user-name").text(data.name);
       $("#first-name-icon").val(data.name);
       $("#email-id-icon").val(data.email);
@@ -62,7 +61,6 @@ $(document).ready(function () {
 
 function updateProfile() {
   let idVal = $("#update-id").val();
-  let classId = $("#class-id").val();
   let roleId = $("#role-id").val();
   let nameVal = $("#first-name-icon").val();
   let emailVal = $("#email-id-icon").val();
@@ -88,7 +86,6 @@ function updateProfile() {
         beforeSend: addCsrfToken(),
         data: JSON.stringify({
           id: idVal,
-          classroomId: classId,
           roleId: roleId,
           name: nameVal,
           email: emailVal,
@@ -98,9 +95,7 @@ function updateProfile() {
           password: passVal,
         }),
         contentType: "application/json",
-        success: (res) => {
-          location.reload();
-        },
+        success: (res) => {},
         error: function (xhr, textStatus, errorThrown) {
           let err = JSON.parse(xhr.responseText);
           let status = "" + err.message[0] + err.message[1] + err.message[2];

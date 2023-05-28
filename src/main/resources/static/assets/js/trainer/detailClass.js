@@ -138,6 +138,7 @@ $(document).ready(function () {
       });
       $("#table-trainee").DataTable({
         data: get1,
+        destroy: true,
         columns: [
           {
             data: null,
@@ -163,6 +164,7 @@ $(document).ready(function () {
       console.log(filterTask);
       $("#table-task").DataTable({
         data: filterTask,
+        destroy: true,
         columns: [
           {
             data: null,
