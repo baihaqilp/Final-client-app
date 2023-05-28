@@ -58,13 +58,13 @@ public class TrainerController {
     // get task by segment id
     @GetMapping("/task/segment/{segment_id}")
     public String taskBySegmentId(@PathVariable long segment_id) {
-        return "trainer/task/task";
+        return "trainer/task/";
     }
 
     // get all task by trainer-class-id
     @GetMapping("/task")
     public String task() {
-        return "trainer/task/allTrainerTask";
+        return "trainer/task/task";
     }
 
     @GetMapping("/topic/segment/{id}")
@@ -83,7 +83,7 @@ public class TrainerController {
         return "trainer/materi/listMateri";
     }
 
-    @GetMapping("/materi-add")
+    @GetMapping("/materi/add")
     public String materiAdd() {
         return "trainer/materi/addMateri";
     }
@@ -138,12 +138,12 @@ public class TrainerController {
     }
 
     @GetMapping("/topic")
-    public String topic() {
-        return "trainer/materi/materi";
+    public String topicList() {
+        return "trainer/topic/topic";
     }
 
     @GetMapping("/topic/{id}")
     public String topicDetail(@PathVariable long id) {
-        return "trainer/topic/topic";
+        return "trainer/topic";
     }
 }

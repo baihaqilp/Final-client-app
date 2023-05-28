@@ -61,9 +61,18 @@
 
     <link rel="stylesheet" th:href="@{/assets/css/calendar.css}">
         
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/assets/extensions/flatpickr/flatpickr.min.css}"
+    />
+    <link rel="stylesheet" th:href="@{/assets/compiled/css/dark.css}" />
   </head>
 
-  <body>
+  <body class="light">
     <div id="app">
       <div th:replace="fragment/sidebar :: sidebar"></div>
       <div id="main">
@@ -109,6 +118,10 @@
 
     <script th:src="@{/assets/js/addCSRF.js}"></script>
     <script th:src="@{/assets/js/sidebar.js}"></script>
+    <script th:src="@{/assets/extensions/flatpickr/flatpickr.min.js}"></script>
+    <script th:src="@{/assets/js/pages/date-picker.js}"></script>
+    <script th:src="@{/assets/js/dark.js}"></script>
+    <script th:src="@{/assets/js/initTheme.js}"></script>
 
     <section layout:fragment="script"></section>
   </body>

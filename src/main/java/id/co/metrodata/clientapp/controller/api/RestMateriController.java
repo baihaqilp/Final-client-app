@@ -33,6 +33,11 @@ public class RestMateriController {
         return materiService.getById(id);
     }
 
+    @GetMapping("/trainer")
+    public List<Materi> getByTrainer() {
+        return materiService.getByTrainer();
+    }
+
     @PostMapping
     public Materi create(@RequestBody MateriRequest materi) {
         return materiService.create(materi);

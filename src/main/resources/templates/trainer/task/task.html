@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/main}"
+>
+  <body>
+    <!-- content -->
+    <section layout:fragment="content">
+      <div id="main-content">
+        <div class="page-heading">
+          <div class="page-title mb-3">
+            <div class="row">
+              <div
+                class="col-12 col-md-6 order-md-1 order-last d-flex align-items-center"
+              >
+                <a class="btn" href="javascript:history.back()"
+                  ><i class="fa-solid fa-chevron-left fs-4"></i
+                ></a>
+                <a class="btn" href="#Task">Task</a>
+                <a class="btn" href="#materi">-</a>
+              </div>
+              <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav
+                  aria-label="breadcrumb"
+                  class="breadcrumb-header float-start float-lg-end"
+                >
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a href="index.html">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      Class
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+          <section class="section">
+            <div class="row">
+              <div class="col-12">
+                <div class="card" id="Task">
+                  <div class="card-header d-flex justify-content-between">
+                    <h4>Task(s)</h4>
+                    <div class="right">
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#addTask"
+                      >
+                        Add Task
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <table
+                      class="table display table-stripped table-bordered mt-3 text-center"
+                      id="table-task"
+                    >
+                      <thead class="table">
+                        <tr>
+                          <th class="col-1 text-center">No.</th>
+                          <th class="col-1 text-center">Name</th>
+                          <th class="col-1 text-center">Deadline</th>
+                          <th class="col-2 text-center">Class Name</th>
+                          <th class="col-1 text-center">Segment</th>
+                          <th class="col-3 text-center">Action</th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <footer>
+          <div class="footer clearfix mb-0 text-muted">
+            <div class="float-start">
+              <p>2023 © Mazer</p>
+            </div>
+            <div class="float-end">
+              <p>
+                Crafted with
+                <span class="text-danger"
+                  ><i class="bi bi-heart-fill icon-mid"></i
+                ></span>
+                by <a href="https://saugi.me">Saugi</a>
+              </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+
+      <!-- Add task  -->
+      <div
+        class="modal fade"
+        id="addTask"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="addTaskLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="addTaskLabel">
+                Add Task
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="name" class="form-label fw-bold">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="create_task_name"
+                  placeholder="ex. Exercise"
+                />
+                <label for="desc" class="form-label fw-bold pt-3"
+                  >Description</label
+                >
+                <textarea
+                  type="text"
+                  class="form-control"
+                  id="create_task_desc"
+                  placeholder="ex. Catch Me If You Can"
+                ></textarea>
+                <label for="deadline" class="form-label fw-bold pt-3"
+                  >Deadline</label
+                >
+                <input
+                  type="datetime-local"
+                  class="form-control flatpickr-time-picker-24h"
+                  id="create_task_deadline"
+                  placeholder="ex. 0897678281"
+                />
+                <label for="segment" class="form-label fw-bold pt-3"
+                  >Segment</label
+                >
+                <select
+                  class="form-control form-control-sm select_segment p-2"
+                  aria-label="form-select-sm example"
+                  id="select_segment"
+                >
+                  <option selected value="">Choose Segment</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary" onclick="create()">
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Update task -->
+      <div
+        class="modal fade"
+        id="updateTask"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="updateTaskLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="addTaskLabel">
+                Update Task
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="update_id"
+                  hidden
+                />
+                <label for="name" class="form-label fw-bold">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="update_task_name"
+                  placeholder="ex. 1"
+                />
+                <label for="desc" class="form-label fw-bold pt-3"
+                  >Description</label
+                >
+                <textarea
+                  type="text"
+                  class="form-control"
+                  id="update_task_desc"
+                  cols="30"
+                  rows="10"
+                ></textarea>
+
+                <label for="deadline" class="form-label fw-bold pt-3"
+                  >Deadline</label
+                >
+                <input
+                  type="datetime-local"
+                  class="form-control"
+                  id="update_task_deadline"
+                />
+                <label for="segment" class="form-label fw-bold pt-3"
+                  >Segment</label
+                >
+                <select
+                  class="form-control form-control-sm select_segment p-2"
+                  aria-label="form-select-sm example"
+                  id="update_segment"
+                >
+                  <option selected value="">Choose Segment</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary" onclick="update()">
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detail task -->
+      <div
+        class="modal fade"
+        id="detailTask"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="detailTaskLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="detailTaskLabel">
+                Detail Task
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="detail_task_id"
+                  hidden
+                />
+                <div>
+                  <h5 class="fw-bold">Task Name</h5>
+                  <p id="detail_task_name"></p>
+                </div>
+
+                <div class="pt-3">
+                  <h5 class="fw-bold">Description</h5>
+                  <p id="detail_task_desc"></p>
+                </div>
+
+                <div class="pt-3">
+                  <h5 class="fw-bold">Deadline</h5>
+                  <p id="detail_task_deadline"></p>
+                </div>
+
+                <div class="pt-3">
+                  <h5 class="fw-bold">Segment</h5>
+                  <p id="detail_segment_id"></p>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <div layout:fragment="script">
+      <script th:src="@{/assets/js/trainer/allTask.js}"></script>
+    </div>
+  </body>
+</html>
