@@ -15,6 +15,8 @@ import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.User;
 import id.co.metrodata.clientapp.model.dto.request.ChangePasswordRequest;
+import id.co.metrodata.clientapp.model.dto.request.ChangeStatusRequst;
+import id.co.metrodata.clientapp.model.dto.request.ChangeUserRoleRequest;
 import id.co.metrodata.clientapp.model.dto.request.TraineeRequest;
 import id.co.metrodata.clientapp.model.dto.request.TrainerRequest;
 import id.co.metrodata.clientapp.utils.BasicHeader;
@@ -70,8 +72,22 @@ public class UserService {
         return restTemplate.exchange(
                 url + "/change-password",
                 HttpMethod.POST,
-                new HttpEntity(password, BasicHeader.createHeader()),
+                new HttpEntity(password),
                 User.class).getBody();
+    }
+
+    public User updateRole(ChangeUserRoleRequest user) {
+        return restTemplate.exchange(
+                url + "/change-role",
+                HttpMethod.PUT,
+                new HttpEntity(user), User.class).getBody();
+    }
+
+    public User updateStatus(ChangeStatusRequst user) {
+        return restTemplate.exchange(
+                url + "/change-role",
+                HttpMethod.PUT,
+                new HttpEntity(user), User.class).getBody();
     }
 
 }

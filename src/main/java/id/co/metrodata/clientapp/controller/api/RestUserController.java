@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import id.co.metrodata.clientapp.model.User;
 import id.co.metrodata.clientapp.model.dto.request.ChangePasswordRequest;
+import id.co.metrodata.clientapp.model.dto.request.ChangeStatusRequst;
+import id.co.metrodata.clientapp.model.dto.request.ChangeUserRoleRequest;
 import id.co.metrodata.clientapp.model.dto.request.TraineeRequest;
 import id.co.metrodata.clientapp.model.dto.request.TrainerRequest;
 import id.co.metrodata.clientapp.service.RegisterService;
@@ -60,6 +62,16 @@ public class RestUserController {
     @PostMapping("/changepassword")
     public User changePassword(@RequestBody ChangePasswordRequest passwordRequest) {
         return userService.changePassword(passwordRequest);
+    }
+
+    @PostMapping("/change-role")
+    public User changeRole(@RequestBody ChangeUserRoleRequest userRoleRequest) {
+        return userService.updateRole(userRoleRequest);
+    }
+
+    @PostMapping("/change-status")
+    public User changeStatus(@RequestBody ChangeStatusRequst userStatRequest) {
+        return userService.updateStatus(userStatRequest);
     }
 
 }

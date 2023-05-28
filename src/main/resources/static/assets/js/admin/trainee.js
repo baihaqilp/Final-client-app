@@ -1,6 +1,25 @@
 $(document).ready(function () {
   $.ajax({
     method: "GET",
+    url: "/api/role",
+    dataType: "JSON",
+    success: (res) => {
+      let radio = "";
+      $.each(res, function (key, val) {
+        radio += `
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="${val.id}">
+          <label class="form-check-label" for="inlineRadio1" >${val.name}</label>
+        </div>
+
+        `
+      });
+      $(".radio_status").html(radio)
+    },
+  });
+
+  $.ajax({
+    method: "GET",
     url: "/api/program",
     dataType: "JSON",
     success: (res) => {
@@ -72,18 +91,56 @@ $(document).ready(function () {
         data: null,
         render: (data, type, row, meta) => {
           return `
-                    <button
+          <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle me-1" type="button"
+                  id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
+                  Action
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="dropwdown-item">
+                <button
                     type="button"
-                    class="btn btn-outline-primary"
+                    class="btn col-12 btn-outline-primary"
                     data-bs-toggle="modal"
                     data-bs-target="#detailTrainee"
                     onClick="getById(${data.id})"
                   >
                     Detail
                   </button>
-                  <button class="btn btn-outline-danger" onClick="deletedata(${data.id})">
-                    Delete
-                  </button>
+              </div>
+              <div class="dropwdown-item mt-2">
+                  <button
+                  type="button"
+                  class="btn btn-outline-warning col-12 "
+                  data-bs-toggle="modal"
+                  data-bs-target="#changeStatus"
+                  onClick="getById(${data.id})"
+                >
+                  Change Status
+                </button>
+              </div>
+              <div class="dropwdown-item mt-2">
+                  <button
+                  type="button"
+                  class="btn btn-outline-warning col-12 "
+                  data-bs-toggle="modal"
+                  data-bs-target="#changeRole"
+                  onClick="getById(${data.id})"
+                >
+                  Change Role
+                </button>
+              </div>
+              <div class="dropwdown-item mt-2 col-12 ">
+                  <button class="btn btn-outline-danger col-12 " onClick="deletedata(${data.id})">
+                  Delete
+                </button>
+              </div>
+              </div>
+          </div>
+                    
+                  
+                  
                   `;
         },
       },
@@ -176,19 +233,12 @@ function create() {
   });
 }
 
-function beforeUpdate(id) {
-  $.ajax({
-    method: "GET",
-    url: "/api/employee/" + id,
-    dataType: "JSON",
-    success: (res) => {
-      $("#update_trainee_id").val(res.id);
-      $("#update_trainee_name").val(res.name);
-      $("#update_trainee_email").val(res.email);
-      $("#update_trainee_phone").val(res.phone);
-      $("#update_trainee_address").val(res.address);
-    },
-  });
+function beforeStatusChange(id) {
+  $("#status_trainee_id").val(id);
+}
+
+function beforeRoleChange(id) {
+  $("#status_trainee_id").val(id);
 }
 
 function update() {
