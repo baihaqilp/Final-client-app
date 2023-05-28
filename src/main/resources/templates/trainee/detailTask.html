@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/mainLayout}"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section layout:fragment="content">
+      <!-- ***** Header Area End ***** -->
+      <div id="segment" class="free-detail" th:object="${task}">
+        <div class="container">
+          <div class="row">
+            <div
+              class="col-lg-12 wow fadeInUp"
+              data-wow-duration="0.5s"
+              data-wow-delay="0.25s"
+            >
+              <div class="card text-center">
+                <div class="card-header" th:text="${task.name}">Featured</div>
+                <div class="card-body">
+                  <div class="overflow-auto" style="width: auto; height: 450px">
+                    <div class="row">
+                      <div class="col">
+                        <h5
+                          class="card-title d-flex justify-content-start"
+                          th:text="${task.segment.category.name}"
+                        >
+                          Segment
+                        </h5>
+                        <p
+                          class="fw-bold d-flex justify-content-start mb-2"
+                          th:text="'Trainer Name: '+${task.segment.trainer.name}"
+                        ></p>
+                      </div>
+                      <div class="col">
+                        <h5 class="card-title d-flex justify-content-end">
+                          Deadline
+                        </h5>
+                        <p
+                          class="fw-bold d-flex justify-content-end mb-2"
+                          th:text="${task.deadline}"
+                        ></p>
+                      </div>
+                    </div>
+                    <hr />
+                    <p class="card-text" th:text="${task.desc}">
+                      With supporting text below as a natural lead-in to
+                      additional content.
+                    </p>
+                  </div>
+                </div>
+                <form
+                  th:action="@{/trainee/task/}+${task.id}+@{/submission-add}"
+                  enctype="multipart/form-data"
+                  th:method="POST"
+                >
+                  <div class="card-footer">
+                    <div class="row">
+                      <div class="col d-flex justify-content-end mt-2">
+                        <label for="" class="card-text">
+                          Upload File Submission
+                        </label>
+                      </div>
+
+                      <input
+                        type="text"
+                        id="task_deadline"
+                        name="task_deadline"
+                        value="123213"
+                      />
+
+                      <div class="col">
+                        <input
+                          class="form-control"
+                          type="file"
+                          accept=".pdf, .doc, .docx"
+                          id="fileInput"
+                          name="fileInput"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer d-flex justify-content-between">
+                    <a
+                      href="#"
+                      onclick="history.back()"
+                      class="btn btn-outline-secondary"
+                      >Back
+                    </a>
+                    <button
+                      href="#"
+                      type="submit"
+                      class="btn btn-outline-primary btn-sm"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div layout:fragment="script">
+      <script th:src="@{/assets/js/trainee/task/task.js}"></script>
+    </div>
+  </body>
+</html>

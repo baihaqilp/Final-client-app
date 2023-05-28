@@ -32,6 +32,9 @@ import id.co.metrodata.clientapp.model.Task;
 import id.co.metrodata.clientapp.model.dto.request.SubmissionRequest;
 import id.co.metrodata.clientapp.service.ClassroomService;
 import id.co.metrodata.clientapp.service.FileStorageService;
+import id.co.metrodata.clientapp.service.MateriService;
+import id.co.metrodata.clientapp.service.SegmenService;
+import id.co.metrodata.clientapp.service.SegmentTopicService;
 import id.co.metrodata.clientapp.service.SubmissionService;
 import id.co.metrodata.clientapp.service.TaskService;
 import lombok.AllArgsConstructor;
@@ -45,9 +48,15 @@ public class TraineeController {
   private FileStorageService fileStorageService;
   private SubmissionService submissionService;
   private TaskService taskService;
+  private SegmenService segmenService;
+  private SegmentTopicService segmentTopicService;
+  private MateriService materiService;
 
   @GetMapping
   private String dashboard(Model model) {
+
+    model.addAttribute("segments", segmenService.getSegmentClassTrainee());
+    model.addAttribute("segmentTopics", segmentTopicService.getBySegment());
     return "trainee/index";
   }
 
@@ -56,14 +65,26 @@ public class TraineeController {
     return "trainee/class/class";
   }
 
-  @GetMapping("/topic/{id}")
-  private String topicBySegment(@PathVariable Long id) {
-    return "trainee/topic/topic";
+  @GetMapping("/profile")
+  private String getProfile() {
+    return "trainee/profile";
   }
 
-  @GetMapping("/topic/materi/{materi_id}")
-  private String materi(@PathVariable Long materi_id) {
-    return "trainee/materi/materi";
+  // @GetMapping("/topic/{id}")
+  // private String topicBySegment(@PathVariable Long id) {
+  // return "trainee/topic/topic";
+  // }
+
+  @GetMapping("/topic/{id}")
+  private String topicBySegment(@PathVariable Long id, Model model) {
+    model.addAttribute("materies", materiService.getByTopicId(id));
+    return "trainee/topic";
+  }
+
+  @GetMapping("/topic/materi/{id}")
+  private String materi(@PathVariable Long id, Model model) {
+    model.addAttribute("materi", materiService.getById(id));
+    return "trainee/detailMateri";
   }
 
   @GetMapping("/class/{id}")
@@ -74,7 +95,7 @@ public class TraineeController {
 
   @GetMapping("/task")
   private String traineeTask() {
-    return "trainee/task/task";
+    return "trainee/task";
   }
 
   // SUBMISSION
@@ -84,14 +105,15 @@ public class TraineeController {
   }
 
   @GetMapping("/task/{task_id}/submission-add")
-  private String traineeAddSubmission(@PathVariable long task_id) {
+  private String traineeAddSubmission(@PathVariable long task_id, Model model) {
     Task task = taskService.getById(task_id);
     LocalDateTime now = LocalDateTime.now();
     int res = now.compareTo(task.getDeadline());
     if (res > 0) {
       return "redirect:/trainee/submission";
     }
-    return "trainee/submission/addSubmission";
+    model.addAttribute("task", task);
+    return "trainee/detailTask";
   }
 
   @PostMapping("/task/{task_id}/submission-add")
@@ -119,7 +141,7 @@ public class TraineeController {
 
         "You successfully uploaded " + file.getOriginalFilename() + "!");
 
-    return "redirect:/trainee/task/{task_id}/submission-add";
+    return "redirect:/task/trainee";
   }
 
   @GetMapping("/downloadFile/{filename:.+}")

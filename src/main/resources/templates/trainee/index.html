@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/mainLayout}"
+>
+  <body>
+    <section layout:fragment="content">
+      <div
+        class="main-banner wow fadeIn"
+        id="top"
+        data-wow-duration="1s"
+        data-wow-delay="0.5s"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 align-self-center">
+                  <div
+                    class="left-content show-up header-text wow fadeInLeft"
+                    data-wow-duration="1s"
+                    data-wow-delay="1s"
+                  >
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <h6>Selamat datang di website lms kami</h6>
+                        <h3>
+                          Semoga website ini dapat menjadi media pembelajaran
+                          yang baik.
+                        </h3>
+                      </div>
+                      <div class="col-lg-12">
+                        <div class="border-first-button scroll-to-section mt-2">
+                          <a href="#segment">Check Segment</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div
+                    class="right-image wow fadeInRight"
+                    data-wow-duration="1s"
+                    data-wow-delay="0.5s"
+                  >
+                    <img th:src="@{/assets/images/bg_lms.jpg}" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="segment" class="services">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div
+                class="section-heading wow fadeInDown"
+                data-wow-duration="1s"
+                data-wow-delay="0.5s"
+              >
+                <h6>List Segment</h6>
+                <div class="line-dec"></div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="naccs">
+                <div class="grid">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="menu">
+                        <div th:each="segment,iStat : ${segments}">
+                          <div class="thumb">
+                            <span class="icon">
+                              <img
+                                th:src="@{/assets/images/landing_page/service-icon-0}+${iStat.count}+@{.png}"
+                                alt=""
+                            /></span>
+                            <span th:text="${segment.category.name}"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-12">
+                      <ul class="nacc">
+                        <div th:each="segmentStat,iStat : ${segments}">
+                          <li th:class="${iStat.count} == 1 ? 'active': ''">
+                            <div>
+                              <div class="thumb">
+                                <div class="row">
+                                  <div class="col-lg-6 align-self-center">
+                                    <div class="left-text">
+                                      <h4
+                                        th:text="${segmentStat.category.name}"
+                                      >
+                                        SEO Analysis &amp; Daily Reports
+                                      </h4>
+                                      <div>
+                                        <span
+                                          th:text="'Trainer Name&nbsp;&nbsp;: '+${segmentStat.trainer.name}"
+                                          >Trainer :
+                                        </span>
+                                      </div>
+                                      <div>
+                                        <span
+                                          th:text="'Start Date&emsp;&emsp;: '+${#dates.format(segmentStat.start_date,'dd MMMM YYYY')}"
+                                          >Tanggal Mulai :</span
+                                        >
+                                      </div>
+                                      <br />
+                                      <div class="ticks-list">
+                                        <span>List Topic</span>
+                                        <div
+                                          th:each="segment,iStat : ${segmentTopics}"
+                                        >
+                                          <div
+                                            th:if="${segment.segment.id == segmentStat.id}"
+                                          >
+                                            <span
+                                              ><i class="fa fa-check"></i>
+                                              <a
+                                                th:href="@{/trainee/topic/}+${segment.topic.id}"
+                                                th:text="${segment.topic.name}"
+                                              ></a
+                                            ></span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-6 align-self-center">
+                                    <div class="right-image">
+                                      <img
+                                        th:src="@{/assets/images/landing_page/services-image-0}+${iStat.count}+@{.jpg}"
+                                        alt=""
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </div>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
