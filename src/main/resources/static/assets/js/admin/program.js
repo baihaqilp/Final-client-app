@@ -103,7 +103,7 @@ function create() {
 function beforeUpdate(id) {
   $.ajax({
     method: "GET",
-    url: "/api/employee/" + id,
+    url: "/api/program/" + id,
     dataType: "JSON",
     beforeSend: addCsrfToken(),
     success: (res) => {
@@ -133,9 +133,6 @@ function update() {
         beforeSend: addCsrfToken(),
         data: JSON.stringify({
           name: nameVal,
-          email: emailVal,
-          phone: phoneVal,
-          address: addressVal,
         }),
         contentType: "application/json",
         success: (res) => {

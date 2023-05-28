@@ -42,6 +42,7 @@
                                 <th class="col-3">Name</th>
                                 <th class="col-2">Email</th>
                                 <th class="col-2">Phone</th>
+                                <th class="col-2">Status</th>
                                 <th class="col-4">Action</th>
                             </tr>
                         </thead>
@@ -243,6 +244,154 @@
                 class="btn btn-primary"
                 style="background-color: #4b49ac"
                 onclick="update()"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Change Role -->
+      <div
+        class="modal fade text-left modal-borderless show"
+        id="changeRole"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="changeRoleLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="detailTraineeLabel">
+                Ganti Role Account Trainee
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="name" class="form-label fw-bold">Id</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="role_trainee_id"
+                  placeholder="ex. Miya"
+                  disabled
+                />
+                <label for="name" class="form-label fw-bold">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="role_trainee_name"
+                  placeholder="ex. Miya"
+                  disabled
+                />
+                <label for="email" class="form-label fw-bold pt-3">Role</label>
+                <div class="radio_status"></div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                style="
+                  border: 1px solid #4b49ac;
+                  background-color: white;
+                  color: #4b49ac;
+                "
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                style="background-color: #4b49ac"
+                onclick="updateRole()"
+              >
+                Save
+              </button>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+       <!-- Change Status   -->
+        <div
+        class="modal fade text-left modal-borderless show"
+        id="changeStatus"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="changeStatusLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="detailTraineeLabel">
+                Ganti Status Account Trainee
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="name" class="form-label fw-bold">Id</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="status_trainee_id"
+                  placeholder="ex. Miya"
+                  disabled
+                />
+                <label for="name" class="form-label fw-bold">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="status_trainee_name"
+                  placeholder="ex. Miya"
+                  disabled
+                />
+                <label for="email" class="form-label fw-bold pt-3">Status</label>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="status"  value="true">
+                  <label class="form-check-label" for="inlineRadio1">Active</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="status"  value="false">
+                  <label class="form-check-label" for="inlineRadio2">Non - Active</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                style="
+                  border: 1px solid #4b49ac;
+                  background-color: white;
+                  color: #4b49ac;
+                "
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                style="background-color: #4b49ac"
+                onclick="updateStatus()"
               >
                 Save
               </button>

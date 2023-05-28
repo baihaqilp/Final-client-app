@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+    <title>Document</title>
+    <!-- Bootstrap core CSS -->
+    <link
+      th:href="@{/assets/css/landing_page/bootstrap.min.css}"
+      rel="stylesheet"
+    />
+    <!-- sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Additional CSS Files -->
+    <link
+      rel="stylesheet"
+      th:href="@{/assets/css/landing_page/fontawesome.css}"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/assets/css/landing_page/templatemo-digimedia-v2.css}"
+    />
+    <link rel="stylesheet" th:href="@{/assets/css/landing_page/animated.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/landing_page/owl.css}" />
+  </head>
+
+  <body>
+    <div th:replace="fragment/navbarTrainee :: navbar"></div>
+    <section layout:fragment="content"></section>
+
+    <!-- Scripts -->
+
+    <script th:src="@{/assets/js/landing_page/jquery/jquery.min.js}"></script>
+    <script
+      th:src="@{/assets/js/landing_page/bootstrap/bootstrap.bundle.min.js}"
+    ></script>
+    <script th:src="@{/assets/js/landing_page/owl-carousel.js}"></script>
+    <script th:src="@{/assets/js/landing_page/animation.js}"></script>
+    <script th:src="@{/assets/js/landing_page/imagesloaded.js}"></script>
+    <script th:src="@{/assets/js/landing_page/custom.js}"></script>
+    <script th:src="@{/assets/js/addCSRF.js}"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+    <section layout:fragment="script"></section>
+  </body>
+</html>

@@ -61,26 +61,26 @@ $(document).ready(function () {
                 <div class="dropwdown-item">
                 <a href="/admin/class/${data.id}"
                   type="button"
-                  class="p-3")"
+                  class="btn btn-outline-primary col-12")"
                 >
                   Detail
                 </a>
               </div>
               <div class="dropwdown-item mt-2">
-                <a
+                <button
                   type="button"
-                  class="p-3"
+                  class="btn btn-outline-warning col-12"
                   data-bs-toggle="modal"
                   data-bs-target="#updateClass"
                   onClick="beforeUpdate(${data.id})"
                 >
                   Edit
-                </a>
+                </button>
               </div>
               <div class="dropwdown-item mt-2">
                 <a href="/admin/class/${data.id}/trainee"
                   type="button"
-                  class="p-3"
+                  class="btn btn-outline-info col-12"
                 >
                   Trainee List
                 </a>

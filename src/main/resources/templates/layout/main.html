@@ -62,6 +62,9 @@
       rel="stylesheet"
       href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css"
     />
+
+    <link rel="stylesheet" th:href="@{/assets/css/calendar.css}" />
+
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css"
       rel="stylesheet"
@@ -96,6 +99,8 @@
       integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.6/underscore-umd-min.js"></script>
+    <script type="text/javascript" th:src="@{/assets/js/calendar.js}"></script>
     <script
       th:src="@{/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js}"
     ></script>
@@ -110,10 +115,6 @@
     <script
       th:src="@{/assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js}"
     ></script>
-
-    <!-- carousel -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
-
     <script th:src="@{/assets/js/main.js}"></script>
     <script
       src="https://kit.fontawesome.com/98d02758b8.js"
@@ -121,6 +122,7 @@
     ></script>
 
     <script th:src="@{/assets/js/addCSRF.js}"></script>
+    <script th:src="@{/assets/js/sidebar.js}"></script>
     <script th:src="@{/assets/extensions/flatpickr/flatpickr.min.js}"></script>
     <script th:src="@{/assets/js/pages/date-picker.js}"></script>
     <script th:src="@{/assets/js/dark.js}"></script>

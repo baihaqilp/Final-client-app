@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/mainLayout}"
+>
+  <body>
+    <section layout:fragment="content">
+      <!-- ***** Preloader Start ***** -->
+      <div id="free-quote" class="free-quote">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 offset-lg-4">
+              <div
+                class="section-heading wow fadeIn"
+                data-wow-duration="1s"
+                data-wow-delay="0.3s"
+              >
+                <h4>Task</h4>
+                <div class="line-dec"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="services" class="">
+        <div class="container">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="row task-content"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="modal fade"
+        id="detailTask"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="detailTaskLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="detailTaskLabel">
+                Detail Task
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="name" class="form-label fw-bold pt-3"
+                      >Task Name</label
+                    >
+                    <p id="detail_task_name"></p>
+                  </div>
+                  <div class="col-md-3">
+                    <label for="segment" class="form-label fw-bold pt-3"
+                      >Segment</label
+                    >
+                    <p id="detail_task_segment"></p>
+                  </div>
+                  <div class="col-md-3">
+                    <label for="deadline" class="form-label fw-bold pt-3"
+                      >Deadline</label
+                    >
+                    <input
+                      type="hidden"
+                      name=""
+                      id="detail_task_deadline_ipt"
+                    />
+                    <p id="detail_task_deadline"></p>
+                  </div>
+                </div>
+                <label for="desc" class="form-label fw-bold pt-3"
+                  >Description</label
+                >
+                <input type="hidden" id="detail_task_id" />
+                <p class="detail_task_desc" id="detail_task_desc"></p>
+              </div>
+            </div>
+            <div class="upload-content"></div>
+            <!-- <form
+              th:action="@{/trainee/task/}+${task_id}+@{/submission-add}"
+              enctype="multipart/form-data"
+              id="task_link"
+              th:method="POST"
+            >
+              <input type="text" id="task_id" name="task_id" />
+              <input type="hidden" id="trainee_id" th:value="@{1}" />
+              <div class="modal-footer d-flex justify-content-start">
+                <div class="">
+                  <label for="" class="fw-bold form-label">
+                    Upload File Submission
+                  </label>
+                </div>
+                <div class="mb-3">
+                  <div class="input-group">
+                    <input
+                      type="file"
+                      class="form-control"
+                      accept=".pdf, .doc, .docx"
+                      id="fileInput"
+                      name="fileInput"
+                    />
+                  </div>
+                  <div
+                    id="fileSizeError"
+                    class="form-text"
+                    style="color: red; display: none"
+                  >
+                    File size exceeds the limit.
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer d-flex justify-content-between">
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  class="btn btn-outline-primary"
+                  type="submit"
+                  id="submission"
+                >
+                  Save
+                </button>
+              </div>
+            </form> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ***** Header Area End ***** -->
+    </section>
+    <div layout:fragment="script">
+      <script th:src="@{/assets/js/trainee/task/task.js}"></script>
+    </div>
+  </body>
+</html>
