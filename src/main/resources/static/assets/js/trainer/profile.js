@@ -22,19 +22,41 @@ $(document).ready(function () {
 
   $("#edit-profile").click(function () {
     $(".edit-profile").removeAttr("readonly");
-    $("#update-profile").show();
     $("#button").removeAttr("hidden");
-    $(".edit-password").prop("readonly", true);
-    $("#update-password").prop("hidden", true);
-    $("#submit-btn").attr("onclick", "updateProfile()");
+    // $("#submit-btn").click(updateProfile);
   });
 
-  $("#edit-password").click(function () {
-    $("#update-password").removeAttr("hidden");
-    $(".edit-password").removeAttr("readonly");
-    $("#button").removeAttr("hidden");
-    $(".edit-profile").prop("readonly", true);
-    $("#submit-btn").attr("onclick", "updatePassword()");
+  // $("#edit-password").click(function () {
+  //   $("#update-password").removeAttr("hidden");
+  //   $(".edit-password").removeAttr("readonly");
+  //   $("#button").removeAttr("hidden");
+  //   $(".edit-profile").prop("readonly", true);
+  //   $("#submit-btn").click(updatePassword);
+  // });
+
+  $("#new-pass-1").keyup(function () {
+    var pass1 = $("#new-pass-1").val();
+    var pass2 = $("#new-pass-2").val();
+
+    if (pass1 === pass2) {
+      $("#message").text("Passwords match!");
+    } else {
+      $("#message").text("Passwords do not match. Please try again.");
+    }
+  });
+  $("#new-pass-2").keyup(function () {
+    var pass1 = $("#new-pass-1").val();
+    var pass2 = $("#new-pass-2").val();
+
+    if (pass1 === pass2) {
+      $("#new-pass-2").removeClass("is-invalid");
+      $("#new-pass-2").addClass("is-valid");
+      $("#message").text("Passwords match!");
+    } else {
+      $("#new-pass-2").removeClass("is-valid");
+      $("#new-pass-2").addClass("is-invalid");
+      $("#message").text("Passwords do not match. Please try again.");
+    }
   });
 });
 
@@ -46,8 +68,11 @@ function updateProfile() {
   let emailVal = $("#email-id-icon").val();
   let mobile = $("#mobile-id-icon").val();
   let addressVal = $("#address-id-icon").val();
+  let usernameVal = $("#username-id-icon").val();
+  let passVal = $("#password-id-icon").val();
+  console.log(idVal, classId, roleId);
   Swal.fire({
-    title: "Are you sure?",
+    title: "Are you sure to update your profile?",
     text: "You won't be able to revert this!",
     icon: "warning",
     showCancelButton: true,
@@ -69,15 +94,19 @@ function updateProfile() {
           email: emailVal,
           phone: mobile,
           address: addressVal,
+          username: usernameVal,
+          password: passVal,
         }),
         contentType: "application/json",
-        success: (res) => {},
+        success: (res) => {
+          location.reload();
+        },
         error: function (xhr, textStatus, errorThrown) {
           let err = JSON.parse(xhr.responseText);
           let status = "" + err.message[0] + err.message[1] + err.message[2];
           let msg = "";
           if (status == 409) {
-            msg = "Topic sudah ada";
+            msg = "Error";
           } else {
             msg = "Something when Wrong !!!";
           }
@@ -95,10 +124,11 @@ function updateProfile() {
 }
 
 function updatePassword() {
-  var old = $("#password-id-icon").val();
-  var newPass = $("#new-pass-1").val();
+  let old = $("#old-pass").val();
+  let newPass = $("#new-pass-2").val();
+  console.log(old, newPass);
   Swal.fire({
-    title: "Are you sure?",
+    title: "Are you sure to update your password?",
     text: "You won't be able to revert this!",
     icon: "warning",
     showCancelButton: true,
@@ -111,23 +141,30 @@ function updatePassword() {
         url: "/api/user/changepassword",
         method: "POST",
         dataType: "JSON",
+        beforeSend: addCsrfToken(),
         data: JSON.stringify({
           passwordOld: old,
           passwordNew: newPass,
         }),
         contentType: "application/json",
         success: (res) => {
-          $("#updateSegment").modal("hide");
-          $("#table-segment").DataTable().ajax.reload();
-          $("#update_start_date").val("");
-          $("#update_end_date").val("");
+          $.ajax({
+            url: "/logout",
+            method: "POST",
+            success: () => {
+              window.location.href = "/login";
+            },
+            error: (xhr, textStatus, errorThrown) => {
+              console.log("Logout error:", textStatus);
+            },
+          });
         },
         error: function (xhr, textStatus, errorThrown) {
           let err = JSON.parse(xhr.responseText);
           let status = "" + err.message[0] + err.message[1] + err.message[2];
           let msg = "";
           if (status == 409) {
-            msg = "Topic sudah ada";
+            msg = "Error";
           } else {
             msg = "Something when Wrong !!!";
           }
