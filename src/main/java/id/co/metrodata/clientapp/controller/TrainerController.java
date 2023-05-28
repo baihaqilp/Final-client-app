@@ -146,4 +146,9 @@ public class TrainerController {
     public String topicDetail(@PathVariable long id) {
         return "trainer/topic";
     }
+
+    @GetMapping("/profile")
+    public String profile() {
+        return "trainer/profile/profile";
+    }
 }

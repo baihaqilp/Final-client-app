@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.User;
+import id.co.metrodata.clientapp.model.dto.request.ChangePasswordRequest;
 import id.co.metrodata.clientapp.model.dto.request.TraineeRequest;
 import id.co.metrodata.clientapp.model.dto.request.TrainerRequest;
 import id.co.metrodata.clientapp.utils.BasicHeader;
@@ -63,6 +64,14 @@ public class UserService {
                 url + "/" + id,
                 HttpMethod.DELETE,
                 new HttpEntity(BasicHeader.createHeader()), User.class).getBody();
+    }
+
+    public User changePassword(ChangePasswordRequest password) {
+        return restTemplate.exchange(
+                url + "/change-password",
+                HttpMethod.POST,
+                new HttpEntity(password, BasicHeader.createHeader()),
+                User.class).getBody();
     }
 
 }

@@ -15,10 +15,9 @@
                 class="col-12 col-md-6 order-md-1 order-last d-flex align-items-center"
               >
                 <a class="btn" href="javascript:history.back()"
-                  ><i class="fa-solid fa-chevron-left fs-4"></i
+                  ><i class="fa-solid fa-chevron-left fs-4 mb-3"></i
                 ></a>
-                <a class="btn" href="#Task">Task</a>
-                <a class="btn" href="#materi">-</a>
+                <h6>Task - Submission</h6>
               </div>
               <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav
@@ -40,9 +39,37 @@
           <section class="section">
             <div class="row">
               <div class="col-12">
-                <div class="card" id="Task">
+                <div class="card" id="TaskSub">
                   <div class="card-header d-flex justify-content-between">
-                    <h4>Task(s)</h4>
+                    <div class="left">
+                      <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <a
+                            class="nav-link active"
+                            id="task-tab"
+                            data-bs-toggle="tab"
+                            href="#task"
+                            role="tab"
+                            aria-controls="task"
+                            aria-selected="true"
+                            >Task(s)</a
+                          >
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <a
+                            class="nav-link"
+                            id="sub-tab"
+                            data-bs-toggle="tab"
+                            href="#sub"
+                            role="tab"
+                            aria-controls="sub"
+                            aria-selected="false"
+                            tabindex="-1"
+                            >Submission(s)</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
                     <div class="right">
                       <button
                         type="button"
@@ -55,21 +82,54 @@
                     </div>
                   </div>
                   <div class="card-body">
-                    <table
-                      class="table display table-stripped table-bordered mt-3 text-center"
-                      id="table-task"
-                    >
-                      <thead class="table">
-                        <tr>
-                          <th class="col-1 text-center">No.</th>
-                          <th class="col-1 text-center">Name</th>
-                          <th class="col-1 text-center">Deadline</th>
-                          <th class="col-2 text-center">Class Name</th>
-                          <th class="col-1 text-center">Segment</th>
-                          <th class="col-3 text-center">Action</th>
-                        </tr>
-                      </thead>
-                    </table>
+                    <div class="tab-content" id="myTab">
+                      <div
+                        class="tab-pane fade active show"
+                        id="task"
+                        role="tabpanel"
+                        aria-labelledby="task-tab"
+                      >
+                        <table
+                          class="table display table-stripped table-bordered mt-3 text-center"
+                          id="table-task"
+                        >
+                          <thead class="table">
+                            <tr>
+                              <th class="col-1 text-center">No.</th>
+                              <th class="col-1 text-center">Name</th>
+                              <th class="col-1 text-center">Deadline</th>
+                              <th class="col-2 text-center">Class Name</th>
+                              <th class="col-1 text-center">Segment</th>
+                              <th class="col-3 text-center">Action</th>
+                            </tr>
+                          </thead>
+                        </table>
+                      </div>
+
+                      <div
+                        class="tab-pane fade"
+                        id="sub"
+                        role="tabpanel"
+                        aria-labelledby="sub-tab"
+                      >
+                        <table
+                          class="table display table-stripped table-bordered mt-3 text-center"
+                          id="table-submission"
+                        >
+                          <thead class="table">
+                            <tr>
+                              <th class="col-1 text-center">No.</th>
+                              <th class="col-1 text-center">Name</th>
+                              <th class="col-1 text-center">File Submission</th>
+                              <th class="col-2 text-center">Submit Date</th>
+                              <th class="col-1 text-center">Nilai</th>
+                              <th class="col-1 text-center">Penilai</th>
+                              <th class="col-3 text-center">Action</th>
+                            </tr>
+                          </thead>
+                        </table>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -140,7 +200,7 @@
                 >
                 <input
                   type="datetime-local"
-                  class="form-control flatpickr-time-picker-24h"
+                  class="form-control flatpickr-no-config flatpickr-input"
                   id="create_task_deadline"
                   placeholder="ex. 0897678281"
                 />
@@ -318,6 +378,70 @@
                 Close
               </button>
             </div> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Eval -->
+      <div
+        class="modal fade"
+        id="evaluate"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="EvaluateLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="EvaluateLabel">
+                Evaluate
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="desc" class="form-label fw-bold pt-3"
+                  >Submission</label
+                >
+                <input
+                  type="number"
+                  class="form-control"
+                  id="eval_submission"
+                  hidden
+                />
+                <label for="desc" class="form-label fw-bold pt-3">Nilai</label>
+                <input type="text" class="form-control" id="eval_nilai" />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                style="
+                  border: 1px solid #4b49ac;
+                  background-color: white;
+                  color: #4b49ac;
+                "
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                style="background-color: #4b49ac"
+                onclick="eval()"
+              >
+                Submit
+              </button>
+            </div>
           </div>
         </div>
       </div>

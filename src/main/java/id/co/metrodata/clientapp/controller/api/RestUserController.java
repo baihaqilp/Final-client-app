@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.co.metrodata.clientapp.model.User;
+import id.co.metrodata.clientapp.model.dto.request.ChangePasswordRequest;
 import id.co.metrodata.clientapp.model.dto.request.TraineeRequest;
 import id.co.metrodata.clientapp.model.dto.request.TrainerRequest;
 import id.co.metrodata.clientapp.service.RegisterService;
@@ -54,6 +55,11 @@ public class RestUserController {
     @PostMapping("/trainee")
     public User createTrainee(@RequestBody TraineeRequest traineeRequest) {
         return registerService.createTrainee(traineeRequest);
+    }
+
+    @PostMapping("/changepassword")
+    public User changePassword(@RequestBody ChangePasswordRequest passwordRequest) {
+        return userService.changePassword(passwordRequest);
     }
 
 }

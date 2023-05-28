@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 import id.co.metrodata.clientapp.model.Employee;
 import id.co.metrodata.clientapp.model.dto.request.TrainerRequest;
+import id.co.metrodata.clientapp.model.dto.request.UserRequest;
 import id.co.metrodata.clientapp.utils.BasicHeader;
 
 @Service
@@ -39,6 +40,14 @@ public class EmployeeService {
                 }).getBody();
     }
 
+    public Employee getProfile() {
+        return restTemplate.exchange(
+                url + "/profile",
+                HttpMethod.GET,
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<Employee>() {
+                }).getBody();
+    }
+
     public Employee create(Employee employee) {
         return restTemplate.exchange(
                 url + "/",
@@ -47,7 +56,7 @@ public class EmployeeService {
                 Employee.class).getBody();
     }
 
-    public Employee update(long id, TrainerRequest employee) {
+    public Employee update(long id, UserRequest employee) {
         return restTemplate.exchange(
                 url + "/" + id,
                 HttpMethod.PUT,

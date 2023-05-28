@@ -15,6 +15,7 @@ $(document).ready(function () {
       });
     },
   });
+
   $("#table-task").DataTable({
     ajax: {
       url: "/api/task/trainer",
@@ -37,38 +38,115 @@ $(document).ready(function () {
         data: null,
         render: (data, type, row, meta) => {
           return `
-          <div class="d-flex align-items-center">
-                  <button
-                    type="button"
-                    class="btn btn-info mx-3"
-                    data-bs-toggle="modal"
-                     data-bs-target="#detailTask"
-                    onClick="getById(${data.id})"
-                    style="color: white;"
-                  >
-                    Detail        
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-warning mx-3"
-                    data-bs-toggle="modal"
-                    data-bs-target="#updateTask"
-                    onClick="beforeUpdate(${data.id})"
-                    style="color: white;"
-                  >
-                    Edit                  
-                  </button>
-                  <button class="btn btn-danger" onClick="deletedata(${data.id})">
-                    Delete                  
-                  </button>
-                </div>
-                  `;
+            <div class="d-flex align-items-center">
+              <a href="#sub" class="btn btn-success" onclick="moveToSubTab(${data.id})">
+                Sub
+              </a>
+              <button
+                type="button"
+                class="btn btn-info mx-3"
+                data-bs-toggle="modal"
+                data-bs-target="#detailTask"
+                onClick="getById(${data.id})"
+                style="color: white;"
+              >
+                Detail
+              </button>
+              <button
+                type="button"
+                class="btn btn-warning mx-3"
+                data-bs-toggle="modal"
+                data-bs-target="#updateTask"
+                onClick="beforeUpdate(${data.id})"
+                style="color: white;"
+              >
+                Edit
+              </button>
+              <button class="btn btn-danger" onClick="deletedata(${data.id})">
+                Delete
+              </button>
+            </div>
+          `;
         },
       },
     ],
   });
 });
 
+// get submission by task id
+function moveToSubTab(id) {
+  $("#task").removeClass("show active");
+  $("#sub").addClass("show active");
+  $("#task-tab").removeClass("active");
+  $("#sub-tab").addClass("active");
+  $("#table-submission").DataTable({
+    ajax: {
+      url: "/api/submission/task/" + id,
+      dataSrc: "",
+    },
+    destroy: true,
+    columns: [
+      {
+        data: null,
+        render: function (data, type, row, meta) {
+          return meta.row + 1;
+        },
+      },
+      { data: "employee.name" },
+      {
+        data: null,
+        render: (data, type, row, meta) => {
+          return `
+            <a href="${data.submission_url}"
+            type="button"
+            class="btn btn-success mx-3")"
+          >
+          <i class="fa-solid fa-file-arrow-down">
+          <span class="file" style="display: none;">${data.submission_file}</span></i>
+          </a>
+            `;
+        },
+      },
+      { data: "submission_date" },
+      {
+        data: null,
+        render: function (data, type, row, meta) {
+          if (data.evaluation != null) {
+            return data.evaluation.nilai;
+          }
+          return data.evaluation;
+        },
+      },
+      {
+        data: null,
+        render: function (data, type, row, meta) {
+          if (data.evaluation != null) {
+            return data.evaluation.trainer.name;
+          }
+          return data.evaluation;
+        },
+      },
+      {
+        data: null,
+        render: (data, type, row, meta) => {
+          return `
+                        <button
+                            id="eval"
+                            type="button"
+                            class="btn mx-3"
+                            data-bs-toggle="modal"
+                            data-bs-target="#evaluate"
+                            onclick="beforeEval(${data.id})"
+                            style="background-color: white; border-color: #4b49ac; color: #4b49ac"
+                        >
+                            Eval
+                        </button>
+                            `;
+        },
+      },
+    ],
+  });
+}
 function getById(id) {
   $.ajax({
     method: "GET",
@@ -254,4 +332,39 @@ function deletedata(id) {
         );
       }
     });
+}
+
+function beforeEval(id) {
+  $("#eval_submission").val(id);
+}
+
+function beforeEvalDetail(id) {
+  $("#eval_submission").val(id);
+}
+
+function eval() {
+  let nilaiVal = $("#eval_nilai").val();
+  let submissionVal = $("#eval_submission").val();
+  $.ajax({
+    method: "POST",
+    url: "/api/evaluation",
+    dataType: "JSON",
+    beforeSend: addCsrfToken(),
+    data: JSON.stringify({
+      nilai: nilaiVal,
+      submission_id: submissionVal,
+    }),
+    contentType: "application/json",
+    success: (res) => {
+      $("#evaluate").modal("hide");
+
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Evaluation success to creat ....",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    },
+  });
 }

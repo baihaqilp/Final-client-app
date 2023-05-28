@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/main}"
+>
+  <body>
+    <!-- content -->
+    <section layout:fragment="content">
+      <div id="main-content">
+        <div class="page-heading">
+          <div class="page-title mb-3">
+            <div class="row">
+              <div
+                class="col-12 col-md-6 order-md-1 order-last d-flex align-items-center"
+              >
+                <a class="btn" href="javascript:history.back()"
+                  ><i class="fa-solid fa-chevron-left fs-4"></i
+                ></a>
+                <a class="btn" href="#Task">User Profile</a>
+              </div>
+              <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav
+                  aria-label="breadcrumb"
+                  class="breadcrumb-header float-start float-lg-end"
+                >
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a href="index.html">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      Class
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+          <section class="section">
+            <div class="row">
+              <div class="col-12">
+                <div class="card" id="Task">
+                  <div
+                    class="card-header d-flex align-items-center justify-content-between"
+                  >
+                    <div class="d-flex align-items-center">
+                      <div class="avatar avatar-xl">
+                        <img
+                          src="https://zuramai.github.io/mazer/demo/assets/compiled/jpg/5.jpg"
+                          alt="Face 1"
+                        />
+                      </div>
+                      <div class="ms-3 name">
+                        <h5 class="font-bold user-name"></h5>
+                        <h6
+                          class="text-muted mb-0"
+                          sec:authentication="name"
+                        ></h6>
+                      </div>
+                    </div>
+                    <div class="right">
+                      <button
+                        type="button"
+                        class="btn btn-info"
+                        id="edit-profile"
+                        style="font-size: 15px"
+                      >
+                        Edit Profile
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <form class="form form-vertical">
+                      <input type="number" id="update_id" hidden />
+                      <input type="number" id="class-id" hidden />
+                      <input type="number" id="role-id" hidden />
+                      <div class="form-body">
+                        <div class="row" id="update-profile">
+                          <div class="col-6">
+                            <div class="form-group has-icon-left">
+                              <label for="first-name-icon">Name</label>
+                              <div class="position-relative">
+                                <input
+                                  type="text"
+                                  class="form-control edit-profile"
+                                  placeholder="Input with icon left"
+                                  id="first-name-icon"
+                                  readonly
+                                />
+                                <div class="form-control-icon">
+                                  <i class="bi bi-person"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group has-icon-left">
+                              <label for="email-id-icon">Email</label>
+                              <div class="position-relative">
+                                <input
+                                  type="text"
+                                  class="form-control edit-profile"
+                                  placeholder="Email"
+                                  id="email-id-icon"
+                                  readonly
+                                />
+                                <div class="form-control-icon">
+                                  <i class="bi bi-envelope"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="row border-bottom border-1 mb-4 pb-4 b-2"
+                          id="update-profile"
+                        >
+                          <div class="col-6">
+                            <div class="form-group has-icon-left">
+                              <label for="mobile-id-icon">Phone Number</label>
+                              <div class="position-relative">
+                                <input
+                                  type="text"
+                                  class="form-control edit-profile"
+                                  placeholder="Mobile"
+                                  id="mobile-id-icon"
+                                  readonly
+                                />
+                                <div class="form-control-icon">
+                                  <i class="bi bi-phone"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group has-icon-left">
+                              <label for="address-id-icon">Address</label>
+                              <div class="position-relative">
+                                <input
+                                  type="text"
+                                  class="form-control edit-profile"
+                                  placeholder="Password"
+                                  id="address-id-icon"
+                                  readonly
+                                />
+                                <div class="form-control-icon">
+                                  <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="right" style="padding-left: 83%">
+                            <button
+                              type="button"
+                              class="btn btn-info"
+                              id="edit-password"
+                              style="font-size: 13px"
+                            >
+                              Update Password
+                            </button>
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group has-icon-left">
+                              <label for="username-id-icon">Username</label>
+                              <div class="position-relative">
+                                <input
+                                  type="text"
+                                  class="form-control edit-password"
+                                  placeholder="Mobile"
+                                  id="username-id-icon"
+                                  readonly
+                                />
+                                <div class="form-control-icon">
+                                  <i class="fa-solid fa-at"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group has-icon-left">
+                              <label for="password-id-icon">Password</label>
+                              <div class="position-relative">
+                                <input
+                                  type="password"
+                                  class="form-control edit-password"
+                                  placeholder="Password"
+                                  id="password-id-icon"
+                                  readonly
+                                />
+                                <div class="form-control-icon">
+                                  <i class="bi bi-lock"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row" hidden id="update-password">
+                          <div class="col-6">
+                            <div class="form-group has-icon-left">
+                              <label for="mobile-id-icon">New password</label>
+                              <div class="position-relative">
+                                <input
+                                  type="text"
+                                  class="form-control edit-password"
+                                  placeholder="New Password"
+                                  id="new-pass-1"
+                                />
+                                <div class="form-control-icon">
+                                  <i class="bi bi-lock"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group has-icon-left">
+                              <label for="password-id-icon"
+                                >Confirm New Password</label
+                              >
+                              <div class="position-relative">
+                                <input
+                                  type="password"
+                                  class="form-control edit-password"
+                                  placeholder="Confirm New Password"
+                                  id="new-pass-2"
+                                />
+                                <div class="form-control-icon">
+                                  <i class="bi bi-lock"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row" id="button" hidden>
+                          <div class="col-12 d-flex justify-content-end">
+                            <button
+                              type="submit"
+                              class="btn btn-primary me-1 mb-1"
+                              id="submit-btn"
+                            >
+                              Submit
+                            </button>
+                            <button
+                              type="reset"
+                              class="btn btn-light-secondary me-1 mb-1"
+                            >
+                              Reset
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <footer>
+          <div class="footer clearfix mb-0 text-muted">
+            <div class="float-start">
+              <p>2023 © Mazer</p>
+            </div>
+            <div class="float-end">
+              <p>
+                Crafted with
+                <span class="text-danger"
+                  ><i class="bi bi-heart-fill icon-mid"></i
+                ></span>
+                by <a href="https://saugi.me">Saugi</a>
+              </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </section>
+    <div layout:fragment="script">
+      <script th:src="@{/assets/js/trainer/profile.js}"></script>
+    </div>
+  </body>
+</html>
