@@ -58,6 +58,9 @@
       rel="stylesheet"
       href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css"
     />
+
+    <link rel="stylesheet" th:href="@{/assets/css/calendar.css}">
+        
   </head>
 
   <body>
@@ -82,6 +85,8 @@
       integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.6/underscore-umd-min.js"></script>
+    <script type="text/javascript" th:src="@{/assets/js/calendar.js}"></script>
     <script
       th:src="@{/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js}"
     ></script>
@@ -96,7 +101,6 @@
     <script
       th:src="@{/assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js}"
     ></script>
-
     <script th:src="@{/assets/js/main.js}"></script>
     <script
       src="https://kit.fontawesome.com/98d02758b8.js"
@@ -104,6 +108,7 @@
     ></script>
 
     <script th:src="@{/assets/js/addCSRF.js}"></script>
+    <script th:src="@{/assets/js/sidebar.js}"></script>
 
     <section layout:fragment="script"></section>
   </body>
