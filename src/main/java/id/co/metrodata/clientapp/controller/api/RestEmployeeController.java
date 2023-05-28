@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import id.co.metrodata.clientapp.model.Employee;
 import id.co.metrodata.clientapp.model.dto.request.TrainerRequest;
+import id.co.metrodata.clientapp.model.dto.request.UserRequest;
 import id.co.metrodata.clientapp.service.EmployeeService;
 import lombok.AllArgsConstructor;
 
@@ -33,13 +34,18 @@ public class RestEmployeeController {
         return employeeService.getById(id);
     }
 
+    @GetMapping("/profile")
+    public Employee getProfile() {
+        return employeeService.getProfile();
+    }
+
     @PostMapping
     public Employee create(@RequestBody Employee employee) {
         return employeeService.create(employee);
     }
 
     @PutMapping("/{id}")
-    public Employee update(@PathVariable long id, @RequestBody TrainerRequest employee) {
+    public Employee update(@PathVariable long id, @RequestBody UserRequest employee) {
         return employeeService.update(id, employee);
     }
 

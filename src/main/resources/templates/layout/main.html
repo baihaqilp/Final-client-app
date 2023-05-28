@@ -53,6 +53,10 @@
       th:href="@{/assets/images/favicon.svg}"
       type="image/x-icon"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
 
     <link
       rel="stylesheet"
@@ -70,6 +74,7 @@
   </head>
 
   <body class="light">
+    <script th:src="@{/assets/js/initTheme.js}"></script>
     <div id="app">
       <div th:replace="fragment/sidebar :: sidebar"></div>
       <div id="main">
@@ -116,7 +121,6 @@
     <script th:src="@{/assets/extensions/flatpickr/flatpickr.min.js}"></script>
     <script th:src="@{/assets/js/pages/date-picker.js}"></script>
     <script th:src="@{/assets/js/dark.js}"></script>
-    <script th:src="@{/assets/js/initTheme.js}"></script>
 
     <section layout:fragment="script"></section>
   </body>
