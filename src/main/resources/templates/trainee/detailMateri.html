@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/mainLayout}"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section layout:fragment="content">
+      <div id="free-quote" class="free-quote" th:object="${materi}">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 offset-lg-4">
+              <div
+                class="section-heading wow fadeIn"
+                data-wow-duration="1s"
+                data-wow-delay="0.3s"
+              >
+                <h6>Materi</h6>
+                <h4 th:text="${materi.name}">Grow With Us Now</h4>
+                <div class="line-dec"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="segment" class="">
+        <div class="container">
+          <div class="card">
+            <div class="row">
+              <div
+                class="col-lg-12 wow fadeInUp"
+                data-wow-duration="0.5s"
+                data-wow-delay="0.25s"
+              >
+                <form id="contact ">
+                  <div class="col-lg-12">
+                    <div class="fill-form">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <p
+                            th:class="@{text-justify}"
+                            th:utext="${materi.desc}"
+                          >
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Perspiciatis, harum nam explicabo sed possimus
+                            nobis! Nostrum atque voluptas at odit. Deleniti,
+                            quas soluta, distinctio id possimus, aperiam
+                            voluptatum similique dolores vitae harum velit?
+                            Nobis laudantium saepe quasi nulla exercitationem
+                            magni id odio nesciunt est voluptates, nemo corporis
+                            eos maiores aliquam, error cupiditate ea quisquam
+                            dicta omnis labore eveniet, ipsam repudiandae
+                            molestiae accusamus? Qui autem beatae culpa expedita
+                            ullam laboriosam et optio nulla ipsum, aspernatur,
+                            minima laudantium iure, consectetur a consequuntur
+                            in veniam magni quis sit. Inventore quam, voluptates
+                            asperiores veritatis, autem eveniet suscipit
+                            corrupti vel odio ratione quis consectetur
+                            provident.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a
+                href="#"
+                onclick="history.back()"
+                class="btn btn-outline-secondary"
+                >Back
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

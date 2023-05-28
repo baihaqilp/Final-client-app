@@ -30,6 +30,14 @@ public class SegmenService {
                 }).getBody();
     }
 
+    public List<Segment> getSegmentClassTrainee() {
+        return restTemplate.exchange(
+                url + "/class/trainee",
+                HttpMethod.GET,
+                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Segment>>() {
+                }).getBody();
+    }
+
     // group by trainer
     public List<Segment> getSegmentTrainer() {
         return restTemplate.exchange(

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import groovyjarjarpicocli.CommandLine.Model;
 import lombok.AllArgsConstructor;
 
 @Controller
@@ -16,4 +17,8 @@ public class TaskController {
         return "task/index";
     }
 
+    @GetMapping("/trainee")
+    public String getAll() {
+        return "trainee/task";
+    }
 }

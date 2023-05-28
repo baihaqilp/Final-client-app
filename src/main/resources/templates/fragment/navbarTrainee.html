@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="navbar" class="active" th:fragment="navbar">
+      <div id="js-preloader" class="js-preloader">
+        <div class="preloader-inner">
+          <span class="dot"></span>
+          <div class="dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+      <!-- ***** Preloader End ***** -->
+
+      <!-- ***** Header Area Start ***** -->
+      <header
+        class="header-area header-sticky wow slideInDown"
+        data-wow-duration="0.75s"
+        data-wow-delay="0s"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <nav class="main-nav">
+                <!-- ***** Logo Start ***** -->
+                <a href="index.html" class="logo">
+                  <div class="row">
+                    <div class="col">
+                      <img
+                        th:src="@{/assets/images/dts-icon.png}"
+                        height="50px"
+                        alt=""
+                      />
+                    </div>
+                    <div class="col">
+                      <img
+                        th:src="@{/assets/images/metrodata.png}"
+                        height="50px"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </a>
+                <!-- ***** Logo End ***** -->
+                <!-- ***** Menu Start ***** -->
+                <ul class="nav">
+                  <li class="scroll-to-section">
+                    <a th:href="@{/trainee}" class="active">Home</a>
+                  </li>
+                  <!-- <li class="scroll-to-section">
+                    <a th:href="@{/trainee/topic}">Topic</a>
+                  </li> -->
+                  <li class="scroll-to-section">
+                    <a th:href="@{/trainee/task}">Task</a>
+                  </li>
+                  <li class="scroll-to-section">
+                    <div class="dropdown">
+                      <img
+                        class="rounded-circle shadow-4-strong border border-dark-subtle"
+                        style="width: 30px"
+                        th:src="@{/assets/images/emp.png}"
+                        data-bs-toggle="dropdown"
+                        alt=""
+                      />
+                      <ul class="dropdown-menu">
+                        <li class="dropdown-item">
+                          <a
+                            th:href="@{/trainee/profile}"
+                            class="btn btn-outline-info"
+                            >Profile</a
+                          >
+                        </li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li class="dropdown-item">
+                          <form
+                            class="text-center"
+                            th:action="@{/logout}"
+                            th:method="POST"
+                          >
+                            <button
+                              type="submit"
+                              class="btn btn-outline-danger"
+                            >
+                              Logout
+                            </button>
+                          </form>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+                <a class="menu-trigger">
+                  <span>Menu</span>
+                </a>
+                <!-- ***** Menu End ***** -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+  </body>
+</html>
