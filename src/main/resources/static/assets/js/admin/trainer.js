@@ -1,4 +1,23 @@
 $(document).ready(function () {
+  $.ajax({
+    method: "GET",
+    url: "/api/role",
+    dataType: "JSON",
+    success: (res) => {
+      let radio = "";
+      $.each(res, function (key, val) {
+        radio += `
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="role_trainee_role" value="${val.id}">
+          <label class="form-check-label" for="inlineRadio1" >${val.name}</label>
+        </div>
+
+        `
+      });
+      $(".radio_status").html(radio)
+    },
+  });
+
   $("#table-trainer").DataTable({
     ajax: {
       url: "/api/employee/role/1",
@@ -18,20 +37,60 @@ $(document).ready(function () {
       { data: "phone" },
       {
         data: null,
+        render: function (data, type, row, meta) {
+          if (data.user.isEnabled) {
+            return '<div class="badge bg-success">ACTIVE</div>'
+          }
+          return '<div class="badge bg-secondary">NON-ACTIVE</div>'
+        },
+      },
+      {
+        data: null,
         render: (data, type, row, meta) => {
-          return `
-                    <button
+          return `<div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle me-1" type="button"
+                  id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
+                  Action
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="dropwdown-item">
+                <button
                     type="button"
-                    class="btn btn-outline-primary"
+                    class="btn btn-outline-primary col-12"
                     data-bs-toggle="modal"
                     data-bs-target="#detailTrainer"
                     onClick="getById(${data.id})"
                   >
                     Detail
                   </button>
-                  <button class="btn btn-outline-danger" onClick="deletedata(${data.id})">
-                    Delete
-                  </button>
+              </div>
+              <div class="dropwdown-item mt-2">
+                  <button
+                  type="button"
+                  class="btn btn-outline-warning col-12 "
+                  data-bs-toggle="modal"
+                  data-bs-target="#changeStatus"
+                  onClick="beforeStatusChange(${data.id})"
+                >
+                  Change Status
+                </button>
+              </div>
+              <div class="dropwdown-item mt-2">
+                  <button
+                  type="button"
+                  class="btn btn-outline-warning col-12 "
+                  data-bs-toggle="modal"
+                  data-bs-target="#changeRole"
+                  onClick="beforeRoleChange(${data.id})"
+                >
+                  Change Role
+                </button>
+              </div>
+              </div>
+          </div>
+                    
+                  
                   `;
         },
       },
@@ -244,4 +303,135 @@ function deletedata(id) {
         );
       }
     });
+}
+
+
+function beforeStatusChange(id) {
+  $.ajax({
+    method: "GET",
+    url: "/api/employee/" + id,
+    dataType: "JSON",
+    success: (res) => {
+      console.log(res.name);
+      $("#status_trainee_id").val(res.id);
+      $("#status_trainee_name").val(res.name);
+      $("input[value='" + res.user.isEnabled + "']").prop('checked', true);
+      console.log(res.user.isEnabled);
+    },
+  });
+}
+
+function beforeRoleChange(id) {
+  $.ajax({
+    method: "GET",
+    url: "/api/employee/" + id,
+    dataType: "JSON",
+    success: (res) => {
+      console.log(res.name);
+      $("#role_trainee_id").val(res.id);
+      $("#role_trainee_name").val(res.name);
+      $("input[value='" + res.user.roles[0].id + "']").prop('checked', true);
+    },
+  });
+
+}
+
+function updateRole() {
+  let idVal = $("#role_trainee_id").val();
+  let role = $("input[name='role_trainee_role']:checked").val();
+  console.log(idVal, role);
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, update it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        method: "POST",
+        url: "/api/user/changeRole",
+        dataType: "JSON",
+        beforeSend: addCsrfToken(),
+        data: JSON.stringify({
+          id: idVal,
+          roleId: role,
+        }),
+        contentType: "application/json",
+        success: (res) => {
+          $("#changeRole").modal("hide");
+          $("#table-trainer").DataTable().ajax.reload();
+          $("#role_trainee_name").val("");
+          $("#role_trainee_id").val("");
+          Swal.fire("Updated!", "Trainee success to update...", "success");
+        },
+
+      });
+
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWith.fire(
+        "Cancelled",
+        "Your imaginary file is safe :)",
+        "error"
+      );
+    }
+  });
+}
+
+function updateStatus() {
+  let idVal = $("#status_trainee_id").val();
+  let status = $("input[name='status']:checked").val();
+  let ids = parseInt(idVal)
+  let stat = null
+  if (status == "true") {
+    stat = true
+  } else {
+    stat = false
+  }
+
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, update it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        method: "POST",
+        url: "/api/user/changeStatus",
+        dataType: "JSON",
+        beforeSend: addCsrfToken(),
+        data: JSON.stringify({
+          id: idVal,
+          status: stat,
+        }),
+        contentType: "application/json",
+        success: (res) => {
+          $("#changeStatus").modal("hide");
+          $("#table-trainer").DataTable().ajax.reload();
+          $("#status_trainee_name").val("");
+          $("#status_trainee_id").val("");
+          $("#status_id").val("");
+        },
+      });
+      Swal.fire("Updated!", "Trainee success to update...", "success");
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swal.fire(
+        "Cancelled",
+        "Your imaginary file is safe :)",
+        "error"
+      );
+    }
+  });
 }

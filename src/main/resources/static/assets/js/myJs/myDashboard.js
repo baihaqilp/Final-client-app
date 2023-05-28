@@ -4,8 +4,8 @@ $(document).ready(function () {
     method: "GET",
     dataType: "JSON",
     success: (data) => {
-      const get1 = data.filter(function (val) {
-        let progId = val.classroom.program.id;
+      const get1 = data.filter(function (vgraal) {
+        let progId = val.classroom.prom.id;
         if (
           val.user.isEnabled === true &&
           val.user.roles.some((role) => role.id === 2)
