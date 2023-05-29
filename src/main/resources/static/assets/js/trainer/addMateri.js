@@ -1,5 +1,7 @@
 $(document).ready(function () {
-  $("#create_materi_description").summernote();
+  $("#create_materi_description").summernote({
+    height: 300
+  });
   $.ajax({
     method: "GET",
     url: "/api/topic",
@@ -7,8 +9,8 @@ $(document).ready(function () {
     beforeSend: addCsrfToken(),
     success: (res) => {
       $.each(res, function (key, val) {
-        if ($('.select_topik option[value = "' + val.id + '"]').length == 0) {
-          $(".select_topik").append(
+        if ($('.select_topic option[value = "' + val.id + '"]').length == 0) {
+          $(".select_topic").append(
             `<option value = ${val.id}>${val.name}</option>`
           );
         }
@@ -35,8 +37,9 @@ $(document).ready(function () {
 function create() {
   let nameVal = $("#create_materi_name").val();
   let descVal = $("#create_materi_description").val();
-  let topikVal = $("#select_topik option:selected").val();
-  let trainer_id = $("#select_trainer option:selected").val();
+  let topikVal = $("#select_topic option:selected").val();
+
+  console.log(topikVal);
 
   $.ajax({
     url: "/api/materi",
@@ -48,14 +51,12 @@ function create() {
       name: nameVal,
       desc: descVal,
       topicId: topikVal,
-      trainerId: trainer_id,
     }),
     contentType: "application/json",
     success: (res) => {
       $("#create_materi_name").val("");
       $("#create_materi_description").summernote("option", "height", 300);
       $("#select_topik ").val("");
-      $("#select_trainer ").val("");
       Swal.fire({
         position: "center",
         icon: "success",
@@ -63,13 +64,14 @@ function create() {
         showConfirmButton: false,
         timer: 1500,
       });
+      window.location.replace("/trainer/topic")
     },
     error: function (xhr, textStatus, errorThrown) {
       let err = JSON.parse(xhr.responseText);
       let status = "" + err.message[0] + err.message[1] + err.message[2];
       let msg = "";
       if (status == 409) {
-        msg = "Topic sudah ada";
+        msg = "Materi sudah ada";
       } else {
         msg = "Something when Wrong !!!";
       }

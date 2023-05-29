@@ -38,34 +38,56 @@ $(document).ready(function () {
         data: null,
         render: (data, type, row, meta) => {
           return `
-            <div class="d-flex align-items-center">
-              <a href="#sub" class="btn btn-success" onclick="moveToSubTab(${data.id})">
-                Sub
-              </a>
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle me-1" type="button"
+                  id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
+                  Action
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="dropwdown-item">
+                <a href="#sub" class="btn btn-outline-primary col-12" onclick="moveToSubTab(${data.id})">
+                Submission
+                </a>
+              </div>
+              <div class="dropwdown-item mt-2">
               <button
                 type="button"
-                class="btn btn-info mx-3"
+                class="btn btn-outline-info col-12"
                 data-bs-toggle="modal"
                 data-bs-target="#detailTask"
                 onClick="getById(${data.id})"
-                style="color: white;"
               >
                 Detail
+              </button> 
+              <div class="dropwdown-item mt-2">
+                <a href="/admin/class/${data.id}/trainee"
+                  type="button"
+                  class="btn btn-outline-info col-12"
+                >
+                  Trainee List
+                </a>
+              </div>
+              <div class="dropwdown-item mt-2">
+                <button
+                  type="button"
+                  class="btn btn-outline-warning col-12"
+                  data-bs-toggle="modal"
+                  data-bs-target="#updateTask"
+                  onClick="beforeUpdate(${data.id})"
+                >
+                  Edit
               </button>
-              <button
-                type="button"
-                class="btn btn-warning mx-3"
-                data-bs-toggle="modal"
-                data-bs-target="#updateTask"
-                onClick="beforeUpdate(${data.id})"
-                style="color: white;"
-              >
-                Edit
-              </button>
-              <button class="btn btn-danger" onClick="deletedata(${data.id})">
-                Delete
-              </button>
-            </div>
+              </div>
+              <div class="dropwdown-item mt-2">
+                
+                <button class="btn btn-outline-danger col-12" onClick="deletedata(${data.id})">
+                  Delete
+                </button>
+              </div>
+              </div>
+          </div>
+        
           `;
         },
       },
