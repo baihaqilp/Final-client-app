@@ -1372,6 +1372,13 @@ Services Style
   background-color: #fff;
 }
 
+/* .services .naccs .menu div.thumb {
+  display: inline-block;
+  width: 20%;
+  padding: 20px 0px;
+  background-color: #fff;
+} */
+
 .services .naccs .menu div.active {
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
 }

@@ -31,11 +31,11 @@ public class SegmentTopicService {
         }).getBody();
   }
 
-  public List<SegmentTopic> getBySegment() {
+  public List<SegmentTopic> getBySegment(long id) {
     return restTemplate.exchange(
-        url + "/bysegment",
+        url + "/bysegment/" + id,
         HttpMethod.GET,
-        new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<SegmentTopic>>() {
+        null, new ParameterizedTypeReference<List<SegmentTopic>>() {
         }).getBody();
   }
 
