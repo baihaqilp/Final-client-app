@@ -12,7 +12,12 @@
     <meta name="_csrf" th:content="${_csrf.token}" />
     <!-- default header name is X-CSRF-TOKEN -->
     <meta name="_csrf_header" th:content="${_csrf.headerName}" />
-    <title>Document</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      th:href="@{/assets/images/logo/logolms.png}"
+    />
+    <title>Elemes</title>
     <!-- Bootstrap core CSS -->
     <link
       th:href="@{/assets/css/landing_page/bootstrap.min.css}"
@@ -39,10 +44,16 @@
 
     <!-- Scripts -->
 
-    <script th:src="@{/assets/js/landing_page/jquery/jquery.min.js}"></script>
     <script
       th:src="@{/assets/js/landing_page/bootstrap/bootstrap.bundle.min.js}"
     ></script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.js"
+      integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+      crossorigin="anonymous"
+    ></script>
+
     <script th:src="@{/assets/js/landing_page/owl-carousel.js}"></script>
     <script th:src="@{/assets/js/landing_page/animation.js}"></script>
     <script th:src="@{/assets/js/landing_page/imagesloaded.js}"></script>

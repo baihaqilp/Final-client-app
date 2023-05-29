@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+
+    <title>Elemes</title>
   </head>
   <body>
     <div id="navbar" class="active" th:fragment="navbar">
@@ -35,14 +36,7 @@
                   <div class="row">
                     <div class="col">
                       <img
-                        th:src="@{/assets/images/dts-icon.png}"
-                        height="50px"
-                        alt=""
-                      />
-                    </div>
-                    <div class="col">
-                      <img
-                        th:src="@{/assets/images/metrodata.png}"
+                        th:src="@{/assets/images/logo/logolms.png}"
                         height="50px"
                         alt=""
                       />
@@ -55,9 +49,9 @@
                   <li class="scroll-to-section">
                     <a th:href="@{/trainee}" class="active">Home</a>
                   </li>
-                  <!-- <li class="scroll-to-section">
-                    <a th:href="@{/trainee/topic}">Topic</a>
-                  </li> -->
+                  <li class="scroll-to-section">
+                    <a th:href="@{/trainee/}+@{#segment}">Segment</a>
+                  </li>
                   <li class="scroll-to-section">
                     <a th:href="@{/trainee/task}">Task</a>
                   </li>

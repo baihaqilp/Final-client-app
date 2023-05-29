@@ -7,7 +7,7 @@
   <body>
     <section layout:fragment="content">
       <div id="free-quote" class="free-quote" th:object="${materies}">
-        <div class="container">
+        <div class="container d-flex justify-content-start">
           <div class="row">
             <div class="col-lg-4 offset-lg-4">
               <div
@@ -44,28 +44,33 @@
               data-wow-delay="0.3s"
             >
               <div th:each="materi,iStat : ${materies}">
+                <input
+                  type="hidden"
+                  th:value="${materi.topic.id}"
+                  class="materi_topic_id"
+                />
                 <div th:if="${iStat.count == 1}" class="blog-post">
                   <div class="thumb">
-                    <a href="#"
+                    <a th:href="@{/trainee/topic/materi/}+${materi.id}"
                       ><img
                         th:src="@{/assets/images/landing_page/blog-post-01.jpg}"
                         alt=""
                     /></a>
                   </div>
                   <div class="down-content">
-                    <a href="#"
+                    <a th:href="@{/trainee/topic/materi/}+${materi.id}"
                       ><h4 th:text="${materi.name}">
                         Lorem Ipsum Dolor Sit Amet, Consectetur Adelore Eiusmod
                         Tempor Incididunt
                       </h4></a
                     >
-                    <p th:text="${#strings.abbreviate(materi.desc,50)}">
+                    <p th:class="@{materi_desc}+${materi.id}">
                       Lorem ipsum dolor sit amet, cocteturi adipiscing
                       eliterski.
                     </p>
                     <span class="author"
                       ><img
-                        th:src="@{/assets/images/landing_page/author-post.jpg}"
+                        th:src="@{/assets/images/logo_user.jpg}"
                         alt="" /><span
                         th:text="'By : '+${materi.employee.name}"
                       ></span
@@ -81,50 +86,87 @@
             </div>
 
             <div
-              class="col-lg-5 wow fadeInUp d-flex justify-content-end"
+              class="col-lg-4 wow fadeInUp d-flex justify-content-end"
               data-wow-duration="1s"
               data-wow-delay="0.3s"
             >
               <div class="blog-posts">
                 <div class="row">
-                  <div
-                    class="overflow-auto mt-3"
-                    style="width: 350px; height: 600px"
-                  >
-                    <div th:each="materi,iStat : ${materies}">
-                      <div th:if="${iStat.count != 1}">
-                        <div class="col-lg-12" th:id="${iStat.count}">
-                          <div class="post-item mb-5">
-                            <div class="thumb">
-                              <a href="#"
-                                ><img
-                                  th:src="@{/assets/images/landing_page/blog-post-01.jpg}"
-                                  alt=""
-                              /></a>
-                            </div>
-                            <div class="down-content">
-                              <a href="#"
-                                ><h4 th:text="${materi.name}">
-                                  Lorem Ipsum Dolor Sit Amet, Consectetur
-                                  Adelore Eiusmod Tempor Incididunt
-                                </h4></a
-                              >
-                              <p
-                                th:text="${#strings.abbreviate(materi.desc,50)}"
-                              >
-                                Lorem ipsum dolor sit amet, cocteturi adipiscing
-                                eliterski.
-                              </p>
-                              <div class="border-first-button">
-                                <a
-                                  th:href="@{/trainee/topic/materi/}+${materi.id}"
-                                  >Check</a
-                                >
+                  <div class="col">
+                    <div
+                      class="overflow-auto mt-3 px-3"
+                      style="width: 300px; height: 600px"
+                    >
+                      <div th:each="materi,iStat : ${materies}">
+                        <div th:if="${iStat.count != 1}">
+                          <div class="col-lg-12" th:id="${iStat.count}">
+                            <div class="post-item mb-5">
+                              <div class="row">
+                                <div class="thumb">
+                                  <a
+                                    th:href="@{/trainee/topic/materi/}+${materi.id}"
+                                    ><img
+                                      th:src="@{/assets/images/landing_page/blog-post-0}+${iStat.count}+@{.jpg}"
+                                      alt=""
+                                  /></a>
+                                </div>
+                                <div class="down-content">
+                                  <a
+                                    th:href="@{/trainee/topic/materi/}+${materi.id}"
+                                    ><h4 th:text="${materi.name}">
+                                      Lorem Ipsum Dolor Sit Amet, Consectetur
+                                      Adelore Eiusmod Tempor Incididunt
+                                    </h4></a
+                                  >
+                                  <p th:class="@{materi_desc}+${materi.id}">
+                                    Lorem ipsum dolor sit amet, cocteturi
+                                    adipiscing eliterski.
+                                  </p>
+                                  <div class="border-first-button">
+                                    <a
+                                      th:href="@{/trainee/topic/materi/}+${materi.id}"
+                                      >Check</a
+                                    >
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-lg-2 wow fadeInUp d-flex justify-content-end"
+              data-wow-duration="1s"
+              data-wow-delay="0.3s"
+            >
+              <div class="row">
+                <div class="col">
+                  <div class="card">
+                    <!-- <div class="card-header text-dark bg-info">Segment</div> -->
+                    <div class="card-body">
+                      <ul class="list-group list-group-flush d-flex">
+                        <li class="list-group-item">
+                          <a
+                            th:href="@{/trainee}+@{#segment}"
+                            class="text-decoration-none"
+                            style="color: black"
+                            >Segment</a
+                          >
+                        </li>
+                        <li class="list-group-item">
+                          <a
+                            th:href="@{/trainee/task}"
+                            class="text-decoration-none"
+                            style="color: black"
+                            >Task</a
+                          >
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
