@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
@@ -28,15 +29,22 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.github.javafaker.Faker;
+
 import id.co.metrodata.clientapp.model.Task;
+import id.co.metrodata.clientapp.model.User;
 import id.co.metrodata.clientapp.model.dto.request.SubmissionRequest;
+import id.co.metrodata.clientapp.model.dto.request.TraineeRequest;
+import id.co.metrodata.clientapp.model.dto.request.TrainerRequest;
 import id.co.metrodata.clientapp.service.ClassroomService;
 import id.co.metrodata.clientapp.service.FileStorageService;
 import id.co.metrodata.clientapp.service.MateriService;
+import id.co.metrodata.clientapp.service.RegisterService;
 import id.co.metrodata.clientapp.service.SegmenService;
 import id.co.metrodata.clientapp.service.SegmentTopicService;
 import id.co.metrodata.clientapp.service.SubmissionService;
 import id.co.metrodata.clientapp.service.TaskService;
+import id.co.metrodata.clientapp.service.UserService;
 import lombok.AllArgsConstructor;
 
 @Controller
@@ -51,6 +59,7 @@ public class TraineeController {
   private SegmenService segmenService;
   private SegmentTopicService segmentTopicService;
   private MateriService materiService;
+  private RegisterService registerService;
 
   @GetMapping
   private String dashboard(Model model) {
@@ -160,4 +169,20 @@ public class TraineeController {
     return "trainee/task/taskSegment";
   }
 
+  // @PostMapping("/fakeTrainee")
+  // public User fakeTrainee() {
+  // Faker faker = new Faker(new Locale("in-ID"));
+
+  // TraineeRequest trainer = new TraineeRequest();
+  // trainer.setAddress(faker.address().city());
+  // trainer.setEmail(faker.internet().emailAddress());
+  // trainer.setRoleId(2);
+  // String name = faker.name().username();
+  // trainer.setName(name);
+  // trainer.setUsername(name);
+  // trainer.setPassword(name);
+  // trainer.setPhone(faker.phoneNumber().phoneNumber());
+  // trainer.setClassroomId(faker.number().numberBetween(0, 7));
+  // return registerService.createTrainee(trainer);
+  // }
 }

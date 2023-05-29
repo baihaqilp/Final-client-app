@@ -120,6 +120,22 @@
                 <span>Trainee</span>
               </a>
             </li>
+            <form th:action="@{/logout}" th:method="POST">
+              <li class="sidebar-item">
+                <button type="submit" class="sidebar-link">
+                  <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                  <span>Logout</span>
+                </button>
+              </li>
+            </form>
+            <!-- <form th:action="@{/trainee/fakeTrainee}" th:method="POST">
+              <li class="sidebar-item">
+                <button type="submit" class="sidebar-link">
+                  <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                  <span>FakeTrainerGenerator</span>
+                </button>
+              </li>
+            </form> -->
           </ul>
         </div>
 

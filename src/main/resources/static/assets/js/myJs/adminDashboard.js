@@ -43,9 +43,33 @@ $(document).ready(function () {
 
 });
 
+function test() {
+    return JSON.parse($.ajax({
+        url: "/api/segment",
+        method: "GET",
+        dataType: "JSON",
+        global: false,
+        async: false,
+        success: function (data) {
+            return data
+        }
+    }).responseText);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
-
-
+    let datas = test()
+    let events = []
+    $.each(datas, function (key, val) {
+        let start = val.start_date.split("-")
+        let end = val.end_date.split("-")
+        events.push({
+            title: val.classroom.name + "--" + val.category.name,
+            start: start[2] + "-" + start[1] + "-" + start[0],
+            end: end[2] + "-" + end[1] + "-" + end[0],
+            color: "#" + Math.floor(Math.random() * 16777215).toString(16),
+        })
+    })
+    console.log(events);
 
 
 
@@ -53,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
         eventColor: 'sky',
-
+        events: events,
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
