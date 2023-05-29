@@ -87,3 +87,18 @@ $(document).ready(function () {
     },
   });
 });
+document.addEventListener("DOMContentLoaded", function () {
+  var calendarEl = document.querySelector("#calendar");
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: "dayGridMonth",
+    eventColor: "sky",
+
+    headerToolbar: {
+      left: "prev,next today",
+      center: "title",
+      right: "dayGridMonth,timeGridWeek,timeGridDay",
+    },
+  });
+
+  calendar.render();
+});
