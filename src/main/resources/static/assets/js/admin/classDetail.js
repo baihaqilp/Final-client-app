@@ -97,18 +97,21 @@ $(document).ready(function () {
 function create() {
     let start_date = $("#create__start_date").val();
     let end_date = $("#create_end_date").val();
+    let stDate = start_date.split("-");
+    let edDate = end_date.split("-");
     let trainer_id = $("#trainer_id option:selected").val();
-    let class_id = $("#id").val();
+    let class_id = $("#class_id").val();
     let category_id = $("#select_category option:selected").val();
-
+    console.log(stDate[2] + "-" + stDate[1] + "-" + stDate[0]);
+    console.log(edDate[2] + "-" + edDate[1] + "-" + edDate[0]);
     $.ajax({
         method: "POST",
         url: "/api/segment",
         dataType: "JSON",
         beforeSend: addCsrfToken(),
         data: JSON.stringify({
-            start_date: start_date,
-            end_date: end_date,
+            start_date: stDate[2] + "-" + stDate[1] + "-" + stDate[0],
+            end_date: edDate[2] + "-" + edDate[1] + "-" + edDate[0],
             trainerId: trainer_id,
             classroomId: class_id,
             categoryId: category_id
@@ -119,7 +122,13 @@ function create() {
             $("#table-segment").DataTable().ajax.reload();
             $("#create__start_date").val("");
             $("#create__end_date").val("");
-
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Segment success to creat ....",
+                showConfirmButton: false,
+                timer: 1500,
+            });
         },
         error: function (xhr, textStatus, errorThrown) {
             let err = JSON.parse(xhr.responseText);
@@ -178,7 +187,7 @@ function beforeUpdate(id) {
 }
 
 function update() {
-    let start_date = $("#update__start_date").val();
+    let start_date = $("#update_start_date").val();
     let end_date = $("#update_end_date").val();
     let trainer_id = $("#update_trainer_id option:selected").val();
     let class_id = $("#class_id").val();
@@ -212,6 +221,13 @@ function update() {
                     $("#table-segment").DataTable().ajax.reload();
                     $("#update_start_date").val("");
                     $("#update_end_date").val("");
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Segment success to creat ....",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     let err = JSON.parse(xhr.responseText);
