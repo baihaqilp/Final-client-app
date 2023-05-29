@@ -7,8 +7,8 @@ $(document).ready(function () {
     beforeSend: addCsrfToken(),
     success: (res) => {
       $.each(res, function (key, val) {
-        if ($('.select_topik option[value = "' + val.id + '"]').length == 0) {
-          $(".select_topik").append(
+        if ($('.select_topic option[value = "' + val.id + '"]').length == 0) {
+          $(".select_topic").append(
             `<option value = ${val.id}>${val.name}</option>`
           );
         }
@@ -34,10 +34,10 @@ $(document).ready(function () {
 
 function create() {
   let nameVal = $("#create_materi_name").val();
-  let descVal = $("#create_materi_description").val();
-  let topikVal = $("#select_topik option:selected").val();
-  let trainer_id = $("#select_trainer option:selected").val();
+  let descVal = $("#create_materi_description").summernote("code");
+  let topikVal = $("#select_topic option:selected").val();
 
+  console.log(nameVal, topikVal);
   $.ajax({
     url: "/api/materi",
     method: "POST",
@@ -48,7 +48,6 @@ function create() {
       name: nameVal,
       desc: descVal,
       topicId: topikVal,
-      trainerId: trainer_id,
     }),
     contentType: "application/json",
     success: (res) => {
