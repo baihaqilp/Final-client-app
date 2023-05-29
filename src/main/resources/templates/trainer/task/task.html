@@ -186,6 +186,7 @@
                   class="form-control"
                   id="create_task_name"
                   placeholder="ex. Exercise"
+                  required
                 />
                 <label for="desc" class="form-label fw-bold pt-3"
                   >Description</label
@@ -195,15 +196,17 @@
                   class="form-control"
                   id="create_task_desc"
                   placeholder="ex. Catch Me If You Can"
+                  required
                 ></textarea>
                 <label for="deadline" class="form-label fw-bold pt-3"
                   >Deadline</label
                 >
                 <input
                   type="datetime-local"
-                  class="form-control flatpickr-no-config flatpickr-input"
+                  class="form-control "
                   id="create_task_deadline"
-                  placeholder="ex. 0897678281"
+                  placeholder="ex. 23-05-2023"
+                  required
                 />
                 <label for="segment" class="form-label fw-bold pt-3"
                   >Segment</label
@@ -211,7 +214,7 @@
                 <select
                   class="form-control form-control-sm select_segment p-2"
                   aria-label="form-select-sm example"
-                  id="select_segment"
+                  id="select_segment" required
                 >
                   <option selected value="">Choose Segment</option>
                 </select>
@@ -263,6 +266,7 @@
                   class="form-control"
                   id="update_id"
                   hidden
+                  required
                 />
                 <label for="name" class="form-label fw-bold">Name</label>
                 <input
@@ -270,6 +274,7 @@
                   class="form-control"
                   id="update_task_name"
                   placeholder="ex. 1"
+                  required
                 />
                 <label for="desc" class="form-label fw-bold pt-3"
                   >Description</label
@@ -280,6 +285,7 @@
                   id="update_task_desc"
                   cols="30"
                   rows="10"
+                  required
                 ></textarea>
 
                 <label for="deadline" class="form-label fw-bold pt-3"
@@ -289,6 +295,7 @@
                   type="datetime-local"
                   class="form-control"
                   id="update_task_deadline"
+                  required
                 />
                 <label for="segment" class="form-label fw-bold pt-3"
                   >Segment</label

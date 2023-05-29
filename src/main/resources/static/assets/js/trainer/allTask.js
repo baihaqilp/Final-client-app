@@ -59,15 +59,7 @@ $(document).ready(function () {
                 onClick="getById(${data.id})"
               >
                 Detail
-              </button> 
-              <div class="dropwdown-item mt-2">
-                <a href="/admin/class/${data.id}/trainee"
-                  type="button"
-                  class="btn btn-outline-info col-12"
-                >
-                  Trainee List
-                </a>
-              </div>
+              </button>
               <div class="dropwdown-item mt-2">
                 <button
                   type="button"
@@ -249,7 +241,12 @@ function beforeUpdate(id) {
       $("#update_id").val(res.id);
       $("#update_task_name").val(res.name);
       $("#update_task_desc").val(res.desc);
-      $("#update_task_deadline").val(res.deadline);
+      let deadline = res.deadline;
+      let deadlineArr = deadline.split(" ");
+      let deadlineTgl = deadlineArr[0].split("-");
+      let deadlineTime = deadlineArr[1].split(":");
+
+      $("#update_task_deadline").val(deadlineTgl[2] + "-" + deadlineTgl[1] + "-" + deadlineTgl[0] + "T" + deadlineTime[0] + ":" + deadlineTime[1]);
       $("#update_segment").val(res.segment.id);
       $("#update_task_desc").summernote({ height: 300 });
     },
