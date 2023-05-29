@@ -1,6 +1,6 @@
 $(document).ready(function () {
   $("#create_materi_description").summernote({
-    height: 300
+    height: 300,
   });
   $.ajax({
     method: "GET",
@@ -45,7 +45,6 @@ function create() {
     method: "POST",
     dataType: "JSON",
     beforeSend: addCsrfToken(),
-    // beforeSend: addCsrfToken(),
     data: JSON.stringify({
       name: nameVal,
       desc: descVal,
@@ -63,7 +62,7 @@ function create() {
         showConfirmButton: false,
         timer: 1500,
       });
-      window.location.replace("/trainer/topic")
+      window.location.replace("/trainer/topic");
     },
     error: function (xhr, textStatus, errorThrown) {
       let err = JSON.parse(xhr.responseText);

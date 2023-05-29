@@ -70,10 +70,18 @@
       rel="stylesheet"
     /> -->
 
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       th:href="@{/assets/extensions/flatpickr/flatpickr.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      sec:authorize="hasRole('TRAINER')"
+      th:href="@{/assets/css/dashboardTrainer.css}"
     />
     <link rel="stylesheet" th:href="@{/assets/compiled/css/dark.css}" />
   </head>
