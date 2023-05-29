@@ -1,17 +1,25 @@
 package id.co.metrodata.clientapp.controller;
 
+import java.util.Locale;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.github.javafaker.Faker;
+
 import id.co.metrodata.clientapp.model.Task;
+import id.co.metrodata.clientapp.model.User;
+import id.co.metrodata.clientapp.model.dto.request.TrainerRequest;
 import id.co.metrodata.clientapp.service.ClassroomService;
 import id.co.metrodata.clientapp.service.SegmenService;
 import id.co.metrodata.clientapp.service.TaskService;
+import id.co.metrodata.clientapp.service.UserService;
 import lombok.AllArgsConstructor;
 
 @Controller
@@ -21,6 +29,7 @@ public class TrainerController {
 
     private ClassroomService classroomService;
     private SegmenService segmenService;
+    private UserService userService;
     private TaskService taskService;
 
     @GetMapping
@@ -151,4 +160,20 @@ public class TrainerController {
     public String profile() {
         return "trainer/profile/profile";
     }
+
+    // @PostMapping("/fakeTrainer")
+    // public User fakeTrainer() {
+    // Faker faker = new Faker(new Locale("in-ID"));
+
+    // TrainerRequest trainer = new TrainerRequest();
+    // trainer.setAddress(faker.address().city());
+    // trainer.setEmail(faker.internet().emailAddress());
+    // trainer.setRoleId(1);
+    // String name = faker.name().username();
+    // trainer.setName(name);
+    // trainer.setUsername(name);
+    // trainer.setPassword(name);
+    // trainer.setPhone(faker.phoneNumber().phoneNumber());
+    // return userService.create(trainer);
+    // }
 }
