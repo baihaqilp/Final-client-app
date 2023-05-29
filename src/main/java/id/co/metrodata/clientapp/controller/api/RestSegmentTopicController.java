@@ -31,9 +31,9 @@ public class RestSegmentTopicController {
     return segmentTopicService.getById(id);
   }
 
-  @GetMapping("/segment/{id}")
-  public List<SegmentTopic> getBySegmentId(@PathVariable long id) {
-    return segmentTopicService.getBySegmentId(id);
+  @GetMapping("/bysegment/{id}")
+  public List<SegmentTopic> getBySegment(@PathVariable long id) {
+    return segmentTopicService.getBySegment(id);
   }
 
   @PostMapping
