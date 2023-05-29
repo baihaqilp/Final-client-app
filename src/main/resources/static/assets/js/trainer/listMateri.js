@@ -80,7 +80,6 @@ function create() {
     method: "POST",
     dataType: "JSON",
     beforeSend: addCsrfToken(),
-    // beforeSend: addCsrfToken(),
     data: JSON.stringify({
       name: nameVal,
       desc: descVal,

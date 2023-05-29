@@ -29,7 +29,7 @@ $(document).ready(function () {
       $("#update_topic").val(res.topic.id);
       $("#trainer_id").val(res.employee.id);
       $("#update_materi_desc").summernote({
-        height: 200, // Specify the desired height
+        height: 200,
       });
     },
   });
