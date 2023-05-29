@@ -13,6 +13,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -50,6 +51,7 @@ import lombok.AllArgsConstructor;
 @Controller
 @RequestMapping("/trainee")
 @AllArgsConstructor
+@PreAuthorize("hasRole('ROLE_TRAINEE')")
 public class TraineeController {
 
   private ClassroomService classroomService;
@@ -61,6 +63,7 @@ public class TraineeController {
   private MateriService materiService;
   private RegisterService registerService;
 
+  @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping
   private String dashboard(Model model) {
 
@@ -69,11 +72,13 @@ public class TraineeController {
     return "trainee/index";
   }
 
+  @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping("/class")
   private String traineeClass() {
     return "trainee/class/class";
   }
 
+  @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping("/profile")
   private String getProfile() {
     return "trainee/profile";
@@ -83,36 +88,41 @@ public class TraineeController {
   // private String topicBySegment(@PathVariable Long id) {
   // return "trainee/topic/topic";
   // }
-
+  @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping("/topic/{id}")
   private String topicBySegment(@PathVariable Long id, Model model) {
     model.addAttribute("materies", materiService.getByTopicId(id));
     return "trainee/topic";
   }
 
+  @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping("/topic/materi/{id}")
   private String materi(@PathVariable Long id, Model model) {
     model.addAttribute("materi", materiService.getById(id));
     return "trainee/detailMateri";
   }
 
+  @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping("/class/{id}")
   private String traineeClassDetail(@PathVariable Long id, Model model) {
     model.addAttribute("classroom", classroomService.getById(id));
     return "trainee/class/detailClass";
   }
 
+  @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping("/task")
   private String traineeTask() {
     return "trainee/task";
   }
 
   // SUBMISSION
+  @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping("/submission")
   private String traineeSubmission() {
     return "trainee/submission/submission";
   }
 
+  @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping("/task/{task_id}/submission-add")
   private String traineeAddSubmission(@PathVariable long task_id, Model model) {
     Task task = taskService.getById(task_id);
@@ -120,6 +130,7 @@ public class TraineeController {
     return "trainee/detailTask";
   }
 
+  @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @PostMapping("/task/{task_id}/submission-add")
   public String handleFileUpload(@PathVariable long task_id,
       @RequestParam("fileInput") MultipartFile file,
@@ -148,6 +159,7 @@ public class TraineeController {
     return "redirect:/task/trainee";
   }
 
+  @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping("/downloadFile/{filename:.+}")
   @ResponseBody
   public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
@@ -158,12 +170,14 @@ public class TraineeController {
   }
 
   // GRADE
+  @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping("/grade")
   private String traineeGrade() {
     return "trainee/grade/grade";
   }
 
   // TASK
+  @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping("/task/segment/{segment_id}")
   private String taskSegment(@PathVariable long segment_id) {
     return "trainee/task/taskSegment";

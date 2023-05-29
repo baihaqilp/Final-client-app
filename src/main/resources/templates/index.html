@@ -45,7 +45,7 @@
                     <div class="row">
                       <div class="col-md-4">
                         <div class="stats-icon green">
-                          <i class="iconly-boldAdd-User"></i>
+                          <i class="fa-solid fa-hourglass-half"></i>
                         </div>
                       </div>
                       <div class="col-md-8">
@@ -60,9 +60,9 @@
                 <div class="card">
                   <div class="card-body px-3 py-4-5">
                     <div class="row">
-                      <div class="col-md-4">
+                      <div class="col-md-4" style="padding-right: 24px">
                         <div class="stats-icon red">
-                          <i class="iconly-boldCheck"></i>
+                          <i class="fa-regular fa-circle-check"></i>
                         </div>
                       </div>
                       <div class="col-md-8">
@@ -87,7 +87,7 @@
                     <div class="row center">
                       <div class="col-md-4">
                         <div class="stats-icon purple">
-                          <i class="iconly-boldProfile"></i>
+                          <i class="fa-solid fa-user-tie"></i>
                         </div>
                       </div>
                       <div class="col-md-8">
@@ -108,7 +108,7 @@
                     <div class="row">
                       <div class="col-md-4">
                         <div class="stats-icon blue">
-                          <i class="iconly-boldProfile"></i>
+                          <i class="fa-solid fa-user-graduate"></i>
                         </div>
                       </div>
                       <div class="col-md-8">
@@ -127,7 +127,10 @@
                     <div class="row">
                       <div class="col-md-4">
                         <div class="stats-icon green">
-                          <i class="bi bi-house-door"></i>
+                          <i
+                            class="bi bi-house-door"
+                            style="margin-right: 13px; margin-bottom: 25px"
+                          ></i>
                         </div>
                       </div>
                       <div class="col-md-8">
@@ -145,7 +148,10 @@
                     <div class="row">
                       <div class="col-md-4">
                         <div class="stats-icon green">
-                          <i class="bi bi-house-door-fill"></i>
+                          <i
+                            class="bi bi-house-door-fill"
+                            style="margin-right: 13px; margin-bottom: 25px"
+                          ></i>
                         </div>
                       </div>
                       <div class="col-md-8">
@@ -156,9 +162,6 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row" sec:authorize="hasRole('TRAINER')">
-              <div class="counter-trainee d-flex"></div>
             </div>
             <div class="row">
               <div class="col-12"></div>
@@ -195,16 +198,18 @@
                 </div>
               </div>
             </a>
-            <div class="card">
-              <div class="card-header text-center">
-                <h5 class="text-muted">Your Classroom</h5>
-              </div>
-              <div
-                class="card-body overflow-auto"
-                style="width: auto; height: 560px"
-                id="trainer-scroll"
-              >
-                <div class="trainee-card"></div>
+            <div class="row" sec:authorize="hasRole('TRAINER')">
+              <div class="card">
+                <div class="card-header text-center">
+                  <h5 class="text-muted">Your Classroom</h5>
+                </div>
+                <div
+                  class="card-body overflow-auto"
+                  style="width: auto; height: 560px"
+                  id="trainer-scroll"
+                >
+                  <div class="trainee-card"></div>
+                </div>
               </div>
             </div>
           </div>

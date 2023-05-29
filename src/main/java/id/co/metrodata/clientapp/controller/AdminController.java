@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 @Controller
 @RequestMapping("/admin")
 @AllArgsConstructor
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class AdminController {
 
     private ClassroomService classroomService;

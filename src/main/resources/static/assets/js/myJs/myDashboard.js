@@ -1,50 +1,5 @@
 $(document).ready(function () {
   $.ajax({
-    url: "/api/segment/trainer",
-    method: "GET",
-    dataType: "JSON",
-    success: (data) => {
-      data.forEach((val) => {});
-      const get1 = data.filter(function (val) {
-        let progId = val.classroom.program.id;
-        if (
-          val.user.isEnabled === true &&
-          val.user.roles.some((role) => role.id === 2)
-        ) {
-          return progId == 1;
-        }
-      });
-
-      const get2 = data.filter(function (val) {
-        let progId = val.classroom.program.id;
-        if (
-          val.user.isEnabled === true &&
-          val.user.roles.some((role) => role.id === 2)
-        ) {
-          return progId == 3;
-        }
-      });
-      let trainer;
-      const getTrainer = data.filter((val) => {
-        trainer = val.user.roles.some((role) => role.id === 1);
-        return trainer;
-      });
-      let name = "";
-      if (get1.length > 0) {
-        name = get1[0].classroom.program.name;
-      }
-      let name2 = "";
-      if (get2.length > 0) {
-        name2 = get2[0].classroom.program.name;
-      }
-
-      $("#prog-1-name").text(name);
-      $("#prog-1-count").text(get1.length);
-      $("#prog-2-name").text(name2);
-      $("#prog-2-count").text(get2.length);
-    },
-  });
-  $.ajax({
     url: "/api/segment/all",
     method: "GET",
     dataType: "JSON",
@@ -125,12 +80,41 @@ $(document).ready(function () {
     },
   });
 });
+
+function test() {
+  return JSON.parse(
+    $.ajax({
+      url: "/api/segment",
+      method: "GET",
+      dataType: "JSON",
+      global: false,
+      async: false,
+      success: function (data) {
+        return data;
+      },
+    }).responseText
+  );
+}
+
 document.addEventListener("DOMContentLoaded", function () {
+  let datas = test();
+  let events = [];
+  $.each(datas, function (key, val) {
+    let start = val.start_date.split("-");
+    let end = val.end_date.split("-");
+    events.push({
+      title: val.classroom.name + "--" + val.category.name,
+      start: start[2] + "-" + start[1] + "-" + start[0],
+      end: end[2] + "-" + end[1] + "-" + end[0],
+      color: "#" + Math.floor(Math.random() * 16777215).toString(16),
+    });
+  });
+
   var calendarEl = document.querySelector("#calendar");
   var calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: "dayGridMonth",
     eventColor: "sky",
-
+    events: events,
     headerToolbar: {
       left: "prev,next today",
       center: "title",
