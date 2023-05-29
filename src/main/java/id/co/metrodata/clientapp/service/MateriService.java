@@ -59,7 +59,7 @@ public class MateriService {
         return restTemplate.exchange(
                 url,
                 HttpMethod.POST,
-                new HttpEntity(materiRequest, BasicHeader.createHeader()),
+                new HttpEntity(materiRequest),
                 Materi.class).getBody();
     }
 

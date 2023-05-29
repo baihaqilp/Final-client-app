@@ -38,34 +38,48 @@ $(document).ready(function () {
         data: null,
         render: (data, type, row, meta) => {
           return `
-            <div class="d-flex align-items-center">
-              <a href="#sub" class="btn btn-success" onclick="moveToSubTab(${data.id})">
-                Sub
-              </a>
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle me-1" type="button"
+                  id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
+                  Action
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="dropwdown-item">
+                <a href="#sub" class="btn btn-outline-primary col-12" onclick="moveToSubTab(${data.id})">
+                Submission
+                </a>
+              </div>
+              <div class="dropwdown-item mt-2">
               <button
                 type="button"
-                class="btn btn-info mx-3"
+                class="btn btn-outline-info col-12"
                 data-bs-toggle="modal"
                 data-bs-target="#detailTask"
                 onClick="getById(${data.id})"
-                style="color: white;"
               >
                 Detail
               </button>
-              <button
-                type="button"
-                class="btn btn-warning mx-3"
-                data-bs-toggle="modal"
-                data-bs-target="#updateTask"
-                onClick="beforeUpdate(${data.id})"
-                style="color: white;"
-              >
-                Edit
+              <div class="dropwdown-item mt-2">
+                <button
+                  type="button"
+                  class="btn btn-outline-warning col-12"
+                  data-bs-toggle="modal"
+                  data-bs-target="#updateTask"
+                  onClick="beforeUpdate(${data.id})"
+                >
+                  Edit
               </button>
-              <button class="btn btn-danger" onClick="deletedata(${data.id})">
-                Delete
-              </button>
-            </div>
+              </div>
+              <div class="dropwdown-item mt-2">
+                
+                <button class="btn btn-outline-danger col-12" onClick="deletedata(${data.id})">
+                  Delete
+                </button>
+              </div>
+              </div>
+          </div>
+        
           `;
         },
       },
@@ -227,7 +241,12 @@ function beforeUpdate(id) {
       $("#update_id").val(res.id);
       $("#update_task_name").val(res.name);
       $("#update_task_desc").val(res.desc);
-      $("#update_task_deadline").val(res.deadline);
+      let deadline = res.deadline;
+      let deadlineArr = deadline.split(" ");
+      let deadlineTgl = deadlineArr[0].split("-");
+      let deadlineTime = deadlineArr[1].split(":");
+
+      $("#update_task_deadline").val(deadlineTgl[2] + "-" + deadlineTgl[1] + "-" + deadlineTgl[0] + "T" + deadlineTime[0] + ":" + deadlineTime[1]);
       $("#update_segment").val(res.segment.id);
       $("#update_task_desc").summernote({ height: 300 });
     },

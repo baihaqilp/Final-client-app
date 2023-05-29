@@ -1,11 +1,11 @@
 $(document).ready(function () {
   $.ajax({
-    url: "/api/employee",
+    url: "/api/employee/role/2",
     method: "GET",
     dataType: "JSON",
     success: (data) => {
-      const get1 = data.filter(function (vgraal) {
-        let progId = val.classroom.prom.id;
+      const get1 = data.filter(function (val) {
+        let progId = val.classroom.program.id;
         if (
           val.user.isEnabled === true &&
           val.user.roles.some((role) => role.id === 2)
@@ -20,7 +20,7 @@ $(document).ready(function () {
           val.user.isEnabled === true &&
           val.user.roles.some((role) => role.id === 2)
         ) {
-          return progId == 2;
+          return progId == 3;
         }
       });
       let trainer;

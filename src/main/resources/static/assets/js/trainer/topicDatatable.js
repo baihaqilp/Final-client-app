@@ -44,12 +44,16 @@ $(document).ready(function () {
           success: (e) => {
             $("#table-materi").DataTable({
               data: e,
+              destroy: true,
               columns: [
                 {
                   data: null,
                   render: function (data, type, row, meta) {
                     return meta.row + 1;
                   },
+                },
+                {
+                  data: "topic.name",
                 },
                 {
                   data: "name",

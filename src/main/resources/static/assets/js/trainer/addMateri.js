@@ -1,5 +1,7 @@
 $(document).ready(function () {
-  $("#create_materi_description").summernote();
+  $("#create_materi_description").summernote({
+    height: 300
+  });
   $.ajax({
     method: "GET",
     url: "/api/topic",
@@ -54,7 +56,6 @@ function create() {
       $("#create_materi_name").val("");
       $("#create_materi_description").summernote("option", "height", 300);
       $("#select_topik ").val("");
-      $("#select_trainer ").val("");
       Swal.fire({
         position: "center",
         icon: "success",
@@ -62,13 +63,14 @@ function create() {
         showConfirmButton: false,
         timer: 1500,
       });
+      window.location.replace("/trainer/topic")
     },
     error: function (xhr, textStatus, errorThrown) {
       let err = JSON.parse(xhr.responseText);
       let status = "" + err.message[0] + err.message[1] + err.message[2];
       let msg = "";
       if (status == 409) {
-        msg = "Topic sudah ada";
+        msg = "Materi sudah ada";
       } else {
         msg = "Something when Wrong !!!";
       }
