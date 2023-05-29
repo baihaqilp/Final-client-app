@@ -82,4 +82,9 @@ public class RestSegmentController {
     public List<Segment> getByClassIdAndTrainerId(@PathVariable long class_id) {
         return segmenService.getByClassIdAndTrainerId(class_id);
     }
+
+    @GetMapping("/segment/class/trainee")
+    private List<Segment> getSegmentClassTrainee() {
+        return segmenService.getSegmentClassTrainee();
+    }
 }

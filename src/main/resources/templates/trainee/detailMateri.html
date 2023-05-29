@@ -15,7 +15,7 @@
       <div id="free-quote" class="free-quote" th:object="${materi}">
         <div class="container">
           <div class="row">
-            <div class="col-lg-4 offset-lg-4">
+            <div class="col-lg-6 offset-lg-3">
               <div
                 class="section-heading wow fadeIn"
                 data-wow-duration="1s"
@@ -44,10 +44,7 @@
                     <div class="fill-form">
                       <div class="row">
                         <div class="col-lg-12">
-                          <p
-                            th:class="@{text-justify}"
-                            th:utext="${materi.desc}"
-                          >
+                          <p id="materi_desc" th:utext="${materi.desc}">
                             Lorem ipsum dolor sit amet consectetur adipisicing
                             elit. Perspiciatis, harum nam explicabo sed possimus
                             nobis! Nostrum atque voluptas at odit. Deleniti,

@@ -44,12 +44,12 @@
                         </h5>
                         <p
                           class="fw-bold d-flex justify-content-end mb-2"
-                          th:text="${task.deadline}"
+                          id="taskDetail"
                         ></p>
                       </div>
                     </div>
                     <hr />
-                    <p class="card-text" th:text="${task.desc}">
+                    <p class="card-text" th:utext="${task.desc}">
                       With supporting text below as a natural lead-in to
                       additional content.
                     </p>
@@ -69,15 +69,15 @@
                       </div>
 
                       <input
-                        type="text"
+                        type="hidden"
                         id="task_deadline"
                         name="task_deadline"
-                        value="123213"
+                        th:value="${task.deadline}"
                       />
 
                       <div class="col">
                         <input
-                          class="form-control"
+                          class="form-control fileSub"
                           type="file"
                           accept=".pdf, .doc, .docx"
                           id="fileInput"
@@ -96,7 +96,8 @@
                     <button
                       href="#"
                       type="submit"
-                      class="btn btn-outline-primary btn-sm"
+                      class="btn btn-outline-primary btn-sm fileSub"
+                      id="fileSub"
                     >
                       Submit
                     </button>
@@ -109,7 +110,7 @@
       </div>
     </section>
     <div layout:fragment="script">
-      <script th:src="@{/assets/js/trainee/task/task.js}"></script>
+      <script th:src="@{/assets/js/trainee/task/taskDetail.js}"></script>
     </div>
   </body>
 </html>

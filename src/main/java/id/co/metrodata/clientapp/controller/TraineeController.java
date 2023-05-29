@@ -107,11 +107,6 @@ public class TraineeController {
   @GetMapping("/task/{task_id}/submission-add")
   private String traineeAddSubmission(@PathVariable long task_id, Model model) {
     Task task = taskService.getById(task_id);
-    LocalDateTime now = LocalDateTime.now();
-    int res = now.compareTo(task.getDeadline());
-    if (res > 0) {
-      return "redirect:/trainee/submission";
-    }
     model.addAttribute("task", task);
     return "trainee/detailTask";
   }
