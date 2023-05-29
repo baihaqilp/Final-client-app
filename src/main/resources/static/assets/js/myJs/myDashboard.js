@@ -1,50 +1,5 @@
 $(document).ready(function () {
   $.ajax({
-    url: "/api/segment/trainer",
-    method: "GET",
-    dataType: "JSON",
-    success: (data) => {
-      data.forEach((val) => {});
-      const get1 = data.filter(function (val) {
-        let progId = val.classroom.program.id;
-        if (
-          val.user.isEnabled === true &&
-          val.user.roles.some((role) => role.id === 2)
-        ) {
-          return progId == 1;
-        }
-      });
-
-      const get2 = data.filter(function (val) {
-        let progId = val.classroom.program.id;
-        if (
-          val.user.isEnabled === true &&
-          val.user.roles.some((role) => role.id === 2)
-        ) {
-          return progId == 3;
-        }
-      });
-      let trainer;
-      const getTrainer = data.filter((val) => {
-        trainer = val.user.roles.some((role) => role.id === 1);
-        return trainer;
-      });
-      let name = "";
-      if (get1.length > 0) {
-        name = get1[0].classroom.program.name;
-      }
-      let name2 = "";
-      if (get2.length > 0) {
-        name2 = get2[0].classroom.program.name;
-      }
-
-      $("#prog-1-name").text(name);
-      $("#prog-1-count").text(get1.length);
-      $("#prog-2-name").text(name2);
-      $("#prog-2-count").text(get2.length);
-    },
-  });
-  $.ajax({
     url: "/api/segment/all",
     method: "GET",
     dataType: "JSON",
