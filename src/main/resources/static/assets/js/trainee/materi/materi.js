@@ -1,24 +1,14 @@
 $(document).ready(function () {
-  let materi_id = $("#materi_id").val();
-  $.ajax({
-    url: "/api/materi/" + materi_id,
-    method: "GET",
-    success: function (response) {
-      var head = `
-           <h5 class="card-title mt-2" style="font-size: 24px">
-             ${response.name}
-           </h5>
-          `;
-      $(".materi-card-title").append(head);
-      var body = `
-      <div class="lesson-content">
-        <p class="card-text">${response.desc}</p>
-      </div>
-      `;
-      $(".materi-card-content").append(body);
-      $(".materi-card-content .lesson-content").html(function (index, html) {
-        return "<p>" + html.trim().replace(/(\n)+/g, "</p><p>") + "</p>";
-      });
-    },
-  });
+  let materi = $("#materi_base").val();
+  html = materi.replace(/<style([\s\S]*?)<\/style>/gi, "");
+  html = html.replace(/<script([\s\S]*?)<\/script>/gi, "");
+  html = html.replace(/<\/div>/gi, "\n");
+  html = html.replace(/<\/li>/gi, "\n");
+  html = html.replace(/<li>/gi, "  *  ");
+  html = html.replace(/<\/ul>/gi, "\n");
+  html = html.replace(/<\/p>/gi, "\n");
+  html = html.replace(/<\/h2>/gi, "\n");
+  html = html.replace(/<br\s*[\/]?>/gi, "\n");
+  html = html.replace(/<[^>]+>/gi, "");
+  $("#materi_desc").html(html);
 });

@@ -39,7 +39,7 @@
               </div>
             </div>
             <div
-              class="col-lg-6 show-up wow fadeInUp"
+              class="col-lg-7 show-up wow fadeInUp"
               data-wow-duration="1s"
               data-wow-delay="0.3s"
             >
@@ -86,7 +86,7 @@
             </div>
 
             <div
-              class="col-lg-4 wow fadeInUp d-flex justify-content-end"
+              class="col-lg-5 wow fadeInUp d-flex justify-content-end"
               data-wow-duration="1s"
               data-wow-delay="0.3s"
             >
@@ -95,7 +95,7 @@
                   <div class="col">
                     <div
                       class="overflow-auto mt-3 px-3"
-                      style="width: 300px; height: 600px"
+                      style="width: 400px; height: 600px"
                     >
                       <div th:each="materi,iStat : ${materies}">
                         <div th:if="${iStat.count != 1}">
@@ -134,39 +134,6 @@
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-2 wow fadeInUp d-flex justify-content-end"
-              data-wow-duration="1s"
-              data-wow-delay="0.3s"
-            >
-              <div class="row">
-                <div class="col">
-                  <div class="card">
-                    <!-- <div class="card-header text-dark bg-info">Segment</div> -->
-                    <div class="card-body">
-                      <ul class="list-group list-group-flush d-flex">
-                        <li class="list-group-item">
-                          <a
-                            th:href="@{/trainee}+@{#segment}"
-                            class="text-decoration-none"
-                            style="color: black"
-                            >Segment</a
-                          >
-                        </li>
-                        <li class="list-group-item">
-                          <a
-                            th:href="@{/trainee/task}"
-                            class="text-decoration-none"
-                            style="color: black"
-                            >Task</a
-                          >
-                        </li>
-                      </ul>
                     </div>
                   </div>
                 </div>

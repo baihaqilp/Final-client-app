@@ -25,7 +25,7 @@ $(document).ready(function () {
                             aria-selected="false"
                         >${val.trainee.classroom.name}</a
                         >
-                    </li>
+                    </li>                
                     `;
               let cardBody = `
                     <div

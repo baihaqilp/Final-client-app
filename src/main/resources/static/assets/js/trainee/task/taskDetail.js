@@ -40,7 +40,6 @@ $(document).ready(function () {
   let deadlineDate2 = new Date(Date.parse(stringDeadline2));
 
   if (deadlineDate2 > deadlineDate) {
-    console.log(deadlineDate2);
     $(".fileSub").prop("disabled", true);
     $("#fileSub").html("Already passed the deadline");
     $("#fileSub").removeClass("btn btn-outline-primary btn-sm ");
@@ -51,4 +50,17 @@ $(document).ready(function () {
     $("#fileSub").removeClass("btn btn-sm btn-danger");
     $("#fileSub").addClass("btn btn-outline-primary btn-sm");
   }
+
+  let task = $("#task_base").val();
+  html = task.replace(/<style([\s\S]*?)<\/style>/gi, "");
+  html = html.replace(/<script([\s\S]*?)<\/script>/gi, "");
+  html = html.replace(/<\/div>/gi, "\n");
+  html = html.replace(/<\/li>/gi, "\n");
+  html = html.replace(/<li>/gi, "  *  ");
+  html = html.replace(/<\/ul>/gi, "\n");
+  html = html.replace(/<\/p>/gi, "\n");
+  html = html.replace(/<\/h2>/gi, "\n");
+  html = html.replace(/<br\s*[\/]?>/gi, "\n");
+  html = html.replace(/<[^>]+>/gi, "");
+  $("#task_desc_base").html(html);
 });

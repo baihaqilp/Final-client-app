@@ -1,15 +1,4 @@
 $(document).ready(function () {
-  // $("#class-card").slick({
-  //   rows: 2,
-  //   infinite: true,
-  //   speed: 300,
-  //   slidesToShow: 4,
-  //   slidesToScroll: 4,
-  //   vertical: true,
-  //   verticalSwiping: true,
-  //   arrows: true,
-  //   dots: true,
-  // });
   $.ajax({
     url: "/api/segment/all",
     method: "GET",

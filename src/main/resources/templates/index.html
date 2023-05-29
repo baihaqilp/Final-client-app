@@ -4,10 +4,9 @@
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout/main}"
 >
-<header>
-  
-  <title>Dashboard Admin</title>
-</header>
+  <header>
+    <title>Dashboard Admin</title>
+  </header>
   <body>
     <!-- content -->
     <section layout:fragment="content">
@@ -24,35 +23,17 @@
                     <div class="row">
                       <div class="col-md-4">
                         <div class="stats-icon purple">
-                          <i class="iconly-boldShow"></i>
+                          <i
+                            class="bi bi-house-door"
+                            style="margin-right: 13px; margin-bottom: 25px"
+                          ></i>
                         </div>
                       </div>
                       <div class="col-md-8">
-                        <h6
-                          class="text-muted font-semibold"
-                          id="prog-1-name"
-                        ></h6>
-                        <h6 class="font-extrabold mb-0" id="prog-1-count"></h6>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-6 col-lg-3 col-md-6">
-                <div class="card">
-                  <div class="card-body px-3 py-4-5">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="stats-icon blue">
-                          <i class="iconly-boldProfile"></i>
-                        </div>
-                      </div>
-                      <div class="col-md-8">
-                        <h6
-                          class="text-muted font-semibold"
-                          id="prog-2-name"
-                        ></h6>
-                        <h6 class="font-extrabold mb-0" id="prog-2-count"></h6>
+                        <h6 class="text-muted font-semibold" id="prog-1-name">
+                          Class
+                        </h6>
+                        <h6 class="font-extrabold mb-0" id="counter-class"></h6>
                       </div>
                     </div>
                   </div>
@@ -75,7 +56,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-6 col-lg-3 col-md-6">
+              <div class="col-6 col-lg-3 col-md-6" style="width: 30%">
                 <div class="card">
                   <div class="card-body px-3 py-4-5">
                     <div class="row">
@@ -96,7 +77,10 @@
                 </div>
               </div>
             </div>
-            <div class="row d-flex justify-content-between" sec:authorize="hasRole('ADMIN')">
+            <div
+              class="row d-flex justify-content-between"
+              sec:authorize="hasRole('ADMIN')"
+            >
               <div class="col-6 col-lg-3 col-md-6">
                 <div class="card">
                   <div class="card-body px-3 py-4-5">
@@ -107,11 +91,12 @@
                         </div>
                       </div>
                       <div class="col-md-8">
-                        <h6
-                          class="text-muted font-semibold"
-                          id="trainer"
-                        >Trainer</h6>
-                        <h6 class="font-extrabold mb-0" id="trainer-count">10</h6>
+                        <h6 class="text-muted font-semibold" id="trainer">
+                          Trainer
+                        </h6>
+                        <h6 class="font-extrabold mb-0" id="trainer-count">
+                          10
+                        </h6>
                       </div>
                     </div>
                   </div>
@@ -127,10 +112,9 @@
                         </div>
                       </div>
                       <div class="col-md-8">
-                        <h6
-                          class="text-muted font-semibold"
-                          id="trainee"
-                        >Trainee</h6>
+                        <h6 class="text-muted font-semibold" id="trainee">
+                          Trainee
+                        </h6>
                         <h6 class="font-extrabold mb-0" id="trainee-count"></h6>
                       </div>
                     </div>
@@ -173,18 +157,20 @@
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-12">
-              </div>
+            <div class="row" sec:authorize="hasRole('TRAINER')">
+              <div class="counter-trainee d-flex"></div>
             </div>
             <div class="row">
-              <div class="col-12 col-xl-12" sec:authorize="hasRole('ADMIN')">
+              <div class="col-12"></div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-xl-12">
                 <div class="card">
                   <div class="card-header">
                     <h4>Calendarss</h4>
                   </div>
                   <div class="card-body">
-                    <div id="calendar" style="height: 500px;"></div>
+                    <div id="calendar" style="height: 500px"></div>
                   </div>
                 </div>
               </div>
@@ -209,34 +195,60 @@
                 </div>
               </div>
             </a>
+            <div class="card">
+              <div class="card-header text-center">
+                <h5 class="text-muted">Your Classroom</h5>
+              </div>
+              <div
+                class="card-body overflow-auto"
+                style="width: auto; height: 560px"
+                id="trainer-scroll"
+              >
+                <div class="trainee-card"></div>
+              </div>
+            </div>
           </div>
         </section>
       </div>
 
       <div class="modal fade" id="events-modal">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h3 class="modal-title">Event</h3>
-                </div>
-                <div class="modal-body" style="height: 400px">
-                </div>
-                <div class="modal-footer">
-                    <a href="#" data-bs-dismiss="modal" class="btn">Close</a>
-                </div>
+          <div class="modal-content">
+            <div class="modal-header">
+              <button
+                type="button"
+                class="close"
+                data-bs-dismiss="modal"
+                aria-hidden="true"
+              >
+                &times;
+              </button>
+              <h3 class="modal-title">Event</h3>
             </div>
+            <div class="modal-body" style="height: 400px"></div>
+            <div class="modal-footer">
+              <a href="#" data-bs-dismiss="modal" class="btn">Close</a>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
     </section>
     <div layout:fragment="script">
-      <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
-      <Script>
-        
-      </Script>
-      <script th:src="@{/assets/js/myJs/myDashboard.js}" sec:authorize="hasRole('TRAINER')"></script>
-      <script th:src="@{/assets/js/myJs/adminDashboard.js}" sec:authorize="hasRole('ADMIN')"></script>
-      
+      <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+      <script></script>
+      <script
+        th:src="@{/assets/js/myJs/myDashboard.js}"
+        sec:authorize="hasRole('TRAINER')"
+      ></script>
+      <script
+        src="https://cdn.polyfill.io/v2/polyfill.min.js"
+        sec:authorize="hasRole('TRAINER')"
+      ></script>
+
+      <script
+        th:src="@{/assets/js/myJs/adminDashboard.js}"
+        sec:authorize="hasRole('ADMIN')"
+      ></script>
     </div>
   </body>
 </html>
