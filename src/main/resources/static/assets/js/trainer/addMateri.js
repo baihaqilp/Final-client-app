@@ -36,11 +36,10 @@ $(document).ready(function () {
 
 function create() {
   let nameVal = $("#create_materi_name").val();
-  let descVal = $("#create_materi_description").val();
+  let descVal = $("#create_materi_description").summernote("code");
   let topikVal = $("#select_topic option:selected").val();
 
-  console.log(topikVal);
-
+  console.log(nameVal, topikVal);
   $.ajax({
     url: "/api/materi",
     method: "POST",

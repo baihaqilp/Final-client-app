@@ -37,6 +37,7 @@ $(document).ready(function () {
       url: "/api/materi",
       dataSrc: "",
     },
+    destroy: true,
     columns: [
       {
         data: null,

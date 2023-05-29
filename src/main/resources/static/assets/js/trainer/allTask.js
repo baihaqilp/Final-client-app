@@ -101,6 +101,7 @@ function moveToSubTab(id) {
   $("#sub").addClass("show active");
   $("#task-tab").removeClass("active");
   $("#sub-tab").addClass("active");
+  $("#sub-tab").removeAttr("hidden");
   $("#table-submission").DataTable({
     ajax: {
       url: "/api/submission/task/" + id,
