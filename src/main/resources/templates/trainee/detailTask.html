@@ -49,10 +49,12 @@
                       </div>
                     </div>
                     <hr />
-                    <p class="card-text" th:utext="${task.desc}">
-                      With supporting text below as a natural lead-in to
-                      additional content.
-                    </p>
+                    <input
+                      type="hidden"
+                      id="task_base"
+                      th:value="${task.desc}"
+                    />
+                    <p id="task_desc_base"></p>
                   </div>
                 </div>
                 <form

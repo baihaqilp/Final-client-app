@@ -56,7 +56,7 @@ public class TraineeController {
   private String dashboard(Model model) {
 
     model.addAttribute("segments", segmenService.getSegmentClassTrainee());
-    model.addAttribute("segmentTopics", segmentTopicService.getBySegment());
+    // model.addAttribute("segmentTopics", segmentTopicService.getBySegment());
     return "trainee/index";
   }
 

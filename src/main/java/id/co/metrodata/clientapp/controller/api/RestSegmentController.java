@@ -83,7 +83,7 @@ public class RestSegmentController {
         return segmenService.getByClassIdAndTrainerId(class_id);
     }
 
-    @GetMapping("/segment/class/trainee")
+    @GetMapping("/class/trainee")
     private List<Segment> getSegmentClassTrainee() {
         return segmenService.getSegmentClassTrainee();
     }
