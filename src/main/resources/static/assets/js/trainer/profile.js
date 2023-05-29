@@ -68,7 +68,6 @@ function updateProfile() {
   let addressVal = $("#address-id-icon").val();
   let usernameVal = $("#username-id-icon").val();
   let passVal = $("#password-id-icon").val();
-  console.log(idVal, classId, roleId);
   Swal.fire({
     title: "Are you sure to update your profile?",
     text: "You won't be able to revert this!",
@@ -95,7 +94,7 @@ function updateProfile() {
           password: passVal,
         }),
         contentType: "application/json",
-        success: (res) => {},
+        success: (res) => { },
         error: function (xhr, textStatus, errorThrown) {
           let err = JSON.parse(xhr.responseText);
           let status = "" + err.message[0] + err.message[1] + err.message[2];
