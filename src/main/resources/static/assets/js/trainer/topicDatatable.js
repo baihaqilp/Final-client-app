@@ -66,17 +66,17 @@ $(document).ready(function () {
                   render: function (data, type, row, meta) {
                     if (trainer_id != data.employee.id) {
                       return `
-                      <a href="/trainer/materi/${data.id}"class="btn btn-info mx-3" style="color: white;">Detail</a>
+                      <a href="/trainer/materi/${data.id}"class="btn btn-outline-info mx-3">Detail</a>
                        
                         `;
                     } else {
                       return `
                       <div class="d-flex justify-content-center">
-                      <a href="/trainer/materi/edit/${data.id}"class="btn btn-warning mx-3" style="color: white;">Edit</a>
-                      <a href="/trainer/materi/${data.id}"class="btn btn-info mx-3" style="color: white;">Detail</a>
+                      <a href="/trainer/materi/edit/${data.id}"class="btn btn-outline-warning mx-3">Edit</a>
+                      <a href="/trainer/materi/${data.id}"class="btn btn-outline-info mx-3" >Detail</a>
                         <button
                           type="button"
-                          class="btn btn-danger mx-3"
+                          class="btn btn-outline-danger mx-3"
                           onClick="deleteMateri(${data.id})"
                         >
                           Delete
@@ -120,7 +120,7 @@ $(document).ready(function () {
             <div class="d-flex justify-content-center">
             <button
                   type="button"
-                 class="btn btn-info mx-3"
+                 class="btn btn-outline-info mx-3"
                  data-bs-toggle="modal"
                       data-bs-target="#detailTopic"
                    onClick="getById(${data.id})"
@@ -129,7 +129,7 @@ $(document).ready(function () {
             </button>
             <button
                 type="button"
-            class="btn btn-warning mx-3"
+            class="btn btn-outline-warning mx-3"
             data-bs-toggle="modal"
                       data-bs-target="#updateTopic"
                onClick="beforeUpdate(${data.id})"

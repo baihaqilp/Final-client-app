@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 @Controller
 @RequestMapping("/trainer")
 @AllArgsConstructor
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@PreAuthorize("hasRole('ROLE_TRAINER')")
 public class TrainerController {
 
     private TaskService taskService;
