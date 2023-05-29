@@ -2,11 +2,10 @@ $(document).ready(function () {
   let segment_id = $("#segment_id").val();
 
   $.ajax({
-    url: "/api/segmentmateri/segment/" + segment_id, // Replace with your API endpoint to fetch card data
+    url: "/api/segmentmateri/segment/" + segment_id,
     method: "GET",
     success: function (response) {
       console.log(response);
-      // Loop through the card data and generate cards dynamically
       response.forEach(function (cardData) {
         console.log(typeof cardData.materi.id);
         var card = `

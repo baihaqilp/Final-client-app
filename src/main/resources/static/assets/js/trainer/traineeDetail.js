@@ -6,7 +6,7 @@ $(document).ready(function () {
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      cutout: "70%", // Adjust the size of the doughnut hole
+      cutout: "70%", // adjust the size of the doughnut hole
       plugins: {
         legend: {
           position: "bottom",

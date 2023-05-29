@@ -55,3 +55,71 @@
     </div>
   </div>
 </div>
+
+<!-- const groupSegment = segmentActive.reduce(async function (
+        groupData,
+        segment
+      ) {
+        const classroomId = segment.classroom.id;
+        const programName = segment.classroom.program.name;
+        const group = await groupData;
+
+        if (group.hasOwnProperty(programName)) {
+          group[programName].push(segment);
+        } else {
+          group[programName] = [segment];
+        }
+
+        // Fetch the total number of employees in the classroom using the API
+        const employeePromise = $.ajax({
+          url: `/api/employee/class/${classroomId}`,
+          method: "GET",
+          dataType: "JSON",
+        });
+
+        const response = await employeePromise;
+        const totalEmployees = response.length || 0; // Assign 0 if employee data is empty
+
+        group[programName].totalEmployees = totalEmployees;
+
+        return group;
+      },
+      Promise.resolve({}));
+      let bg = "";
+      console.log(groupSegment);
+      for (programName in groupSegment) {
+        if (programName === "Java") {
+          bg = "orangered";
+        } else if (programName === "Ruby") {
+          bg = "red";
+        } else if (programName === "Dart") {
+          bg = "Blue";
+        } else if (programName === "C#") {
+          bg = "violet";
+        } else {
+          bg = "burlywood";
+        }
+        var card = `
+        <div class="col-6 col-lg-3 col-md-6 px-3">
+                <div class="card">
+                  <div class="card-body px-3 py-4-5">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="stats-icon" style="background-color: ${bg}">
+                          <i class="iconly-boldCheck"></i>
+                        </div>
+                      </div>
+                      <div class="col-md-8">
+                        <h6 class="text-muted font-semibold">${programName}</h6>
+                        <h6
+                          class="font-extrabold mb-0"
+                          id="complete-count"
+                        ></h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        `;
+        $(".counter-trainee").append(card);
+      } -->

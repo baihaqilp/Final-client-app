@@ -86,7 +86,7 @@ $(document).ready(function () {
                 dataType: "JSON",
                 success: (materials) => {
                   const materialsList = materials.map((material) => {
-                    return `<li><a href="/trainer/materi/${material.id}" style="color: black;"><span>${material.name}</span></a></li>`;
+                    return `<li><a href="/trainer/materi/${material.id}"><span>${material.name}</span></a></li>`;
                   });
                   const accordionItem = `
                     <div class="accordion-item">
