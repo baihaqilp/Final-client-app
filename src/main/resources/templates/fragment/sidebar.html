@@ -146,33 +146,33 @@
         <div class="sidebar-menu" id="menu" sec:authorize="hasRole('TRAINER')">
           <ul class="menu">
             <li class="sidebar-title">Menu</li>
-            <li class="sidebar-item active">
+            <li th:class="'sidebar-item '+${link == 'dashboard' ? 'active' : 'in-active'}" >
               <a th:href="@{/}" class="sidebar-link">
                 <i class="bi bi-grid-fill"></i>
                 <span>Dashboard</span>
               </a>
             </li>
-            <li class="sidebar-item">
+            <li th:class="'sidebar-item '+${link == 'classroom' ? 'active' : 'in-active'}" >
               <a th:href="@{/trainer/classroom/trainer}" class="sidebar-link">
                 <i class="fa-solid fa-school"></i>
                 <span>Classroom</span>
               </a>
             </li>
 
-            <li class="sidebar-item">
+            <li th:class="'sidebar-item '+${link == 'topic' ? 'active' : 'in-active'}" >
               <a th:href="@{/trainer/topic}" class="sidebar-link">
                 <i class="fa-solid fa-book"></i>
                 <span>Topic & Materi</span>
               </a>
             </li>
 
-            <li class="sidebar-item">
+            <li th:class="'sidebar-item '+${link == 'task' ? 'active' : 'in-active'}" >
               <a th:href="@{/trainer/task}" class="sidebar-link">
                 <i class="fa-solid fa-tasks"></i>
                 <span>Task & Submission</span>
               </a>
             </li>
-            <li class="sidebar-item">
+            <li th:class="'sidebar-item '+${link == 'grade' ? 'active' : 'in-active'}" >
               <a th:href="@{/trainer/grade}" class="sidebar-link">
                 <i class="fa-solid fa-chart-simple"></i>
                 <span>Grade</span>
