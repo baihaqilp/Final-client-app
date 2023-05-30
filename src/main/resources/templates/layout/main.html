@@ -11,7 +11,7 @@
     <meta name="_csrf" th:content="${_csrf.token}" />
     <!-- default header name is X-CSRF-TOKEN -->
     <meta name="_csrf_header" th:content="${_csrf.headerName}" />
-    <title>Dashboard - Mazer Admin Dashboard</title>
+    <title th:text="${link}"></title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -20,7 +20,10 @@
     />
     <!-- <link rel="stylesheet" th:href="@{/assets/css/bootstrap.css}" /> -->
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+    />
 
     <link rel="stylesheet" th:href="@{/assets/vendors/iconly/bold.css}" />
 

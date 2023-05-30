@@ -14,9 +14,6 @@
               <div
                 class="col-12 col-md-6 order-md-1 order-last d-flex align-items-center"
               >
-                <a class="btn" href="javascript:history.back()"
-                  ><i class="fa-solid fa-chevron-left fs-4"></i
-                ></a>
                 <h3>Grade</h3>
               </div>
               <div class="col-12 col-md-6 order-md-2 order-first">
@@ -39,36 +36,19 @@
           <section class="section">
             <div class="card">
               <div class="card-header">
-                <div
-                  class="d-flex overflow-x-auto"
-                  style="width: 500px; height: auto"
-                >
-                  <ul class="nav nav-tabs" id="myTab" role="tablist"></ul>
-                </div>
+                <h4 class="card-title">
+                  Check trainee grade by select the class
+                </h4>
               </div>
-              <div class="card-body">
-                <div class="tab-content" id="myTab"></div>
+              <div
+                class="card-body overflow-auto"
+                style="width: auto; height: 430px; padding: 1rem 2rem"
+              >
+                <div id="grade-card" class="d-flex flex-column px-1"></div>
               </div>
             </div>
           </section>
         </div>
-
-        <footer>
-          <div class="footer clearfix mb-0 text-muted">
-            <div class="float-start">
-              <p>2023 © Mazer</p>
-            </div>
-            <div class="float-end">
-              <p>
-                Crafted with
-                <span class="text-danger"
-                  ><i class="bi bi-heart-fill icon-mid"></i
-                ></span>
-                by <a href="https://saugi.me">Saugi</a>
-              </p>
-            </div>
-          </div>
-        </footer>
       </div>
     </section>
     <div layout:fragment="script">
