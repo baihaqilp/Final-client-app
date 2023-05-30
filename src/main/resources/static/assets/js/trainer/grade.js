@@ -6,15 +6,61 @@ $(document).ready(function () {
     success: (data) => {
       data.forEach((data) => {
         let classId = data.classroom.id;
+
         $.ajax({
           url: "/api/grade/classroom/" + classId,
           method: "GET",
           dataType: "JSON",
           success: (data) => {
+            console.log(data);
             data.forEach((val) => {
               console.log(val);
+
+              // if (index === 0) {
+              //   let cardHeader = `
+              //       <li class="nav-item " role="presentation">
+              //           <a
+              //               class="nav-link active"
+              //               id="${val.trainee.classroom.id}-tab"
+              //               data-bs-toggle="tab"
+              //               href="#${val.trainee.classroom.id}"
+              //               role="tab"
+              //               aria-controls="task"
+              //               aria-selected="false"
+              //           >${val.trainee.classroom.name}</a
+              //           >
+              //       </li>
+              //       `;
+
+              //   let cardBody = `
+              //       <div
+              //           class="tab-pane active show fade"
+              //           id="${val.trainee.classroom.id}"
+              //           role="tabpanel"
+              //           aria-labelledby="${val.trainee.classroom.id}-tab"
+              //       >
+              //       <table
+              //            class="table display table-stripped table-bordered mt-3 text-center"
+              //           id="table-${val.trainee.classroom.id}" style="width: 100%";
+              //       >
+              //       <thead class="table">
+              //           <tr>
+              //               <th class="col-1 text-center">No.</th>
+              //               <th class="col-1 text-center">Name</th>
+              //               <th class="col-1 text-center">Grade</th>
+              //               <th class="col-2 text-center">Nilai</th>
+              //               <th class="col-2 text-center">Status</th>
+              //               <th class="col-1 text-center">Segment</th>
+              //           </tr>
+              //       </thead>
+              //       </table>
+              //        </div>
+              //         `;
+              //   $(".nav-tabs").append(cardHeader);
+              //   $(".tab-content").append(cardBody);
+              // } else {
               let cardHeader = `
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item " role="presentation">
                         <a
                             class="nav-link"
                             id="${val.trainee.classroom.id}-tab"
@@ -27,6 +73,7 @@ $(document).ready(function () {
                         >
                     </li>                
                     `;
+
               let cardBody = `
                     <div
                         class="tab-pane fade"
@@ -51,8 +98,11 @@ $(document).ready(function () {
                     </table>
                      </div>
                       `;
-              $(".nav-tabs").append(cardHeader);
+
               $(".tab-content").append(cardBody);
+              $(".nav-tabs").append(cardHeader);
+              // }
+
               $("#table-" + val.trainee.classroom.id).DataTable({
                 data: data,
                 destroy: true,

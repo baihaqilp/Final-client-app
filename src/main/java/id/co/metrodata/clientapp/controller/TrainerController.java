@@ -1,12 +1,13 @@
 package id.co.metrodata.clientapp.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 import id.co.metrodata.clientapp.service.TaskService;
 import lombok.AllArgsConstructor;
@@ -21,20 +22,22 @@ public class TrainerController {
 
     @PreAuthorize("hasAuthority('READ_TRAINER')")
     @GetMapping
-    public String dashboard() {
+    public String dashboard(Model model) {
+        model.addAttribute("link", "dashboard");
         return "index";
     }
 
     @PreAuthorize("hasAuthority('READ_TRAINER')")
     @GetMapping("/classroom/trainer")
-    public String classTrainer() {
-
+    public String classTrainer(Model model) {
+        model.addAttribute("link", "classroom");
         return "trainer/class/class";
     }
 
     @PreAuthorize("hasAuthority('READ_TRAINER')")
     @GetMapping("/class-detail")
-    public String classTrainerDetail() {
+    public String classTrainerDetail(Model model) {
+        model.addAttribute("link", "classroom");
         return "trainer/class/detailClass";
     }
 
@@ -46,7 +49,8 @@ public class TrainerController {
 
     @PreAuthorize("hasAuthority('READTRAINER')")
     @GetMapping("/classroom/segment/task/{segment_id}")
-    public String taskTrainer(@PathVariable long segment_id) {
+    public String taskTrainer(@PathVariable long segment_id, Model model) {
+        model.addAttribute("link", "classroom");
         return "trainer/task/task";
     }
 
@@ -54,6 +58,7 @@ public class TrainerController {
     @GetMapping("/classroom/segment/task/detail/{id}")
     public String detailtaskTrainer(@PathVariable long id, Model model) {
         model.addAttribute("task", taskService.getById(id));
+        model.addAttribute("link", "classroom");
         return "trainer/task/detailTask";
     }
 
@@ -67,19 +72,22 @@ public class TrainerController {
     @PreAuthorize("hasAuthority('READ_TRAINER')")
     // get all task by trainer-class-id
     @GetMapping("/task")
-    public String task() {
+    public String task(Model model) {
+        model.addAttribute("link", "task");
         return "trainer/task/task";
     }
 
     @PreAuthorize("hasAuthority('READ_TRAINER')")
     @GetMapping("/topic/segment/{id}")
-    public String topicBySegmentId(@PathVariable long id) {
+    public String topicBySegmentId(@PathVariable long id, Model model) {
+        model.addAttribute("link", "topic");
         return "trainer/topic/topicDataTable";
     }
 
     @PreAuthorize("hasAuthority('READ_TRAINER')")
     @GetMapping("/materi/{id}")
-    public String getMtariByTopicId(@PathVariable long id) {
+    public String getMtariByTopicId(@PathVariable long id, Model model) {
+        model.addAttribute("link", "topic");
         return "trainer/materi/materi";
     }
 
@@ -92,21 +100,24 @@ public class TrainerController {
 
     @PreAuthorize("hasAuthority('READ_TRAINER')")
     @GetMapping("/materi/add")
-    public String materiAdd() {
+    public String materiAdd(Model model) {
+        model.addAttribute("link", "topic");
         return "trainer/materi/addMateri";
     }
 
     @PreAuthorize("hasAuthority('READ_TRAINER')")
     // ok
     @GetMapping("/materi/edit/{id}")
-    public String materiEdit(@PathVariable long id) {
+    public String materiEdit(@PathVariable long id, Model model) {
+        model.addAttribute("link", "topic");
         return "trainer/materi/editMateri";
     }
 
     @PreAuthorize("hasAuthority('READ_TRAINER')")
     // grade
     @GetMapping("/grade")
-    public String gradeAdmin() {
+    public String gradeAdmin(Model model) {
+        model.addAttribute("link", "grade");
         return "trainer/grade/grade";
     }
 
@@ -130,7 +141,8 @@ public class TrainerController {
 
     @PreAuthorize("hasAuthority('READ_TRAINER')")
     @GetMapping("/classroom/{class_id}/trainer")
-    public String trainerSegment(@PathVariable long class_id) {
+    public String trainerSegment(@PathVariable long class_id, Model model) {
+        model.addAttribute("link", "classroom");
         // model.addAttribute("classroom", classroomService.getById(id));
         return "trainer/class/classDetail";
     }
@@ -144,7 +156,8 @@ public class TrainerController {
 
     @PreAuthorize("hasAuthority('READ_TRAINER')")
     @GetMapping("/classroom/segment/materi/{id}")
-    public String materiEdit(@PathVariable Long id) {
+    public String materiEdit(@PathVariable Long id, Model model) {
+        model.addAttribute("link", "classroom");
         return "trainer/materi/editMateri";
     }
 
@@ -156,17 +169,19 @@ public class TrainerController {
 
     @PreAuthorize("hasAuthority('READ_TRAINER')")
     @GetMapping("/topic")
-    public String topicList() {
+    public String topicList(Model model) {
+        model.addAttribute("link", "topic");
         return "trainer/topic/topic";
     }
 
     @PreAuthorize("hasAuthority('READ_TRAINER')")
     @GetMapping("/topic/{id}")
-    public String topicDetail(@PathVariable long id) {
+    public String topicDetail(@PathVariable long id, Model model) {
+        model.addAttribute("link", "topic");
         return "trainer/topic";
     }
 
-    @PreAuthorize("hasAuthority('READ_TRAINER','READ_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('READ_TRAINER','READ_ADMIN')")
     @GetMapping("/profile")
     public String profile() {
         return "trainer/profile/profile";
