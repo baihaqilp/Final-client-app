@@ -27,13 +27,15 @@ public class AdminController {
 
     @PreAuthorize("hasAuthority('READ_ADMIN')")
     @GetMapping("/class")
-    public String classAdmin() {
+    public String classAdmin(Model model) {
+        model.addAttribute("link", "classroom");
         return "admin/class/class";
     }
 
     @PreAuthorize("hasAuthority('READ_ADMIN')")
     @GetMapping("/classHistory")
-    public String historyclassAdmin() {
+    public String historyclassAdmin(Model model) {
+        model.addAttribute("link", "classroom");
         return "admin/class/historyClass";
     }
 
@@ -47,18 +49,22 @@ public class AdminController {
     @GetMapping("/class/{id}")
     public String detailClass(@PathVariable long id, Model model) {
         model.addAttribute("classroom", classroomService.getById(id));
+        model.addAttribute("link", "classroom");
         return "admin/class/detailClass";
     }
 
     @PreAuthorize("hasAuthority('READ_ADMIN')")
     @GetMapping("/class/{id}/trainee")
-    public String listStudent(@PathVariable long id) {
+    public String listStudent(@PathVariable long id, Model model) {
+        model.addAttribute("link", "classroom");
         return "admin/class/classTrainee";
     }
 
     @PreAuthorize("hasAuthority('READ_ADMIN')")
     @GetMapping("/trainer")
-    public String trainerAdmin() {
+    public String trainerAdmin(Model model) {
+        model.addAttribute("link", "trainer");
+
         return "admin/trainer/trainer";
     }
 
@@ -70,20 +76,22 @@ public class AdminController {
 
     @PreAuthorize("hasAuthority('READ_ADMIN')")
     @GetMapping("/trainee")
-    public String trainee() {
+    public String trainee(Model model) {
+        model.addAttribute("link", "trainee");
         return "admin/trainee/index";
     }
 
     // hapus
     @PreAuthorize("hasAuthority('READ_ADMIN')")
-    @GetMapping("/segment")
+    @GetMapping("/segmen    t")
     public String segment() {
         return "admin/segment/segment";
     }
 
     @PreAuthorize("hasAuthority('READ_ADMIN')")
     @GetMapping("/program")
-    public String program() {
+    public String program(Model model) {
+        model.addAttribute("link", "program");
         return "admin/program/index";
     }
 }

@@ -90,15 +90,6 @@ $(document).ready(function () {
       { data: "phone" },
       {
         data: null,
-        render: function (data, type, row, meta) {
-          if (data.user.isEnabled) {
-            return '<div class="badge bg-success">ACTIVE</div>'
-          }
-          return '<div class="badge bg-secondary">NON-ACTIVE</div>'
-        },
-      },
-      {
-        data: null,
         render: (data, type, row, meta) => {
           return `
           <div class="dropdown">
@@ -118,17 +109,6 @@ $(document).ready(function () {
                   >
                     Detail
                   </button>
-              </div>
-              <div class="dropwdown-item mt-2">
-                  <button
-                  type="button"
-                  class="btn btn-outline-warning col-12 "
-                  data-bs-toggle="modal"
-                  data-bs-target="#changeStatus"
-                  onClick="beforeStatusChange(${data.id})"
-                >
-                  Change Status
-                </button>
               </div>
               <div class="dropwdown-item mt-2">
                   <button

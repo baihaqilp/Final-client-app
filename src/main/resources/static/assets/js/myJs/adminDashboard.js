@@ -68,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var calendarEl = document.querySelector("#calendar");
   var calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: "dayGridMonth",
+    themeSystem: 'bootstrap5',
     eventColor: "sky",
     events: events,
     headerToolbar: {

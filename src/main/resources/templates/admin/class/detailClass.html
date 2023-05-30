@@ -35,6 +35,7 @@
                   <div class="card-header d-flex justify-content-between">
                     <b>Segment</b>
                     <input type="hidden" id="class_id" th:value="*{id}">
+                    <input type="hidden" id="isStatus" th:value="*{isStatus}">
                     <button th:if="*{isStatus == true}" class="btn btn-primary mb-3" data-bs-toggle="modal"
                     data-bs-target="#addSegment">Add Segmen</button>
                   </div>
@@ -47,7 +48,7 @@
                                   <th class="col-2">Trainer</th>
                                   <th class="col-2">Start Date</th>
                                   <th class="col-2">End Date</th>
-                                  <th class="col-4">Action</th>
+                                  <th class="col-4" th:if="*{isStatus == true}">Action</th>
                               </tr>
                           </thead>
                       </table>

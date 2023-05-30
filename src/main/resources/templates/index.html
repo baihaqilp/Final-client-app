@@ -166,14 +166,14 @@
             <div class="row">
               <div class="col-12"></div>
             </div>
-            <div class="row">
+            <div class="row" sec:authorize="hasRole('TRAINER')">
               <div class="col-12 col-xl-12">
                 <div class="card">
                   <div class="card-header">
                     <h4>Calendarss</h4>
                   </div>
                   <div class="card-body">
-                    <div id="calendar" style="height: 500px"></div>
+                    <div id="calendar"></div>
                   </div>
                 </div>
               </div>
@@ -188,10 +188,10 @@
                       <img src="assets/images/faces/1.jpg" alt="Face 1" />
                     </div>
                     <div class="ms-3 name">
-                      <h5 class="font-bold">John Duck</h5>
+                      <h5 class="font-bold" sec:authentication="name">John Duck</h5>
                       <h6
                         class="text-muted mb-0"
-                        sec:authentication="name"
+                        sec:authentication="authorities[0]"
                       ></h6>
                     </div>
                   </div>
@@ -209,6 +209,18 @@
                   id="trainer-scroll"
                 >
                   <div class="trainee-card"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" sec:authorize="hasRole('ADMIN')">
+            <div class="col-12 col-xl-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4>Calendarss</h4>
+                </div>
+                <div class="card-body">
+                  <div id="calendar"></div>
                 </div>
               </div>
             </div>
