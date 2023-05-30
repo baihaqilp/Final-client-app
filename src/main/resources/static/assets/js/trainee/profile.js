@@ -61,7 +61,17 @@ function updateProfile() {
   let addressVal = $("#address-id-icon").val();
   let usernameVal = $("#username-id-icon").val();
   let passVal = $("#password-id-icon").val();
-  console.log(idVal, classId, roleId, nameVal, emailVal, mobile, addressVal, usernameVal, passVal);
+  console.log(
+    idVal,
+    classId,
+    roleId,
+    nameVal,
+    emailVal,
+    mobile,
+    addressVal,
+    usernameVal,
+    passVal
+  );
   Swal.fire({
     title: "Are you sure to update your profile?",
     text: "You won't be able to revert this!",
@@ -144,18 +154,7 @@ function updatePassword() {
           passwordNew: newPass,
         }),
         contentType: "application/json",
-        success: (res) => {
-          $.ajax({
-            url: "/logout",
-            method: "POST",
-            success: () => {
-              window.location.href = "/login";
-            },
-            error: (xhr, textStatus, errorThrown) => {
-              console.log("Logout error:", textStatus);
-            },
-          });
-        },
+        success: (res) => {},
         error: function (xhr, textStatus, errorThrown) {
           let err = JSON.parse(xhr.responseText);
           let status = "" + err.message[0] + err.message[1] + err.message[2];
@@ -174,6 +173,8 @@ function updatePassword() {
         },
       });
       Swal.fire("Updated!", "Password success to update...", "success");
+      // $("#updatePass").hide();
+      location.reload();
     }
   });
 }
