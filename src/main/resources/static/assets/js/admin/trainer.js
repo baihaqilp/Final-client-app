@@ -35,15 +35,7 @@ $(document).ready(function () {
       },
       { data: "email" },
       { data: "phone" },
-      {
-        data: null,
-        render: function (data, type, row, meta) {
-          if (data.user.isEnabled) {
-            return '<div class="badge bg-success">ACTIVE</div>'
-          }
-          return '<div class="badge bg-secondary">NON-ACTIVE</div>'
-        },
-      },
+
       {
         data: null,
         render: (data, type, row, meta) => {

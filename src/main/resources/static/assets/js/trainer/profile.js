@@ -142,15 +142,20 @@ function updatePassword() {
         }),
         contentType: "application/json",
         success: (res) => {
-          $.ajax({
-            url: "/logout",
-            method: "POST",
-            success: () => {
-              window.location.href = "/login";
-            },
-            error: (xhr, textStatus, errorThrown) => {
-              console.log("Logout error:", textStatus);
-            },
+          // $.ajax({
+          //   url: "/logout",
+          //   method: "POST",
+          //   success: () => {
+          //     window.location.href = "/login";
+          //   },
+          //   error: (xhr, textStatus, errorThrown) => {
+          //     console.log("Logout error:", textStatus);
+          //   },
+          // });
+          Swal.fire({
+            icon: "success",
+            title: "BERHASIL",
+            text: "BERHASIL GANTI PASSWORD",
           });
         },
         error: function (xhr, textStatus, errorThrown) {
