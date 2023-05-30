@@ -56,9 +56,10 @@ $(document).ready(function () {
   }
 });
 checkSubmission = (id) => {
+  // $("#idTask").val();
   $.ajax({
     method: "GET",
-    url: "/api/submission/task/" + id,
+    url: "/api/submission/task/" + id + "/trainee",
     dataType: "JSON",
     success: function (data) {
       if (data.length != 0) {

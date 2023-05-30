@@ -38,6 +38,11 @@ public class RestSubmissionController {
         return submissionService.getTaskId(id);
     }
 
+    @GetMapping("/task/{id}/trainee")
+    public Submission getByTaskTrainee(@PathVariable Long id) {
+        return submissionService.getByTaskTrainee(id);
+    }
+
     @PostMapping
     public Submission create(@RequestBody SubmissionRequest submission) {
         return submissionService.create(submission);
