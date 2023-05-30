@@ -31,7 +31,7 @@ $(document).ready(function () {
           parseInt(endDateParts[1]) - 1, // month
           parseInt(endDateParts[0]) // day
         );
-        return segmentEnd < currentDate;
+        return segmentEnd > currentDate;
       });
       console.log(segmentActive.length);
       $("#counter-class").text(segmentActive.length);
@@ -46,7 +46,7 @@ $(document).ready(function () {
           endDateParts[0]
         );
         var now = new Date();
-        if (endDate < now) {
+        if (endDate > now) {
           if (segment.classroom.isStatus) {
             var className = segment.classroom.name;
 
