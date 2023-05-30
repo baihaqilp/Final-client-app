@@ -29,8 +29,6 @@ $(document).ready(function () {
     success: function (res) {
       let i = 1;
       let bg = "";
-      let stringDeadline = "";
-      let deadlineDate = "";
       res.forEach(function (data) {
         let deadlineArr = data.deadline.split(" ");
         let deadlineTgl = deadlineArr[0].split("-");
@@ -42,12 +40,15 @@ $(document).ready(function () {
           deadlineTime[0],
           deadlineTime[1]
         );
-        console.log(newDeadline, "asdasdas");
         if (today > newDeadline) {
           bg = "bg-danger text-white";
         } else {
           bg = "bg-info text-dark";
         }
+        if (checkSub(data.id)) {
+          bg = "bg-success text-white";
+        }
+
         var body = `
           <div class="col-4 my-3">
             <div class="card ">
@@ -56,7 +57,7 @@ $(document).ready(function () {
                     <div class="row">
                       <div class="col">
                         <div class="task-container">
-                          <h6>Segment</h6>
+                          <h6>Segment</h6> 
                           <p>${data.segment.id}</p>
                         </div>
                       </div>
@@ -90,3 +91,16 @@ $(document).ready(function () {
     },
   });
 });
+checkSub = (id) => {
+  var result = false;
+  $.ajax({
+    method: "GET",
+    url: "/api/submission/task/" + id + "/trainee",
+    dataType: "JSON",
+    async: false,
+    success: function (data) {
+      result = true;
+    },
+  });
+  return result;
+};
