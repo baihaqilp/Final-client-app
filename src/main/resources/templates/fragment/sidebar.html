@@ -88,33 +88,33 @@
         <div class="sidebar-menu" id="menu" sec:authorize="hasRole('ADMIN')">
           <ul class="menu">
             <li class="sidebar-title">Menu</li>
-            <li class="sidebar-item active">
+            <li th:class="'sidebar-item '+${link == 'dashboard' ? 'active' : 'in-active'}" >
               <a th:href="@{/}" class="sidebar-link">
                 <i class="bi bi-grid-fill"></i>
                 <span>Dashboard</span>
               </a>
             </li>
-            <li class="sidebar-item">
+            <li th:class="'sidebar-item '+${link == 'classroom' ? 'active' : 'in-active'}" >
               <a th:href="@{/admin/class}" class="sidebar-link">
                 <i class="fa-solid fa-school"></i>
                 <span>Classroom</span>
               </a>
             </li>
 
-            <li class="sidebar-item">
+            <li th:class="'sidebar-item '+${link == 'program' ? 'active' : 'in-active'}" >
               <a th:href="@{/admin/program}" class="sidebar-link">
                 <i class="fa-solid fa-layer-group"></i>
                 <span>Program</span>
               </a>
             </li>
 
-            <li class="sidebar-item">
+            <li th:class="'sidebar-item '+${link == 'trainer' ? 'active' : 'in-active'}" >
               <a th:href="@{/admin/trainer}" class="sidebar-link">
                 <i class="fa-solid fa-user-tie"></i>
                 <span>Trainer</span>
               </a>
             </li>
-            <li class="sidebar-item">
+            <li th:class="'sidebar-item '+${link == 'trainee' ? 'active' : 'in-active'}" >
               <a th:href="@{/admin/trainee}" class="sidebar-link">
                 <i class="fa-solid fa-user-graduate"></i>
                 <span>Trainee</span>

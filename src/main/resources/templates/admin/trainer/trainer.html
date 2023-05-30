@@ -42,7 +42,6 @@
                                 <th class="col-3">Name</th>
                                 <th class="col-2">Email</th>
                                 <th class="col-2">Phone</th>
-                                <th class="col-2">Status</th>
                                 <th class="col-4">Action</th>
                             </tr>
                         </thead>
@@ -180,12 +179,13 @@
             </div>
             <div class="modal-body">
               <div class="mb-3">
-                <label for="name" class="form-label fw-bold">Id</label>
+                <label for="name" class="form-label fw-bold" hidden>Id</label>
                 <input
                   type="text"
                   class="form-control"
                   id="detail_trainer_id"
                   placeholder="ex. Miya"
+                  hidden
                   disabled
                 />
                 <label for="name" class="form-label fw-bold">Name</label>

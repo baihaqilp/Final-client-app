@@ -44,52 +44,87 @@ $(document).ready(function () {
     });
 
     let class_id = $("#class_id").val();
-    $('#table-segment').DataTable({
-        ajax: {
-            url: "/api/segment/class/" + class_id,
-            dataSrc: "",
-            error: function (e) {
-                Swal.fire({
-                    icon: "error",
-                    title: "ERROR",
-                    text: "Something went WRONG !!!",
-                })
-            }
-        },
-        columns: [
-            {
-                data: null,
-                render: function (data, type, row, meta) {
-                    return meta.row + 1;
+    let isStatus = $("#isStatus").val();
+
+    if (isStatus == "true") {
+        $('#table-segment').DataTable({
+            ajax: {
+                url: "/api/segment/class/" + class_id,
+                dataSrc: "",
+                error: function (e) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "ERROR",
+                        text: "Something went WRONG !!!",
+                    })
                 }
             },
-            {
-                data: null,
-                render: function (data, type, row, meta) {
-                    return "Segmen " + (meta.row + 1);
-                }
-            },
-            { data: "trainer.name" },
-            { data: "start_date" },
-            { data: "end_date" },
-            {
-                data: null,
-                render: (data, type, row, meta) => {
-                    return `
-            <button
-              type="button"
-              class="btn btn-outline-warning mx-3"
-              data-bs-toggle="modal"
-              data-bs-target="#updateSegment"
-              onClick="beforeUpdate(${data.id})"
-            >
-              Edit
-            </button>
-            `;
+            columns: [
+                {
+                    data: null,
+                    render: function (data, type, row, meta) {
+                        return meta.row + 1;
+                    }
                 },
+                {
+                    data: null,
+                    render: function (data, type, row, meta) {
+                        return "Segmen " + (meta.row + 1);
+                    }
+                },
+                { data: "trainer.name" },
+                { data: "start_date" },
+                { data: "end_date" },
+                {
+                    data: null,
+                    render: (data, type, row, meta) => {
+                        return `
+                <button
+                  type="button"
+                  class="btn btn-outline-warning mx-3"
+                  data-bs-toggle="modal"
+                  data-bs-target="#updateSegment"
+                  onClick="beforeUpdate(${data.id})"
+                >
+                  Edit
+                </button>
+                `;
+                    },
+                },
+            ]
+        });
+    } else {
+        $('#table-segment').DataTable({
+            ajax: {
+                url: "/api/segment/class/" + class_id,
+                dataSrc: "",
+                error: function (e) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "ERROR",
+                        text: "Something went WRONG !!!",
+                    })
+                }
             },
-        ]
-    });
+            columns: [
+                {
+                    data: null,
+                    render: function (data, type, row, meta) {
+                        return meta.row + 1;
+                    }
+                },
+                {
+                    data: null,
+                    render: function (data, type, row, meta) {
+                        return "Segmen " + (meta.row + 1);
+                    }
+                },
+                { data: "trainer.name" },
+                { data: "start_date" },
+                { data: "end_date" },
+            ]
+        });
+    }
 
 
 });

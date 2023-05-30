@@ -70,17 +70,6 @@ $(document).ready(function () {
                   type="button"
                   class="btn btn-outline-warning col-12 "
                   data-bs-toggle="modal"
-                  data-bs-target="#changeStatus"
-                  onClick="beforeStatusChange(${data.id})"
-                >
-                  Change Status
-                </button>
-              </div>
-              <div class="dropwdown-item mt-2">
-                  <button
-                  type="button"
-                  class="btn btn-outline-warning col-12 "
-                  data-bs-toggle="modal"
                   data-bs-target="#changeRole"
                   onClick="beforeRoleChange(${data.id})"
                 >
