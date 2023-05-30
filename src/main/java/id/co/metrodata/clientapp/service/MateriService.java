@@ -43,7 +43,7 @@ public class MateriService {
         return restTemplate.exchange(
                 url + "/trainer",
                 HttpMethod.GET,
-                new HttpEntity(BasicHeader.createHeader()), new ParameterizedTypeReference<List<Materi>>() {
+                null, new ParameterizedTypeReference<List<Materi>>() {
                 }).getBody();
     }
 

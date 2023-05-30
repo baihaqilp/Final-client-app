@@ -49,12 +49,6 @@
                       </div>
                     </div>
                     <hr />
-                    <!-- <input
-                      type="hidden"
-                      id="task_base"
-                      th:value="${task.desc}"
-                    />
-                    <p id="task_desc_base"></p> -->
                     <p th:utext="${task.desc}"></p>
                   </div>
                 </div>
@@ -70,7 +64,12 @@
                           Upload File Submission
                         </label>
                       </div>
-
+                      <input
+                        type="hidden"
+                        id="idTask"
+                        name="idTask"
+                        th:value="${task.id}"
+                      />
                       <input
                         type="hidden"
                         id="task_deadline"

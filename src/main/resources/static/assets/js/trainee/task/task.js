@@ -1,5 +1,27 @@
 $(document).ready(function () {
   let today = new Date();
+
+  let msg = $("#message").val();
+  if (msg == "success") {
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Upload success",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  } else if (msg == "failed") {
+    iconVal = "";
+    titleVal = "";
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "Upload failed",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
+
   $.ajax({
     method: "GET",
     url: "/api/task/trainee",
