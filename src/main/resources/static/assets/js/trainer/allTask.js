@@ -246,7 +246,17 @@ function beforeUpdate(id) {
       let deadlineTgl = deadlineArr[0].split("-");
       let deadlineTime = deadlineArr[1].split(":");
 
-      $("#update_task_deadline").val(deadlineTgl[2] + "-" + deadlineTgl[1] + "-" + deadlineTgl[0] + "T" + deadlineTime[0] + ":" + deadlineTime[1]);
+      $("#update_task_deadline").val(
+        deadlineTgl[2] +
+          "-" +
+          deadlineTgl[1] +
+          "-" +
+          deadlineTgl[0] +
+          "T" +
+          deadlineTime[0] +
+          ":" +
+          deadlineTime[1]
+      );
       $("#update_segment").val(res.segment.id);
       $("#update_task_desc").summernote({ height: 300 });
     },
@@ -366,7 +376,7 @@ function eval() {
   let nilaiVal = $("#eval_nilai").val();
   let submissionVal = $("#eval_submission").val();
   $.ajax({
-    method: "POST",
+    method: "PUT",
     url: "/api/evaluation",
     dataType: "JSON",
     beforeSend: addCsrfToken(),

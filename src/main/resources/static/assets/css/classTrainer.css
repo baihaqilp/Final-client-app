@@ -1,7 +1,10 @@
 .class-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 10px #7b7b7b;
 }
 .class-card:hover {
   transform: scale(1.1);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  border: 10px #dee2e6;
+  /* background: linear-gradient(to right, #000000, #ffffff); */
 }
