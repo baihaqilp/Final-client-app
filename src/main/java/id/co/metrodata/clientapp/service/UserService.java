@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ import id.co.metrodata.clientapp.model.User;
 import id.co.metrodata.clientapp.model.dto.request.ChangePasswordRequest;
 import id.co.metrodata.clientapp.model.dto.request.ChangeStatusRequst;
 import id.co.metrodata.clientapp.model.dto.request.ChangeUserRoleRequest;
+import id.co.metrodata.clientapp.model.dto.request.LoginRequest;
 import id.co.metrodata.clientapp.model.dto.request.TraineeRequest;
 import id.co.metrodata.clientapp.model.dto.request.TrainerRequest;
 import id.co.metrodata.clientapp.utils.BasicHeader;
@@ -26,6 +29,7 @@ public class UserService {
 
     @Autowired
     private RestTemplate restTemplate;
+    private LoginService loginService;
 
     @Value("${server.baseUrl}/user")
     private String url;
@@ -69,11 +73,19 @@ public class UserService {
     }
 
     public User changePassword(ChangePasswordRequest password) {
-        return restTemplate.exchange(
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User changepw = restTemplate.exchange(
                 url + "/change-password",
                 HttpMethod.POST,
                 new HttpEntity(password),
                 User.class).getBody();
+
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                changepw.getUsername(), password.getPasswordNew(), authentication.getAuthorities());
+
+        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+
+        return changepw;
     }
 
     public User updateRole(ChangeUserRoleRequest changeUserRoleRequest) {

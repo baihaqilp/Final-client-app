@@ -180,7 +180,7 @@ public class TrainerController {
         return "trainer/topic";
     }
 
-    @PreAuthorize("hasAuthority('READ_TRAINER','READ_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('READ_TRAINER','READ_ADMIN')")
     @GetMapping("/profile")
     public String profile() {
         return "trainer/profile/profile";
