@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+
 import id.co.metrodata.clientapp.service.TaskService;
 import lombok.AllArgsConstructor;
 
@@ -21,14 +23,15 @@ public class TrainerController {
 
     @PreAuthorize("hasAuthority('READ_TRAINER')")
     @GetMapping
-    public String dashboard() {
+    public String dashboard(Model model) {
+        model.addAttribute("link", "dashboard");
         return "index";
     }
 
     @PreAuthorize("hasAuthority('READ_TRAINER')")
     @GetMapping("/classroom/trainer")
-    public String classTrainer() {
-
+    public String classTrainer(Model model) {
+        model.addAttribute("link", "classroom");
         return "trainer/class/class";
     }
 
@@ -67,7 +70,8 @@ public class TrainerController {
     @PreAuthorize("hasAuthority('READ_TRAINER')")
     // get all task by trainer-class-id
     @GetMapping("/task")
-    public String task() {
+    public String task(Model model) {
+        model.addAttribute("link", "task");
         return "trainer/task/task";
     }
 
@@ -106,7 +110,8 @@ public class TrainerController {
     @PreAuthorize("hasAuthority('READ_TRAINER')")
     // grade
     @GetMapping("/grade")
-    public String gradeAdmin() {
+    public String grade(Model model) {
+        model.addAttribute("link", "grade");
         return "trainer/grade/grade";
     }
 
@@ -156,7 +161,8 @@ public class TrainerController {
 
     @PreAuthorize("hasAuthority('READ_TRAINER')")
     @GetMapping("/topic")
-    public String topicList() {
+    public String topicList(Model model) {
+        model.addAttribute("link", "topic");
         return "trainer/topic/topic";
     }
 
@@ -166,7 +172,7 @@ public class TrainerController {
         return "trainer/topic";
     }
 
-    @PreAuthorize("hasAuthority('READ_TRAINER','READ_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('READ_TRAINER','READ_ADMIN', ('UPDATE_TRAINER'), ('UPDATE_ADMIN'))")
     @GetMapping("/profile")
     public String profile() {
         return "trainer/profile/profile";

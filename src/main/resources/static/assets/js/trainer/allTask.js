@@ -198,8 +198,8 @@ function create() {
     contentType: "application/json",
     success: (res) => {
       $("#addTask").modal("hide");
-      location.reload();
       // $("#table-task").DataTable().ajax.reload();
+      location.reload();
       $("#create_task_name").val("");
       $("#create_task_desc").val("");
       $("#create_task_deadline").val("");
@@ -293,7 +293,7 @@ function update() {
         contentType: "application/json",
         success: (res) => {
           $("#updateTask").modal("hide");
-          // $("#table-task").DataTable().ajax.reload();
+          // $("#table-task").DataTable().reload();
           location.reload();
           $("#update_id").val("");
           $("#update_task_name").val("");
@@ -377,7 +377,7 @@ function eval() {
   let submissionVal = $("#eval_submission").val();
   $.ajax({
     method: "PUT",
-    url: "/api/evaluation",
+    url: "/api/evaluation/" + submissionVal,
     dataType: "JSON",
     beforeSend: addCsrfToken(),
     data: JSON.stringify({
@@ -386,8 +386,8 @@ function eval() {
     }),
     contentType: "application/json",
     success: (res) => {
-      $("#evaluate").modal("hide");
-
+      $(".modal").modal("hide");
+      $("#table-submission").DataTable().ajax.reload();
       Swal.fire({
         position: "center",
         icon: "success",
