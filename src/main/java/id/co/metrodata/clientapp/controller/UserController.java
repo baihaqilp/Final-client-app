@@ -26,12 +26,12 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    private String profile() {
+    public String profile() {
         return "user/index";
     }
 
     @GetMapping("/profile/edit")
-    private String update() {
+    public String update() {
         return "user/editUser";
     }
 }

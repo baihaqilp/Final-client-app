@@ -65,7 +65,7 @@ public class TraineeController {
 
   @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping
-  private String dashboard(Model model) {
+  public String dashboard(Model model) {
 
     model.addAttribute("segments", segmenService.getSegmentClassTrainee());
     // model.addAttribute("segmentTopics", segmentTopicService.getBySegment());
@@ -74,13 +74,13 @@ public class TraineeController {
 
   @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping("/class")
-  private String traineeClass() {
+  public String traineeClass() {
     return "trainee/class/class";
   }
 
   @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping("/profile")
-  private String getProfile() {
+  public String getProfile() {
     return "trainee/profile";
   }
 
@@ -90,41 +90,41 @@ public class TraineeController {
   // }
   @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping("/topic/{id}")
-  private String topicBySegment(@PathVariable Long id, Model model) {
+  public String topicBySegment(@PathVariable Long id, Model model) {
     model.addAttribute("materies", materiService.getByTopicId(id));
     return "trainee/topic";
   }
 
   @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping("/topic/materi/{id}")
-  private String materi(@PathVariable Long id, Model model) {
+  public String materi(@PathVariable Long id, Model model) {
     model.addAttribute("materi", materiService.getById(id));
     return "trainee/detailMateri";
   }
 
   @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping("/class/{id}")
-  private String traineeClassDetail(@PathVariable Long id, Model model) {
+  public String traineeClassDetail(@PathVariable Long id, Model model) {
     model.addAttribute("classroom", classroomService.getById(id));
     return "trainee/class/detailClass";
   }
 
   @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping("/task")
-  private String traineeTask() {
+  public String traineeTask() {
     return "trainee/task";
   }
 
   // SUBMISSION
   @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping("/submission")
-  private String traineeSubmission() {
+  public String traineeSubmission() {
     return "trainee/submission/submission";
   }
 
   @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping("/task/{task_id}/submission-add")
-  private String traineeAddSubmission(@PathVariable long task_id, Model model) {
+  public String traineeAddSubmission(@PathVariable long task_id, Model model) {
     Task task = taskService.getById(task_id);
     model.addAttribute("task", task);
     return "trainee/detailTask";
@@ -172,14 +172,14 @@ public class TraineeController {
   // GRADE
   @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping("/grade")
-  private String traineeGrade() {
+  public String traineeGrade() {
     return "trainee/grade/grade";
   }
 
   // TASK
   @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping("/task/segment/{segment_id}")
-  private String taskSegment(@PathVariable long segment_id) {
+  public String taskSegment(@PathVariable long segment_id) {
     return "trainee/task/taskSegment";
   }
 
