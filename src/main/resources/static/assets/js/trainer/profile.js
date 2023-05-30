@@ -94,7 +94,7 @@ function updateProfile() {
           password: passVal,
         }),
         contentType: "application/json",
-        success: (res) => { },
+        success: (res) => {},
         error: function (xhr, textStatus, errorThrown) {
           let err = JSON.parse(xhr.responseText);
           let status = "" + err.message[0] + err.message[1] + err.message[2];
