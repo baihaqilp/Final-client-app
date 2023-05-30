@@ -8,8 +8,17 @@ $(document).ready(function () {
       const classCardContainer = $("#class-card");
       const cardsPerRow = 4;
       let currentRow;
-
-      data.forEach((e, index) => {
+      const currentDate = new Date();
+      const segmentActive = data.filter(function (val) {
+        const endDateParts = val.end_date.split("-");
+        const segmentEnd = new Date(
+          parseInt(endDateParts[2]), // year
+          parseInt(endDateParts[1]) - 1, // month
+          parseInt(endDateParts[0]) // day
+        );
+        return segmentEnd > currentDate;
+      });
+      segmentActive.forEach((e, index) => {
         if (index % cardsPerRow === 0) {
           currentRow = $("<div class='row'></div>");
           classCardContainer.append(currentRow);
@@ -18,17 +27,20 @@ $(document).ready(function () {
         var card = `
           <div class="col-3">
             <a href="/trainer/classroom/${e.classroom.id}/trainer">
-            <div class="card border border-1 class-card">
+            <div class="class-card border border-2 card  " id="card-${index}">
               <div class="card-header">
                 <h5>${e.classroom.name}</h5>
                 <h6>${e.classroom.program.name}</h6>
+                <p>Click for detail</p>
               </div>
-              <div class="card-body text-muted"><p>Click for detail</p></div>
+              <div class="card-body text-muted"></div>
             </div>
             </a>
           </div>
         `;
         currentRow.append(card);
+        var gradientCard = document.getElementById(`card-${index}`);
+        gradientCard.style.background = `linear-gradient(to right, ${getRandomColor()}, ${getRandomColor()})`;
       });
     },
   });
@@ -105,4 +117,13 @@ function getById(id) {
       $("#detail_program_name").val(res.program.name);
     },
   });
+}
+
+function getRandomColor() {
+  var letters = "0123456789ABCDEF";
+  var color = "#";
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 }

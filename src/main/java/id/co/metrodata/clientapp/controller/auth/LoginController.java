@@ -56,13 +56,11 @@ public class LoginController {
         }
         // return "redirect:/trainee";
 
-        Authentication authentication =
-        SecurityContextHolder.getContext().getAuthentication();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         String redirectUrl = "";
 
-        Collection<? extends GrantedAuthority> authorities =
-        authentication.getAuthorities();
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for (GrantedAuthority grantedAuthority : authorities) {
             if (grantedAuthority.getAuthority().equals("ROLE_TRAINER")) {
                 redirectUrl = "redirect:/trainer";

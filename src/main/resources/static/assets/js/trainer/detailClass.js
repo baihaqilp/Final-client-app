@@ -36,6 +36,7 @@ $(document).ready(function () {
     dataType: "JSON",
     success: function (res) {
       $(".class-name").text(res.name);
+      $("#name-class").text(res.name);
     },
   });
   $.ajax({
@@ -153,7 +154,7 @@ $(document).ready(function () {
     },
   });
   $.ajax({
-    url: "/api/task",
+    url: "/api/task/trainer",
     method: "GET",
     dataType: "JSON",
     success: (data) => {

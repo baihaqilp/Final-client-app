@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,5 +40,10 @@ public class RestEvaluation {
   @PostMapping
   public Evaluation create(@RequestBody EvaluationRequest evaluationRequest) {
     return evaluationService.create(evaluationRequest);
+  }
+
+  @PutMapping("/{id}")
+  public Evaluation update(@PathVariable long id, @RequestBody EvaluationRequest evaluationRequest) {
+    return evaluationService.update(id, evaluationRequest);
   }
 }

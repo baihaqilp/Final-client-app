@@ -9,47 +9,58 @@
     <section layout:fragment="content">
       <div class="page-heading">
         <div class="page-title">
-            <div class="row">
-                <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Class Room</h3>
-                    <p class="text-subtitle text-muted">List of Classroom we have</p>
-                </div>
-                <div class="col-12 col-md-6 order-md-2 order-first">
-                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Classroom</li>
-                        </ol>
-                    </nav>
-                </div>
+          <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+              <h3>Class Room</h3>
+              <p class="text-subtitle text-muted">List of Classroom we have</p>
             </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+              <nav
+                aria-label="breadcrumb"
+                class="breadcrumb-header float-start float-lg-end"
+              >
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Classroom
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
         </div>
 
         <!-- Basic Tables start -->
         <section class="section">
-            <div class="card d-flex">
-              <div class="card-header d-flex justify-content-between">
-                <b>List Of Classroom</b>
-                <input type="hidden" id="class_id" th:value="*{id}">
-                <a class="btn btn-info mb-3" th:href="@{/admin/classHistory}">History</a>
-                <button class="btn btn-primary mb-3" data-bs-toggle="modal"
-                data-bs-target="#addClass">Add Classroom</button>
-              </div>
-                <div class="card-body ">
-                    <table class="table" id="table-class">
-                        <thead class=" text-center">
-                            <tr>
-                                <th class="col-1">No</th>
-                                <th class="col-3">Name</th>
-                                <th class="col-2">Program</th>
-                                <th class="col-2">Status</th>
-                                <th class="col-4">Action</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
+          <div class="card d-flex">
+            <div class="card-header d-flex justify-content-between">
+              <b>List Of Classroom</b>
+              <input type="hidden" id="class_id" th:value="*{id}" />
+              <a class="btn btn-info mb-3" th:href="@{/admin/classHistory}"
+                >History</a
+              >
+              <button
+                class="btn btn-primary mb-3"
+                data-bs-toggle="modal"
+                data-bs-target="#addClass"
+              >
+                Add Classroom
+              </button>
             </div>
-
+            <div class="card-body">
+              <table class="table" id="table-class">
+                <thead class="text-center">
+                  <tr>
+                    <th class="col-1">No</th>
+                    <th class="col-3">Name</th>
+                    <th class="col-2">Program</th>
+                    <th class="col-2">Status</th>
+                    <th class="col-4">Action</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
         </section>
         <!-- Basic Tables end -->
       </div>
