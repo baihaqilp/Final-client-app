@@ -121,6 +121,12 @@ public class TrainerController {
         return "trainer/grade/grade";
     }
 
+    @GetMapping("/grade/{id}")
+    public String detailGrade(@PathVariable long id, Model model) {
+        model.addAttribute("link", "grade");
+        return "trainer/grade/gradeDetail";
+    }
+
     // @PreAuthorize("hasAuthority('READ_TRAINER')")
     // @GetMapping("/grade/class/{class_id}")
     // public String gradeClass(@PathVariable long class_id) {

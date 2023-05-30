@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/main}"
+>
+  <body>
+    <!-- content -->
+    <section layout:fragment="content">
+      <div id="main-content">
+        <div class="page-heading">
+          <div class="page-title">
+            <div class="row">
+              <div
+                class="col-12 col-md-6 order-md-1 order-last d-flex align-items-center"
+              >
+                <a class="btn" href="javascript:history.back()"
+                  ><i class="fa-solid fa-chevron-left fs-4"></i
+                ></a>
+                <h3>Grade</h3>
+              </div>
+              <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav
+                  aria-label="breadcrumb"
+                  class="breadcrumb-header float-start float-lg-end"
+                >
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a href="index.html">Dashboard</a>
+                    </li>
+
+                    <li class="breadcrumb-item" aria-current="page">
+                      <a th:href="@{/trainer/grade}">Grade</a>
+                    </li>
+                    <li class="breadcrumb-item active" id="class-name"></li>
+                  </ol>
+                  <input type="number" id="class-id" th:value="*{id}" hidden />
+                </nav>
+              </div>
+            </div>
+          </div>
+          <section class="section">
+            <div class="card">
+              <div class="card-header"></div>
+              <div class="card-body">
+                <table
+                  class="table display table-stripped table-bordered mt-3 text-center border border-rounded rounded-2"
+                  id="table-grade"
+                >
+                  <thead class="table">
+                    <tr>
+                      <th class="col-1 text-center">No.</th>
+                      <th class="col-1 text-center">Name</th>
+                      <th class="col-1 text-center">Segment</th>
+                      <th class="col-1 text-center">Grade</th>
+                      <th class="col-1 text-center">Nilai</th>
+                      <th class="col-1 text-center">Status</th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+    <div layout:fragment="script">
+      <script th:src="@{/assets/js/trainer/gradeDetail.js}"></script>
+    </div>
+  </body>
+</html>
