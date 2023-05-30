@@ -22,7 +22,8 @@ public class TrainerController {
 
     @PreAuthorize("hasAuthority('READ_TRAINER')")
     @GetMapping
-    public String dashboard() {
+    public String dashboard(Model model) {
+        model.addAttribute("link", "dashboard");
         return "index";
     }
 

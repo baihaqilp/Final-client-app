@@ -51,7 +51,7 @@ import lombok.AllArgsConstructor;
 @Controller
 @RequestMapping("/trainee")
 @AllArgsConstructor
-@PreAuthorize("hasRole('ROLE_TRAINEE')")
+@PreAuthorize("hasAnyRole('ROLE_TRAINEE','ROLE_TRAINER','ROLE_ADMIN')")
 public class TraineeController {
 
   private ClassroomService classroomService;
@@ -159,7 +159,7 @@ public class TraineeController {
     return "redirect:/task/trainee";
   }
 
-  @PreAuthorize("hasAuthority('READ_TRAINEE')")
+  @PreAuthorize("hasAnyAuthority('READ_TRAINEE', 'READ_TRAINER', 'READ_ADMIN')")
   @GetMapping("/downloadFile/{filename:.+}")
   @ResponseBody
   public ResponseEntity<Resource> serveFile(@PathVariable String filename) {

@@ -155,6 +155,69 @@
         </footer>
       </div>
 
+      <div
+        class="modal fade"
+        id="evaluate"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="evaluateLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="evaluateLabel">
+                Evaluate
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="desc" class="form-label fw-bold pt-3"
+                  >Submission</label
+                >
+                <input
+                  type="number"
+                  class="form-control"
+                  id="eval_submission"
+                  hidden
+                />
+                <label for="desc" class="form-label fw-bold pt-3">Nilai</label>
+                <input type="number" class="form-control" id="eval_nilai" />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                style="
+                  border: 1px solid #4b49ac;
+                  background-color: white;
+                  color: #4b49ac;
+                "
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                style="background-color: #4b49ac"
+                onclick="eval()"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Add task  -->
       <div
         class="modal fade"
@@ -392,68 +455,6 @@
       </div>
 
       <!-- Modal Eval -->
-      <div
-        class="modal fade"
-        id="evaluate"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabindex="-1"
-        aria-labelledby="EvaluateLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5 fw-bold" id="EvaluateLabel">
-                Evaluate
-              </h1>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <div class="mb-3">
-                <label for="desc" class="form-label fw-bold pt-3"
-                  >Submission</label
-                >
-                <input
-                  type="number"
-                  class="form-control"
-                  id="eval_submission"
-                  hidden
-                />
-                <label for="desc" class="form-label fw-bold pt-3">Nilai</label>
-                <input type="number" class="form-control" id="eval_nilai" />
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                style="
-                  border: 1px solid #4b49ac;
-                  background-color: white;
-                  color: #4b49ac;
-                "
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button
-                type="button"
-                class="btn btn-primary"
-                style="background-color: #4b49ac"
-                onclick="eval()"
-              >
-                Submit
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
     <div layout:fragment="script">
       <script th:src="@{/assets/js/trainer/allTask.js}"></script>
