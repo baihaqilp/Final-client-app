@@ -69,6 +69,8 @@ public class TraineeController {
 
     model.addAttribute("segments", segmenService.getSegmentClassTrainee());
     // model.addAttribute("segmentTopics", segmentTopicService.getBySegment());
+    model.addAttribute("message", " ");
+    model.addAttribute("active", "home");
     return "trainee/index";
   }
 
@@ -111,7 +113,9 @@ public class TraineeController {
 
   @PreAuthorize("hasAuthority('READ_TRAINEE')")
   @GetMapping("/task")
-  public String traineeTask() {
+  public String traineeTask(Model model) {
+    model.addAttribute("message", "");
+    model.addAttribute("active", "task");
     return "trainee/task";
   }
 
@@ -135,26 +139,28 @@ public class TraineeController {
   public String handleFileUpload(@PathVariable long task_id,
       @RequestParam("fileInput") MultipartFile file,
       RedirectAttributes redirectAttributes) {
-    String fileName = file.getOriginalFilename();
-    String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-        .path("/trainee/downloadFile/")
-        .path(fileName)
-        .toUriString();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-    LocalDateTime now = LocalDateTime.now();
+    try {
+      String fileName = file.getOriginalFilename();
+      String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+          .path("/trainee/downloadFile/")
+          .path(fileName)
+          .toUriString();
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+      LocalDateTime now = LocalDateTime.now();
 
-    String date = now.format(formatter);
-    fileStorageService.store(file);
-    SubmissionRequest submission = new SubmissionRequest();
-    submission.setSubmission_file(file.getOriginalFilename());
-    submission.setSubmission_url(fileDownloadUri);
+      String date = now.format(formatter);
+      fileStorageService.store(file);
+      SubmissionRequest submission = new SubmissionRequest();
+      submission.setSubmission_file(file.getOriginalFilename());
+      submission.setSubmission_url(fileDownloadUri);
 
-    submission.setSubmission_date(date);
-    submission.setTaskId(task_id);
-    submissionService.create(submission);
-    redirectAttributes.addFlashAttribute("message",
-
-        "You successfully uploaded " + file.getOriginalFilename() + "!");
+      submission.setSubmission_date(date);
+      submission.setTaskId(task_id);
+      submissionService.create(submission);
+      redirectAttributes.addFlashAttribute("message", "success");
+    } catch (Exception e) {
+      redirectAttributes.addFlashAttribute("message", "failed");
+    }
 
     return "redirect:/task/trainee";
   }

@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  // Condition deadline
   let deadline = $("#task_deadline").val();
   let stringDeadline =
     new Date(deadline).getFullYear() +
@@ -22,7 +23,6 @@ $(document).ready(function () {
     new Date(deadline).getHours() +
     ":" +
     new Date(deadline).getMinutes();
-  let taskDetail = new Date(stringDetail);
   $("#taskDetail").html(stringDetail);
 
   let now = new Date();
@@ -49,18 +49,29 @@ $(document).ready(function () {
     $("#fileSub").html("Submit");
     $("#fileSub").removeClass("btn btn-sm btn-danger");
     $("#fileSub").addClass("btn btn-outline-primary btn-sm");
-  }
 
-  let task = $("#task_base").val();
-  html = task.replace(/<style([\s\S]*?)<\/style>/gi, "");
-  html = html.replace(/<script([\s\S]*?)<\/script>/gi, "");
-  html = html.replace(/<\/div>/gi, "\n");
-  html = html.replace(/<\/li>/gi, "\n");
-  html = html.replace(/<li>/gi, "  *  ");
-  html = html.replace(/<\/ul>/gi, "\n");
-  html = html.replace(/<\/p>/gi, "\n");
-  html = html.replace(/<\/h2>/gi, "\n");
-  html = html.replace(/<br\s*[\/]?>/gi, "\n");
-  html = html.replace(/<[^>]+>/gi, "");
-  $("#task_desc_base").html(html);
+    // Condition Task Submit
+    let task_id = $("#idTask").val();
+    checkSubmission(task_id);
+  }
 });
+checkSubmission = (id) => {
+  $.ajax({
+    method: "GET",
+    url: "/api/submission/task/" + id,
+    dataType: "JSON",
+    success: function (data) {
+      if (data.length != 0) {
+        $(".fileSub").prop("disabled", true);
+        $("#fileSub").html("Already upload file submission");
+        $("#fileSub").removeClass("btn btn-outline-primary btn-sm ");
+        $("#fileSub").addClass("btn btn-sm btn-warning");
+      } else {
+        $(".fileSub").prop("disabled", false);
+        $("#fileSub").html("Submit");
+        $("#fileSub").removeClass("btn btn-sm btn-warning");
+        $("#fileSub").addClass("btn btn-outline-primary btn-sm");
+      }
+    },
+  });
+};
