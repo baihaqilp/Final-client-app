@@ -23,6 +23,7 @@
           </div>
         </div>
       </div>
+
       <input type="hidden" class="message" id="message" th:value="${message}" />
       <div id="services" class="">
         <div class="container">
@@ -30,6 +31,18 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="row">
+                  <div class="col-md-3">
+                    <!-- Button trigger modal -->
+                    <button
+                      type="button"
+                      class="btn btn-warning"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                    >
+                      Info Color
+                    </button>
+                  </div>
+
                   <div class="overflow-auto col-12" style="height: 500px">
                     <div class="row task-content"></div>
                   </div>
@@ -102,6 +115,77 @@
       </div>
 
       <!-- ***** Header Area End ***** -->
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Info Color
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="card">
+                <div class="card-body">
+                  <table class="table table-striped hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Ket</th>
+                        <th scope="col">Color</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td scope="row">1</td>
+                        <td class="mx-2">Haven't uploaded the file yet</td>
+                        <td>
+                          <button class="btn btn-info btn-sm">Info</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td scope="row">2</td>
+                        <td class="mx-2">Already uploaded file submission</td>
+                        <td>
+                          <button class="btn btn-success btn-sm">Green</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td scope="row">3</td>
+                        <td class="mx-2">Already passed the deadline</td>
+                        <td>
+                          <button class="btn btn-danger btn-sm">Red</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <div layout:fragment="script">
       <script th:src="@{/assets/js/trainee/task/task.js}"></script>
