@@ -159,7 +159,7 @@ function create() {
   let phoneVal = $("#create_trainee_phone").val();
   let addressVal = $("#create_trainee_address").val();
   let usernameVal = $("#create_trainee_username").val();
-  let passwordVal = $("#create_trainee_password").val();
+  let passwordVal = Math.random().toString(36).slice(-8);
   let classId = $("#select_classroom option:selected").val();
   Swal.fire({
     title: "Now loading",
