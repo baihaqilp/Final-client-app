@@ -1,4 +1,25 @@
 $(document).ready(function () {
+  const formDataUser = new FormData();
+  formDataUser.append('username','admin')
+  formDataUser.append('password','@Admin123')
+  $.ajax({
+    type: "POST",
+    url: "http://localhost/moodle/login/index.php",
+    data: formDataUser,
+    contentType: false,
+    processData: false,
+    corsDomain: true,
+    success: (res) =>{
+      console.log(res);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "berhasil login ....",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    },
+  });
   $.ajax({
     method: "GET",
     url: "/api/role",
@@ -69,10 +90,7 @@ $(document).ready(function () {
                 </button>
               </div>
               </div>
-          </div>
-                    
-                  
-                  `;
+          </div>`;
         },
       },
     ],
@@ -102,6 +120,51 @@ function create() {
   let addressVal = $("#create_trainer_address").val();
   let usernameVal = $("#create_trainer_username").val();
   let passwordVal = $("#create_trainer_password").val();
+
+  const formDataUser = new FormData();
+  formDataUser.append('wsfunction','core_user_create_users')
+  formDataUser.append('wstoken','51776977105ff1e0b8a469aeb5329ac2')
+  formDataUser.append('users[0][createpassword]',0)
+  formDataUser.append('users[0][username]',usernameVal)
+  formDataUser.append('users[0][auth]','manual')
+  formDataUser.append('users[0][password]',passwordVal)
+  formDataUser.append('users[0][firstname]',nameVal)
+  formDataUser.append('users[0][lastname]',nameVal)
+  formDataUser.append('users[0][email]',emailVal) 
+  $.ajax({
+    type: "POST",
+    url: "http://localhost/moodle/webservice/rest/server.php",
+    data: formDataUser,
+    contentType: false,
+    processData: false,
+    success: (res) =>{
+      console.log(res);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Trainer success to creat ....",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    },
+    error: function (xhr, textStatus, errorThrown) {
+      let err = JSON.parse(xhr.responseText);
+      let status = "" + err.message[0] + err.message[1] + err.message[2];
+      let msg = "";
+      if (status == 409) {
+        msg = "Topic sudah ada";
+      } else {
+        msg = "Something when Wrong !!!";
+      }
+
+      Swal.fire({
+        icon: "error",
+        title: status,
+        text: msg,
+      });
+    },
+
+  })
 
   $.ajax({
     method: "POST",
