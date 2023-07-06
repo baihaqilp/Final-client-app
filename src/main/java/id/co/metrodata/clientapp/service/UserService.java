@@ -51,11 +51,12 @@ public class UserService {
     }
 
     public User create(TrainerRequest user) {
-        return restTemplate.exchange(
+        User result = restTemplate.exchange(
                 url + "/",
                 HttpMethod.POST,
                 new HttpEntity(user, BasicHeader.createHeader()),
                 User.class).getBody();
+        return result;
     }
 
     public User update(long id, User user) {
@@ -100,6 +101,10 @@ public class UserService {
                 url + "/change-status/",
                 HttpMethod.POST,
                 new HttpEntity(user), User.class).getBody();
+    }
+
+    public void moodleCreateUser() {
+        String command = "http://localhost/moodle/webservice/rest/server.php?moodlewsrestformat=json&wstoken=f602256d339d551d897f6f79d3f528db&wsfunction=core_user_create_users&users[0][createpassword]=1&users[0][username]=testcreature&users[0][auth]=manual&users[0][password]=Testcreatea123%23&users[0][firstname]=Testeron&users[0][lastname]=create&users[0][email]=testcreate@yopmail.com";
     }
 
 }

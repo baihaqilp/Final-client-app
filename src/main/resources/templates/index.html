@@ -2,8 +2,7 @@
 <html
   lang="en"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{layout/main}"
->
+  layout:decorate="~{layout/main}">
   <header>
     <title>Dashboard Admin</title>
   </header>
@@ -25,8 +24,7 @@
                         <div class="stats-icon purple">
                           <i
                             class="bi bi-house-door"
-                            style="margin-right: 13px; margin-bottom: 25px"
-                          ></i>
+                            style="margin-right: 13px; margin-bottom: 25px"></i>
                         </div>
                       </div>
                       <div class="col-md-8">
@@ -69,8 +67,7 @@
                         <h6 class="text-muted font-semibold">Segment End</h6>
                         <h6
                           class="font-extrabold mb-0"
-                          id="complete-count"
-                        ></h6>
+                          id="complete-count"></h6>
                       </div>
                     </div>
                   </div>
@@ -79,8 +76,7 @@
             </div>
             <div
               class="row d-flex justify-content-between"
-              sec:authorize="hasRole('ADMIN')"
-            >
+              sec:authorize="hasRole('ADMIN')">
               <div class="col-6 col-lg-3 col-md-6">
                 <div class="card">
                   <div class="card-body px-3 py-4-5">
@@ -129,8 +125,7 @@
                         <div class="stats-icon green">
                           <i
                             class="bi bi-house-door"
-                            style="margin-right: 13px; margin-bottom: 25px"
-                          ></i>
+                            style="margin-right: 13px; margin-bottom: 25px"></i>
                         </div>
                       </div>
                       <div class="col-md-8">
@@ -150,8 +145,7 @@
                         <div class="stats-icon green">
                           <i
                             class="bi bi-house-door-fill"
-                            style="margin-right: 13px; margin-bottom: 25px"
-                          ></i>
+                            style="margin-right: 13px; margin-bottom: 25px"></i>
                         </div>
                       </div>
                       <div class="col-md-8">
@@ -191,8 +185,7 @@
                       <h5 class="font-bold" sec:authentication="name"></h5>
                       <h6
                         class="text-muted mb-0"
-                        sec:authentication="authorities[0]"
-                      ></h6>
+                        sec:authentication="authorities[0]"></h6>
                     </div>
                   </div>
                 </div>
@@ -206,8 +199,7 @@
                 <div
                   class="card-body overflow-auto"
                   style="width: auto; height: 560px"
-                  id="trainer-scroll"
-                >
+                  id="trainer-scroll">
                   <div class="trainee-card"></div>
                 </div>
               </div>
@@ -236,8 +228,7 @@
                 type="button"
                 class="close"
                 data-bs-dismiss="modal"
-                aria-hidden="true"
-              >
+                aria-hidden="true">
                 &times;
               </button>
               <h3 class="modal-title">Event</h3>
@@ -255,17 +246,14 @@
       <script></script>
       <script
         th:src="@{/assets/js/myJs/myDashboard.js}"
-        sec:authorize="hasRole('TRAINER')"
-      ></script>
+        sec:authorize="hasRole('TRAINER')"></script>
       <script
         src="https://cdn.polyfill.io/v2/polyfill.min.js"
-        sec:authorize="hasRole('TRAINER')"
-      ></script>
+        sec:authorize="hasRole('TRAINER')"></script>
 
       <script
         th:src="@{/assets/js/myJs/adminDashboard.js}"
-        sec:authorize="hasRole('ADMIN')"
-      ></script>
+        sec:authorize="hasRole('ADMIN')"></script>
     </div>
   </body>
 </html>
